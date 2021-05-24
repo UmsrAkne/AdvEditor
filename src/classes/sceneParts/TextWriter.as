@@ -11,6 +11,7 @@ package classes.sceneParts {
         private var currentText:String;
         private var textWindow:TextField;
         private var charaCounter:int;
+        private var saveText:Boolean;
 
         public function TextWriter() {
         }
@@ -20,7 +21,10 @@ package classes.sceneParts {
                 textWindow.text = currentText;
                 removeEventListener(Event.ENTER_FRAME, write);
             } else {
-                textWindow.text = "";
+                if (!saveText) {
+                    textWindow.text = "";
+                }
+
                 charaCounter = 0;
                 addEventListener(Event.ENTER_FRAME, write);
             }
@@ -28,6 +32,7 @@ package classes.sceneParts {
 
         public function setScenario(scenario:Scenario):void {
             currentText = scenario.Text;
+            saveText = scenario.TextAddition;
         }
 
         public function setUI(ui:UIContainer):void {
@@ -35,9 +40,10 @@ package classes.sceneParts {
         }
 
         private function write(event:Event):void {
-            if (currentText.length - 1 <= charaCounter) {
+            if (currentText.length <= charaCounter) {
                 charaCounter = 0;
                 removeEventListener(Event.ENTER_FRAME, write);
+                return;
             }
 
             textWindow.appendText(currentText.charAt(charaCounter));

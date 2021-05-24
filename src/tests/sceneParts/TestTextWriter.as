@@ -37,6 +37,40 @@ package tests.sceneParts {
 
             // 10フレーム経過
             Assert.areEqual(textWindow.text, "testText");
+
+            // テキストの追加書き込みのテスト
+            var additionScenario:Scenario = new Scenario();
+            additionScenario.Text = "AddText";
+            additionScenario.TextAddition = true;
+            writer.setScenario(additionScenario);
+            writer.execute();
+
+            writer.dispatchEvent(new Event(Event.ENTER_FRAME));
+            Assert.areEqual(textWindow.text, "testTextA");
+
+            for (i = 0; i < 10; i++) {
+                writer.dispatchEvent(new Event(Event.ENTER_FRAME));
+            }
+
+            // 最終的に２回分のテキストが連結されて入る。
+            Assert.areEqual(textWindow.text, "testTextAddText");
+
+            var scn:Scenario = new Scenario();
+            scn.Text = "newText";
+
+            writer.setScenario(scn);
+            writer.execute();
+
+            // セットした段階でテキストはリセット
+            Assert.areEqual(textWindow.text, "");
+
+            writer.dispatchEvent(new Event(Event.ENTER_FRAME));
+            Assert.areEqual(textWindow.text, "n");
+
+            writer.execute();
+
+            // 途中で execute() を実行したので、本来はいるはずだったテキストが一気に入力される。
+            Assert.areEqual(textWindow.text, "newText");
         }
     }
 }
