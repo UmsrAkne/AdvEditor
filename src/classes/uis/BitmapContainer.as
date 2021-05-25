@@ -29,5 +29,9 @@ package classes.uis {
                 }
             }
         }
+
+        public function get Front():Bitmap {
+            return bitmaps[0];
+        }
     }
 }

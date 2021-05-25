@@ -17,6 +17,11 @@ package tests.uis {
 
             var bmps:Vector.<Bitmap> = new Vector.<Bitmap>();
             bmps.push(new Bitmap(new BitmapData(10, 10)));
+            bmps.push(new Bitmap(new BitmapData(10, 10)));
+            bmps.push(new Bitmap(new BitmapData(10, 10)));
+            bmps.push(new Bitmap(new BitmapData(10, 10)));
+            bmps.push(new Bitmap(new BitmapData(10, 10)));
+            bmps.push(new Bitmap(new BitmapData(10, 10)));
 
             var eventDispatched:Boolean;
             function eventTest(e:Event):void {
@@ -27,6 +32,12 @@ package tests.uis {
             bitmapContainer.add(bmps[0]);
 
             Assert.isTrue(eventDispatched);
+            Assert.areEqual(bitmapContainer.Front, bmps[0]);
+
+            for (var i:int = 0; i < 5; i++) {
+                bitmapContainer.add(bmps[i]);
+                Assert.areEqual(bitmapContainer.Front, bmps[i])
+            }
         }
     }
 }
