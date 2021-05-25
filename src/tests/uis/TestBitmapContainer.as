@@ -13,7 +13,7 @@ package tests.uis {
         }
 
         public function testAdd():void {
-            var bitmapContainer:BitmapContainer = new BitmapContainer();
+            var bitmapContainer:BitmapContainer = new BitmapContainer(0);
 
             var bmps:Vector.<Bitmap> = new Vector.<Bitmap>();
             bmps.push(new Bitmap(new BitmapData(10, 10)));

@@ -11,8 +11,10 @@ package classes.uis {
         public var layerCapacity:int = 4;
 
         private var bitmaps:Vector.<Bitmap> = new Vector.<Bitmap>();
+        private var layerIndex:int;
 
-        public function BitmapContainer() {
+        public function BitmapContainer(layerIndex:int) {
+            this.layerIndex = layerIndex;
         }
 
         public function add(bitmap:Bitmap):void {
@@ -32,6 +34,10 @@ package classes.uis {
 
         public function get Front():Bitmap {
             return bitmaps[0];
+        }
+
+        public function get LayerIndex():int {
+            return layerIndex;
         }
     }
 }
