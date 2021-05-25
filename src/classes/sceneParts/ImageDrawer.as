@@ -19,7 +19,19 @@ package classes.sceneParts {
         }
 
         public function execute():void {
-            throw new Error("Method not implemented.");
+            if (!needExecute) {
+                return;
+            }
+
+            var bitmap:Bitmap = new Bitmap(new BitmapData(resource.screenSize.width, resource.screenSize.height, true));
+            for each (var index:int in currentOrder.indexes) {
+                if (index > 0) {
+                    bitmap.bitmapData.draw(resource.imageLoaders[index]);
+                }
+            }
+
+            bitmapContainer.add(bitmap);
+            needExecute = false;
         }
 
         public function setScenario(scenario:Scenario):void {
