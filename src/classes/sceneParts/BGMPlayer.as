@@ -4,11 +4,11 @@ package classes.sceneParts {
     import classes.uis.UIContainer;
     import classes.sceneContents.Resource;
 
-    public class SoundPlayer implements IScenarioSceneParts {
+    public class BGMPlayer implements IScenarioSceneParts {
 
         private var resource:Resource;
 
-        public function SoundPlayer() {
+        public function BGMPlayer() {
         }
 
         public function execute():void {
