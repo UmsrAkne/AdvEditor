@@ -7,6 +7,7 @@ package classes.gameScenes {
     import flash.ui.Keyboard;
     import classes.sceneContents.Resource;
     import classes.sceneParts.TextWriter;
+    import classes.sceneParts.ImageDrawer;
 
     public class ScenarioScene extends Sprite {
 
@@ -20,6 +21,11 @@ package classes.gameScenes {
             addEventListener(KeyboardEvent.KEY_DOWN, keyboardEventHandler);
 
             sceneParts.push(new TextWriter());
+
+            sceneParts.push(new ImageDrawer(ui.getBitmapContainerFromIndex(0))); // background
+            sceneParts.push(new ImageDrawer(ui.getBitmapContainerFromIndex(1))); // main
+            sceneParts.push(new ImageDrawer(ui.getBitmapContainerFromIndex(2))); // front
+            sceneParts.push(new ImageDrawer(ui.getBitmapContainerFromIndex(3))); // front
 
             for each (var parts:IScenarioSceneParts in sceneParts) {
                 parts.setUI(ui);
