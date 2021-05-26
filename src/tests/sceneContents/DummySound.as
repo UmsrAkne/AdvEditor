@@ -6,9 +6,15 @@ package tests.sceneContents {
 
     public class DummySound implements ISound {
 
+        public var playCallCount:int = 0;
+
         private var playing:Boolean;
         private var playTime:int;
         private const duration:int = 12;
+
+        public function get Playing():Boolean {
+            return playing;
+        }
 
         public function DummySound() {
         }
@@ -35,6 +41,7 @@ package tests.sceneContents {
 
         public function play(startTime:Number = 0, loopCount:int = 0, soundTransform:SoundTransform = null):SoundChannel {
             playing = true;
+            playCallCount++;
             return new SoundChannel();
         }
 
