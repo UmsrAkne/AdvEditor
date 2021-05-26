@@ -45,10 +45,12 @@ package classes.sceneParts {
                     currentOrder = order;
                 }
             }
+
+            needExecute = true;
         }
 
         public function setUI(ui:UIContainer):void {
-            throw new Error("Method not implemented.");
+            // 実装無し
         }
 
         public function setResource(res:Resource):void {
