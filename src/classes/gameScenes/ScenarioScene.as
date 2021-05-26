@@ -10,6 +10,7 @@ package classes.gameScenes {
     import classes.sceneParts.ImageDrawer;
     import classes.sceneParts.BGMPlayer;
     import classes.sceneParts.SEPlayer;
+    import classes.sceneParts.VoicePlayer;
 
     public class ScenarioScene extends Sprite {
 
@@ -26,6 +27,9 @@ package classes.gameScenes {
 
             sceneParts.push(new BGMPlayer());
             sceneParts.push(new SEPlayer());
+            sceneParts.push(new VoicePlayer(0));
+            sceneParts.push(new VoicePlayer(1));
+            sceneParts.push(new VoicePlayer(2));
 
             sceneParts.push(new ImageDrawer(ui.getBitmapContainerFromIndex(0))); // background
             sceneParts.push(new ImageDrawer(ui.getBitmapContainerFromIndex(1))); // main
