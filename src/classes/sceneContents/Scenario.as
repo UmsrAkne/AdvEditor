@@ -5,6 +5,8 @@ package classes.sceneContents {
         private var text:String;
         private var textAddition:Boolean;
         private var imageOrders:Vector.<ImageOrder> = new Vector.<ImageOrder>();
+        private var voice:SoundFile;
+        private var bgm:SoundFile;
 
         public function get Text():String {
             return text;
@@ -34,5 +36,22 @@ package classes.sceneContents {
         public function get ImagerOrders():Vector.<ImageOrder> {
             return imageOrders;
         }
+
+        public function set Voice(value:SoundFile):void {
+            voice = value;
+        }
+
+        public function get Voice():SoundFile {
+            return voice;
+        }
+
+        public function set BGM(value:SoundFile):void {
+            bgm = value;
+        }
+
+        public function get BGM():SoundFile {
+            return bgm;
+        }
+
     }
 }
