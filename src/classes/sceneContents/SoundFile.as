@@ -7,15 +7,16 @@ package classes.sceneContents {
     public class SoundFile {
 
         private var file:File;
-        private var sound:Sound;
+        private var sound:ISound;
 
-        public function SoundFile(file:File) {
+        public function SoundFile(file:File, sound:ISound = null) {
             this.file = file;
+            this.sound = sound;
         }
 
-        public function getSound():Sound {
+        public function getSound():ISound {
             if (sound == null) {
-                sound = new Sound(new URLRequest(file.nativePath));
+                sound = new ExSound(new Sound(new URLRequest(file.nativePath)));
             }
 
             return sound;
