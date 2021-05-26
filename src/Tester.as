@@ -2,13 +2,10 @@ package {
 
 
     import flash.display.Sprite;
-    import tests.Assert;
     import flash.desktop.NativeApplication;
-    import tests.sceneParts.TestTextWriter;
+    import tests.Assert;
     import tests.uis.TestBitmapContainer;
-    import tests.sceneParts.TestImageDrawer;
-    import tests.sceneParts.TestBGMPlayer;
-    import tests.sceneParts.TestSEPlayer;
+    import tests.sceneParts.*
 
     public class Tester extends Sprite {
         public function Tester() {
