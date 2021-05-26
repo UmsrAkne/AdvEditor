@@ -4,6 +4,7 @@ package classes.sceneContents {
 
         private var text:String;
         private var textAddition:Boolean;
+        private var imageOrders:Vector.<ImageOrder> = new Vector.<ImageOrder>();
 
         public function get Text():String {
             return text;
@@ -28,6 +29,10 @@ package classes.sceneContents {
          */
         public function set TextAddition(value:Boolean):void {
             textAddition = value;
+        }
+
+        public function get ImagerOrders():Vector.<ImageOrder> {
+            return imageOrders;
         }
     }
 }

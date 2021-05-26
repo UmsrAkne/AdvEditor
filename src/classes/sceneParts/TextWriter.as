@@ -5,6 +5,7 @@ package classes.sceneParts {
     import flash.text.TextField;
     import flash.events.EventDispatcher;
     import flash.events.Event;
+    import classes.sceneContents.Resource;
 
     public class TextWriter extends EventDispatcher implements IScenarioSceneParts {
 
@@ -48,6 +49,10 @@ package classes.sceneParts {
 
             textWindow.appendText(currentText.charAt(charaCounter));
             charaCounter++;
+        }
+
+        public function setResource(res:Resource):void {
+            // Resource 使用の必要性が無いため実装無し。
         }
     }
 }
