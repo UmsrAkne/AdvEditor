@@ -6,6 +6,8 @@ package classes.sceneContents {
         private var textAddition:Boolean;
         private var imageOrders:Vector.<ImageOrder> = new Vector.<ImageOrder>();
         private var voice:SoundFile;
+        private var se:SoundFile;
+        private var seRepeatCount:int;
         private var bgm:SoundFile;
 
         public function get Text():String {
@@ -43,6 +45,22 @@ package classes.sceneContents {
 
         public function get Voice():SoundFile {
             return voice;
+        }
+
+        public function set SE(value:SoundFile):void {
+            se = value;
+        }
+
+        public function get SE():SoundFile {
+            return se;
+        }
+
+        public function set SERepeatCount(value:int):void {
+            seRepeatCount = value;
+        }
+
+        public function get SERepeatCount():int {
+            return seRepeatCount;
         }
 
         public function set BGM(value:SoundFile):void {

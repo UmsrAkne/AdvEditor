@@ -12,6 +12,7 @@ package classes.uis {
         private var textWindowImage:Loader;
         private var bitmapContainers:Vector.<BitmapContainer> = new Vector.<BitmapContainer>();
         private var bgmChannelWrapper:SoundChannelWrapper = new SoundChannelWrapper();
+        private var seChannelWrapper:SoundChannelWrapper = new SoundChannelWrapper();
 
         public function get TextWindow():TextField {
             return textWindow;
@@ -23,6 +24,10 @@ package classes.uis {
 
         public function get BGMChannelWrapper():SoundChannelWrapper {
             return bgmChannelWrapper;
+        }
+
+        public function get SEChannelWrapper():SoundChannelWrapper {
+            return seChannelWrapper;
         }
 
         public function UIContainer() {
