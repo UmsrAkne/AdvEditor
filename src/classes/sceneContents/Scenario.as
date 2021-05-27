@@ -1,10 +1,13 @@
 package classes.sceneContents {
 
+    import classes.animes.IAnimation;
+
     public class Scenario {
 
         private var text:String;
         private var textAddition:Boolean;
         private var imageOrders:Vector.<ImageOrder> = new Vector.<ImageOrder>();
+        private var animations:Vector.<IAnimation> = new Vector.<IAnimation>();
         private var voice:SoundFile;
         private var se:SoundFile;
         private var seRepeatCount:int;
@@ -37,6 +40,10 @@ package classes.sceneContents {
 
         public function get ImagerOrders():Vector.<ImageOrder> {
             return imageOrders;
+        }
+
+        public function get Animations():Vector.<IAnimation> {
+            return animations;
         }
 
         public function set Voice(value:SoundFile):void {
