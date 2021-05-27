@@ -24,18 +24,25 @@ package classes.sceneParts {
                 return;
             }
 
-            for (var i:int = 0; i < animations.length; i++) {
-                if (!animations[i].Valid) {
-                    animations[i].stop();
-                    animations.slice(i, 1);
-                    i--;
-                }
-            }
+            var existInvalidAnimation:Boolean;
 
             for each (var anime:IAnimation in animations) {
                 anime.execute();
+                if (!anime.Valid) {
+                    existInvalidAnimation = true;
+                }
             }
 
+            if (existInvalidAnimation) {
+                var newVec:Vector.<IAnimation> = new Vector.<IAnimation>();
+                for each (anime in animations) {
+                    if (anime.Valid) {
+                        newVec.push(anime);
+                    }
+                }
+
+                animations = newVec;
+            }
         }
 
         public function execute():void {
@@ -43,18 +50,23 @@ package classes.sceneParts {
         }
 
         public function setScenario(scenario:Scenario):void {
-            throw new Error("Method not implemented.");
+            for each (var anime:IAnimation in scenario.Animations) {
+                addAnimation(anime);
+            }
         }
 
         public function setUI(ui:UIContainer):void {
-            throw new Error("Method not implemented.");
         }
 
         public function setResource(res:Resource):void {
-            throw new Error("Method not implemented.");
+        }
+
+        public function get AnimationCount():int {
+            return animations.length;
         }
 
         private function addAnimation(anime:IAnimation):void {
+            anime.Target = bitmapContainer.Front;
             for (var i:int = 0; i < animations.length; i++) {
                 if (animations[i].AnimationName == anime.AnimationName) {
                     animations[i] = anime;

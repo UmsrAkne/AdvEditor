@@ -11,6 +11,7 @@ package {
     public class Tester extends Sprite {
         public function Tester() {
 
+            new TestAnimator();
             new TestShake();
             new TestImageDrawer();
             new TestTextWriter();
