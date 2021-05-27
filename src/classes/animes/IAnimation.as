@@ -6,6 +6,7 @@ package classes.animes {
         function execute():void;
         function stop():void;
         function get Valid():Boolean;
+        function get AnimationName():String;
         function set Target(targetObject:DisplayObject):void;
     }
 }

@@ -60,6 +60,10 @@ package classes.animes {
             return valid;
         }
 
+        public function get AnimationName():String {
+            return "shake";
+        }
+
         public function set Target(targetObject:DisplayObject):void {
             if (!target) {
                 target = targetObject;
