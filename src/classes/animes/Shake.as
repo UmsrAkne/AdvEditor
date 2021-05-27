@@ -53,7 +53,6 @@ package classes.animes {
             target.x -= totalMovePosition.x;
             target.y -= totalMovePosition.y;
             totalMovePosition = new Point(0, 0);
-            target = null;
         }
 
         public function get Valid():Boolean {
