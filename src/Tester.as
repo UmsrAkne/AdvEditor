@@ -2,11 +2,10 @@ package {
 
 
     import flash.display.Sprite;
-    import tests.Assert;
     import flash.desktop.NativeApplication;
-    import tests.sceneParts.TestTextWriter;
+    import tests.Assert;
     import tests.uis.TestBitmapContainer;
-    import tests.sceneParts.TestImageDrawer;
+    import tests.sceneParts.*
 
     public class Tester extends Sprite {
         public function Tester() {
@@ -14,6 +13,8 @@ package {
             new TestImageDrawer();
             new TestTextWriter();
             new TestBitmapContainer();
+            new TestBGMPlayer();
+            new TestSEPlayer();
 
             trace("[Tester]" + " " + Assert.TestCounter + " 回のテストを完了しました");
             NativeApplication.nativeApplication.exit();
