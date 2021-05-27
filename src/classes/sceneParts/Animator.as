@@ -13,12 +13,29 @@ package classes.sceneParts {
 
         public function Animator(targetBitmapContainer:BitmapContainer) {
             bitmapContainer = targetBitmapContainer;
+            bitmapContainer.addEventListener(BitmapContainer.BITMAP_ADDED, changeTarget);
         }
 
         /**
          * addAnimation() によって入力されたアニメーションを全て実行します。
          */
         public function executeAnimations():void {
+            if (animations.length == 0) {
+                return;
+            }
+
+            for (var i:int = 0; i < animations.length; i++) {
+                if (!animations[i].Valid) {
+                    animations[i].stop();
+                    animations.slice(i, 1);
+                    i--;
+                }
+            }
+
+            for each (var anime:IAnimation in animations) {
+                anime.execute();
+            }
+
         }
 
         public function execute():void {
@@ -38,6 +55,20 @@ package classes.sceneParts {
         }
 
         private function addAnimation(anime:IAnimation):void {
+            for (var i:int = 0; i < animations.length; i++) {
+                if (animations[i].AnimationName == anime.AnimationName) {
+                    animations[i] = anime;
+                    return;
+                }
+            }
+
+            animations.push(anime);
+        }
+
+        private function changeTarget(event:Object):void {
+            for each (var anime:IAnimation in animations) {
+                anime.Target = bitmapContainer.Front;
+            }
         }
     }
 }
