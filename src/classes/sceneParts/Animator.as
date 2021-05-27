@@ -51,7 +51,9 @@ package classes.sceneParts {
 
         public function setScenario(scenario:Scenario):void {
             for each (var anime:IAnimation in scenario.Animations) {
-                addAnimation(anime);
+                if (anime.TargetLayerIndex == bitmapContainer.LayerIndex) {
+                    addAnimation(anime);
+                }
             }
         }
 

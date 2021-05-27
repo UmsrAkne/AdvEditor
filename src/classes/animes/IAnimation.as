@@ -8,5 +8,7 @@ package classes.animes {
         function get Valid():Boolean;
         function get AnimationName():String;
         function set Target(targetObject:DisplayObject):void;
+        function set TargetLayerIndex(index:int):void;
+        function get TargetLayerIndex():int;
     }
 }

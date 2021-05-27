@@ -14,7 +14,7 @@ package tests.sceneParts {
         }
 
         private function testExecuteAnimations():void {
-            var bitmapContainer:BitmapContainer = new BitmapContainer(0);
+            var bitmapContainer:BitmapContainer = new BitmapContainer(1);
             var testBitmap:Bitmap = new Bitmap(new BitmapData(5, 5, false, 0x0));
             bitmapContainer.add(testBitmap);
 

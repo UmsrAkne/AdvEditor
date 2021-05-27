@@ -10,6 +10,7 @@ package classes.animes {
         private var frameCount:int;
         private var valid:Boolean = true;
         private var target:DisplayObject;
+        private var targetLayerIndex:int = 1;
         private var totalMovePosition:Point = new Point(0, 0);
 
         private function get Resistor():Number {
@@ -71,6 +72,14 @@ package classes.animes {
             if (!target || frameCount == 0) {
                 target = targetObject;
             }
+        }
+
+        public function get TargetLayerIndex():int {
+            return targetLayerIndex;
+        }
+
+        public function set TargetLayerIndex(value:int):void {
+            targetLayerIndex = value;
         }
     }
 }
