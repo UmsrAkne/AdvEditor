@@ -6,10 +6,13 @@ package {
     import tests.Assert;
     import tests.uis.TestBitmapContainer;
     import tests.sceneParts.*
+    import tests.animes.TestShake;
 
     public class Tester extends Sprite {
         public function Tester() {
 
+            new TestAnimator();
+            new TestShake();
             new TestImageDrawer();
             new TestTextWriter();
             new TestBitmapContainer();
