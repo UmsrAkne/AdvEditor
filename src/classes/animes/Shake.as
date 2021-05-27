@@ -64,8 +64,12 @@ package classes.animes {
             return "shake";
         }
 
+        /**
+         * セットが可能なのは、初回登録時、または execute 未実行の場合のみ。
+         * @param targetObject
+         */
         public function set Target(targetObject:DisplayObject):void {
-            if (!target) {
+            if (!target || frameCount == 0) {
                 target = targetObject;
             }
         }
