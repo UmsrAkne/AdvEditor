@@ -11,6 +11,7 @@ package tests.sceneParts {
     public class TestAnimator {
         public function TestAnimator() {
             testExecuteAnimations();
+            testExecuteAnimationsWhenImageAddition();
         }
 
         private function testExecuteAnimations():void {
@@ -43,6 +44,26 @@ package tests.sceneParts {
 
             // 実行回数が duration を超えたのでアニメーションは削除されて空に。
             Assert.areEqual(animator.AnimationCount, 0);
+        }
+
+        private function testExecuteAnimationsWhenImageAddition():void {
+            // bitmapContainer に bitmap を追加した際、animator が alphaChanger を正しく扱うかどうかをテストする。
+            var bitmapContainer:BitmapContainer = new BitmapContainer(1);
+            var animator:Animator = new Animator(bitmapContainer);
+
+            var testBitmap:Bitmap = new Bitmap(new BitmapData(5, 5, false, 0x0));
+            testBitmap.alpha = 0;
+            bitmapContainer.add(testBitmap);
+
+            // 自動で AlphaChanger が入力されているはず
+            Assert.areEqual(animator.AnimationCount, 1);
+
+            for (var i:int = 0; i < 24; i++) {
+                animator.executeAnimations();
+            }
+
+            Assert.areEqual(animator.AnimationCount, 0);
+            Assert.areEqual(testBitmap.alpha, 1);
         }
     }
 }
