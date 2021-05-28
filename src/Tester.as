@@ -7,11 +7,13 @@ package {
     import tests.uis.TestBitmapContainer;
     import tests.sceneParts.*
     import tests.animes.TestShake;
+    import tests.animes.TestAlphaChanger;
 
     public class Tester extends Sprite {
         public function Tester() {
 
             new TestAnimator();
+            new TestAlphaChanger();
             new TestShake();
             new TestImageDrawer();
             new TestTextWriter();
