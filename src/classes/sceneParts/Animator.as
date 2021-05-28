@@ -5,6 +5,7 @@ package classes.sceneParts {
     import classes.uis.UIContainer;
     import classes.sceneContents.Resource;
     import classes.uis.BitmapContainer;
+    import classes.animes.AlphaChanger;
 
     public class Animator implements IScenarioSceneParts {
 
@@ -14,6 +15,7 @@ package classes.sceneParts {
         public function Animator(targetBitmapContainer:BitmapContainer) {
             bitmapContainer = targetBitmapContainer;
             bitmapContainer.addEventListener(BitmapContainer.BITMAP_ADDED, changeTarget);
+            bitmapContainer.addEventListener(BitmapContainer.BITMAP_ADDED, addAlphaChanger);
         }
 
         /**
@@ -83,6 +85,24 @@ package classes.sceneParts {
             for each (var anime:IAnimation in animations) {
                 anime.Target = bitmapContainer.Front;
             }
+        }
+
+        /**
+         * BitmapContainer に Bitmap が追加された際、そのオブジェクトに透明度変更のアニメーションをさせるためのメソッド。
+         * このメソッドは、各シーンパーツの setScenario() 完了後の ImageDrawer.execute() のタイミングで呼び出しがかかる。
+         * そのため、別途 Scenario.Animations にユーザー指定の AlphaChanger が入っていて、this.animations に AlphaChanger が既に入力されていることがあり得るが、
+         * その場合、このメソッドによるアニメーションの追加は行われない。
+         * @param event
+         */
+        private function addAlphaChanger(event:Object):void {
+            if (animations.some(function(item:IAnimation, idx:int, v:Vector.<IAnimation>):Boolean {
+                return item is AlphaChanger;
+            })) {
+                // animations に AlphaChanger が入っているか確認し、入っていれば処理を抜ける。
+                return;
+            }
+
+            addAnimation(new AlphaChanger());
         }
     }
 }
