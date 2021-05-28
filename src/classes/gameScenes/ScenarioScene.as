@@ -1,18 +1,12 @@
 package classes.gameScenes {
 
     import flash.display.Sprite;
-    import classes.uis.UIContainer;
-    import classes.sceneParts.IScenarioSceneParts;
     import flash.events.KeyboardEvent;
-    import flash.ui.Keyboard;
-    import classes.sceneContents.Resource;
-    import classes.sceneParts.TextWriter;
-    import classes.sceneParts.ImageDrawer;
-    import classes.sceneParts.BGMPlayer;
-    import classes.sceneParts.SEPlayer;
-    import classes.sceneParts.VoicePlayer;
-    import classes.sceneParts.Animator;
     import flash.events.Event;
+    import flash.ui.Keyboard;
+    import classes.uis.UIContainer;
+    import classes.sceneParts.*
+    import classes.sceneContents.Resource;
 
     public class ScenarioScene extends Sprite {
 
