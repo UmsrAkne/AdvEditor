@@ -8,7 +8,12 @@ package classes.contentsLoaders.xmlElements {
         private static const NUMBER_ATTRIBUTE:String = "@number";
         private static const FILE_NAME_ATTRIBUTE:String = "@fileName";
 
-        public function VoiceElementConverter() {
+        private var voiceDirectory:File;
+        private var voiceFileList:Array;
+
+        public function VoiceElementConverter(sceneDirectory:File) {
+            voiceDirectory = new File(sceneDirectory.nativePath + "/voices");
+            voiceFileList = voiceDirectory.getDirectoryListing();
         }
 
         public function get ElementName():String {
@@ -24,13 +29,21 @@ package classes.contentsLoaders.xmlElements {
             var soundFile:SoundFile;
 
             if (voiceTag.hasOwnProperty(FILE_NAME_ATTRIBUTE)) {
-                soundFile = new SoundFile();
-                soundFile.FileName = voiceTag[FILE_NAME_ATTRIBUTE];
+                var voiceFilePath:String = voiceDirectory.nativePath + "/" + (voiceTag[FILE_NAME_ATTRIBUTE]);
+                soundFile = new SoundFile(new File(voiceFilePath));
                 return soundFile;
             }
 
             if (voiceTag.hasOwnProperty(NUMBER_ATTRIBUTE)) {
-                soundFile = new SoundFile();
+                var index:int = parseInt(voiceTag[NUMBER_ATTRIBUTE]);
+
+                // 入力は外部の XML から来るので、変換失敗はあり得るが、
+                // 失敗した場合、そのまま処理を続行することはできない（正しく動作しない）ので例外を投げる。
+                if (isNaN(parseInt(voiceTag[NUMBER_ATTRIBUTE]))) {
+                    throw new Error(" voice のインデックスの変換に失敗しました [" + voiceTag[NUMBER_ATTRIBUTE] + "] is NaN.");
+                }
+
+                soundFile = new SoundFile(voiceFileList[index]);
                 soundFile.Index = voiceTag[NUMBER_ATTRIBUTE];
                 return soundFile;
             }

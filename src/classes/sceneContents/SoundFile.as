@@ -20,6 +20,10 @@ package classes.sceneContents {
             fileName = value;
         }
 
+        public function get FileName():String {
+            return file.name;
+        }
+
         public function set Index(value:int):void {
             index = value;
         }
