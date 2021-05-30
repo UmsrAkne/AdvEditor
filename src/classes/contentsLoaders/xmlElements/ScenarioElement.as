@@ -1,5 +1,7 @@
 package classes.contentsLoaders.xmlElements {
 
+    import classes.sceneContents.Scenario;
+
     public class ScenarioElement implements IXMLElementConverter {
 
         private var child:XMLList;
@@ -11,8 +13,7 @@ package classes.contentsLoaders.xmlElements {
             return "scenario";
         }
 
-        public function convert(scenarioElement:XML):* {
-            return child;
+        public function convert(scenarioElement:XML, scenario:Scenario):void {
         }
     }
 }

@@ -2,6 +2,7 @@ package classes.contentsLoaders.xmlElements {
 
     import classes.sceneContents.SoundFile;
     import flash.filesystem.File;
+    import classes.sceneContents.Scenario;
 
     public class VoiceElementConverter implements IXMLElementConverter {
 
@@ -20,7 +21,7 @@ package classes.contentsLoaders.xmlElements {
             return "voice";
         }
 
-        public function convert(scenarioElement:XML):* {
+        public function convert(scenarioElement:XML, scenario:Scenario):void {
             if (!scenarioElement.hasOwnProperty([ElementName])) {
                 return;
             }
@@ -31,7 +32,8 @@ package classes.contentsLoaders.xmlElements {
             if (voiceTag.hasOwnProperty(FILE_NAME_ATTRIBUTE)) {
                 var voiceFilePath:String = voiceDirectory.nativePath + "/" + (voiceTag[FILE_NAME_ATTRIBUTE]);
                 soundFile = new SoundFile(new File(voiceFilePath));
-                return soundFile;
+                scenario.Voice = soundFile;
+                return;
             }
 
             if (voiceTag.hasOwnProperty(NUMBER_ATTRIBUTE)) {
@@ -45,7 +47,8 @@ package classes.contentsLoaders.xmlElements {
 
                 soundFile = new SoundFile(voiceFileList[index]);
                 soundFile.Index = voiceTag[NUMBER_ATTRIBUTE];
-                return soundFile;
+                scenario.Voice = soundFile;
+                return;
             }
 
             throw new ArgumentError("voice 要素には number か fileName 属性が必須です");

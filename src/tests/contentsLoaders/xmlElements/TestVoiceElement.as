@@ -4,6 +4,7 @@ package tests.contentsLoaders.xmlElements {
     import classes.sceneContents.SoundFile;
     import flash.filesystem.File;
     import tests.Assert;
+    import classes.sceneContents.Scenario;
 
     public class TestVoiceElement {
         public function TestVoiceElement() {
@@ -20,11 +21,13 @@ package tests.contentsLoaders.xmlElements {
             var f:File = new File(File.applicationDirectory.nativePath);
             var vc:VoiceElementConverter = new VoiceElementConverter(f.resolvePath("../scenarios/sampleScenario"));
 
-            var soundFFileFromFileName:SoundFile = vc.convert(xmlList[0]);
-            Assert.areEqual(soundFFileFromFileName.FileName, "testFile");
+            var fromFileName:Scenario = new Scenario();
+            vc.convert(xmlList[0], fromFileName);
+            Assert.areEqual(fromFileName.Voice.FileName, "testFile");
 
-            var soundFileFromIndex:SoundFile = vc.convert(xmlList2[0]);
-            Assert.areEqual(soundFileFromIndex.FileName, "002.mp3");
+            var fromIndex:Scenario = new Scenario();
+            vc.convert(xmlList2[0], fromIndex);
+            Assert.areEqual(fromIndex.Voice.FileName, "002.mp3");
         }
     }
 }

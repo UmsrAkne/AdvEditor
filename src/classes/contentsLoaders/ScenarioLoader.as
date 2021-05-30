@@ -7,6 +7,8 @@ package classes.contentsLoaders {
     import flash.net.URLLoader;
     import flash.net.URLRequest;
     import flash.filesystem.File;
+    import classes.contentsLoaders.xmlElements.IXMLElementConverter;
+    import classes.contentsLoaders.xmlElements.VoiceElementConverter;
 
     public class ScenarioLoader implements ILoader {
 
@@ -54,6 +56,10 @@ package classes.contentsLoaders {
 
         private function makeScenarios(xmlList:XMLList):Vector.<Scenario> {
             var vec:Vector.<Scenario> = new Vector.<Scenario>();
+
+            for each (var scenarioTag:XML in xmlList["scenario"]) {
+                var scenario:Scenario = new Scenario();
+            }
             return vec;
         }
     }
