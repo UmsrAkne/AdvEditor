@@ -9,11 +9,13 @@ package {
     import tests.animes.TestShake;
     import tests.animes.TestAlphaChanger;
     import tests.contentsLoaders.xmlElements.TestVoiceElement;
+    import tests.contentsLoaders.TestScenarioLoader;
 
     public class Tester extends Sprite {
         public function Tester() {
 
             new TestAnimator();
+            new TestScenarioLoader();
             new TestAlphaChanger();
             new TestShake();
             new TestImageDrawer();

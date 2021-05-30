@@ -57,9 +57,18 @@ package classes.contentsLoaders {
         private function makeScenarios(xmlList:XMLList):Vector.<Scenario> {
             var vec:Vector.<Scenario> = new Vector.<Scenario>();
 
+            var elementConverters:Vector.<IXMLElementConverter> = new Vector.<IXMLElementConverter>();
+            elementConverters.push(new VoiceElementConverter(sceneDirectory));
+
             for each (var scenarioTag:XML in xmlList["scenario"]) {
                 var scenario:Scenario = new Scenario();
+                for (var i:int = 0; i < elementConverters.length; i++) {
+                    elementConverters[i].convert(scenarioTag, scenario);
+                }
+
+                vec.push(scenario);
             }
+
             return vec;
         }
     }
