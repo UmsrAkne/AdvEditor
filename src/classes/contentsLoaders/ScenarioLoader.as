@@ -22,3 +22,7 @@ package classes.contentsLoaders {
         }
     }
 }
+        public function load():void {
+            throw new Error("Method not implemented.");
+        }
+
