@@ -10,6 +10,7 @@ package classes.sceneContents {
         private var fileName:String;
         private var sound:ISound;
         private var index:int = -1;
+        private var volume:Number = 1.0;
 
         public function SoundFile(file:File = null, sound:ISound = null) {
             this.file = file;
@@ -26,6 +27,18 @@ package classes.sceneContents {
 
         public function set Index(value:int):void {
             index = value;
+        }
+
+        public function get Index():int {
+            return index;
+        }
+
+        public function get Volume():Number {
+            return volume;
+        }
+
+        public function set Volume(value:Number):void {
+            volume = value;
         }
 
         public function getSound():ISound {
