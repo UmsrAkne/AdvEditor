@@ -8,9 +8,8 @@ package {
     import tests.sceneParts.*
     import tests.animes.TestShake;
     import tests.animes.TestAlphaChanger;
-    import tests.contentsLoaders.xmlElements.TestVoiceElement;
     import tests.contentsLoaders.TestScenarioLoader;
-    import tests.contentsLoaders.xmlElements.TestBGMElementConverter;
+    import tests.contentsLoaders.xmlElements.*;
 
     public class Tester extends Sprite {
         public function Tester() {
@@ -26,6 +25,7 @@ package {
             new TestSEPlayer();
             new TestVoiceElement();
             new TestBGMElementConverter();
+            new TestSEElementConverter();
 
             trace("[Tester]" + " " + Assert.TestCounter + " 回のテストを完了しました");
             NativeApplication.nativeApplication.exit();
