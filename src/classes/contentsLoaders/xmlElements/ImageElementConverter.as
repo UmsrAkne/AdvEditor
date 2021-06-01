@@ -28,21 +28,6 @@ package classes.contentsLoaders.xmlElements {
             return "image";
         }
 
-        /**
-         * テスト用メソッド
-         * @param value
-         */
-        public function set FileList(value:Vector.<File>):void {
-            if (fileList == null) {
-                fileList = value;
-
-                for each (var f:File in fileList) {
-                    fileByFileNameDictionary[f.name] = f;
-                    fileByFileNameDictionary[f.name.split(".")[0]] = f;
-                }
-            }
-        }
-
         public function convert(scenarioElement:XML, scenario:Scenario):void {
             if (!scenarioElement.hasOwnProperty(ElementName)) {
                 return;
@@ -74,27 +59,6 @@ package classes.contentsLoaders.xmlElements {
 
                 scenario.ImagerOrders.push(order);
             }
-        }
-
-        /**
-         *  最初は private function get FileList() で宣言してが、エラーの表示が無いにも関わらずビルドに失敗するので getter ライクな命名で。
-         *  ActionScript3.0 のバグか？
-         * @return
-         */
-        private function getFileList():Vector.<File> {
-            if (fileList != null) {
-                return fileList;
-            }
-
-            var fileVec:Vector.<File> = new Vector.<File>();
-            var files:Array = sceneDirectory.resolvePath("/images").getDirectoryListing();
-            for (var i:int = 0; i < files.length; i++) {
-                fileVec.push(files[i]);
-            }
-
-            FileList = fileVec;
-
-            return fileList;
         }
     }
 }

@@ -13,20 +13,8 @@ package tests.contentsLoaders.xmlElements {
         private function testConvert():void {
             var imageElementConverter:ImageElementConverter = new ImageElementConverter(new File(File.applicationDirectory.nativePath));
             var fileList:Vector.<File> = new Vector.<File>();
-            var testDirectory:File = new File(File.applicationDirectory.nativePath);
-            fileList.push(testDirectory.resolvePath("/images/Aimg01.png"));
-            fileList.push(testDirectory.resolvePath("/images/Aimg02.png"));
-            fileList.push(testDirectory.resolvePath("/images/Aimg03.png"));
 
-            fileList.push(testDirectory.resolvePath("/images/Bimg01.png"));
-            fileList.push(testDirectory.resolvePath("/images/Bimg02.png"));
-
-            fileList.push(testDirectory.resolvePath("/images/Cimg01.png"));
-            fileList.push(testDirectory.resolvePath("/images/Cimg02.png"));
-
-            imageElementConverter.FileList = fileList;
-
-            var testXML1:XML = new XML("<scenario>  <image a=\"Aimg01\" c=\"Cimg01\" x=\"-100\" />  </scenario>");
+            var testXML1:XML = new XML("<scenario>  <image a=\"Aimg01\" c=\"Cimg01\" x=\"-100\" scale=\"2.0\" target=\"front\"/> <image a=\"Aimg02\" target=\"main\" /> </scenario>");
             var scenario1:Scenario = new Scenario
 
             imageElementConverter.convert(testXML1, scenario1);
@@ -35,6 +23,10 @@ package tests.contentsLoaders.xmlElements {
 
             Assert.areEqual(scenario1.ImagerOrders[0].x, -100);
             Assert.areEqual(scenario1.ImagerOrders[0].y, 0);
+            Assert.areEqual(scenario1.ImagerOrders[0].scale, 2.0);
+            Assert.areEqual(scenario1.ImagerOrders[0].targetLayerIndex, 2);
+
+            Assert.areEqual(scenario1.ImagerOrders.length, 2);
         }
     }
 }
