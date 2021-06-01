@@ -29,7 +29,7 @@ package classes.contentsLoaders.xmlElements {
 
                 for each (var f:File in fileList) {
                     fileByFileNameDictionary[f.name] = f;
-                    fileByFileNameDictionary[f.name.split(".")[0]];
+                    fileByFileNameDictionary[f.name.split(".")[0]] = f;
                 }
             }
         }
