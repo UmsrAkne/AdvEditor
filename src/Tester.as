@@ -26,6 +26,7 @@ package {
             new TestVoiceElement();
             new TestBGMElementConverter();
             new TestSEElementConverter();
+            new TestImageElementConverter();
 
             trace("[Tester]" + " " + Assert.TestCounter + " 回のテストを完了しました");
             NativeApplication.nativeApplication.exit();
