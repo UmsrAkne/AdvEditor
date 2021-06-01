@@ -27,6 +27,7 @@ package {
             new TestBGMElementConverter();
             new TestSEElementConverter();
             new TestImageElementConverter();
+            new TestAnimeElementConverter();
 
             trace("[Tester]" + " " + Assert.TestCounter + " 回のテストを完了しました");
             NativeApplication.nativeApplication.exit();
