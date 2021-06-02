@@ -10,6 +10,7 @@ package {
     import tests.animes.TestAlphaChanger;
     import tests.contentsLoaders.TestScenarioLoader;
     import tests.contentsLoaders.xmlElements.*;
+    import tests.contentsLoaders.xmlElements.TestTextElementConverter;
 
     public class Tester extends Sprite {
         public function Tester() {
@@ -28,6 +29,7 @@ package {
             new TestSEElementConverter();
             new TestImageElementConverter();
             new TestAnimeElementConverter();
+            new TestTextElementConverter();
 
             trace("[Tester]" + " " + Assert.TestCounter + " 回のテストを完了しました");
             NativeApplication.nativeApplication.exit();
