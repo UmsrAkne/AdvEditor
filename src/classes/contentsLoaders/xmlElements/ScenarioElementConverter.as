@@ -4,7 +4,9 @@ package classes.contentsLoaders.xmlElements {
 
     public class ScenarioElementConverter implements IXMLElementConverter {
 
-        private var child:XMLList;
+        public static const ENTRY_POINT_ATTRIBUTE:String = "@entryPoint";
+        public static const IGNORE_ATTRIBUTE:String = "@ignore";
+        public static const CHAPTER_NAME_ATTRIBUTE:String = "@chapterName";
 
         public function ScenarioElementConverter() {
         }
@@ -14,6 +16,23 @@ package classes.contentsLoaders.xmlElements {
         }
 
         public function convert(scenarioElement:XML, scenario:Scenario):void {
+            if (scenarioElement.name() != ElementName) {
+                return;
+            }
+
+            scenario.ChapterName = scenarioElement[CHAPTER_NAME_ATTRIBUTE];
+
+            if (scenarioElement.hasOwnProperty(ENTRY_POINT_ATTRIBUTE)) {
+                if (scenarioElement[ENTRY_POINT_ATTRIBUTE] == "true") {
+                    scenario.EntryPoint = true;
+                }
+            }
+
+            if (scenarioElement.hasOwnProperty(IGNORE_ATTRIBUTE)) {
+                if (scenarioElement[IGNORE_ATTRIBUTE] == "true") {
+                    scenario.Ignore = true;
+                }
+            }
         }
     }
 }
