@@ -21,10 +21,18 @@ package tests.contentsLoaders {
 
             scenarioLoader.ScenarioXML = new XMLList(xmlString);
 
+            var completed:Boolean = false;
+            scenarioLoader.CompleteEventDispatcher.addEventListener(Event.COMPLETE, function(e:Event):void {
+                completed = true;
+            });
+
             scenarioLoader.load();
             var v:Vector.<Scenario> = scenarioLoader.getContents();
 
+            Assert.areEqual(v.length, 2);
+            Assert.isTrue(completed);
             Assert.areEqual(v[0].Voice.FileName, "testSound");
+            Assert.areEqual(v[0].Text, "1testText1");
         }
     }
 }
