@@ -5,6 +5,7 @@ package tests.contentsLoaders {
     import flash.events.Event;
     import tests.Assert;
     import classes.sceneContents.Scenario;
+    import classes.sceneContents.Resource;
 
     public class TestScenarioLoader {
         public function TestScenarioLoader() {
@@ -27,7 +28,9 @@ package tests.contentsLoaders {
             });
 
             scenarioLoader.load();
-            var v:Vector.<Scenario> = scenarioLoader.getContents();
+            var res:Resource = new Resource();
+            scenarioLoader.writeContentsTo(res);
+            var v:Vector.<Scenario> = res.scenarios;
 
             Assert.areEqual(v.length, 2);
             Assert.isTrue(completed);

@@ -23,6 +23,7 @@ package classes.contentsLoaders {
         }
 
         public function writeContentsTo(resource:Resource):void {
+            resource.scenarios = scenarios;
         }
 
         public function load():void {
