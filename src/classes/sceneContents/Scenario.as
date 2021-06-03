@@ -11,6 +11,7 @@ package classes.sceneContents {
         private var text:String;
         private var textAddition:Boolean;
         private var imageOrders:Vector.<ImageOrder> = new Vector.<ImageOrder>();
+        private var drawingOrder:Vector.<ImageOrder> = new Vector.<ImageOrder>();
         private var animations:Vector.<IAnimation> = new Vector.<IAnimation>();
         private var voice:SoundFile;
         private var se:SoundFile;
@@ -68,6 +69,10 @@ package classes.sceneContents {
 
         public function get ImagerOrders():Vector.<ImageOrder> {
             return imageOrders;
+        }
+
+        public function get DrawingOrder():Vector.<ImageOrder> {
+            return drawingOrder;
         }
 
         public function get Animations():Vector.<IAnimation> {
