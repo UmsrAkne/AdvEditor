@@ -9,6 +9,7 @@ package classes.contentsLoaders {
     import flash.filesystem.File;
     import classes.contentsLoaders.xmlElements.*
     import classes.contentsLoaders.xmlElements.ScenarioElementConverter;
+    import classes.sceneContents.Resource;
 
     public class ScenarioLoader implements ILoader {
 
@@ -21,8 +22,7 @@ package classes.contentsLoaders {
             this.sceneDirectory = sceneDirectory;
         }
 
-        public function getContents():* {
-            return scenarios;
+        public function writeContentsTo(resource:Resource):void {
         }
 
         public function load():void {
