@@ -11,6 +11,8 @@ package classes.sceneContents {
         public var y:int = 0;
         public var scale:Number = 1.0;
 
+        public var drawingDepth:Number = 1.0;
+
         private var target:String = "main"
 
         public function ImageOrder() {
