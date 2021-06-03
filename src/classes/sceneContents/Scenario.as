@@ -4,6 +4,10 @@ package classes.sceneContents {
 
     public class Scenario {
 
+        private var ignore:Boolean;
+        private var chapterName:String;
+        private var entryPoint:Boolean;
+
         private var text:String;
         private var textAddition:Boolean;
         private var imageOrders:Vector.<ImageOrder> = new Vector.<ImageOrder>();
@@ -12,6 +16,30 @@ package classes.sceneContents {
         private var se:SoundFile;
         private var seRepeatCount:int;
         private var bgm:SoundFile;
+
+        public function get Ignore():Boolean {
+            return ignore;
+        }
+
+        public function set Ignore(value:Boolean):void {
+            ignore = value;
+        }
+
+        public function get ChapterName():String {
+            return chapterName;
+        }
+
+        public function set ChapterName(value:String):void {
+            chapterName = value;
+        }
+
+        public function get EntryPoint():Boolean {
+            return entryPoint;
+        }
+
+        public function set EntryPoint(value:Boolean):void {
+            entryPoint = value;
+        }
 
         public function get Text():String {
             return text;
