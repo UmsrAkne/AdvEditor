@@ -6,8 +6,11 @@ package classes.sceneParts {
     import flash.display.Bitmap;
     import flash.display.BitmapData;
     import classes.sceneContents.Resource;
+    import flash.events.EventDispatcher;
+    import flash.events.Event;
+    import flash.geom.ColorTransform;
 
-    public class ImageDrawer implements IScenarioSceneParts {
+    public class ImageDrawer extends EventDispatcher implements IScenarioSceneParts {
 
         private var needBitmapAddition:Boolean;
         private var needBitmapDrawing:Boolean;
@@ -16,6 +19,7 @@ package classes.sceneParts {
         private var resource:Resource;
         private var currentOrder:ImageOrder;
         private var drawingOrder:ImageOrder;
+        private var totalDrawingDepth:Number;
 
         public function ImageDrawer(targetBitmapContainer:BitmapContainer) {
             bitmapContainer = targetBitmapContainer;
@@ -40,18 +44,12 @@ package classes.sceneParts {
             }
 
             if (needBitmapDrawing) {
-                if (!bitmap) {
-
-                    /** 画像の追加命令が同時に出ている場合は、bitmap に値が入っているので、そこにそのまま draw を実行する。 */
-
-                    bitmap = bitmapContainer.Front;
+                while (hasEventListener(Event.ENTER_FRAME)) {
+                    removeEventListener(Event.ENTER_FRAME, drawToFront);
                 }
 
-                for each (index in drawingOrder.indexes) {
-                    if (index > 0) {
-                        bitmap.bitmapData.draw(resource.imageLoaders[index]);
-                    }
-                }
+                totalDrawingDepth = 0;
+                addEventListener(Event.ENTER_FRAME, drawToFront);
             }
 
             needBitmapDrawing = false;
@@ -92,6 +90,22 @@ package classes.sceneParts {
 
         public function setResource(res:Resource):void {
             this.resource = res;
+        }
+
+        private function drawToFront(e:Event):void {
+            var bitmap:Bitmap = bitmapContainer.Front;
+
+            for each (var index:int in drawingOrder.indexes) {
+                if (index > 0) {
+                    bitmap.bitmapData.draw(resource.imageLoaders[index], null, new ColorTransform(1, 1, 1, drawingOrder.drawingDepth));
+                }
+            }
+
+            totalDrawingDepth += drawingOrder.drawingDepth;
+            if (totalDrawingDepth >= 1.2) {
+                removeEventListener(Event.ENTER_FRAME, drawToFront);
+                totalDrawingDepth = 0;
+            }
         }
     }
 }
