@@ -2,11 +2,11 @@ package classes.contentsLoaders.xmlElements {
 
     import classes.sceneContents.Scenario;
 
-    public class ScenarioElement implements IXMLElementConverter {
+    public class ScenarioElementConverter implements IXMLElementConverter {
 
         private var child:XMLList;
 
-        public function ScenarioElement() {
+        public function ScenarioElementConverter() {
         }
 
         public function get ElementName():String {
