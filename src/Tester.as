@@ -11,6 +11,7 @@ package {
     import tests.contentsLoaders.TestScenarioLoader;
     import tests.contentsLoaders.xmlElements.*;
     import tests.contentsLoaders.xmlElements.TestTextElementConverter;
+    import tests.contentsLoaders.xmlElements.TestScenarioElementConverter;
 
     public class Tester extends Sprite {
         public function Tester() {
@@ -30,6 +31,7 @@ package {
             new TestImageElementConverter();
             new TestAnimeElementConverter();
             new TestTextElementConverter();
+            new TestScenarioElementConverter();
 
             trace("[Tester]" + " " + Assert.TestCounter + " 回のテストを完了しました");
             NativeApplication.nativeApplication.exit();

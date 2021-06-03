@@ -8,6 +8,7 @@ package classes.contentsLoaders {
     import flash.net.URLRequest;
     import flash.filesystem.File;
     import classes.contentsLoaders.xmlElements.*
+    import classes.contentsLoaders.xmlElements.ScenarioElementConverter;
 
     public class ScenarioLoader implements ILoader {
 
@@ -57,17 +58,22 @@ package classes.contentsLoaders {
             var vec:Vector.<Scenario> = new Vector.<Scenario>();
 
             var elementConverters:Vector.<IXMLElementConverter> = new Vector.<IXMLElementConverter>();
+            elementConverters.push(new ScenarioElementConverter());
             elementConverters.push(new AnimeElementConverter());
             elementConverters.push(new BGMElementConverter(sceneDirectory));
             elementConverters.push(new ImageElementConverter(sceneDirectory));
             elementConverters.push(new SEElementConverter(sceneDirectory));
-            elementConverters.push(new TextElementConverter())
+            elementConverters.push(new TextElementConverter());
             elementConverters.push(new VoiceElementConverter(sceneDirectory));
 
             for each (var scenarioTag:XML in xmlList["scenario"]) {
                 var scenario:Scenario = new Scenario();
                 for (var i:int = 0; i < elementConverters.length; i++) {
                     elementConverters[i].convert(scenarioTag, scenario);
+                }
+
+                if (scenario.Ignore) {
+                    continue;
                 }
 
                 vec.push(scenario);
