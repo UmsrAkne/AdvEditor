@@ -19,7 +19,7 @@ package classes.sceneParts {
         private var resource:Resource;
         private var currentOrder:ImageOrder;
         private var drawingOrder:ImageOrder;
-        private var totalDrawingDepth:Number;
+        private var totalDrawingDepth:Number = 0;
 
         public function ImageDrawer(targetBitmapContainer:BitmapContainer) {
             bitmapContainer = targetBitmapContainer;
@@ -44,11 +44,14 @@ package classes.sceneParts {
             }
 
             if (needBitmapDrawing) {
-                while (hasEventListener(Event.ENTER_FRAME)) {
-                    removeEventListener(Event.ENTER_FRAME, drawToFront);
+                if (hasEventListener(Event.ENTER_FRAME)) {
+                    stopDrawing();
+
+                    while (hasEventListener(Event.ENTER_FRAME)) {
+                        removeEventListener(Event.ENTER_FRAME, drawToFront);
+                    }
                 }
 
-                totalDrawingDepth = 0;
                 addEventListener(Event.ENTER_FRAME, drawToFront);
             }
 
@@ -103,8 +106,19 @@ package classes.sceneParts {
 
             totalDrawingDepth += drawingOrder.drawingDepth;
             if (totalDrawingDepth >= 1.2) {
-                removeEventListener(Event.ENTER_FRAME, drawToFront);
-                totalDrawingDepth = 0;
+                stopDrawing();
+            }
+        }
+
+        private function stopDrawing():void {
+            removeEventListener(Event.ENTER_FRAME, drawToFront);
+            totalDrawingDepth = 0;
+
+            var bitmap:Bitmap = bitmapContainer.Front;
+            for each (var index:int in drawingOrder.indexes) {
+                if (index > 0) {
+                    bitmap.bitmapData.draw(resource.BitmapDatas[index]);
+                }
             }
         }
     }
