@@ -26,14 +26,20 @@ package classes.sceneParts {
         }
 
         public function execute():void {
-            if (needBitmapAddition && needBitmapDrawing) {
+            if (!needBitmapAddition && !needBitmapDrawing) {
                 return;
             }
 
-            var bitmap:Bitmap;
+            // 最初のガード節を抜けた時点で、新規か上書きのいずれかの画像描画命令が出ていることが確定。
+            // どちらの場合であっても、 drawToFront(e:Event) が動作中では、ターゲットに不正な値が入るので、
+            // stopDrawing() を使用して処理を停止させる。
+
+            if (hasEventListener(Event.ENTER_FRAME)) {
+                stopDrawing();
+            }
 
             if (needBitmapAddition) {
-                bitmap = new Bitmap(new BitmapData(resource.screenSize.width, resource.screenSize.height, true));
+                var bitmap:Bitmap = new Bitmap(new BitmapData(resource.screenSize.width, resource.screenSize.height, true));
                 for each (var index:int in currentOrder.indexes) {
                     if (index > 0) {
                         bitmap.bitmapData.draw(resource.BitmapDatas[index]);
@@ -44,14 +50,6 @@ package classes.sceneParts {
             }
 
             if (needBitmapDrawing) {
-                if (hasEventListener(Event.ENTER_FRAME)) {
-                    stopDrawing();
-
-                    while (hasEventListener(Event.ENTER_FRAME)) {
-                        removeEventListener(Event.ENTER_FRAME, drawToFront);
-                    }
-                }
-
                 addEventListener(Event.ENTER_FRAME, drawToFront);
             }
 
@@ -111,7 +109,10 @@ package classes.sceneParts {
         }
 
         private function stopDrawing():void {
-            removeEventListener(Event.ENTER_FRAME, drawToFront);
+            while (hasEventListener(Event.ENTER_FRAME)) {
+                removeEventListener(Event.ENTER_FRAME, drawToFront);
+            }
+
             totalDrawingDepth = 0;
 
             var bitmap:Bitmap = bitmapContainer.Front;
