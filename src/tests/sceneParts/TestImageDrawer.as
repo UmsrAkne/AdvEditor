@@ -3,11 +3,10 @@ package tests.sceneParts {
     import classes.sceneParts.ImageDrawer;
     import classes.uis.BitmapContainer;
     import classes.sceneContents.Resource;
-    import flash.display.Loader;
-    import flash.display.Bitmap;
     import classes.sceneContents.Scenario;
     import classes.sceneContents.ImageOrder;
     import tests.Assert;
+    import flash.display.BitmapData;
 
     public class TestImageDrawer {
         public function TestImageDrawer() {
@@ -19,8 +18,9 @@ package tests.sceneParts {
             var imageDrawer:ImageDrawer = new ImageDrawer(bitmapContainer);
 
             var resource:Resource = new Resource();
-            resource.imageLoaders.push(new Loader());
-            resource.imageLoaders.push(new Loader());
+            resource.BitmapDatas.push(new BitmapData(10, 10, true, 0xFFFFFFFF));
+            resource.BitmapDatas.push(new BitmapData(10, 10, true, 0xFFFFFFFF));
+            resource.BitmapDatas.push(new BitmapData(10, 10, true, 0xFFFFFFFF));
             imageDrawer.setResource(resource);
 
             var scenario1:Scenario = new Scenario();

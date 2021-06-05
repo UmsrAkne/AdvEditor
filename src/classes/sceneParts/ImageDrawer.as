@@ -36,7 +36,7 @@ package classes.sceneParts {
                 bitmap = new Bitmap(new BitmapData(resource.screenSize.width, resource.screenSize.height, true));
                 for each (var index:int in currentOrder.indexes) {
                     if (index > 0) {
-                        bitmap.bitmapData.draw(resource.imageLoaders[index]);
+                        bitmap.bitmapData.draw(resource.BitmapDatas[index]);
                     }
                 }
 
@@ -97,7 +97,7 @@ package classes.sceneParts {
 
             for each (var index:int in drawingOrder.indexes) {
                 if (index > 0) {
-                    bitmap.bitmapData.draw(resource.imageLoaders[index], null, new ColorTransform(1, 1, 1, drawingOrder.drawingDepth));
+                    bitmap.bitmapData.draw(resource.BitmapDatas[index], null, new ColorTransform(1, 1, 1, drawingOrder.drawingDepth));
                 }
             }
 
