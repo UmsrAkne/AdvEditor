@@ -6,47 +6,85 @@ package classes.sceneParts {
     import flash.display.Bitmap;
     import flash.display.BitmapData;
     import classes.sceneContents.Resource;
+    import flash.events.EventDispatcher;
+    import flash.events.Event;
+    import flash.geom.ColorTransform;
 
-    public class ImageDrawer implements IScenarioSceneParts {
+    public class ImageDrawer extends EventDispatcher implements IScenarioSceneParts {
 
-        private var needExecute:Boolean;
+        private var needBitmapAddition:Boolean;
+        private var needBitmapDrawing:Boolean;
+
         private var bitmapContainer:BitmapContainer;
         private var resource:Resource;
-        private var currentOrder:ImageOrder
+        private var currentOrder:ImageOrder;
+        private var drawingOrder:ImageOrder;
+        private var totalDrawingDepth:Number = 0;
 
         public function ImageDrawer(targetBitmapContainer:BitmapContainer) {
             bitmapContainer = targetBitmapContainer;
         }
 
         public function execute():void {
-            if (!needExecute) {
+            if (needBitmapAddition && needBitmapDrawing) {
                 return;
             }
 
-            var bitmap:Bitmap = new Bitmap(new BitmapData(resource.screenSize.width, resource.screenSize.height, true));
-            for each (var index:int in currentOrder.indexes) {
-                if (index > 0) {
-                    bitmap.bitmapData.draw(resource.imageLoaders[index]);
+            var bitmap:Bitmap;
+
+            if (needBitmapAddition) {
+                bitmap = new Bitmap(new BitmapData(resource.screenSize.width, resource.screenSize.height, true));
+                for each (var index:int in currentOrder.indexes) {
+                    if (index > 0) {
+                        bitmap.bitmapData.draw(resource.BitmapDatas[index]);
+                    }
                 }
+
+                bitmapContainer.add(bitmap);
             }
 
-            bitmapContainer.add(bitmap);
-            needExecute = false;
+            if (needBitmapDrawing) {
+                if (hasEventListener(Event.ENTER_FRAME)) {
+                    stopDrawing();
+
+                    while (hasEventListener(Event.ENTER_FRAME)) {
+                        removeEventListener(Event.ENTER_FRAME, drawToFront);
+                    }
+                }
+
+                addEventListener(Event.ENTER_FRAME, drawToFront);
+            }
+
+            needBitmapDrawing = false;
+            needBitmapAddition = false;
         }
 
         public function setScenario(scenario:Scenario):void {
-            if (scenario.ImagerOrders.length == 0) {
-                needExecute = false;
+            if (scenario.ImagerOrders.length == 0 && scenario.DrawingOrder.length == 0) {
+                needBitmapDrawing = false;
+                needBitmapAddition = false;
                 return;
             }
 
-            for each (var order:ImageOrder in scenario.ImagerOrders) {
-                if (order.targetLayerIndex == bitmapContainer.LayerIndex) {
-                    currentOrder = order;
+            if (scenario.ImagerOrders.length > 0) {
+                for each (var order:ImageOrder in scenario.ImagerOrders) {
+                    if (order.targetLayerIndex == bitmapContainer.LayerIndex) {
+                        currentOrder = order;
+                    }
                 }
+
+                needBitmapAddition = true;
             }
 
-            needExecute = true;
+            if (scenario.DrawingOrder.length > 0) {
+                for each (order in scenario.DrawingOrder) {
+                    if (order.targetLayerIndex == bitmapContainer.LayerIndex) {
+                        drawingOrder = order;
+                    }
+                }
+
+                needBitmapDrawing = true;
+            }
         }
 
         public function setUI(ui:UIContainer):void {
@@ -55,6 +93,33 @@ package classes.sceneParts {
 
         public function setResource(res:Resource):void {
             this.resource = res;
+        }
+
+        private function drawToFront(e:Event):void {
+            var bitmap:Bitmap = bitmapContainer.Front;
+
+            for each (var index:int in drawingOrder.indexes) {
+                if (index > 0) {
+                    bitmap.bitmapData.draw(resource.BitmapDatas[index], null, new ColorTransform(1, 1, 1, drawingOrder.drawingDepth));
+                }
+            }
+
+            totalDrawingDepth += drawingOrder.drawingDepth;
+            if (totalDrawingDepth >= 1.2) {
+                stopDrawing();
+            }
+        }
+
+        private function stopDrawing():void {
+            removeEventListener(Event.ENTER_FRAME, drawToFront);
+            totalDrawingDepth = 0;
+
+            var bitmap:Bitmap = bitmapContainer.Front;
+            for each (var index:int in drawingOrder.indexes) {
+                if (index > 0) {
+                    bitmap.bitmapData.draw(resource.BitmapDatas[index]);
+                }
+            }
         }
     }
 }
