@@ -9,7 +9,7 @@ package classes.sceneContents {
 
         public var scenarios:Vector.<Scenario> = new Vector.<Scenario>();
 
-        public var screenSize:Rectangle = new Rectangle(0, 0, 1024, 768);
+        private var screenSize:Rectangle = new Rectangle(0, 0, 1024, 768);
 
         private var bitmapDatas:Vector.<BitmapData> = new Vector.<BitmapData>();
         private var bitmapDatasByName:Dictionary = new Dictionary();
@@ -17,6 +17,10 @@ package classes.sceneContents {
         private var voices:Vector.<SoundFile> = new Vector.<SoundFile>();
         private var bgms:Vector.<SoundFile> = new Vector.<SoundFile>();
         private var ses:Vector.<SoundFile> = new Vector.<SoundFile>();
+
+        public function get ScreenSize():Rectangle {
+            return screenSize;
+        }
 
         public function get BitmapDatas():Vector.<BitmapData> {
             return bitmapDatas;
