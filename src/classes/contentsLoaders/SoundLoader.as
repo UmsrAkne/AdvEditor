@@ -5,7 +5,6 @@ package classes.contentsLoaders {
     import flash.filesystem.File;
     import flash.events.Event;
     import classes.sceneContents.SoundFile;
-    import flash.media.Sound;
 
     public class SoundLoader implements ILoader {
 
@@ -24,24 +23,26 @@ package classes.contentsLoaders {
             var f:File;
             var snd:SoundFile;
 
+            resource.Voices.push(null);
+            resource.SEs.push(null);
+            resource.BGMs.push(null);
+
             for each (f in voiceFiles) {
                 snd = new SoundFile(f);
                 resource.Voices.push(snd);
-
-                // 入力されるインデックスが１多いように見えるが、予め空のサウンドがベクターに一つ入るので間違いではない。
-                snd.Index = resource.Voices.length;
+                snd.Index = resource.Voices.length - 1;
             }
 
             for each (f in seFiles) {
                 snd = new SoundFile(f);
                 resource.SEs.push(new SoundFile(f));
-                snd.Index = resource.SEs.length;
+                snd.Index = resource.SEs.length - 1;
             }
 
             for each (f in bgmFiles) {
                 snd = new SoundFile(f);
                 resource.BGMs.push(new SoundFile(f));
-                snd.Index = resource.BGMs.length;
+                snd.Index = resource.BGMs.length - 1;
             }
         }
 
@@ -54,6 +55,18 @@ package classes.contentsLoaders {
 
         public function get CompleteEventDispatcher():EventDispatcher {
             return completeEventDispatcher;
+        }
+
+        public function get VoiceFiles():Vector.<File> {
+            return voiceFiles;
+        }
+
+        public function get SEFiles():Vector.<File> {
+            return seFiles;
+        }
+
+        public function get BGMFiles():Vector.<File> {
+            return bgmFiles;
         }
     }
 }
