@@ -14,12 +14,28 @@ package classes.sceneContents {
         private var bitmapDatas:Vector.<BitmapData> = new Vector.<BitmapData>();
         private var bitmapDatasByName:Dictionary = new Dictionary();
 
+        private var voices:Vector.<SoundFile> = new Vector.<SoundFile>();
+        private var bgms:Vector.<SoundFile> = new Vector.<SoundFile>();
+        private var ses:Vector.<SoundFile> = new Vector.<SoundFile>();
+
         public function get BitmapDatas():Vector.<BitmapData> {
             return bitmapDatas;
         }
 
         public function get BitmapDatasByName():Dictionary {
             return bitmapDatasByName;
+        }
+
+        public function get Voices():Vector.<SoundFile> {
+            return voices;
+        }
+
+        public function get BGMs():Vector.<SoundFile> {
+            return bgms;
+        }
+
+        public function get SEs():Vector.<SoundFile> {
+            return ses;
         }
     }
 }
