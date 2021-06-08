@@ -16,6 +16,7 @@ package {
     import tests.contentsLoaders.TestSoundLoader;
     import tests.contentsLoaders.TestImageLoader;
     import tests.contentsLoaders.TestSettingLoader;
+    import tests.gameScenes.TestLoadingScene;
 
     public class Tester extends Sprite {
         public function Tester() {
@@ -40,6 +41,7 @@ package {
             new TestSoundLoader();
             new TestImageLoader();
             new TestSettingLoader();
+            new TestLoadingScene();
 
             trace("[Tester]" + " " + Assert.TestCounter + " 回のテストを完了しました");
             NativeApplication.nativeApplication.exit();
