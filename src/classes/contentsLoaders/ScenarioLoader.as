@@ -39,7 +39,7 @@ package classes.contentsLoaders {
                     CompleteEventDispatcher.dispatchEvent(new Event(Event.COMPLETE));
                 });
 
-                urlLoader.load(new URLRequest(sceneDirectory.nativePath));
+                urlLoader.load(new URLRequest(sceneDirectory.resolvePath("texts/scenario.xml").nativePath));
                 return;
             }
 
