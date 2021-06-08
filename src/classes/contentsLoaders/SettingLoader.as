@@ -50,11 +50,11 @@ package classes.contentsLoaders {
         public function load():void {
             var urlLoader:URLLoader = new URLLoader();
             urlLoader.addEventListener(Event.COMPLETE, function(e:Event):void {
-                settingXMLList = new XMLList(URLLoader(e).data);
+                settingXMLList = new XMLList(URLLoader(e.target).data);
                 completeEventDispatcher.dispatchEvent(new Event(Event.COMPLETE));
             });
 
-            urlLoader.load(new URLRequest(sceneDirectory.resolvePath("/texts/setting.xml").nativePath));
+            urlLoader.load(new URLRequest(sceneDirectory.resolvePath("texts/setting.xml").nativePath));
         }
 
         public function get CompleteEventDispatcher():EventDispatcher {
