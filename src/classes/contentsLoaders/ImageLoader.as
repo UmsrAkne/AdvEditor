@@ -35,7 +35,7 @@ package classes.contentsLoaders {
         }
 
         public function load():void {
-            imageFiles = ContentsLoadUtil.getFileList(sceneDirectory.resolvePath("/images").nativePath);
+            imageFiles = ContentsLoadUtil.getFileList(sceneDirectory.resolvePath("images").nativePath);
 
             if (imageFiles.length == 0) {
 
