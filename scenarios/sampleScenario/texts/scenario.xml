@@ -1,5 +1,5 @@
 <root>
-    <scenario><text string=\"1testText1\" /></scenario>
-    <scenario><text string=\"2testText2\" /></scenario>
-    <scenario><text string=\"3testText3\" /></scenario>
+    <scenario><text string="1testText1" /></scenario>
+    <scenario><text string="2testText2" /></scenario>
+    <scenario><text string="3testText3" /></scenario>
 </root>
