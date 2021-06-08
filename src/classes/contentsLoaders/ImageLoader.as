@@ -6,6 +6,7 @@ package classes.contentsLoaders {
     import flash.display.BitmapData;
     import flash.display.Loader;
     import flash.events.Event;
+    import flash.net.URLRequest;
 
     public class ImageLoader implements ILoader {
 
@@ -35,7 +36,7 @@ package classes.contentsLoaders {
         }
 
         public function load():void {
-            imageFiles = ContentsLoadUtil.getFileList(sceneDirectory.resolvePath("/images").nativePath);
+            imageFiles = ContentsLoadUtil.getFileList(sceneDirectory.resolvePath("images").nativePath);
 
             if (imageFiles.length == 0) {
 
@@ -53,6 +54,7 @@ package classes.contentsLoaders {
                 var l:Loader = new Loader();
                 loaders.push(l);
                 l.contentLoaderInfo.addEventListener(Event.COMPLETE, drawBitmaps);
+                l.load(new URLRequest(f.nativePath));
             }
         }
 
@@ -83,13 +85,15 @@ package classes.contentsLoaders {
         private function drawBitmaps(e:Event):void {
             loadFileCount--;
             if (loadFileCount == 0) {
+                bitmapDatas = new Vector.<BitmapData>();
+
                 for each (var l:Loader in loaders) {
                     var bd:BitmapData = new BitmapData(l.width, l.height, true, 0x0);
                     bd.draw(l);
                     bitmapDatas.push(bd);
                 }
 
-                completeEventDispatcher.dispatchEvent(new Event.COMPLETE);
+                completeEventDispatcher.dispatchEvent(new Event(Event.COMPLETE));
             }
         }
     }

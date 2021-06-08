@@ -34,12 +34,12 @@ package classes.contentsLoaders {
 
                 var urlLoader:URLLoader = new URLLoader()
                 urlLoader.addEventListener(Event.COMPLETE, function(e:Event):void {
-                    scenarioXML = URLLoader(e).data;
+                    scenarioXML = new XMLList(URLLoader(e.target).data);
                     scenarios = makeScenarios(scenarioXML);
                     CompleteEventDispatcher.dispatchEvent(new Event(Event.COMPLETE));
                 });
 
-                urlLoader.load(new URLRequest(sceneDirectory.nativePath));
+                urlLoader.load(new URLRequest(sceneDirectory.resolvePath("texts/scenario.xml").nativePath));
                 return;
             }
 

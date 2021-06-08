@@ -47,7 +47,7 @@ package classes.contentsLoaders {
         }
 
         public function load():void {
-            voiceFiles = ContentsLoadUtil.getFileList(sceneDirectory.nativePath + "/voices");
+            voiceFiles = ContentsLoadUtil.getFileList(sceneDirectory.resolvePath("voices").nativePath);
             seFiles = ContentsLoadUtil.getFileList(sceneDirectory.resolvePath("../../commonResource/ses").nativePath);
             bgmFiles = ContentsLoadUtil.getFileList(sceneDirectory.resolvePath("../../commonResource/bgms").nativePath);
             completeEventDispatcher.dispatchEvent(new Event(Event.COMPLETE));
