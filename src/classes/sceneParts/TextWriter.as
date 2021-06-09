@@ -54,5 +54,9 @@ package classes.sceneParts {
         public function setResource(res:Resource):void {
             // Resource 使用の必要性が無いため実装無し。
         }
+
+        public function get Writing():Boolean {
+            return hasEventListener(Event.ENTER_FRAME);
+        }
     }
 }
