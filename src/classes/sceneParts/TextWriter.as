@@ -3,11 +3,11 @@ package classes.sceneParts {
     import classes.sceneContents.Scenario;
     import classes.uis.UIContainer;
     import flash.text.TextField;
-    import flash.events.EventDispatcher;
     import flash.events.Event;
     import classes.sceneContents.Resource;
+    import flash.display.Sprite;
 
-    public class TextWriter extends EventDispatcher implements IScenarioSceneParts {
+    public class TextWriter extends Sprite implements IScenarioSceneParts {
 
         private var currentText:String;
         private var textWindow:TextField;
