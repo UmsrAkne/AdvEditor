@@ -21,7 +21,7 @@ package classes.gameScenes {
             this.sceneDirectory = sceneDirectory;
         }
 
-        public function getResouce():Resource {
+        public function getResource():Resource {
             return resouce;
         }
 

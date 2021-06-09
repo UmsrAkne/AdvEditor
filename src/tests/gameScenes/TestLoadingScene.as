@@ -15,7 +15,7 @@ package tests.gameScenes {
             var appDirectory:File = new File(File.applicationDirectory.nativePath);
             var loadingScene:LoadingScene = new LoadingScene(appDirectory.resolvePath("../scenarios/sampleScenario"));
             loadingScene.addEventListener(Event.COMPLETE, function(e:Event):void {
-                var res:Resource = LoadingScene(e.target).getResouce();
+                var res:Resource = LoadingScene(e.target).getResource();
                 Assert.areEqual(res.scenarios.length, 3);
                 Assert.areEqual(res.BGMs.length, 2);
                 Assert.areEqual(res.SEs.length, 2);

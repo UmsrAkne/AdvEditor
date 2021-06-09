@@ -27,7 +27,7 @@ package {
 
         private function loadCompleteEventHandler(event:Event):void {
             scenarioScene = new ScenarioScene();
-            scenarioScene.setResource(LoadingScene(event.target).getResouce());
+            scenarioScene.setResource(LoadingScene(event.target).getResource());
             addChild(scenarioScene);
         }
     }
