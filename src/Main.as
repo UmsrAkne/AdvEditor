@@ -6,6 +6,7 @@ package {
     import classes.gameScenes.LoadingScene;
     import flash.events.Event;
     import flash.filesystem.File;
+    import classes.sceneContents.Resource;
 
     /**
      * ...
@@ -26,9 +27,17 @@ package {
         }
 
         private function loadCompleteEventHandler(event:Event):void {
+            var res:Resource = LoadingScene(event.target).getResource();
+
+            stage.stageWidth = res.ScreenSize.width;
+            stage.stageHeight = res.ScreenSize.height;
+            stage.nativeWindow.width = res.ScreenSize.width;
+            stage.nativeWindow.height = res.ScreenSize.height;
+
             scenarioScene = new ScenarioScene();
-            scenarioScene.setResource(LoadingScene(event.target).getResource());
+            scenarioScene.setResource(res);
             addChild(scenarioScene);
+            stage.focus = scenarioScene;
         }
     }
 

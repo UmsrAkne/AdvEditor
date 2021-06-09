@@ -48,6 +48,7 @@ package classes.gameScenes {
         public function setResource(r:Resource):void {
             if (resource == null) {
                 resource = r;
+                ui.AlignUI(resource.ScreenSize.clone());
             }
         }
 
