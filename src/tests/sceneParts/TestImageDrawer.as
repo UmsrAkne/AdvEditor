@@ -48,14 +48,14 @@ package tests.sceneParts {
             imageDrawer.setScenario(scenario2);
             imageDrawer.execute();
 
-            imageDrawer.dispatchEvent(new Event(Event.ENTER_FRAME));
+            imageDrawer.EnterFrameEventDispatcher.dispatchEvent(new Event(Event.ENTER_FRAME));
 
             // 一度 BitmapData を上塗りした状態なので、白と黒の中間の色になっているはずなので確認する。
             Assert.isTrue(bitmapContainer.Front.bitmapData.getPixel32(0, 0) > 0xFF000000);
             Assert.isTrue(bitmapContainer.Front.bitmapData.getPixel32(0, 0) < 0xFFFFFFFF);
 
             for (var i:int = 0; i < 30; i++) {
-                imageDrawer.dispatchEvent(new Event(Event.ENTER_FRAME));
+                imageDrawer.EnterFrameEventDispatcher.dispatchEvent(new Event(Event.ENTER_FRAME));
             }
 
             Assert.areEqual(bitmapContainer.Front.bitmapData.getPixel32(0, 0), 0xFF000000)
@@ -102,9 +102,9 @@ package tests.sceneParts {
             imageDrawer.execute();
 
             // 何回か Event.ENTER_FRAME を送出。描画中で次の Bitmap を追加する。
-            imageDrawer.dispatchEvent(new Event(Event.ENTER_FRAME));
-            imageDrawer.dispatchEvent(new Event(Event.ENTER_FRAME));
-            imageDrawer.dispatchEvent(new Event(Event.ENTER_FRAME));
+            imageDrawer.EnterFrameEventDispatcher.dispatchEvent(new Event(Event.ENTER_FRAME));
+            imageDrawer.EnterFrameEventDispatcher.dispatchEvent(new Event(Event.ENTER_FRAME));
+            imageDrawer.EnterFrameEventDispatcher.dispatchEvent(new Event(Event.ENTER_FRAME));
 
             // 現状では、白よりも暗い色になっているはず。
             Assert.isTrue(bitmapContainer.Front.bitmapData.getPixel32(0, 0) < 0xFFFFFFFF);
@@ -116,7 +116,7 @@ package tests.sceneParts {
             Assert.areEqual(bmp3.x, 100);
 
             for (var i:int; i < 20; i++) {
-                imageDrawer.dispatchEvent(new Event(Event.ENTER_FRAME));
+                imageDrawer.EnterFrameEventDispatcher.dispatchEvent(new Event(Event.ENTER_FRAME));
             }
 
             // Bitmap を1枚追加した状態でフロントだったオブジェクト。最初は白で追加されているが、最終的に黒に書き換わる。
