@@ -77,6 +77,7 @@ package tests.sceneParts {
             var imageOrder1:ImageOrder = new ImageOrder();
             imageOrder1.targetLayerIndex = 0;
             imageOrder1.indexes.push(1, 0, 0);
+            imageOrder1.x = 100;
             scenarios[0].ImagerOrders.push(imageOrder1)
 
             var drawImageOrder:ImageOrder = new ImageOrder();
@@ -88,12 +89,14 @@ package tests.sceneParts {
             var nextImageOrder:ImageOrder = new ImageOrder();
             nextImageOrder.targetLayerIndex = 0;
             nextImageOrder.indexes.push(1, 0, 0);
+            nextImageOrder.statusInherit = true;
             scenarios[2].ImagerOrders.push(nextImageOrder);
 
             imageDrawer.setScenario(scenarios[0]);
             imageDrawer.execute()
 
             var bmp1:Bitmap = bitmapContainer.Front;
+            Assert.areEqual(bmp1.x, 100);
 
             imageDrawer.setScenario(scenarios[1]);
             imageDrawer.execute();
@@ -110,6 +113,7 @@ package tests.sceneParts {
             imageDrawer.execute();
 
             var bmp3:Bitmap = bitmapContainer.Front;
+            Assert.areEqual(bmp3.x, 100);
 
             for (var i:int; i < 20; i++) {
                 imageDrawer.dispatchEvent(new Event(Event.ENTER_FRAME));

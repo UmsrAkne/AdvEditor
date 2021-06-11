@@ -46,6 +46,18 @@ package classes.sceneParts {
                     }
                 }
 
+                bitmap.scaleX = currentOrder.scale;
+                bitmap.scaleY = currentOrder.scale;
+                bitmap.x = currentOrder.x;
+                bitmap.y = currentOrder.y;
+
+                if (currentOrder.statusInherit && bitmapContainer.Front != null) {
+                    bitmap.scaleX = bitmapContainer.Front.scaleX;
+                    bitmap.scaleY = bitmapContainer.Front.scaleY;
+                    bitmap.x = bitmapContainer.Front.x;
+                    bitmap.y = bitmapContainer.Front.y;
+                }
+
                 bitmapContainer.add(bitmap);
             }
 
