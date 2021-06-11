@@ -14,7 +14,7 @@ package tests.contentsLoaders.xmlElements {
             var imageElementConverter:ImageElementConverter = new ImageElementConverter(new File(File.applicationDirectory.nativePath));
             var fileList:Vector.<File> = new Vector.<File>();
 
-            var testXML1:XML = new XML("<scenario>  <image a=\"Aimg01\" c=\"Cimg01\" x=\"-100\" scale=\"2.0\" target=\"front\"/> <image a=\"Aimg02\" target=\"main\" /> </scenario>");
+            var testXML1:XML = new XML("<scenario>  <image a=\"Aimg01\" c=\"Cimg01\" x=\"-100\" scale=\"2.0\" statusInherit=\"true\" target=\"front\"/> <image a=\"Aimg02\" target=\"main\" /> </scenario>");
             var scenario1:Scenario = new Scenario
 
             imageElementConverter.convert(testXML1, scenario1);
@@ -24,9 +24,12 @@ package tests.contentsLoaders.xmlElements {
             Assert.areEqual(scenario1.ImagerOrders[0].x, -100);
             Assert.areEqual(scenario1.ImagerOrders[0].y, 0);
             Assert.areEqual(scenario1.ImagerOrders[0].scale, 2.0);
+            Assert.isTrue(scenario1.ImagerOrders[0].statusInherit);
             Assert.areEqual(scenario1.ImagerOrders[0].targetLayerIndex, 2);
 
             Assert.areEqual(scenario1.ImagerOrders.length, 2);
+
+            Assert.isFalse(scenario1.ImagerOrders[1].statusInherit);
         }
     }
 }

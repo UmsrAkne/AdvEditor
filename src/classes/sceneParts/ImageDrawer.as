@@ -9,8 +9,9 @@ package classes.sceneParts {
     import flash.events.EventDispatcher;
     import flash.events.Event;
     import flash.geom.ColorTransform;
+    import flash.display.Sprite;
 
-    public class ImageDrawer extends EventDispatcher implements IScenarioSceneParts {
+    public class ImageDrawer implements IScenarioSceneParts {
 
         private var needBitmapAddition:Boolean;
         private var needBitmapDrawing:Boolean;
@@ -20,6 +21,8 @@ package classes.sceneParts {
         private var currentOrder:ImageOrder;
         private var drawingOrder:ImageOrder;
         private var totalDrawingDepth:Number = 0;
+
+        private var enterFrameEventDispatcher:EventDispatcher = new Sprite();
 
         public function ImageDrawer(targetBitmapContainer:BitmapContainer) {
             bitmapContainer = targetBitmapContainer;
@@ -34,7 +37,7 @@ package classes.sceneParts {
             // どちらの場合であっても、 drawToFront(e:Event) が動作中では、ターゲットに不正な値が入るので、
             // stopDrawing() を使用して処理を停止させる。
 
-            if (hasEventListener(Event.ENTER_FRAME)) {
+            if (enterFrameEventDispatcher.hasEventListener(Event.ENTER_FRAME)) {
                 stopDrawing();
             }
 
@@ -46,11 +49,23 @@ package classes.sceneParts {
                     }
                 }
 
+                bitmap.scaleX = currentOrder.scale;
+                bitmap.scaleY = currentOrder.scale;
+                bitmap.x = currentOrder.x;
+                bitmap.y = currentOrder.y;
+
+                if (currentOrder.statusInherit && bitmapContainer.Front != null) {
+                    bitmap.scaleX = bitmapContainer.Front.scaleX;
+                    bitmap.scaleY = bitmapContainer.Front.scaleY;
+                    bitmap.x = bitmapContainer.Front.x;
+                    bitmap.y = bitmapContainer.Front.y;
+                }
+
                 bitmapContainer.add(bitmap);
             }
 
             if (needBitmapDrawing) {
-                addEventListener(Event.ENTER_FRAME, drawToFront);
+                enterFrameEventDispatcher.addEventListener(Event.ENTER_FRAME, drawToFront);
             }
 
             needBitmapDrawing = false;
@@ -109,8 +124,8 @@ package classes.sceneParts {
         }
 
         private function stopDrawing():void {
-            while (hasEventListener(Event.ENTER_FRAME)) {
-                removeEventListener(Event.ENTER_FRAME, drawToFront);
+            while (enterFrameEventDispatcher.hasEventListener(Event.ENTER_FRAME)) {
+                enterFrameEventDispatcher.removeEventListener(Event.ENTER_FRAME, drawToFront);
             }
 
             totalDrawingDepth = 0;
@@ -121,6 +136,10 @@ package classes.sceneParts {
                     bitmap.bitmapData.draw(resource.BitmapDatas[index]);
                 }
             }
+        }
+
+        public function get EnterFrameEventDispatcher():EventDispatcher {
+            return enterFrameEventDispatcher;
         }
     }
 }

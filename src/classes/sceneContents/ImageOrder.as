@@ -12,6 +12,7 @@ package classes.sceneContents {
         public var scale:Number = 1.0;
 
         public var drawingDepth:Number = 1.0;
+        public var statusInherit:Boolean;
 
         private var target:String = "main"
 

@@ -48,14 +48,14 @@ package tests.sceneParts {
             imageDrawer.setScenario(scenario2);
             imageDrawer.execute();
 
-            imageDrawer.dispatchEvent(new Event(Event.ENTER_FRAME));
+            imageDrawer.EnterFrameEventDispatcher.dispatchEvent(new Event(Event.ENTER_FRAME));
 
             // 一度 BitmapData を上塗りした状態なので、白と黒の中間の色になっているはずなので確認する。
             Assert.isTrue(bitmapContainer.Front.bitmapData.getPixel32(0, 0) > 0xFF000000);
             Assert.isTrue(bitmapContainer.Front.bitmapData.getPixel32(0, 0) < 0xFFFFFFFF);
 
             for (var i:int = 0; i < 30; i++) {
-                imageDrawer.dispatchEvent(new Event(Event.ENTER_FRAME));
+                imageDrawer.EnterFrameEventDispatcher.dispatchEvent(new Event(Event.ENTER_FRAME));
             }
 
             Assert.areEqual(bitmapContainer.Front.bitmapData.getPixel32(0, 0), 0xFF000000)
@@ -77,6 +77,7 @@ package tests.sceneParts {
             var imageOrder1:ImageOrder = new ImageOrder();
             imageOrder1.targetLayerIndex = 0;
             imageOrder1.indexes.push(1, 0, 0);
+            imageOrder1.x = 100;
             scenarios[0].ImagerOrders.push(imageOrder1)
 
             var drawImageOrder:ImageOrder = new ImageOrder();
@@ -88,20 +89,22 @@ package tests.sceneParts {
             var nextImageOrder:ImageOrder = new ImageOrder();
             nextImageOrder.targetLayerIndex = 0;
             nextImageOrder.indexes.push(1, 0, 0);
+            nextImageOrder.statusInherit = true;
             scenarios[2].ImagerOrders.push(nextImageOrder);
 
             imageDrawer.setScenario(scenarios[0]);
             imageDrawer.execute()
 
             var bmp1:Bitmap = bitmapContainer.Front;
+            Assert.areEqual(bmp1.x, 100);
 
             imageDrawer.setScenario(scenarios[1]);
             imageDrawer.execute();
 
             // 何回か Event.ENTER_FRAME を送出。描画中で次の Bitmap を追加する。
-            imageDrawer.dispatchEvent(new Event(Event.ENTER_FRAME));
-            imageDrawer.dispatchEvent(new Event(Event.ENTER_FRAME));
-            imageDrawer.dispatchEvent(new Event(Event.ENTER_FRAME));
+            imageDrawer.EnterFrameEventDispatcher.dispatchEvent(new Event(Event.ENTER_FRAME));
+            imageDrawer.EnterFrameEventDispatcher.dispatchEvent(new Event(Event.ENTER_FRAME));
+            imageDrawer.EnterFrameEventDispatcher.dispatchEvent(new Event(Event.ENTER_FRAME));
 
             // 現状では、白よりも暗い色になっているはず。
             Assert.isTrue(bitmapContainer.Front.bitmapData.getPixel32(0, 0) < 0xFFFFFFFF);
@@ -110,9 +113,10 @@ package tests.sceneParts {
             imageDrawer.execute();
 
             var bmp3:Bitmap = bitmapContainer.Front;
+            Assert.areEqual(bmp3.x, 100);
 
             for (var i:int; i < 20; i++) {
-                imageDrawer.dispatchEvent(new Event(Event.ENTER_FRAME));
+                imageDrawer.EnterFrameEventDispatcher.dispatchEvent(new Event(Event.ENTER_FRAME));
             }
 
             // Bitmap を1枚追加した状態でフロントだったオブジェクト。最初は白で追加されているが、最終的に黒に書き換わる。

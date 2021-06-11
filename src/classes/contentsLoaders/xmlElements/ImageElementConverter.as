@@ -16,6 +16,8 @@ package classes.contentsLoaders.xmlElements {
         public static const Y_ATTRIBUTE:String = "@y";
         public static const SCALE_ATTRIBUTE:String = "@scale";
 
+        public static const STATUS_INHERIT_ATTRIBUTE:String = "@statusInherit";
+
         private var sceneDirectory:File;
         private var fileList:Vector.<File>;
         private var fileByFileNameDictionary:Dictionary = new Dictionary();
@@ -55,6 +57,12 @@ package classes.contentsLoaders.xmlElements {
 
                 if (imageTag.hasOwnProperty(TARGET_ATTRIBUTE)) {
                     order.Target = imageTag[TARGET_ATTRIBUTE];
+                }
+
+                if (imageTag.hasOwnProperty(STATUS_INHERIT_ATTRIBUTE)) {
+                    if (String(imageTag[STATUS_INHERIT_ATTRIBUTE]) == "true") {
+                        order.statusInherit = true;
+                    }
                 }
 
                 scenario.ImagerOrders.push(order);
