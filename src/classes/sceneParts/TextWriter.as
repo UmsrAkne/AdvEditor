@@ -3,31 +3,32 @@ package classes.sceneParts {
     import classes.sceneContents.Scenario;
     import classes.uis.UIContainer;
     import flash.text.TextField;
-    import flash.events.EventDispatcher;
     import flash.events.Event;
     import classes.sceneContents.Resource;
+    import flash.display.Sprite;
 
-    public class TextWriter extends EventDispatcher implements IScenarioSceneParts {
+    public class TextWriter implements IScenarioSceneParts {
 
         private var currentText:String;
         private var textWindow:TextField;
         private var charaCounter:int;
         private var saveText:Boolean;
+        private var enterFrameEventDispatcher:Sprite = new Sprite();
 
         public function TextWriter() {
         }
 
         public function execute():void {
-            if (hasEventListener(Event.ENTER_FRAME)) {
+            if (enterFrameEventDispatcher.hasEventListener(Event.ENTER_FRAME)) {
                 textWindow.text = currentText;
-                removeEventListener(Event.ENTER_FRAME, write);
+                enterFrameEventDispatcher.removeEventListener(Event.ENTER_FRAME, write);
             } else {
                 if (!saveText) {
                     textWindow.text = "";
                 }
 
                 charaCounter = 0;
-                addEventListener(Event.ENTER_FRAME, write);
+                enterFrameEventDispatcher.addEventListener(Event.ENTER_FRAME, write);
             }
         }
 
@@ -43,7 +44,7 @@ package classes.sceneParts {
         private function write(event:Event):void {
             if (currentText.length <= charaCounter) {
                 charaCounter = 0;
-                removeEventListener(Event.ENTER_FRAME, write);
+                enterFrameEventDispatcher.removeEventListener(Event.ENTER_FRAME, write);
                 return;
             }
 
@@ -53,6 +54,14 @@ package classes.sceneParts {
 
         public function setResource(res:Resource):void {
             // Resource 使用の必要性が無いため実装無し。
+        }
+
+        public function get Writing():Boolean {
+            return enterFrameEventDispatcher.hasEventListener(Event.ENTER_FRAME);
+        }
+
+        public function dispatchEvent(e:Event):void {
+            enterFrameEventDispatcher.dispatchEvent(e);
         }
     }
 }

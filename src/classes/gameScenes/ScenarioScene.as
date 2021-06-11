@@ -7,6 +7,7 @@ package classes.gameScenes {
     import classes.uis.UIContainer;
     import classes.sceneParts.*
     import classes.sceneContents.Resource;
+    import classes.sceneParts.TextWriter;
 
     public class ScenarioScene extends Sprite {
 
@@ -15,13 +16,15 @@ package classes.gameScenes {
         private var animators:Vector.<Animator> = new Vector.<Animator>();
         private var resource:Resource;
         private var scenarioCounter:int;
+        private var textWriter:TextWriter;
 
         public function ScenarioScene() {
             addChild(ui);
             addEventListener(KeyboardEvent.KEY_DOWN, keyboardEventHandler);
             addEventListener(Event.ENTER_FRAME, enterFrameEventHandler);
 
-            sceneParts.push(new TextWriter());
+            textWriter = new TextWriter();
+            sceneParts.push(textWriter);
 
             sceneParts.push(new BGMPlayer());
             sceneParts.push(new SEPlayer());
@@ -48,11 +51,20 @@ package classes.gameScenes {
         public function setResource(r:Resource):void {
             if (resource == null) {
                 resource = r;
+                ui.AlignUI(resource.ScreenSize.clone());
             }
         }
 
         private function keyboardEventHandler(event:KeyboardEvent):void {
             if (event.keyCode == Keyboard.ENTER) {
+                if (!textWriter.Writing) {
+                    scenarioCounter++;
+                }
+
+                if (scenarioCounter >= resource.scenarios.length) {
+                    return;
+                }
+
                 for each (var parts:IScenarioSceneParts in sceneParts) {
                     parts.setScenario(resource.scenarios[scenarioCounter])
                 }
