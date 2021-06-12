@@ -14,12 +14,14 @@ package classes.sceneParts {
         private var charaCounter:int;
         private var saveText:Boolean;
         private var enterFrameEventDispatcher:Sprite = new Sprite();
+        private var scenarioCounter:int;
 
         public function TextWriter() {
         }
 
         public function execute():void {
             if (enterFrameEventDispatcher.hasEventListener(Event.ENTER_FRAME)) {
+                scenarioCounter++;
                 textWindow.text = currentText;
                 enterFrameEventDispatcher.removeEventListener(Event.ENTER_FRAME, write);
             } else {
@@ -44,6 +46,7 @@ package classes.sceneParts {
         private function write(event:Event):void {
             if (currentText.length <= charaCounter) {
                 charaCounter = 0;
+                scenarioCounter++;
                 enterFrameEventDispatcher.removeEventListener(Event.ENTER_FRAME, write);
                 return;
             }
@@ -56,8 +59,8 @@ package classes.sceneParts {
             // Resource 使用の必要性が無いため実装無し。
         }
 
-        public function get Writing():Boolean {
-            return enterFrameEventDispatcher.hasEventListener(Event.ENTER_FRAME);
+        public function get ScenarioCounter():int {
+            return scenarioCounter;
         }
 
         public function dispatchEvent(e:Event):void {
