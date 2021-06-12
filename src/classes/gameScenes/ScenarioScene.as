@@ -8,6 +8,7 @@ package classes.gameScenes {
     import classes.sceneParts.*
     import classes.sceneContents.Resource;
     import classes.sceneParts.TextWriter;
+    import classes.sceneContents.Scenario;
 
     public class ScenarioScene extends Sprite {
 
@@ -16,6 +17,7 @@ package classes.gameScenes {
         private var animators:Vector.<Animator> = new Vector.<Animator>();
         private var resource:Resource;
         private var textWriter:TextWriter;
+        private var lastExecuteScenario:Scenario;
 
         public function ScenarioScene() {
             addChild(ui);
@@ -60,13 +62,24 @@ package classes.gameScenes {
                     return;
                 }
 
+                var scenario:Scenario = resource.scenarios[textWriter.ScenarioCounter];
+
+                if (scenario == lastExecuteScenario) {
+                    textWriter.setScenario(scenario);
+                    textWriter.execute();
+                    lastExecuteScenario = scenario;
+                    return;
+                }
+
                 for each (var parts:IScenarioSceneParts in sceneParts) {
-                    parts.setScenario(resource.scenarios[textWriter.ScenarioCounter])
+                    parts.setScenario(scenario)
                 }
 
                 for each (parts in sceneParts) {
                     parts.execute();
                 }
+
+                lastExecuteScenario = scenario;
             }
         }
 
