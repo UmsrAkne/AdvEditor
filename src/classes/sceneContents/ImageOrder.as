@@ -1,5 +1,7 @@
 package classes.sceneContents {
 
+    import classes.contentsLoaders.xmlElements.TargetAttributeConverter;
+
     /** シーン中に書き込む画像の詳細なデータを保持するクラスです。 */
     public class ImageOrder {
 
@@ -21,26 +23,7 @@ package classes.sceneContents {
 
         public function set Target(value:String):void {
             target = value;
-            switch (target) {
-                case "background":
-                    targetLayerIndex = 0;
-                    break;
-
-                case "main":
-                    targetLayerIndex = 1;
-                    break;
-
-                case "front":
-                    targetLayerIndex = 2;
-                    break;
-
-                case "front2":
-                    targetLayerIndex = 3;
-                    break;
-
-                default:
-                    break;
-            }
+            targetLayerIndex = TargetAttributeConverter.getLayerIndexFromTargetName(target);
         }
     }
 }

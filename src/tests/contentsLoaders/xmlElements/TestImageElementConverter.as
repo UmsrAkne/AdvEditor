@@ -25,7 +25,7 @@ package tests.contentsLoaders.xmlElements {
             Assert.areEqual(scenario1.ImagerOrders[0].y, 0);
             Assert.areEqual(scenario1.ImagerOrders[0].scale, 2.0);
             Assert.isTrue(scenario1.ImagerOrders[0].statusInherit);
-            Assert.areEqual(scenario1.ImagerOrders[0].targetLayerIndex, 2);
+            Assert.areEqual(scenario1.ImagerOrders[0].targetLayerIndex, 3);
 
             Assert.areEqual(scenario1.ImagerOrders.length, 2);
 
