@@ -15,7 +15,6 @@ package classes.gameScenes {
         private var sceneParts:Vector.<IScenarioSceneParts> = new Vector.<IScenarioSceneParts>();
         private var animators:Vector.<Animator> = new Vector.<Animator>();
         private var resource:Resource;
-        private var scenarioCounter:int;
         private var textWriter:TextWriter;
 
         public function ScenarioScene() {
@@ -57,16 +56,12 @@ package classes.gameScenes {
 
         private function keyboardEventHandler(event:KeyboardEvent):void {
             if (event.keyCode == Keyboard.ENTER) {
-                if (!textWriter.Writing) {
-                    scenarioCounter++;
-                }
-
-                if (scenarioCounter >= resource.scenarios.length) {
+                if (textWriter.ScenarioCounter >= resource.scenarios.length) {
                     return;
                 }
 
                 for each (var parts:IScenarioSceneParts in sceneParts) {
-                    parts.setScenario(resource.scenarios[scenarioCounter])
+                    parts.setScenario(resource.scenarios[textWriter.ScenarioCounter])
                 }
 
                 for each (parts in sceneParts) {
