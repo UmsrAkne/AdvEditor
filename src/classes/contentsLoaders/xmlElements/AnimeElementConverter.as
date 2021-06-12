@@ -34,25 +34,7 @@ package classes.contentsLoaders.xmlElements {
                     }
 
                     if (attribute.name() == TARGET_ATTRIBUTE.substr(1)) {
-
-                        // String 型にキャストしないと何故か最初のケースがスキップされる。理由はわからない。
-                        switch (String(attribute)) {
-                            case "background":
-                                anime.TargetLayerIndex = 0;
-                                break;
-
-                            case "main":
-                                anime.TargetLayerIndex = 1;
-                                break;
-
-                            case "front":
-                                anime.TargetLayerIndex = 2;
-                                break;
-
-                            case "front2":
-                                anime.TargetLayerIndex = 3;
-                                break;
-                        }
+                        anime.TargetLayerIndex = TargetAttributeConverter.getLayerIndexFromTargetName(String(attribute));
                     }
 
                     scenario.Animations.push(anime);

@@ -33,7 +33,7 @@ package classes.gameScenes {
 
             sceneParts.push(new ImageDrawer(ui.getBitmapContainerFromIndex(0))); // background
             sceneParts.push(new ImageDrawer(ui.getBitmapContainerFromIndex(1))); // main
-            sceneParts.push(new ImageDrawer(ui.getBitmapContainerFromIndex(2))); // front
+            sceneParts.push(new ImageDrawer(ui.getBitmapContainerFromIndex(2))); // middle
             sceneParts.push(new ImageDrawer(ui.getBitmapContainerFromIndex(3))); // front
 
             for (var i:int = 0; i < 4; i++) {
