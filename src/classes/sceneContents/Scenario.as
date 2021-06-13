@@ -1,6 +1,7 @@
 package classes.sceneContents {
 
     import classes.animes.IAnimation;
+    import flash.display.Shape;
 
     public class Scenario {
 
@@ -12,6 +13,7 @@ package classes.sceneContents {
         private var textAddition:Boolean;
         private var imageOrders:Vector.<ImageOrder> = new Vector.<ImageOrder>();
         private var drawingOrder:Vector.<ImageOrder> = new Vector.<ImageOrder>();
+        private var masks:Vector.<MaskOrder> = new Vector.<MaskOrder>();
         private var animations:Vector.<IAnimation> = new Vector.<IAnimation>();
         private var voice:SoundFile;
         private var se:SoundFile;
@@ -73,6 +75,10 @@ package classes.sceneContents {
 
         public function get DrawingOrder():Vector.<ImageOrder> {
             return drawingOrder;
+        }
+
+        public function get Masks():Vector.<MaskOrder> {
+            return masks;
         }
 
         public function get Animations():Vector.<IAnimation> {

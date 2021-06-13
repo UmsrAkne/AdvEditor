@@ -10,9 +10,6 @@ package {
     import tests.animes.TestAlphaChanger;
     import tests.contentsLoaders.TestScenarioLoader;
     import tests.contentsLoaders.xmlElements.*;
-    import tests.contentsLoaders.xmlElements.TestTextElementConverter;
-    import tests.contentsLoaders.xmlElements.TestScenarioElementConverter;
-    import tests.contentsLoaders.xmlElements.TestDrawElementConverter;
     import tests.contentsLoaders.TestSoundLoader;
     import tests.contentsLoaders.TestImageLoader;
     import tests.contentsLoaders.TestSettingLoader;
@@ -42,6 +39,7 @@ package {
             new TestImageLoader();
             new TestSettingLoader();
             new TestLoadingScene();
+            new TestMaskElementConverter();
 
             trace("[Tester]" + " " + Assert.TestCounter + " 回のテストを完了しました");
             NativeApplication.nativeApplication.exit();
