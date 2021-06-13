@@ -7,7 +7,6 @@ package classes.gameScenes {
     import classes.uis.UIContainer;
     import classes.sceneParts.*
     import classes.sceneContents.Resource;
-    import classes.sceneParts.TextWriter;
     import classes.sceneContents.Scenario;
 
     public class ScenarioScene extends Sprite {
@@ -37,6 +36,11 @@ package classes.gameScenes {
             sceneParts.push(new ImageDrawer(ui.getBitmapContainerFromIndex(1))); // main
             sceneParts.push(new ImageDrawer(ui.getBitmapContainerFromIndex(2))); // middle
             sceneParts.push(new ImageDrawer(ui.getBitmapContainerFromIndex(3))); // front
+
+            sceneParts.push(new MaskSetter(ui.getBitmapContainerFromIndex(0))); // background
+            sceneParts.push(new MaskSetter(ui.getBitmapContainerFromIndex(1))); // main
+            sceneParts.push(new MaskSetter(ui.getBitmapContainerFromIndex(2))); // middle
+            sceneParts.push(new MaskSetter(ui.getBitmapContainerFromIndex(3))); // front
 
             for (var i:int = 0; i < 4; i++) {
                 var animator:Animator = new Animator(ui.getBitmapContainerFromIndex(i));
