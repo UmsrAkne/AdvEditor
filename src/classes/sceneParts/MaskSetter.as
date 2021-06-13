@@ -16,6 +16,13 @@ package classes.sceneParts {
         }
 
         public function execute():void {
+            if (maskOrder == null) {
+                return;
+            }
+
+            bitmapContainer.mask = maskOrder.shape;
+
+            maskOrder = null;
         }
 
         public function setScenario(scenario:Scenario):void {

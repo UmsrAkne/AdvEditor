@@ -14,6 +14,7 @@ package {
     import tests.contentsLoaders.TestImageLoader;
     import tests.contentsLoaders.TestSettingLoader;
     import tests.gameScenes.TestLoadingScene;
+    import tests.sceneParts.TestMaskSetter;
 
     public class Tester extends Sprite {
         public function Tester() {
@@ -40,9 +41,10 @@ package {
             new TestSettingLoader();
             new TestLoadingScene();
             new TestMaskElementConverter();
+            new TestMaskSetter();
 
             trace("[Tester]" + " " + Assert.TestCounter + " 回のテストを完了しました");
-            NativeApplication.nativeApplication.exit();
+            //NativeApplication.nativeApplication.exit();
         }
     }
 }
