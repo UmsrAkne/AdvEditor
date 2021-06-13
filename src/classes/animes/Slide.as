@@ -1,20 +1,48 @@
 package classes.animes {
 
     import flash.display.DisplayObject;
+    import flash.geom.Point;
 
     public class Slide implements IAnimation {
 
-        private var _distance:int;
-        private var _speed:Number;
-        private var _degree:Number;
+        public var degree:int;
+        public var speed:Number = 0;
+        public var distance:int;
 
+        private var spd:Point;
         private var targetLayerIndex:int;
         private var target:DisplayObject;
         private var valid:Boolean = true;
-        private var totalMovingDistance:Number;
+        private var totalMovingDistance:int = 0;
 
         public function execute():void {
-            throw new Error("Method not implemented.");
+            if (!Valid) {
+                stop();
+                return;
+            }
+
+            if (spd == null) {
+
+                // 270度を加算しているのは、計算の起点を３時地点から１２時地点に修正するため
+                var radian:Number = (degree + 270) * Math.PI / 180;
+
+                var x:int = Math.cos(radian) * speed * 100;
+                var y:int = Math.sin(radian) * speed * 100;
+
+                spd = new Point(x / 100, y / 100);
+
+                if (spd.equals(new Point(0, 0))) {
+                    stop();
+                }
+            }
+
+            target.x += spd.x;
+            target.y += spd.y;
+            totalMovingDistance += speed;
+
+            if (totalMovingDistance > distance) {
+                stop();
+            }
         }
 
         public function stop():void {
@@ -41,18 +69,6 @@ package classes.animes {
 
         public function get TargetLayerIndex():int {
             return targetLayerIndex;
-        }
-
-        public function set distance(value:int):void {
-            _distance = value;
-        }
-
-        public function set speed(value:Number):void {
-            _speed = value;
-        }
-
-        public function set degree(value:Number):void {
-            _degree = value;
         }
     }
 }
