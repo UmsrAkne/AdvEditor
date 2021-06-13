@@ -19,6 +19,7 @@ package classes.uis {
 
         public function add(bitmap:Bitmap):void {
             bitmaps.unshift(bitmap);
+            addChild(bitmap);
             dispatchEvent(new Event(BITMAP_ADDED));
 
             if (bitmaps.length > layerCapacity) {
