@@ -2,6 +2,7 @@ package tests.animes {
 
     import classes.animes.Slide;
     import flash.display.Sprite;
+    import tests.Assert;
 
     public class TestSlide {
         public function TestSlide() {
@@ -18,6 +19,14 @@ package tests.animes {
             slide.Target = sp;
 
             slide.execute();
+            for (var i:int = 0; i < 200; i++) {
+                slide.execute();
+            }
+
+            // x方向に300程度動くのが正しいが、現状では少数の扱いの関係でわずかに 300 に及ばない値までしか動かない。
+            // 修正したいが少し辛いかも？
+            Assert.isTrue(sp.x > 295);
+            Assert.isTrue(sp.y == 0);
         }
     }
 }
