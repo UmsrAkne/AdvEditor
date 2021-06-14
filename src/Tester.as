@@ -6,8 +6,7 @@ package {
     import tests.Assert;
     import tests.uis.TestBitmapContainer;
     import tests.sceneParts.*
-    import tests.animes.TestShake;
-    import tests.animes.TestAlphaChanger;
+    import tests.animes.*;
     import tests.contentsLoaders.TestScenarioLoader;
     import tests.contentsLoaders.xmlElements.*;
     import tests.contentsLoaders.TestSoundLoader;
@@ -42,9 +41,10 @@ package {
             new TestLoadingScene();
             new TestMaskElementConverter();
             new TestMaskSetter();
+            new TestSlide();
 
             trace("[Tester]" + " " + Assert.TestCounter + " 回のテストを完了しました");
-            //NativeApplication.nativeApplication.exit();
+            NativeApplication.nativeApplication.exit();
         }
     }
 }
