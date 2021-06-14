@@ -52,6 +52,9 @@ package classes.contentsLoaders.xmlElements {
                 case "shake":
                     anime = new Shake();
                     break;
+                case "slide":
+                    anime = new Slide();
+                    break;
             }
 
             if (anime == null) {
