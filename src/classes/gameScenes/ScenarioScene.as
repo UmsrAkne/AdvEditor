@@ -57,6 +57,10 @@ package classes.gameScenes {
             if (resource == null) {
                 resource = r;
                 ui.AlignUI(resource.ScreenSize.clone());
+
+                for each (var parts:IScenarioSceneParts in sceneParts) {
+                    parts.setResource(r);
+                }
             }
         }
 
