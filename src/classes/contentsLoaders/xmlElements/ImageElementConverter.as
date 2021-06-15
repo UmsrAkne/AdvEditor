@@ -15,6 +15,7 @@ package classes.contentsLoaders.xmlElements {
         public static const X_ATTRIBUTE:String = "@x";
         public static const Y_ATTRIBUTE:String = "@y";
         public static const SCALE_ATTRIBUTE:String = "@scale";
+        public static const ROTATION_ATTRIBUTE:String = "@rotation";
 
         public static const STATUS_INHERIT_ATTRIBUTE:String = "@statusInherit";
 
@@ -52,6 +53,12 @@ package classes.contentsLoaders.xmlElements {
                 if (imageTag.hasOwnProperty(SCALE_ATTRIBUTE)) {
                     if (!isNaN(parseFloat(imageTag[SCALE_ATTRIBUTE]))) {
                         order.scale = parseFloat(imageTag[SCALE_ATTRIBUTE]);
+                    }
+                }
+
+                if (imageTag.hasOwnProperty(ROTATION_ATTRIBUTE)) {
+                    if (!isNaN(parseInt(imageTag[ROTATION_ATTRIBUTE]))) {
+                        order.rotation = parseInt(imageTag[ROTATION_ATTRIBUTE]);
                     }
                 }
 
