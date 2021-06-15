@@ -10,6 +10,7 @@ package classes.sceneParts {
     import flash.events.Event;
     import flash.geom.ColorTransform;
     import flash.display.Sprite;
+    import flash.geom.Matrix;
 
     public class ImageDrawer implements IScenarioSceneParts {
 
@@ -21,6 +22,7 @@ package classes.sceneParts {
         private var currentOrder:ImageOrder;
         private var drawingOrder:ImageOrder;
         private var totalDrawingDepth:Number = 0;
+        private var lastSettingRotation:int = 0;
 
         private var enterFrameEventDispatcher:EventDispatcher = new Sprite();
 
@@ -49,16 +51,36 @@ package classes.sceneParts {
                     }
                 }
 
-                bitmap.scaleX = currentOrder.scale;
-                bitmap.scaleY = currentOrder.scale;
-                bitmap.x = currentOrder.x;
-                bitmap.y = currentOrder.y;
+                var matrix:Matrix;
 
                 if (currentOrder.statusInherit && bitmapContainer.Front != null) {
                     bitmap.scaleX = bitmapContainer.Front.scaleX;
                     bitmap.scaleY = bitmapContainer.Front.scaleY;
                     bitmap.x = bitmapContainer.Front.x;
                     bitmap.y = bitmapContainer.Front.y;
+
+                    if (lastSettingRotation != 0) {
+                        matrix = bitmap.transform.matrix;
+                        matrix.translate(bitmap.width / 2 * -1, bitmap.height / 2 * -1);
+                        matrix.rotate(lastSettingRotation * Math.PI / 180);
+                        matrix.translate(bitmap.width / 2, bitmap.height / 2);
+                        bitmap.transform.matrix = matrix;
+                    }
+                } else {
+                    bitmap.scaleX = currentOrder.scale;
+                    bitmap.scaleY = currentOrder.scale;
+                    bitmap.x = currentOrder.x;
+                    bitmap.y = currentOrder.y;
+
+                    if (currentOrder.rotation != 0) {
+                        matrix = bitmap.transform.matrix;
+                        matrix.translate(bitmap.width / 2 * -1, bitmap.height / 2 * -1);
+                        matrix.rotate(currentOrder.rotation * Math.PI / 180);
+                        matrix.translate(bitmap.width / 2, bitmap.height / 2);
+                        bitmap.transform.matrix = matrix;
+                    }
+
+                    lastSettingRotation = currentOrder.rotation;
                 }
 
                 bitmapContainer.add(bitmap);
