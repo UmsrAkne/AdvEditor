@@ -105,20 +105,18 @@ package classes.sceneParts {
                 for each (var order:ImageOrder in scenario.ImagerOrders) {
                     if (order.targetLayerIndex == bitmapContainer.LayerIndex) {
                         currentOrder = order;
+                        needBitmapAddition = true;
                     }
                 }
-
-                needBitmapAddition = true;
             }
 
             if (scenario.DrawingOrder.length > 0) {
                 for each (order in scenario.DrawingOrder) {
                     if (order.targetLayerIndex == bitmapContainer.LayerIndex) {
                         drawingOrder = order;
+                        needBitmapDrawing = true;
                     }
                 }
-
-                needBitmapDrawing = true;
             }
         }
 
