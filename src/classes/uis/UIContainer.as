@@ -33,15 +33,14 @@ package classes.uis {
         }
 
         public function UIContainer() {
-            addChild(textWindow);
-
             for (var i:int = 0; i < 4; i++) {
                 var bmpContainer:BitmapContainer = new BitmapContainer(i);
                 bitmapContainers.push(bmpContainer);
                 addChild(bmpContainer);
             }
 
-            voiceChannelWrappers.push(new SoundChannelWrapper(), new SoundChannelWrapper(), new SoundChannelWrapper())
+            addChild(textWindow);
+            voiceChannelWrappers.push(new SoundChannelWrapper(), new SoundChannelWrapper(), new SoundChannelWrapper());
         }
 
         /**
