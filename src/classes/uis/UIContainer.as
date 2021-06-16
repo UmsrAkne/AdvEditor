@@ -40,7 +40,7 @@ package classes.uis {
             }
 
             addChild(textWindow);
-            voiceChannelWrappers.push(new SoundChannelWrapper(), new SoundChannelWrapper(), new SoundChannelWrapper())
+            voiceChannelWrappers.push(new SoundChannelWrapper(), new SoundChannelWrapper(), new SoundChannelWrapper());
         }
 
         /**
