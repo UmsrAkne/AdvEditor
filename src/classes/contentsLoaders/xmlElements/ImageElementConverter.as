@@ -3,6 +3,7 @@ package classes.contentsLoaders.xmlElements {
     import flash.filesystem.File;
     import flash.utils.Dictionary;
     import classes.sceneContents.ImageOrder;
+    import flash.events.FileListEvent;
 
     public class ImageElementConverter implements IXMLElementConverter {
 
@@ -21,7 +22,7 @@ package classes.contentsLoaders.xmlElements {
 
         private var sceneDirectory:File;
         private var fileList:Vector.<File>;
-        private var fileByFileNameDictionary:Dictionary = new Dictionary();
+        private var fileIndexByFileNameDictionary:Dictionary = new Dictionary();
 
         public function ImageElementConverter(sceneDirectory:File) {
             this.sceneDirectory = sceneDirectory;
@@ -43,6 +44,24 @@ package classes.contentsLoaders.xmlElements {
                     order.names.push(imageTag[A_ATTRIBUTE]);
                     order.names.push(imageTag[B_ATTRIBUTE]);
                     order.names.push(imageTag[C_ATTRIBUTE]);
+
+                    if (imageTag.hasOwnProperty(A_ATTRIBUTE)) {
+                        order.indexes.push(fileIndexByFileNameDictionary[String(imageTag[A_ATTRIBUTE])]);
+                    } else {
+                        order.indexes.push(0);
+                    }
+
+                    if (imageTag.hasOwnProperty(B_ATTRIBUTE)) {
+                        order.indexes.push(fileIndexByFileNameDictionary[String(imageTag[B_ATTRIBUTE])]);
+                    } else {
+                        order.indexes.push(0);
+                    }
+
+                    if (imageTag.hasOwnProperty(C_ATTRIBUTE)) {
+                        order.indexes.push(fileIndexByFileNameDictionary[String(imageTag[C_ATTRIBUTE])]);
+                    } else {
+                        order.indexes.push(0);
+                    }
                 }
 
                 if (imageTag.hasOwnProperty(X_ATTRIBUTE) || imageTag.hasOwnProperty(Y_ATTRIBUTE)) {
@@ -73,6 +92,16 @@ package classes.contentsLoaders.xmlElements {
                 }
 
                 scenario.ImagerOrders.push(order);
+            }
+        }
+
+        public function set FileList(value:Vector.<File>):void {
+            fileList = value;
+
+            for (var i:int = 0; i < fileList.length; i++) {
+                var f:File = fileList[i];
+                fileIndexByFileNameDictionary[f.name] = i + 1; // 拡張子を含むファイル名全て
+                fileIndexByFileNameDictionary[f.name.split(".")[0]] = i + 1; // 拡張子を除いたファイル名
             }
         }
     }
