@@ -14,7 +14,7 @@ package tests.sceneParts {
 
         private function testExecute():void {
             var player:BGMPlayer = new BGMPlayer();
-            var ui:UIContainer = new UIContainer()
+            var ui:UIContainer = new UIContainer();
             player.setUI(ui);
 
             var scenario:Scenario = new Scenario();

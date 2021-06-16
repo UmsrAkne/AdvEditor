@@ -15,7 +15,7 @@ package tests.contentsLoaders.xmlElements {
             var fileList:Vector.<File> = new Vector.<File>();
 
             var testXML1:XML = new XML("<scenario>  <image a=\"Aimg01\" c=\"Cimg01\" x=\"-100\" scale=\"2.0\" rotation=\"20\" statusInherit=\"true\" target=\"front\"/> <image a=\"Aimg02\" target=\"main\" /> </scenario>");
-            var scenario1:Scenario = new Scenario
+            var scenario1:Scenario = new Scenario();
 
             imageElementConverter.convert(testXML1, scenario1);
             Assert.areEqual(scenario1.ImagerOrders[0].names[0], "Aimg01");

@@ -15,9 +15,9 @@ package classes.contentsLoaders {
 
         public static const ELEMENT_NAME:String = "setting";
         public static const WIDTH_ATTRIBUTE:String = "@width";
-        public static const HEIGHT_ATTRIBUTE:String = "@height"
+        public static const HEIGHT_ATTRIBUTE:String = "@height";
         public static const X_ATTRIBUTE:String = "@x";
-        public static const Y_ATTRIBUTE:String = "@y"
+        public static const Y_ATTRIBUTE:String = "@y";
 
         public function SettingLoader(sceneDirectory:File) {
             this.sceneDirectory = sceneDirectory;
