@@ -11,7 +11,7 @@ package tests.contentsLoaders.xmlElements {
 
         private function testConvert():void {
             var drawElementConverter:DrawElementConverter = new DrawElementConverter();
-            var xml:XML = new XML("<scenario><draw a=\"imageA\" b=\"imageB\" c=\"imageC\" depth=\"0.1\" /></scenario>")
+            var xml:XML = new XML("<scenario><draw a=\"imageA\" b=\"imageB\" c=\"imageC\" depth=\"0.1\" /></scenario>");
             var scenario:Scenario = new Scenario();
             drawElementConverter.convert(xml, scenario);
 

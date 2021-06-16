@@ -21,7 +21,7 @@ package classes.contentsLoaders.xmlElements {
         }
 
         public function get ElementName():String {
-            return "se"
+            return "se";
         }
 
         /**

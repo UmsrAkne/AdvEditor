@@ -48,7 +48,7 @@ package classes.contentsLoaders {
                 trace("画像ファイルは読み込まれませんでした。");
             }
 
-            loadFileCount = imageFiles.length
+            loadFileCount = imageFiles.length;
 
             for each (var f:File in imageFiles) {
                 var l:Loader = new Loader();

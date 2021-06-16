@@ -9,7 +9,7 @@ package tests.sceneParts {
 
     public class TestSEPlayer {
         public function TestSEPlayer() {
-            testExecute()
+            testExecute();
         }
 
         private function testExecute():void {

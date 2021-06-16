@@ -10,7 +10,7 @@ package classes.sceneParts {
     public class Animator implements IScenarioSceneParts {
 
         private var animations:Vector.<IAnimation> = new Vector.<IAnimation>();
-        private var bitmapContainer:BitmapContainer
+        private var bitmapContainer:BitmapContainer;
 
         public function Animator(targetBitmapContainer:BitmapContainer) {
             bitmapContainer = targetBitmapContainer;

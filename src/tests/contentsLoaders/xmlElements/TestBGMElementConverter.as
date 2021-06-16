@@ -22,8 +22,8 @@ package tests.contentsLoaders.xmlElements {
 
             bgmElementConverter.FileList = fileList;
 
-            var xml1:XML = new XML("<scenario> <bgm number=\"01\" \/></scenario>")
-            var xml2:XML = new XML("<scenario> <bgm fileName=\"testSound2\" \/></scenario>")
+            var xml1:XML = new XML("<scenario> <bgm number=\"01\" \/></scenario>");
+            var xml2:XML = new XML("<scenario> <bgm fileName=\"testSound2\" \/></scenario>");
 
             var scenario1:Scenario = new Scenario();
             var scenario2:Scenario = new Scenario();

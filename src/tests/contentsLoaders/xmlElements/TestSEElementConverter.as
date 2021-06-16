@@ -21,8 +21,8 @@ package tests.contentsLoaders.xmlElements {
 
             seElementConverter.FileList = fileList;
 
-            var xml1:XML = new XML("<scenario> <se number=\"1\" volume=\"0.5\" repeatCount=\"3\"/> </scenario>")
-            var xml2:XML = new XML("<scenario> <se fileName=\"se2\" volume=\"0.5\" repeatCount=\"3\"/> </scenario>")
+            var xml1:XML = new XML("<scenario> <se number=\"1\" volume=\"0.5\" repeatCount=\"3\"/> </scenario>");
+            var xml2:XML = new XML("<scenario> <se fileName=\"se2\" volume=\"0.5\" repeatCount=\"3\"/> </scenario>");
 
             var scenario1:Scenario = new Scenario();
             var scenario2:Scenario = new Scenario();

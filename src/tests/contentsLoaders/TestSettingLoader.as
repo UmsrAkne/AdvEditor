@@ -12,7 +12,7 @@ package tests.contentsLoaders {
 
         private function testWriteContents():void {
             var settingLoader:SettingLoader = new SettingLoader(new File(File.applicationDirectory.nativePath));
-            settingLoader.SettingXML = new XMLList("<root><setting width=\"10\" height=\"20\" x=\"30\" y=\"-40\" /></root>")
+            settingLoader.SettingXML = new XMLList("<root><setting width=\"10\" height=\"20\" x=\"30\" y=\"-40\" /></root>");
             var res:Resource = new Resource();
             settingLoader.writeContentsTo(res);
 

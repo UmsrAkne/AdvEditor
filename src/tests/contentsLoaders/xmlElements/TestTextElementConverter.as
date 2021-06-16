@@ -13,7 +13,7 @@ package tests.contentsLoaders.xmlElements {
             var textElementConverter:TextElementConverter = new TextElementConverter();
             var xml1:XML = new XML("<scenario><text string=\"testText_testText\" textAddition=\"true\" /></scenario>");
             var scenario1:Scenario = new Scenario();
-            textElementConverter.convert(xml1, scenario1)
+            textElementConverter.convert(xml1, scenario1);
 
             Assert.areEqual(scenario1.Text, "testText_testText");
             Assert.isTrue(scenario1.TextAddition);

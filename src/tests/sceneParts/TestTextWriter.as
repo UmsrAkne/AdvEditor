@@ -32,7 +32,7 @@ package tests.sceneParts {
             Assert.areEqual(textWindow.text, "t");
 
             for (var i:int = 0; i < 10; i++) {
-                writer.dispatchEvent(new Event(Event.ENTER_FRAME))
+                writer.dispatchEvent(new Event(Event.ENTER_FRAME));
             }
 
             // 10フレーム経過

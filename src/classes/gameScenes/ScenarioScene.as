@@ -5,7 +5,7 @@ package classes.gameScenes {
     import flash.events.Event;
     import flash.ui.Keyboard;
     import classes.uis.UIContainer;
-    import classes.sceneParts.*
+    import classes.sceneParts.*;
     import classes.sceneContents.Resource;
     import classes.sceneContents.Scenario;
 
@@ -80,7 +80,7 @@ package classes.gameScenes {
                 }
 
                 for each (var parts:IScenarioSceneParts in sceneParts) {
-                    parts.setScenario(scenario)
+                    parts.setScenario(scenario);
                 }
 
                 for each (parts in sceneParts) {

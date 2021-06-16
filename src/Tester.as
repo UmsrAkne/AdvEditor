@@ -5,7 +5,7 @@ package {
     import flash.desktop.NativeApplication;
     import tests.Assert;
     import tests.uis.TestBitmapContainer;
-    import tests.sceneParts.*
+    import tests.sceneParts.*;
     import tests.animes.*;
     import tests.contentsLoaders.TestScenarioLoader;
     import tests.contentsLoaders.xmlElements.*;

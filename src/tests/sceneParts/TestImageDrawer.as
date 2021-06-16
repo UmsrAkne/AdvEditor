@@ -17,7 +17,7 @@ package tests.sceneParts {
         }
 
         public function testExecute():void {
-            var bitmapContainer:BitmapContainer = new BitmapContainer(0)
+            var bitmapContainer:BitmapContainer = new BitmapContainer(0);
             var imageDrawer:ImageDrawer = new ImageDrawer(bitmapContainer);
 
             var resource:Resource = new Resource();
@@ -31,10 +31,10 @@ package tests.sceneParts {
             var imageOrder1:ImageOrder = new ImageOrder();
             imageOrder1.targetLayerIndex = 0;
             imageOrder1.indexes.push(1, 0, 0);
-            scenario1.ImagerOrders.push(imageOrder1)
+            scenario1.ImagerOrders.push(imageOrder1);
 
             imageDrawer.setScenario(scenario1);
-            imageDrawer.execute()
+            imageDrawer.execute();
 
             Assert.isTrue(bitmapContainer.Front != null);
 
@@ -58,7 +58,7 @@ package tests.sceneParts {
                 imageDrawer.EnterFrameEventDispatcher.dispatchEvent(new Event(Event.ENTER_FRAME));
             }
 
-            Assert.areEqual(bitmapContainer.Front.bitmapData.getPixel32(0, 0), 0xFF000000)
+            Assert.areEqual(bitmapContainer.Front.bitmapData.getPixel32(0, 0), 0xFF000000);
         }
 
         public function 連続実行のテスト():void {
@@ -78,7 +78,7 @@ package tests.sceneParts {
             imageOrder1.targetLayerIndex = 0;
             imageOrder1.indexes.push(1, 0, 0);
             imageOrder1.x = 100;
-            scenarios[0].ImagerOrders.push(imageOrder1)
+            scenarios[0].ImagerOrders.push(imageOrder1);
 
             var drawImageOrder:ImageOrder = new ImageOrder();
             drawImageOrder.targetLayerIndex = 0;
@@ -93,7 +93,7 @@ package tests.sceneParts {
             scenarios[2].ImagerOrders.push(nextImageOrder);
 
             imageDrawer.setScenario(scenarios[0]);
-            imageDrawer.execute()
+            imageDrawer.execute();
 
             var bmp1:Bitmap = bitmapContainer.Front;
             Assert.areEqual(bmp1.x, 100);

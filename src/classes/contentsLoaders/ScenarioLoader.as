@@ -7,7 +7,7 @@ package classes.contentsLoaders {
     import flash.net.URLLoader;
     import flash.net.URLRequest;
     import flash.filesystem.File;
-    import classes.contentsLoaders.xmlElements.*
+    import classes.contentsLoaders.xmlElements.*;
     import classes.contentsLoaders.xmlElements.ScenarioElementConverter;
     import classes.sceneContents.Resource;
 
@@ -32,7 +32,7 @@ package classes.contentsLoaders {
                 // プロパティ経由で ScenarioXML に値をセット可能なため、null の場合にのみ、ロード処理を行い、
                 // その後で XML を Scenario に変換する。
 
-                var urlLoader:URLLoader = new URLLoader()
+                var urlLoader:URLLoader = new URLLoader();
                 urlLoader.addEventListener(Event.COMPLETE, function(e:Event):void {
                     scenarioXML = new XMLList(URLLoader(e.target).data);
                     scenarios = makeScenarios(scenarioXML);

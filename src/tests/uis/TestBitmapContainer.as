@@ -36,7 +36,7 @@ package tests.uis {
 
             for (var i:int = 0; i < 5; i++) {
                 bitmapContainer.add(bmps[i]);
-                Assert.areEqual(bitmapContainer.Front, bmps[i])
+                Assert.areEqual(bitmapContainer.Front, bmps[i]);
             }
         }
     }

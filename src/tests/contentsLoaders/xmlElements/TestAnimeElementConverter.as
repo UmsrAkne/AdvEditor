@@ -16,7 +16,7 @@ package tests.contentsLoaders.xmlElements {
             var scenario:Scenario = new Scenario();
             var xmlText:String = "<scenario>  <anime name=\"shake\" strength=\"25\" /> ";
             xmlText += "<anime name=\"alphaChanger\" amount=\"0.5\" target=\"background\" /> ";
-            xmlText += "</scenario>"
+            xmlText += "</scenario>";
             var xml:XML = new XML(xmlText);
 
             animeElementConverter.convert(xml, scenario);

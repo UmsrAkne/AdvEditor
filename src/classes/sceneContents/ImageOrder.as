@@ -17,7 +17,7 @@ package classes.sceneContents {
         public var drawingDepth:Number = 1.0;
         public var statusInherit:Boolean;
 
-        private var target:String = "main"
+        private var target:String = "main";
 
         public function ImageOrder() {
         }
