@@ -1,12 +1,13 @@
 package classes.animes {
 
     import flash.display.DisplayObject;
+    import flash.display.DisplayObjectContainer;
 
     public class MultiAlphaChanger implements IAnimation {
 
         private var valid:Boolean = true;
         private var frontTarget:DisplayObject;
-        private var backTargets:DisplayObject;
+        private var backTargets:Vector.<DisplayObject> = new Vector.<DisplayObject>();
         private var targetLayerIndex:int;
 
         public function MultiAlphaChanger() {
@@ -29,6 +30,12 @@ package classes.animes {
 
         public function set Target(targetObject:DisplayObject):void {
             frontTarget = targetObject;
+            var parent:DisplayObjectContainer = targetObject.parent;
+            for (var i:int = 0; i < parent.numChildren - 1; i++) {
+
+                // 先頭のディスプレイオブジェクト frontTarget に入力済みなので、ここでは入力しない。
+                backTargets.push(parent.getChildAt(i));
+            }
         }
 
         public function set TargetLayerIndex(index:int):void {
