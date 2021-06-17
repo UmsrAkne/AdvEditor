@@ -4,6 +4,7 @@ package classes.contentsLoaders.xmlElements {
     import flash.utils.Dictionary;
     import classes.sceneContents.ImageOrder;
     import flash.events.FileListEvent;
+    import classes.contentsLoaders.ContentsLoadUtil;
 
     public class ImageElementConverter implements IXMLElementConverter {
 
@@ -35,6 +36,10 @@ package classes.contentsLoaders.xmlElements {
         public function convert(scenarioElement:XML, scenario:Scenario):void {
             if (!scenarioElement.hasOwnProperty(ElementName)) {
                 return;
+            }
+
+            if (fileList == null) {
+                FileList = ContentsLoadUtil.getFileList(sceneDirectory.resolvePath("images/").nativePath);
             }
 
             for each (var imageTag:XML in scenarioElement[ElementName]) {
