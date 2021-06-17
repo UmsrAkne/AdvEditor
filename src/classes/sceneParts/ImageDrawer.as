@@ -83,6 +83,7 @@ package classes.sceneParts {
                     lastSettingRotation = currentOrder.rotation;
                 }
 
+                bitmap.alpha = 0;
                 bitmapContainer.add(bitmap);
             }
 
