@@ -2,6 +2,7 @@ package tests.animes {
 
     import classes.animes.MultiAlphaChanger;
     import flash.display.Sprite;
+    import tests.Assert;
 
     public class TestMultiAlphaChanger {
         public function TestMultiAlphaChanger() {
@@ -12,13 +13,28 @@ package tests.animes {
             var multiAlphaChanger:MultiAlphaChanger = new MultiAlphaChanger();
 
             var parentSprite:Sprite = new Sprite();
-            var childSprite1:Sprite = new Sprite();
-            var childSprite2:Sprite = new Sprite();
+            var backSprite:Sprite = new Sprite();
 
-            parentSprite.addChild(childSprite1);
-            parentSprite.addChild(childSprite2);
+            var frontSprite:Sprite = new Sprite();
+            frontSprite.alpha = 0;
 
-            multiAlphaChanger.Target = childSprite2;
+            parentSprite.addChild(backSprite);
+            parentSprite.addChild(frontSprite);
+
+            multiAlphaChanger.Target = frontSprite;
+
+            multiAlphaChanger.execute();
+
+            Assert.isTrue(backSprite.alpha < 1);
+            Assert.isTrue(frontSprite.alpha > 0);
+
+            for (var i:int = 0; i < 20; i++) {
+                multiAlphaChanger.execute();
+            }
+
+            Assert.isTrue(backSprite.alpha == 0);
+            Assert.isTrue(frontSprite.alpha == 1);
+            Assert.isFalse(multiAlphaChanger.Valid);
         }
     }
 }

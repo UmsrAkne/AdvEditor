@@ -10,14 +10,34 @@ package classes.animes {
         private var backTargets:Vector.<DisplayObject> = new Vector.<DisplayObject>();
         private var targetLayerIndex:int;
 
+        private var alphaChangers:Vector.<AlphaChanger> = new Vector.<AlphaChanger>();
+
         public function MultiAlphaChanger() {
         }
 
         public function execute():void {
+            if (!valid) {
+                return;
+            }
+
+            for each (var a:AlphaChanger in alphaChangers) {
+                a.execute();
+            }
+
+            var existValidAnimation:Boolean = alphaChangers.some(function(item:AlphaChanger, idx:int, v:Vector.<AlphaChanger>):Boolean {
+                return item.Valid;
+            });
+
+            if (!existValidAnimation) {
+                stop();
+            }
         }
 
         public function stop():void {
             valid = false;
+            for each (var alphaChanger:AlphaChanger in alphaChangers) {
+                alphaChanger.stop();
+            }
         }
 
         public function get Valid():Boolean {
@@ -29,12 +49,26 @@ package classes.animes {
         }
 
         public function set Target(targetObject:DisplayObject):void {
+            if (frontTarget != null) {
+                return;
+            }
+
             frontTarget = targetObject;
+            alphaChangers.push(new AlphaChanger());
             var parent:DisplayObjectContainer = targetObject.parent;
             for (var i:int = 0; i < parent.numChildren - 1; i++) {
 
                 // 先頭のディスプレイオブジェクト frontTarget に入力済みなので、ここでは入力しない。
                 backTargets.push(parent.getChildAt(i));
+            }
+
+            alphaChangers[0].Target = frontTarget;
+
+            for each (var t:DisplayObject in backTargets) {
+                var a:AlphaChanger = new AlphaChanger();
+                a.amount = -0.1;
+                a.Target = t;
+                alphaChangers.push(a);
             }
         }
 
