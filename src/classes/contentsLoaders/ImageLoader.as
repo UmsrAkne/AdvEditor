@@ -28,6 +28,7 @@ package classes.contentsLoaders {
          * @param resource
          */
         public function writeContentsTo(resource:Resource):void {
+            resource.BitmapDatas.push(new BitmapData(1, 1, true, 0));
             for (var i:int = 0; i < bitmapDatas.length; i++) {
                 resource.BitmapDatas.push(bitmapDatas[i]);
                 resource.BitmapDatasByName[imageFiles[i].name] = bitmapDatas[i]; // ファイル名全て

@@ -31,10 +31,10 @@ package tests.contentsLoaders {
 
             imageLoader.writeContentsTo(res);
 
-            Assert.areEqual(res.BitmapDatas.length, 3);
-            Assert.areEqual(res.BitmapDatas[0], bitmapDatas[0]);
-            Assert.areEqual(res.BitmapDatas[1], bitmapDatas[1]);
-            Assert.areEqual(res.BitmapDatas[2], bitmapDatas[2]);
+            Assert.areEqual(res.BitmapDatas.length, 4);
+            Assert.areEqual(res.BitmapDatas[1], bitmapDatas[0]);
+            Assert.areEqual(res.BitmapDatas[2], bitmapDatas[1]);
+            Assert.areEqual(res.BitmapDatas[3], bitmapDatas[2]);
 
             Assert.areEqual(res.BitmapDatasByName["A001.png"], bitmapDatas[0]);
             Assert.areEqual(res.BitmapDatasByName["A001"], bitmapDatas[0]);

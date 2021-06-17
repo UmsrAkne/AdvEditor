@@ -3,6 +3,8 @@ package classes.contentsLoaders.xmlElements {
     import flash.filesystem.File;
     import flash.utils.Dictionary;
     import classes.sceneContents.ImageOrder;
+    import flash.events.FileListEvent;
+    import classes.contentsLoaders.ContentsLoadUtil;
 
     public class ImageElementConverter implements IXMLElementConverter {
 
@@ -21,7 +23,7 @@ package classes.contentsLoaders.xmlElements {
 
         private var sceneDirectory:File;
         private var fileList:Vector.<File>;
-        private var fileByFileNameDictionary:Dictionary = new Dictionary();
+        private var fileIndexByFileNameDictionary:Dictionary = new Dictionary();
 
         public function ImageElementConverter(sceneDirectory:File) {
             this.sceneDirectory = sceneDirectory;
@@ -36,13 +38,28 @@ package classes.contentsLoaders.xmlElements {
                 return;
             }
 
+            if (fileList == null) {
+                FileList = ContentsLoadUtil.getFileList(sceneDirectory.resolvePath("images/").nativePath);
+            }
+
             for each (var imageTag:XML in scenarioElement[ElementName]) {
                 var order:ImageOrder = new ImageOrder();
                 if (imageTag.hasOwnProperty(A_ATTRIBUTE) || imageTag.hasOwnProperty(B_ATTRIBUTE) || imageTag.hasOwnProperty(C_ATTRIBUTE)) {
                     order.names = new Vector.<String>();
-                    order.names.push(imageTag[A_ATTRIBUTE]);
-                    order.names.push(imageTag[B_ATTRIBUTE]);
-                    order.names.push(imageTag[C_ATTRIBUTE]);
+
+                    var atts:Vector.<String> = new Vector.<String>();
+                    atts.push(A_ATTRIBUTE, B_ATTRIBUTE, C_ATTRIBUTE);
+
+                    for each (var att:String in atts) {
+                        order.names.push(imageTag[att]);
+                        if (imageTag.hasOwnProperty(att)) {
+
+                            // String でキャストしないとオブジェクトキー扱いされるので必須。 
+                            order.indexes.push(fileIndexByFileNameDictionary[String(imageTag[att])]);
+                        } else {
+                            order.indexes.push(0);
+                        }
+                    }
                 }
 
                 if (imageTag.hasOwnProperty(X_ATTRIBUTE) || imageTag.hasOwnProperty(Y_ATTRIBUTE)) {
@@ -73,6 +90,16 @@ package classes.contentsLoaders.xmlElements {
                 }
 
                 scenario.ImagerOrders.push(order);
+            }
+        }
+
+        public function set FileList(value:Vector.<File>):void {
+            fileList = value;
+
+            for (var i:int = 0; i < fileList.length; i++) {
+                var f:File = fileList[i];
+                fileIndexByFileNameDictionary[f.name] = i + 1; // 拡張子を含むファイル名全て
+                fileIndexByFileNameDictionary[f.name.split(".")[0]] = i + 1; // 拡張子を除いたファイル名
             }
         }
     }
