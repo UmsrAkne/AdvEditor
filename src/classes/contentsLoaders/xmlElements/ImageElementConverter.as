@@ -41,26 +41,19 @@ package classes.contentsLoaders.xmlElements {
                 var order:ImageOrder = new ImageOrder();
                 if (imageTag.hasOwnProperty(A_ATTRIBUTE) || imageTag.hasOwnProperty(B_ATTRIBUTE) || imageTag.hasOwnProperty(C_ATTRIBUTE)) {
                     order.names = new Vector.<String>();
-                    order.names.push(imageTag[A_ATTRIBUTE]);
-                    order.names.push(imageTag[B_ATTRIBUTE]);
-                    order.names.push(imageTag[C_ATTRIBUTE]);
 
-                    if (imageTag.hasOwnProperty(A_ATTRIBUTE)) {
-                        order.indexes.push(fileIndexByFileNameDictionary[String(imageTag[A_ATTRIBUTE])]);
-                    } else {
-                        order.indexes.push(0);
-                    }
+                    var atts:Vector.<String> = new Vector.<String>();
+                    atts.push(A_ATTRIBUTE, B_ATTRIBUTE, C_ATTRIBUTE);
 
-                    if (imageTag.hasOwnProperty(B_ATTRIBUTE)) {
-                        order.indexes.push(fileIndexByFileNameDictionary[String(imageTag[B_ATTRIBUTE])]);
-                    } else {
-                        order.indexes.push(0);
-                    }
+                    for each (var att:String in atts) {
+                        order.names.push(imageTag[att]);
+                        if (imageTag.hasOwnProperty(att)) {
 
-                    if (imageTag.hasOwnProperty(C_ATTRIBUTE)) {
-                        order.indexes.push(fileIndexByFileNameDictionary[String(imageTag[C_ATTRIBUTE])]);
-                    } else {
-                        order.indexes.push(0);
+                            // String でキャストしないとオブジェクトキー扱いされるので必須。 
+                            order.indexes.push(fileIndexByFileNameDictionary[String(imageTag[att])]);
+                        } else {
+                            order.indexes.push(0);
+                        }
                     }
                 }
 
