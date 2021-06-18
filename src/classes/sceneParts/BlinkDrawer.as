@@ -3,10 +3,12 @@ package classes.sceneParts {
     import classes.sceneContents.Resource;
     import classes.uis.UIContainer;
     import classes.uis.BitmapContainer;
+    import flash.utils.Dictionary;
 
     public class BlinkDrawer implements IScenarioSceneParts {
 
         private var bitmapContainer:BitmapContainer;
+        private var blinkOrdersByName:Dictionary;
 
         public function BlinkDrawer(targetBitmapContainer:BitmapContainer) {
             bitmapContainer = targetBitmapContainer;
@@ -24,6 +26,7 @@ package classes.sceneParts {
         }
 
         public function setResource(res:Resource):void {
+            blinkOrdersByName = res.BlinkOrdersByName;
         }
     }
 }
