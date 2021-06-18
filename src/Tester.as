@@ -13,6 +13,7 @@ package {
     import tests.contentsLoaders.TestImageLoader;
     import tests.contentsLoaders.TestSettingLoader;
     import tests.gameScenes.TestLoadingScene;
+    import tests.sceneParts.TestBlinkDrawer;
 
     public class Tester extends Sprite {
         public function Tester() {
@@ -42,6 +43,7 @@ package {
             new TestMaskSetter();
             new TestSlide();
             new TestMultiAlphaChanger();
+            new TestBlinkDrawer();
 
             trace("[Tester]" + " " + Assert.TestCounter + " 回のテストを完了しました");
             NativeApplication.nativeApplication.exit();
