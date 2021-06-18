@@ -5,6 +5,16 @@ package classes.animes {
 
     public class MultiAlphaChanger implements IAnimation {
 
+        /**
+         * 最前面のディスプレイオブジェクトに適用する alpha の値です。
+         */
+        public var front:Number = 0.1;
+
+        /**
+         * 最前面のディスプレイオブジェクト以外に適用する alpha の値です。
+         */
+        public var backs:Number = -0.1;
+
         private var valid:Boolean = true;
         private var frontTarget:DisplayObject;
         private var backTargets:Vector.<DisplayObject> = new Vector.<DisplayObject>();
@@ -63,10 +73,11 @@ package classes.animes {
             }
 
             alphaChangers[0].Target = frontTarget;
+            alphaChangers[0].amount = front;
 
             for each (var t:DisplayObject in backTargets) {
                 var a:AlphaChanger = new AlphaChanger();
-                a.amount = -0.1;
+                a.amount = backs;
                 a.Target = t;
                 alphaChangers.push(a);
             }
@@ -78,6 +89,11 @@ package classes.animes {
 
         public function get TargetLayerIndex():int {
             return targetLayerIndex;
+        }
+
+        public function set strength(value:Number):void {
+            front = value;
+            backs = value * -1;
         }
     }
 }
