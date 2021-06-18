@@ -49,6 +49,9 @@ package classes.contentsLoaders.xmlElements {
                 case "alphaChanger":
                     anime = new AlphaChanger();
                     break;
+                case "multiAlphaChanger":
+                    anime = new MultiAlphaChanger();
+                    break;
                 case "shake":
                     anime = new Shake();
                     break;
