@@ -28,5 +28,12 @@ package classes.sceneContents {
         public function get OpenImageNames():Vector.<String> {
             return openImageNames;
         }
+
+        public function buildOrder():Vector.<String> {
+            var v:Vector.<String>;
+            v = OpenImageNames.concat().reverse();
+            v.push(closeImageName);
+            return v.concat(OpenImageNames);
+        }
     }
 }
