@@ -5,6 +5,7 @@ package tests.sceneParts {
     import classes.sceneContents.Scenario;
     import classes.sceneContents.ImageOrder;
     import tests.Assert;
+    import classes.sceneContents.Resource;
 
     public class TestBlinkDrawer {
         public function TestBlinkDrawer() {
@@ -13,7 +14,9 @@ package tests.sceneParts {
 
         private function testExecute():void {
             var bmpContainer:BitmapContainer = new BitmapContainer(0);
+            var res:Resource = new Resource();
             var blinkDrawer:BlinkDrawer = new BlinkDrawer(bmpContainer);
+            blinkDrawer.setResource(res);
 
             var scenario1:Scenario = new Scenario();
             scenario1.ImagerOrders.push(new ImageOrder());

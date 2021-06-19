@@ -5,12 +5,19 @@ package classes.sceneParts {
     import classes.uis.BitmapContainer;
     import flash.utils.Dictionary;
     import classes.sceneContents.ImageOrder;
+    import flash.events.EventDispatcher;
+    import flash.display.Sprite;
+    import flash.events.Event;
+    import classes.sceneContents.BlinkOrder;
 
     public class BlinkDrawer implements IScenarioSceneParts {
 
         private var bitmapContainer:BitmapContainer;
         private var blinkOrdersByName:Dictionary;
         private var currentEyeImageName:String;
+        private var currentBlinkOrder:BlinkOrder;
+        private var enterFrameEventDispatcher:EventDispatcher = new Sprite();
+        private var interval:int = 90;
 
         public function BlinkDrawer(targetBitmapContainer:BitmapContainer) {
             bitmapContainer = targetBitmapContainer;
@@ -39,7 +46,19 @@ package classes.sceneParts {
             }
 
             if (order.names.length >= 2 && order.names[1] != "") {
-                currentEyeImageName = order.names[1];
+                var imageName:String = order.names[1];
+
+                while (enterFrameEventDispatcher.hasEventListener(Event.ENTER_FRAME)) {
+                    enterFrameEventDispatcher.removeEventListener(Event.ENTER_FRAME, drawaBlink);
+                }
+
+                currentBlinkOrder = blinkOrdersByName[imageName.toString()];
+
+                if (currentBlinkOrder != null) {
+                    enterFrameEventDispatcher.addEventListener(Event.ENTER_FRAME, drawaBlink);
+                }
+
+                currentEyeImageName = imageName;
             }
         }
 
@@ -56,6 +75,9 @@ package classes.sceneParts {
          */
         public function get CurrentEyeImageName():String {
             return currentEyeImageName;
+        }
+
+        private function drawaBlink(e:Event):void {
         }
     }
 }
