@@ -13,18 +13,19 @@ package classes.sceneParts {
     public class BlinkDrawer implements IScenarioSceneParts {
 
         private var bitmapContainer:BitmapContainer;
+        private var bitmapDatasByName:Dictionary;
         private var blinkOrdersByName:Dictionary;
         private var currentEyeImageName:String;
         private var currentBlinkOrder:BlinkOrder;
         private var enterFrameEventDispatcher:EventDispatcher = new Sprite();
         private var interval:int = 90;
+        private var drawCount:int;
 
         public function BlinkDrawer(targetBitmapContainer:BitmapContainer) {
             bitmapContainer = targetBitmapContainer;
         }
 
         public function execute():void {
-            throw new Error("Method not implemented.");
         }
 
         public function setScenario(scenario:Scenario):void {
@@ -67,6 +68,7 @@ package classes.sceneParts {
 
         public function setResource(res:Resource):void {
             blinkOrdersByName = res.BlinkOrdersByName;
+            bitmapDatasByName = res.BitmapDatasByName;
         }
 
         /**
@@ -78,6 +80,19 @@ package classes.sceneParts {
         }
 
         private function drawaBlink(e:Event):void {
+            interval--;
+            if (interval > 0) {
+                return;
+            }
+
+            var drawingImageNames:Vector.<String> = currentBlinkOrder.buildOrder();
+            if (drawCount < drawingImageNames.length) {
+                bitmapContainer.Front.bitmapData.draw(bitmapDatasByName[drawingImageNames[drawCount]]);
+                drawCount++;
+            } else {
+                drawCount = 0;
+                interval = Math.random() * 120;
+            }
         }
     }
 }
