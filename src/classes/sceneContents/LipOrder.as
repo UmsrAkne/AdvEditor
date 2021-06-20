@@ -27,9 +27,10 @@ package classes.sceneContents {
         }
 
         public function buildOrder():Vector.<String> {
-            order = OpenImageNames.concat().reverse();
-            order.push(closeImageName);
-            return order.concat(OpenImageNames);
+            order = new Vector.<String>();
+            order.push(CloseImageName);
+            order = order.concat(OpenImageNames);
+            return order;
         }
 
         public function getOrder():Vector.<String> {
