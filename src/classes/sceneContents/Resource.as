@@ -14,6 +14,8 @@ package classes.sceneContents {
         private var bitmapDatas:Vector.<BitmapData> = new Vector.<BitmapData>();
         private var bitmapDatasByName:Dictionary = new Dictionary();
 
+        private var blinkOrdersByName:Dictionary = new Dictionary();
+
         private var voices:Vector.<SoundFile> = new Vector.<SoundFile>();
         private var bgms:Vector.<SoundFile> = new Vector.<SoundFile>();
         private var ses:Vector.<SoundFile> = new Vector.<SoundFile>();
@@ -28,6 +30,10 @@ package classes.sceneContents {
 
         public function get BitmapDatasByName():Dictionary {
             return bitmapDatasByName;
+        }
+
+        public function get BlinkOrdersByName():Dictionary {
+            return blinkOrdersByName;
         }
 
         public function get Voices():Vector.<SoundFile> {

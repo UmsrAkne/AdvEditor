@@ -37,6 +37,11 @@ package classes.gameScenes {
             sceneParts.push(new ImageDrawer(ui.getBitmapContainerFromIndex(2))); // middle
             sceneParts.push(new ImageDrawer(ui.getBitmapContainerFromIndex(3))); // front
 
+            // BlinkDrawer は background に対しては不要。
+            sceneParts.push(new BlinkDrawer(ui.getBitmapContainerFromIndex(1))); // main
+            sceneParts.push(new BlinkDrawer(ui.getBitmapContainerFromIndex(2))); // middle
+            sceneParts.push(new BlinkDrawer(ui.getBitmapContainerFromIndex(3))); // front
+
             sceneParts.push(new MaskSetter(ui.getBitmapContainerFromIndex(0))); // background
             sceneParts.push(new MaskSetter(ui.getBitmapContainerFromIndex(1))); // main
             sceneParts.push(new MaskSetter(ui.getBitmapContainerFromIndex(2))); // middle
