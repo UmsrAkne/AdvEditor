@@ -26,6 +26,7 @@ package classes.sceneParts {
 
             soundChannelWrapper.stop();
             soundChannelWrapper.setSoundChannel(voiceFile.getSound().play());
+            soundChannelWrapper.Volume = voiceFile.Volume;
         }
 
         public function setScenario(scenario:Scenario):void {
