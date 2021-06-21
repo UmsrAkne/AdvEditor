@@ -14,10 +14,6 @@ package classes.uis {
             soundChannel = channel;
         }
 
-        public function setSoundTransform(transform:SoundTransform):void {
-            soundChannel.soundTransform = transform;
-        }
-
         public function stop():void {
             if (soundChannel != null) {
                 soundChannel.stop();
