@@ -8,6 +8,7 @@ package classes.contentsLoaders {
     import classes.sceneContents.Resource;
     import classes.sceneContents.BlinkOrder;
     import classes.sceneContents.LipOrder;
+    import classes.gameScenes.LoadingScene;
 
     public class FaceDrawingOrderLoader implements ILoader {
 
@@ -71,7 +72,14 @@ package classes.contentsLoaders {
                 completeEventDispatcher.dispatchEvent(new Event(Event.COMPLETE));
             });
 
-            urlloader.load(new URLRequest(sceneDirectory.resolvePath("texts/faceDrawingOrder.xml").nativePath));
+            var expectFilePath:String = "texts/faceDrawingOrder.xml";
+
+            if (new File(sceneDirectory.nativePath + expectFilePath).exists) {
+                urlloader.load(new URLRequest(sceneDirectory.resolvePath(expectFilePath).nativePath));
+            } else {
+                CompleteEventDispatcher.dispatchEvent(new Event(Event.COMPLETE));
+                OrderXMLList = new XMLList();
+            }
         }
 
         public function get CompleteEventDispatcher():EventDispatcher {
