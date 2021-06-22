@@ -16,6 +16,7 @@ package {
     import tests.sceneParts.TestBlinkDrawer;
     import tests.sceneContents.TestBlinkOrder;
     import tests.sceneContents.TestLipOrder;
+    import tests.contentsLoaders.TestFaceDrawingOrderLoader;
 
     public class Tester extends Sprite {
         public function Tester() {
@@ -48,6 +49,7 @@ package {
             new TestBlinkDrawer();
             new TestBlinkOrder();
             new TestLipOrder();
+            new TestFaceDrawingOrderLoader();
 
             trace("[Tester]" + " " + Assert.TestCounter + " 回のテストを完了しました");
             NativeApplication.nativeApplication.exit();

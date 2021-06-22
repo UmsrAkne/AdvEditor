@@ -15,6 +15,7 @@ package classes.sceneContents {
         private var bitmapDatasByName:Dictionary = new Dictionary();
 
         private var blinkOrdersByName:Dictionary = new Dictionary();
+        private var lipOrdersByName:Dictionary = new Dictionary();
 
         private var voices:Vector.<SoundFile> = new Vector.<SoundFile>();
         private var bgms:Vector.<SoundFile> = new Vector.<SoundFile>();
@@ -34,6 +35,10 @@ package classes.sceneContents {
 
         public function get BlinkOrdersByName():Dictionary {
             return blinkOrdersByName;
+        }
+
+        public function get LipOrdersByName():Dictionary {
+            return lipOrdersByName;
         }
 
         public function get Voices():Vector.<SoundFile> {

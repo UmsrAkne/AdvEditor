@@ -9,6 +9,7 @@ package classes.gameScenes {
     import classes.contentsLoaders.ImageLoader;
     import classes.contentsLoaders.SettingLoader;
     import classes.sceneContents.Resource;
+    import classes.contentsLoaders.FaceDrawingOrderLoader;
 
     public class LoadingScene extends Sprite {
 
@@ -28,6 +29,7 @@ package classes.gameScenes {
         public function load():void {
             loaders.push(new ScenarioLoader(sceneDirectory));
             loaders.push(new SettingLoader(sceneDirectory));
+            loaders.push(new FaceDrawingOrderLoader(sceneDirectory));
             loaders.push(new SoundLoader(sceneDirectory));
             loaders.push(new ImageLoader(sceneDirectory));
 
