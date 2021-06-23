@@ -5,12 +5,16 @@ package classes.sceneParts {
     import classes.uis.UIContainer;
     import classes.uis.SoundChannelWrapper;
     import classes.uis.BitmapContainer;
+    import classes.sceneContents.SoundFile;
+    import flash.utils.Dictionary;
 
     public class BGVPlayer implements IScenarioSceneParts {
 
         private var targetChannelIndex:int;
         private var channelWrapper:SoundChannelWrapper;
         private var bitmapContainer:BitmapContainer;
+        private var bgvs:Vector.<SoundFile>;
+        private var bgvsByName:Dictionary;
 
         public function BGVPlayer(targetChannelIndex:int) {
             this.targetChannelIndex = targetChannelIndex;
@@ -36,7 +40,8 @@ package classes.sceneParts {
         }
 
         public function setResource(res:Resource):void {
-            throw new Error("Method not implemented.");
+            bgvs = res.BGVs;
+            bgvsByName = res.BGVsByName;
         }
     }
 }
