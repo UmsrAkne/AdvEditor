@@ -7,6 +7,8 @@ package classes.uis {
 
     public class SoundChannelWrapper extends EventDispatcher {
 
+        public static const SOUND_CHANNEL_REPLACED:String = "soundChannelReplaced";
+
         private var soundChannel:SoundChannel;
         private var volume:Number = 1.0;
 
@@ -20,6 +22,7 @@ package classes.uis {
 
             soundChannel = channel;
             soundChannel.addEventListener(Event.SOUND_COMPLETE, dispatchCompleteEvent);
+            dispatchEvent(new Event(SOUND_CHANNEL_REPLACED));
         }
 
         /**

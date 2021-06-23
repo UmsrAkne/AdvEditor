@@ -20,6 +20,8 @@ package classes.sceneParts {
         private var bgvs:Vector.<SoundFile>;
         private var bgvsByName:Dictionary;
 
+        private var playList:Vector.<String> = new Vector.<String>();
+
         public function BGVPlayer(targetChannelIndex:int) {
             this.targetChannelIndex = targetChannelIndex;
         }
@@ -38,6 +40,11 @@ package classes.sceneParts {
                     break;
                 }
             }
+
+            if (!channelWrapper.hasEventListener(Event.SOUND_COMPLETE)) {
+                channelWrapper.addEventListener(Event.SOUND_COMPLETE, startBGV);
+                channelWrapper.addEventListener(SoundChannelWrapper.SOUND_CHANNEL_REPLACED, stopBGV);
+            }
         }
 
         /**
@@ -55,6 +62,34 @@ package classes.sceneParts {
         public function setResource(res:Resource):void {
             bgvs = res.BGVs;
             bgvsByName = res.BGVsByName;
+        }
+
+        private function randomPlay(e:Event):void {
+            if (currentOrder == null || currentOrder.Names.length == 0) {
+                bgvChannelWrapper.removeEventListener(Event.SOUND_COMPLETE, randomPlay);
+                bgvChannelWrapper.stop();
+            }
+
+            if (playList.length == 0) {
+
+                // メソッド実行ごとに playList の中身を削る。
+                // 実行時に要素がなかった場合は、currentOrder から取得、ランダムに並び替える。
+
+                playList = currentOrder.Names.concat();
+            }
+
+            var soundFile:SoundFile = bgvsByName[playList.shift()];
+            bgvChannelWrapper.setSoundChannel(soundFile.getSound().play());
+        }
+
+        private function startBGV(e:Event):void {
+            channelWrapper.removeEventListener(Event.SOUND_COMPLETE, startBGV);
+            bgvChannelWrapper.addEventListener(Event.SOUND_COMPLETE, randomPlay);
+        }
+
+        private function stopBGV(e:Event):void {
+            bgvChannelWrapper.removeEventListener(Event.SOUND_COMPLETE, randomPlay);
+            bgvChannelWrapper.stop();
         }
     }
 }
