@@ -19,7 +19,7 @@ package classes.sceneContents {
         private var se:SoundFile;
         private var seRepeatCount:int;
         private var bgm:SoundFile;
-        private var bgvOrder:BGVOrder;
+        private var bgvOrders:Vector.<BGVOrder> = new Vector.<BGVOrder>();
 
         public function get Ignore():Boolean {
             return ignore;
@@ -118,13 +118,12 @@ package classes.sceneContents {
             return bgm;
         }
 
-        public function set BgvOrder(value:BGVOrder):void {
-            bgvOrder = value;
+        public function set BGVOrders(value:Vector.<BGVOrder>):void {
+            bgvOrders = value;
         }
 
-        public function get BgvOrder():BGVOrder {
-            return bgvOrder;
+        public function get BGVOrders():Vector.<BGVOrder> {
+            return bgvOrders;
         }
-
     }
 }
