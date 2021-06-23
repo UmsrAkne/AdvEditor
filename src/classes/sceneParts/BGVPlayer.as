@@ -7,6 +7,8 @@ package classes.sceneParts {
     import classes.uis.BitmapContainer;
     import classes.sceneContents.SoundFile;
     import flash.utils.Dictionary;
+    import flash.events.Event;
+    import classes.sceneContents.BGVOrder;
 
     public class BGVPlayer implements IScenarioSceneParts {
 
@@ -14,6 +16,7 @@ package classes.sceneParts {
         private var channelWrapper:SoundChannelWrapper;
         private var bgvChannelWrapper:SoundChannelWrapper;
         private var bitmapContainer:BitmapContainer;
+        private var currentOrder:BGVOrder;
         private var bgvs:Vector.<SoundFile>;
         private var bgvsByName:Dictionary;
 
@@ -22,11 +25,19 @@ package classes.sceneParts {
         }
 
         public function execute():void {
-            throw new Error("Method not implemented.");
         }
 
         public function setScenario(scenario:Scenario):void {
-            throw new Error("Method not implemented.");
+            if (scenario.BGVOrders.length == 0) {
+                return;
+            }
+
+            for each (var o:BGVOrder in scenario.BGVOrders) {
+                if (targetChannelIndex == o.CharacterChannel) {
+                    currentOrder = o;
+                    break;
+                }
+            }
         }
 
         /**
