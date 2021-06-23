@@ -12,6 +12,7 @@ package classes.sceneParts {
 
         private var targetChannelIndex:int;
         private var channelWrapper:SoundChannelWrapper;
+        private var bgvChannelWrapper:SoundChannelWrapper;
         private var bitmapContainer:BitmapContainer;
         private var bgvs:Vector.<SoundFile>;
         private var bgvsByName:Dictionary;
@@ -34,6 +35,7 @@ package classes.sceneParts {
          */
         public function setUI(ui:UIContainer):void {
             channelWrapper = ui.getVoiceChannelWrapperFromIndex(targetChannelIndex);
+            bgvChannelWrapper = ui.getBGVChannelWrapperFromIndex(targetChannelIndex);
 
             // インデックス 0 は 背景担当。最低 1 から。
             bitmapContainer = ui.getBitmapContainerFromIndex(targetChannelIndex + 1);
