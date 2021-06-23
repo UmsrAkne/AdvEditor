@@ -19,6 +19,7 @@ package classes.sceneContents {
         private var se:SoundFile;
         private var seRepeatCount:int;
         private var bgm:SoundFile;
+        private var bgvOrder:BGVOrder;
 
         public function get Ignore():Boolean {
             return ignore;
@@ -115,6 +116,14 @@ package classes.sceneContents {
 
         public function get BGM():SoundFile {
             return bgm;
+        }
+
+        public function set BgvOrder(value:BGVOrder):void {
+            bgvOrder = value;
+        }
+
+        public function get BgvOrder():BGVOrder {
+            return bgvOrder;
         }
 
     }
