@@ -75,7 +75,9 @@ package classes.sceneParts {
                 // メソッド実行ごとに playList の中身を削る。
                 // 実行時に要素がなかった場合は、currentOrder から取得、ランダムに並び替える。
 
-                playList = currentOrder.Names.concat();
+                playList = currentOrder.Names.concat().sort(function():int {
+                    return int(Math.random() * 3) - 1
+                });
             }
 
             var soundFile:SoundFile = bgvsByName[playList.shift()];
@@ -88,7 +90,6 @@ package classes.sceneParts {
         }
 
         private function stopBGV(e:Event):void {
-            bgvChannelWrapper.removeEventListener(Event.SOUND_COMPLETE, randomPlay);
             bgvChannelWrapper.stop();
         }
     }
