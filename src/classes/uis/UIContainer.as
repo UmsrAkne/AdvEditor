@@ -15,6 +15,7 @@ package classes.uis {
         private var bgmChannelWrapper:SoundChannelWrapper = new SoundChannelWrapper();
         private var seChannelWrapper:SoundChannelWrapper = new SoundChannelWrapper();
         private var voiceChannelWrappers:Vector.<SoundChannelWrapper> = new Vector.<SoundChannelWrapper>();
+        private var bgvChannelWrappers:Vector.<SoundChannelWrapper> = new Vector.<SoundChannelWrapper>();
 
         public function get TextWindow():TextField {
             return textWindow;
@@ -41,6 +42,7 @@ package classes.uis {
 
             addChild(textWindow);
             voiceChannelWrappers.push(new SoundChannelWrapper(), new SoundChannelWrapper(), new SoundChannelWrapper());
+            bgvChannelWrappers.push(new SoundChannelWrapper(), new SoundChannelWrapper(), new SoundChannelWrapper());
         }
 
         /**
@@ -62,6 +64,10 @@ package classes.uis {
 
         public function getVoiceChannelWrapperFromIndex(index:int):SoundChannelWrapper {
             return voiceChannelWrappers[index];
+        }
+
+        public function getBGVChannelWrapperFromIndex(index:int):SoundChannelWrapper {
+            return bgvChannelWrappers[index];
         }
     }
 }

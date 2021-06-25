@@ -2,8 +2,12 @@ package classes.uis {
 
     import flash.media.SoundChannel;
     import flash.media.SoundTransform;
+    import flash.events.EventDispatcher;
+    import flash.events.Event;
 
-    public class SoundChannelWrapper {
+    public class SoundChannelWrapper extends EventDispatcher {
+
+        public static const SOUND_CHANNEL_REPLACED:String = "soundChannelReplaced";
 
         private var soundChannel:SoundChannel;
         private var volume:Number = 1.0;
@@ -12,7 +16,13 @@ package classes.uis {
         }
 
         public function setSoundChannel(channel:SoundChannel):void {
+            if (soundChannel != null) {
+                soundChannel.removeEventListener(Event.SOUND_COMPLETE, dispatchCompleteEvent);
+            }
+
             soundChannel = channel;
+            soundChannel.addEventListener(Event.SOUND_COMPLETE, dispatchCompleteEvent);
+            dispatchEvent(new Event(SOUND_CHANNEL_REPLACED));
         }
 
         /**
@@ -25,6 +35,7 @@ package classes.uis {
         public function stop():void {
             if (soundChannel != null) {
                 soundChannel.stop();
+                dispatchEvent(new Event(Event.SOUND_COMPLETE));
             }
         }
 
@@ -36,6 +47,10 @@ package classes.uis {
                 t.volume = volume;
                 soundChannel.soundTransform = t;
             }
+        }
+
+        private function dispatchCompleteEvent(e:Event):void {
+            dispatchEvent(e);
         }
     }
 }

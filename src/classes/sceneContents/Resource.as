@@ -18,6 +18,10 @@ package classes.sceneContents {
         private var lipOrdersByName:Dictionary = new Dictionary();
 
         private var voices:Vector.<SoundFile> = new Vector.<SoundFile>();
+
+        private var bgvs:Vector.<SoundFile> = new Vector.<SoundFile>();
+        private var bgvsByName:Dictionary = new Dictionary();
+
         private var bgms:Vector.<SoundFile> = new Vector.<SoundFile>();
         private var ses:Vector.<SoundFile> = new Vector.<SoundFile>();
 
@@ -43,6 +47,14 @@ package classes.sceneContents {
 
         public function get Voices():Vector.<SoundFile> {
             return voices;
+        }
+
+        public function get BGVs():Vector.<SoundFile> {
+            return bgvs;
+        }
+
+        public function get BGVsByName():Dictionary {
+            return bgvsByName;
         }
 
         public function get BGMs():Vector.<SoundFile> {

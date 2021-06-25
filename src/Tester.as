@@ -7,16 +7,11 @@ package {
     import tests.uis.TestBitmapContainer;
     import tests.sceneParts.*;
     import tests.animes.*;
-    import tests.contentsLoaders.TestScenarioLoader;
-    import tests.contentsLoaders.xmlElements.*;
-    import tests.contentsLoaders.TestSoundLoader;
-    import tests.contentsLoaders.TestImageLoader;
-    import tests.contentsLoaders.TestSettingLoader;
+    import tests.contentsLoaders.*;
+    import tests.contentsLoaders.xmlElements.*
     import tests.gameScenes.TestLoadingScene;
-    import tests.sceneParts.TestBlinkDrawer;
     import tests.sceneContents.TestBlinkOrder;
     import tests.sceneContents.TestLipOrder;
-    import tests.contentsLoaders.TestFaceDrawingOrderLoader;
 
     public class Tester extends Sprite {
         public function Tester() {
@@ -50,6 +45,7 @@ package {
             new TestBlinkOrder();
             new TestLipOrder();
             new TestFaceDrawingOrderLoader();
+            new TestBGVPlayer();
 
             trace("[Tester]" + " " + Assert.TestCounter + " 回のテストを完了しました");
             NativeApplication.nativeApplication.exit();

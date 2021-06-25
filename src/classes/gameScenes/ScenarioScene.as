@@ -8,6 +8,7 @@ package classes.gameScenes {
     import classes.sceneParts.*;
     import classes.sceneContents.Resource;
     import classes.sceneContents.Scenario;
+    import classes.sceneParts.BGVPlayer;
 
     public class ScenarioScene extends Sprite {
 
@@ -31,6 +32,11 @@ package classes.gameScenes {
             sceneParts.push(new VoicePlayer(0));
             sceneParts.push(new VoicePlayer(1));
             sceneParts.push(new VoicePlayer(2));
+
+            // VoicePlayer のインデックス 0-2 に対応
+            sceneParts.push(new BGVPlayer(0));
+            sceneParts.push(new BGVPlayer(1));
+            sceneParts.push(new BGVPlayer(2));
 
             sceneParts.push(new ImageDrawer(ui.getBitmapContainerFromIndex(0))); // background
             sceneParts.push(new ImageDrawer(ui.getBitmapContainerFromIndex(1))); // main
