@@ -20,6 +20,7 @@ package classes.sceneContents {
         private var seRepeatCount:int;
         private var bgm:SoundFile;
         private var bgvOrders:Vector.<BGVOrder> = new Vector.<BGVOrder>();
+        private var stopOrders:Vector.<StopOrder> = new Vector.<StopOrder>();
 
         public function get Ignore():Boolean {
             return ignore;
@@ -124,6 +125,10 @@ package classes.sceneContents {
 
         public function get BGVOrders():Vector.<BGVOrder> {
             return bgvOrders;
+        }
+
+        public function get StopOrders():Vector.<StopOrder> {
+            return stopOrders;
         }
     }
 }

@@ -35,7 +35,6 @@ package classes.uis {
         public function stop():void {
             if (soundChannel != null) {
                 soundChannel.stop();
-                dispatchEvent(new Event(Event.SOUND_COMPLETE));
             }
         }
 
