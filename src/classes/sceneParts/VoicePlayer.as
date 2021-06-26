@@ -5,12 +5,14 @@ package classes.sceneParts {
     import classes.uis.UIContainer;
     import classes.uis.SoundChannelWrapper;
     import classes.sceneContents.SoundFile;
+    import classes.sceneContents.StopOrder;
 
     public class VoicePlayer implements IScenarioSceneParts {
 
         private var characterChannel:int = 0;
         private var soundChannelWrapper:SoundChannelWrapper;
         private var voiceFile:SoundFile;
+        private var stopRequest:Boolean;
 
         /**
          * @param channelNumber このオブジェクトが担当する ChannelWrapper のインデックスを指定します。
@@ -20,6 +22,11 @@ package classes.sceneParts {
         }
 
         public function execute():void {
+            if (stopRequest) {
+                soundChannelWrapper.stop();
+                stopRequest = false;
+            }
+
             if (voiceFile == null) {
                 return;
             }
@@ -31,6 +38,12 @@ package classes.sceneParts {
 
         public function setScenario(scenario:Scenario):void {
             voiceFile = scenario.Voice;
+
+            for each (var order:StopOrder in scenario.StopOrders) {
+                if (order.Target == "voice" && order.Index == characterChannel) {
+                    stopRequest = true;
+                }
+            }
         }
 
         public function setUI(ui:UIContainer):void {
