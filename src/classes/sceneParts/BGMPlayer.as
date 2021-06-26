@@ -6,17 +6,24 @@ package classes.sceneParts {
     import classes.sceneContents.SoundFile;
     import flash.media.SoundTransform;
     import classes.uis.SoundChannelWrapper;
+    import classes.sceneContents.StopOrder;
 
     public class BGMPlayer implements IScenarioSceneParts {
 
         private var currentSoundFile:SoundFile;
         private var soundChannelWrapper:SoundChannelWrapper;
         private var soundTransform:SoundTransform = new SoundTransform();
+        private var stopRequest:Boolean;
 
         public function BGMPlayer() {
         }
 
         public function execute():void {
+            if (stopRequest) {
+                stopRequest = false;
+                soundChannelWrapper.stop();
+            }
+
             if (!currentSoundFile) {
                 return;
             }
@@ -30,6 +37,12 @@ package classes.sceneParts {
 
         public function setScenario(scenario:Scenario):void {
             currentSoundFile = scenario.BGM;
+
+            for each (var order:StopOrder in scenario.StopOrders) {
+                if (order.Target == "bgm") {
+                    stopRequest = true;
+                }
+            }
         }
 
         public function setUI(ui:UIContainer):void {
