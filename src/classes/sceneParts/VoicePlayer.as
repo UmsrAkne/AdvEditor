@@ -9,7 +9,7 @@ package classes.sceneParts {
 
     public class VoicePlayer implements IScenarioSceneParts {
 
-        private var characterChannel:int = 0;
+        private var characterChannel:int;
         private var soundChannelWrapper:SoundChannelWrapper;
         private var voiceFile:SoundFile;
         private var stopRequest:Boolean;
@@ -19,6 +19,7 @@ package classes.sceneParts {
          * 現在 0 - 2 の間で指定可能です。このインデックスは UIContainer.voiceChannelWrappers の内容とリンクしています。
          */
         public function VoicePlayer(channelNumber:int) {
+            characterChannel = channelNumber;
         }
 
         public function execute():void {
