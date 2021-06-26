@@ -14,7 +14,7 @@ package classes.sceneContents {
         }
 
         public function set Target(value:String):void {
-            if (AllowedTargetKeywords.indexOf(value) == -1) {
+            if (AllowedTargetKeywords.concat(AllowedTargetAnimationNames).indexOf(value) == -1) {
                 throw new ArgumentError("不正なキーワードの入力 (" + value + ") AllowedTargetKeywords に含まれる値を入力してください。");
             }
 
@@ -31,6 +31,10 @@ package classes.sceneContents {
 
         public function get AllowedTargetKeywords():Vector.<String> {
             return new <String>["bgm", "se", "voice", "backVoice"];
+        }
+
+        public function get AllowedTargetAnimationNames():Vector.<String> {
+            return new <String>["alphaChanger", "slide", "shake"];
         }
     }
 }

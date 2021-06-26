@@ -6,11 +6,13 @@ package classes.sceneParts {
     import classes.sceneContents.Resource;
     import classes.uis.BitmapContainer;
     import classes.animes.AlphaChanger;
+    import classes.sceneContents.StopOrder;
 
     public class Animator implements IScenarioSceneParts {
 
         private var animations:Vector.<IAnimation> = new Vector.<IAnimation>();
         private var bitmapContainer:BitmapContainer;
+        private var stopAnimationNames:Vector.<String> = new Vector.<String>();
 
         public function Animator(targetBitmapContainer:BitmapContainer) {
             bitmapContainer = targetBitmapContainer;
@@ -22,6 +24,18 @@ package classes.sceneParts {
          * addAnimation() によって入力されたアニメーションを全て実行します。
          */
         public function executeAnimations():void {
+            if (stopAnimationNames.length != 0) {
+                for each (var a:IAnimation in animations) {
+                    for each (var animationName:String in stopAnimationNames) {
+                        if (a.AnimationName == animationName) {
+                            a.stop();
+                        }
+                    }
+                }
+
+                stopAnimationNames = new Vector.<String>();
+            }
+
             if (animations.length == 0) {
                 return;
             }
@@ -52,6 +66,20 @@ package classes.sceneParts {
         }
 
         public function setScenario(scenario:Scenario):void {
+            for each (var order:StopOrder in scenario.StopOrders) {
+                if (order.Index != bitmapContainer.LayerIndex) {
+                    continue;
+                }
+
+                var allowedAnimationNames:Vector.<String> = order.AllowedTargetAnimationNames;
+
+                for each (var aName:String in allowedAnimationNames) {
+                    if (order.Target == aName) {
+                        stopAnimationNames.push(aName);
+                    }
+                }
+            }
+
             for each (var anime:IAnimation in scenario.Animations) {
                 if (anime.TargetLayerIndex == bitmapContainer.LayerIndex) {
                     addAnimation(anime);
