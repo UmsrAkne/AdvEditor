@@ -13,6 +13,7 @@ package {
     import tests.sceneContents.TestBlinkOrder;
     import tests.sceneContents.TestLipOrder;
     import tests.contentsLoaders.xmlElements.TestBackVoiceElementConverter;
+    import tests.contentsLoaders.xmlElements.TestStopElementConverter;
 
     public class Tester extends Sprite {
         public function Tester() {
@@ -35,6 +36,7 @@ package {
             new TestScenarioElementConverter();
             new TestBackVoiceElementConverter();
             new TestDrawElementConverter();
+            new TestStopElementConverter();
             new TestSoundLoader();
             new TestImageLoader();
             new TestSettingLoader();
