@@ -3,6 +3,7 @@ package classes.sceneContents {
     public class StopOrder {
 
         private var target:String;
+        private var index:int;
 
         public function StopOrder() {
 
@@ -13,7 +14,23 @@ package classes.sceneContents {
         }
 
         public function set Target(value:String):void {
+            if (AllowedTargetKeywords.indexOf(value) == -1) {
+                throw new ArgumentError("不正なキーワードの入力 (" + value + ") AllowedTargetKeywords に含まれる値を入力してください。");
+            }
+
             target = value;
+        }
+
+        public function get Index():int {
+            return index;
+        }
+
+        public function set Index(value:int):void {
+            index = value;
+        }
+
+        public function get AllowedTargetKeywords():Vector.<String> {
+            return new <String>["bgm", "se", "voice", "backVoice"];
         }
     }
 }
