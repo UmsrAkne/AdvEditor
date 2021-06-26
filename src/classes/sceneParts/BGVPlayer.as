@@ -9,6 +9,7 @@ package classes.sceneParts {
     import flash.utils.Dictionary;
     import flash.events.Event;
     import classes.sceneContents.BGVOrder;
+    import classes.sceneContents.StopOrder;
 
     public class BGVPlayer implements IScenarioSceneParts {
 
@@ -19,6 +20,7 @@ package classes.sceneParts {
         private var currentOrder:BGVOrder;
         private var bgvs:Vector.<SoundFile>;
         private var bgvsByName:Dictionary;
+        private var stopRequest:Boolean;
 
         private var playList:Vector.<String> = new Vector.<String>();
 
@@ -27,9 +29,19 @@ package classes.sceneParts {
         }
 
         public function execute():void {
+            if (stopRequest) {
+                bgvChannelWrapper.stop();
+                stopRequest = false;
+            }
         }
 
         public function setScenario(scenario:Scenario):void {
+            for each (var order:StopOrder in scenario.StopOrders) {
+                if (order.Target == "backVoice" && order.Index == targetChannelIndex) {
+                    stopRequest = true;
+                }
+            }
+
             if (scenario.BGVOrders.length == 0) {
                 return;
             }
