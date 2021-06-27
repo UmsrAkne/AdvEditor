@@ -10,6 +10,7 @@ package classes.gameScenes {
     import classes.contentsLoaders.SettingLoader;
     import classes.sceneContents.Resource;
     import classes.contentsLoaders.FaceDrawingOrderLoader;
+    import classes.contentsLoaders.UIImageLoader;
 
     public class LoadingScene extends Sprite {
 
@@ -32,6 +33,7 @@ package classes.gameScenes {
             loaders.push(new FaceDrawingOrderLoader(sceneDirectory));
             loaders.push(new SoundLoader(sceneDirectory));
             loaders.push(new ImageLoader(sceneDirectory));
+            loaders.push(new UIImageLoader(new File(File.applicationDirectory.nativePath).resolvePath("../commonResource")));
 
             loadingCount = loaders.length;
 

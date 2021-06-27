@@ -4,6 +4,7 @@ package classes.sceneContents {
     import flash.utils.Dictionary;
     import flash.geom.Rectangle;
     import flash.display.BitmapData;
+    import classes.uis.UIImages;
 
     public class Resource {
 
@@ -13,6 +14,8 @@ package classes.sceneContents {
 
         private var bitmapDatas:Vector.<BitmapData> = new Vector.<BitmapData>();
         private var bitmapDatasByName:Dictionary = new Dictionary();
+
+        private var uiImages:UIImages = new UIImages();
 
         private var blinkOrdersByName:Dictionary = new Dictionary();
         private var lipOrdersByName:Dictionary = new Dictionary();
@@ -35,6 +38,10 @@ package classes.sceneContents {
 
         public function get BitmapDatasByName():Dictionary {
             return bitmapDatasByName;
+        }
+
+        public function get UIImageContainer():UIImages {
+            return uiImages;
         }
 
         public function get BlinkOrdersByName():Dictionary {

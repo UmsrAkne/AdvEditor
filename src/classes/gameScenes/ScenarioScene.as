@@ -67,6 +67,7 @@ package classes.gameScenes {
         public function setResource(r:Resource):void {
             if (resource == null) {
                 resource = r;
+                ui.TextWindowImage.bitmapData = resource.UIImageContainer.TextWindowImage.bitmapData.clone();
                 ui.AlignUI(resource.ScreenSize.clone());
 
                 for each (var parts:IScenarioSceneParts in sceneParts) {
