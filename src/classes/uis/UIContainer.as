@@ -4,12 +4,13 @@ package classes.uis {
     import flash.text.TextField;
     import flash.display.Loader;
     import flash.geom.Rectangle;
+    import flash.display.Bitmap;
 
     public class UIContainer extends Sprite {
 
         private var baseRect:Rectangle;
         private var textWindow:TextField = new TextField();
-        private var textWindowImage:Loader;
+        private var textWindowImage:Bitmap = new Bitmap();
         private var bitmapContainers:Vector.<BitmapContainer> = new Vector.<BitmapContainer>();
 
         private var bgmChannelWrapper:SoundChannelWrapper = new SoundChannelWrapper();
@@ -21,8 +22,8 @@ package classes.uis {
             return textWindow;
         }
 
-        public function set TextWindowImage(value:Loader):void {
-            textWindowImage = value;
+        public function get TextWindowImage():Bitmap {
+            return textWindowImage;
         }
 
         public function get BGMChannelWrapper():SoundChannelWrapper {
@@ -40,6 +41,7 @@ package classes.uis {
                 addChild(bmpContainer);
             }
 
+            addChild(textWindowImage);
             addChild(textWindow);
             voiceChannelWrappers.push(new SoundChannelWrapper(), new SoundChannelWrapper(), new SoundChannelWrapper());
             bgvChannelWrappers.push(new SoundChannelWrapper(), new SoundChannelWrapper(), new SoundChannelWrapper());
@@ -56,6 +58,9 @@ package classes.uis {
             textWindow.height = 150;
             textWindow.x = (baseRect.width / 2) - (textWindow.width / 2) * -1;
             textWindow.y = baseRect.height * 0.75;
+
+            textWindowImage.x = (baseRect.width / 2) - (textWindowImage.width / 2);
+            textWindowImage.y = baseRect.height * 0.7;
         }
 
         public function getBitmapContainerFromIndex(index:int):BitmapContainer {

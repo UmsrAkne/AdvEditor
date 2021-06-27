@@ -21,6 +21,7 @@ package classes.contentsLoaders {
         public function writeContentsTo(resource:Resource):void {
             var txWindowImageLoader:Loader = Loader(loaderByFileName["textWindowImage.png"]);
             var txWindowImageData:BitmapData = new BitmapData(txWindowImageLoader.width, txWindowImageLoader.height, true, 0x0);
+            txWindowImageData.draw(txWindowImageLoader);
             resource.UIImageContainer.TextWindowImage.bitmapData = txWindowImageData;
         }
 
