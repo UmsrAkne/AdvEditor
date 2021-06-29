@@ -1,3 +1,12 @@
 <root>
-    <setting width="800" height="600" x="5" y="10" />
+    <setting 
+        width="800" 
+        height="600"
+        x="5"
+        y="10" 
+        voiceVolume="1.0"
+        backVoiceVolume="1.0"
+        bgmVolume="1.0"
+        seVolume="1.0"
+    />
 </root>

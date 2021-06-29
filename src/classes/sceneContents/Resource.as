@@ -10,6 +10,11 @@ package classes.sceneContents {
 
         public var scenarios:Vector.<Scenario> = new Vector.<Scenario>();
 
+        public var voiceVolume:Number = 1.0;
+        public var backVoiceVolume:Number = 1.0;
+        public var seVolume:Number = 1.0;
+        public var bgmVolume:Number = 1.0;
+
         private var screenSize:Rectangle = new Rectangle(0, 0, 1024, 768);
 
         private var bitmapDatas:Vector.<BitmapData> = new Vector.<BitmapData>();
