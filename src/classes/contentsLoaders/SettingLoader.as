@@ -19,6 +19,11 @@ package classes.contentsLoaders {
         public static const X_ATTRIBUTE:String = "@x";
         public static const Y_ATTRIBUTE:String = "@y";
 
+        public static const VOICE_VOLUME_ATTRIBUTE:String = "@voiceVolume";
+        public static const BACK_VOICE_VOLUME_ATTRIBUTE:String = "@backVoiceVolume";
+        public static const BGM_VOLUME_ATTRIBUTE:String = "@bgmVolume";
+        public static const SE_VOLUME_ATTRIBUTE:String = "@seVolume";
+
         public function SettingLoader(sceneDirectory:File) {
             this.sceneDirectory = sceneDirectory;
         }
@@ -44,6 +49,22 @@ package classes.contentsLoaders {
 
             if (xml.hasOwnProperty(Y_ATTRIBUTE)) {
                 resource.ScreenSize.y = parseInt(xml[Y_ATTRIBUTE]);
+            }
+
+            if (xml.hasOwnProperty(VOICE_VOLUME_ATTRIBUTE)) {
+                resource.voiceVolume = parseFloat(xml[VOICE_VOLUME_ATTRIBUTE]);
+            }
+
+            if (xml.hasOwnProperty(BACK_VOICE_VOLUME_ATTRIBUTE)) {
+                resource.backVoiceVolume = parseFloat(xml[BACK_VOICE_VOLUME_ATTRIBUTE]);
+            }
+
+            if (xml.hasOwnProperty(BGM_VOLUME_ATTRIBUTE)) {
+                resource.bgmVolume = parseFloat(xml[BGM_VOLUME_ATTRIBUTE]);
+            }
+
+            if (xml.hasOwnProperty(SE_VOLUME_ATTRIBUTE)) {
+                resource.seVolume = parseFloat(xml[SE_VOLUME_ATTRIBUTE]);
             }
         }
 
