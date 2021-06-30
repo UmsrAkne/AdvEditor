@@ -4,6 +4,7 @@ package classes.sceneContents {
 
         private var indexes:Vector.<int> = new Vector.<int>;
         private var names:Vector.<String> = new Vector.<String>;
+        private var volume:Number = 1.0;
         private var characterChannel:int;
 
         public function get Indexes():Vector.<int> {
@@ -20,6 +21,14 @@ package classes.sceneContents {
 
         public function set CharacterChannel(value:int):void {
             characterChannel = value;
+        }
+
+        public function get Volume():Number {
+            return volume;
+        }
+
+        public function set Volume(value:Number):void {
+            volume = value;
         }
     }
 }
