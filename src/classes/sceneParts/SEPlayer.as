@@ -15,6 +15,7 @@ package classes.sceneParts {
         private var soundTransform:SoundTransform;
         private var repeatCount:int;
         private var stopRequest:Boolean;
+        private var defaultVolume:Number = 1.0;
 
         public function SEPlayer() {
         }
@@ -34,6 +35,13 @@ package classes.sceneParts {
             }
 
             soundChannelWrapper.setSoundChannel(soundFile.getSound().play(0, repeatCount, soundTransform));
+
+            if (soundFile.VolumeIsDefault) {
+                soundChannelWrapper.Volume = defaultVolume;
+            } else {
+                soundChannelWrapper.Volume = soundFile.Volume;
+            }
+
             repeatCount = 0;
         }
 
@@ -53,7 +61,7 @@ package classes.sceneParts {
         }
 
         public function setResource(res:Resource):void {
-            // 実装なし
+            defaultVolume = res.seVolume;
         }
     }
 }

@@ -14,6 +14,7 @@ package classes.sceneParts {
         private var soundChannelWrapper:SoundChannelWrapper;
         private var soundTransform:SoundTransform = new SoundTransform();
         private var stopRequest:Boolean;
+        private var defaultVolume:Number = 1.0;
 
         public function BGMPlayer() {
         }
@@ -33,6 +34,12 @@ package classes.sceneParts {
             }
 
             soundChannelWrapper.setSoundChannel(currentSoundFile.getSound().play(0, 999, soundTransform));
+
+            if (currentSoundFile.VolumeIsDefault) {
+                soundChannelWrapper.Volume = defaultVolume;
+            } else {
+                soundChannelWrapper.Volume = currentSoundFile.Volume;
+            }
         }
 
         public function setScenario(scenario:Scenario):void {
@@ -50,6 +57,7 @@ package classes.sceneParts {
         }
 
         public function setResource(res:Resource):void {
+            defaultVolume = res.bgmVolume;
         }
     }
 }

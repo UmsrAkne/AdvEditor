@@ -8,6 +8,7 @@ package classes.contentsLoaders.xmlElements {
 
         public static const NAMES_ATTRIBUTE:String = "@names";
         public static const CHARACTER_CHANNEL_ATTRIBUTE:String = "@characterChannel";
+        public static const VOLUME_ATTRIBUTE:String = "@volume";
 
         private var sceneDirectory:File;
 
@@ -43,6 +44,12 @@ package classes.contentsLoaders.xmlElements {
                     var names:Array = String(tag[NAMES_ATTRIBUTE]).replace(/ /g, "").split(",");
                     for (var i:int = 0; i < names.length; i++) {
                         bgvOrder.Names.push(names[i]);
+                    }
+                }
+
+                if (tag.hasOwnProperty(VOLUME_ATTRIBUTE)) {
+                    if (!isNaN(parseFloat(tag[VOLUME_ATTRIBUTE]))) {
+                        bgvOrder.Volume = parseFloat(tag[VOLUME_ATTRIBUTE]);
                     }
                 }
 
