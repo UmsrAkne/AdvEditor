@@ -11,6 +11,7 @@ package classes.sceneContents {
         private var sound:ISound;
         private var index:int = -1;
         private var volume:Number = 1.0;
+        private var volumeIsDefault:Boolean = true;
 
         public function SoundFile(file:File = null, sound:ISound = null) {
             this.file = file;
@@ -39,6 +40,7 @@ package classes.sceneContents {
 
         public function set Volume(value:Number):void {
             volume = value;
+            volumeIsDefault = false;
         }
 
         public function getSound():ISound {
@@ -47,6 +49,16 @@ package classes.sceneContents {
             }
 
             return sound;
+        }
+
+        /**
+         * このサウンドファイルの Volume の値がデフォルト値かどうかを取得します。
+         * 注意 正確には set Volume を呼び出した時点でこの値は false を返します。
+         * set の前後で値に変化が無くても同様です。
+         * @return
+         */
+        public function get VolumeIsDefault():Boolean {
+            return volumeIsDefault;
         }
     }
 }
