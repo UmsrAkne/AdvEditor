@@ -13,6 +13,7 @@ package classes.sceneParts {
         private var soundChannelWrapper:SoundChannelWrapper;
         private var voiceFile:SoundFile;
         private var stopRequest:Boolean;
+        private var defaultVolume:Number = 1.0;
 
         /**
          * @param channelNumber このオブジェクトが担当する ChannelWrapper のインデックスを指定します。
@@ -34,7 +35,12 @@ package classes.sceneParts {
 
             soundChannelWrapper.stop();
             soundChannelWrapper.setSoundChannel(voiceFile.getSound().play());
-            soundChannelWrapper.Volume = voiceFile.Volume;
+
+            if (voiceFile.VolumeIsDefault) {
+                soundChannelWrapper.Volume = defaultVolume;
+            } else {
+                soundChannelWrapper.Volume = voiceFile.Volume;
+            }
         }
 
         public function setScenario(scenario:Scenario):void {
@@ -52,7 +58,7 @@ package classes.sceneParts {
         }
 
         public function setResource(res:Resource):void {
+            defaultVolume = res.voiceVolume;
         }
-
     }
 }
