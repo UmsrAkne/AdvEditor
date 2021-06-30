@@ -34,6 +34,7 @@ package classes.sceneParts {
             }
 
             soundChannelWrapper.setSoundChannel(soundFile.getSound().play(0, repeatCount, soundTransform));
+            soundChannelWrapper.Volume = soundFile.Volume;
             repeatCount = 0;
         }
 

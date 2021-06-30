@@ -33,6 +33,7 @@ package classes.sceneParts {
             }
 
             soundChannelWrapper.setSoundChannel(currentSoundFile.getSound().play(0, 999, soundTransform));
+            soundChannelWrapper.Volume = currentSoundFile.Volume;
         }
 
         public function setScenario(scenario:Scenario):void {
