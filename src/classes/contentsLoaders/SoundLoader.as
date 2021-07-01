@@ -14,6 +14,7 @@ package classes.contentsLoaders {
         private var voiceFiles:Vector.<File> = new Vector.<File>();
         private var seFiles:Vector.<File> = new Vector.<File>();
         private var bgmFiles:Vector.<File> = new Vector.<File>();
+        private var bgvFiles:Vector.<File> = new Vector.<File>();
 
         public function SoundLoader(sceneDirectory:File) {
             this.sceneDirectory = sceneDirectory;
@@ -26,6 +27,7 @@ package classes.contentsLoaders {
             resource.Voices.push(null);
             resource.SEs.push(null);
             resource.BGMs.push(null);
+            resource.BGVs.push(null);
 
             for each (f in voiceFiles) {
                 snd = new SoundFile(f);
@@ -44,10 +46,19 @@ package classes.contentsLoaders {
                 resource.BGMs.push(new SoundFile(f));
                 snd.Index = resource.BGMs.length - 1;
             }
+
+            for each (f in bgvFiles) {
+                snd = new SoundFile(f);
+                resource.BGVs.push(snd);
+                resource.BGVsByName[f.name] = snd;
+                resource.BGVsByName[f.name.split(".")[0]] = snd;
+                snd.Index = resource.BGVs.length - 1;
+            }
         }
 
         public function load():void {
             voiceFiles = ContentsLoadUtil.getFileList(sceneDirectory.resolvePath("voices").nativePath);
+            bgvFiles = ContentsLoadUtil.getFileList(sceneDirectory.resolvePath("backVoices").nativePath);
             seFiles = ContentsLoadUtil.getFileList(sceneDirectory.resolvePath("../../commonResource/ses").nativePath);
             bgmFiles = ContentsLoadUtil.getFileList(sceneDirectory.resolvePath("../../commonResource/bgms").nativePath);
             completeEventDispatcher.dispatchEvent(new Event(Event.COMPLETE));
@@ -67,6 +78,10 @@ package classes.contentsLoaders {
 
         public function get BGMFiles():Vector.<File> {
             return bgmFiles;
+        }
+
+        public function get BGVFiles():Vector.<File> {
+            return bgvFiles;
         }
     }
 }
