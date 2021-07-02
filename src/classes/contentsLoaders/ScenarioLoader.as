@@ -10,6 +10,7 @@ package classes.contentsLoaders {
     import classes.contentsLoaders.xmlElements.*;
     import classes.contentsLoaders.xmlElements.ScenarioElementConverter;
     import classes.sceneContents.Resource;
+    import classes.contentsLoaders.xmlElements.DrawElementConverter;
 
     public class ScenarioLoader implements ILoader {
 
@@ -66,6 +67,7 @@ package classes.contentsLoaders {
             elementConverters.push(new SEElementConverter(sceneDirectory));
             elementConverters.push(new TextElementConverter());
             elementConverters.push(new VoiceElementConverter(sceneDirectory));
+            elementConverters.push(new DrawElementConverter());
 
             for each (var scenarioTag:XML in xmlList["scenario"]) {
                 var scenario:Scenario = new Scenario();

@@ -132,9 +132,9 @@ package classes.sceneParts {
         private function drawToFront(e:Event):void {
             var bitmap:Bitmap = bitmapContainer.Front;
 
-            for each (var index:int in drawingOrder.indexes) {
-                if (index > 0) {
-                    bitmap.bitmapData.draw(resource.BitmapDatas[index], null, new ColorTransform(1, 1, 1, drawingOrder.drawingDepth));
+            for each (var name:String in drawingOrder.names) {
+                if (name != "") {
+                    bitmap.bitmapData.draw(resource.BitmapDatasByName[name], null, new ColorTransform(1, 1, 1, drawingOrder.drawingDepth));
                 }
             }
 
@@ -152,9 +152,9 @@ package classes.sceneParts {
             totalDrawingDepth = 0;
 
             var bitmap:Bitmap = bitmapContainer.Front;
-            for each (var index:int in drawingOrder.indexes) {
-                if (index > 0) {
-                    bitmap.bitmapData.draw(resource.BitmapDatas[index]);
+            for each (var name:String in drawingOrder.names) {
+                if (name != "") {
+                    bitmap.bitmapData.draw(resource.BitmapDatasByName[name]);
                 }
             }
         }
