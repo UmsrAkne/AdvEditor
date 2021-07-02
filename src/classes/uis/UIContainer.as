@@ -6,6 +6,7 @@ package classes.uis {
     import flash.geom.Rectangle;
     import flash.display.Bitmap;
     import flash.display.BitmapData;
+    import flash.text.TextFormat;
 
     public class UIContainer extends Sprite {
 
@@ -44,6 +45,10 @@ package classes.uis {
 
             addChild(textWindowImage);
             addChild(textWindow);
+
+            textWindow.defaultTextFormat = new TextFormat(null, 24, 0xffffff);
+            textWindow.wordWrap = true;
+
             voiceChannelWrappers.push(new SoundChannelWrapper(), new SoundChannelWrapper(), new SoundChannelWrapper());
             bgvChannelWrappers.push(new SoundChannelWrapper(), new SoundChannelWrapper(), new SoundChannelWrapper());
         }
