@@ -5,6 +5,7 @@ package classes.uis {
     import flash.display.Loader;
     import flash.geom.Rectangle;
     import flash.display.Bitmap;
+    import flash.display.BitmapData;
 
     public class UIContainer extends Sprite {
 
@@ -61,6 +62,9 @@ package classes.uis {
 
             textWindowImage.x = (baseRect.width / 2) - (textWindowImage.width / 2);
             textWindowImage.y = baseRect.height * 0.7;
+
+            var bgBmpContainer:BitmapContainer = getBitmapContainerFromIndex(0);
+            bgBmpContainer.add(new Bitmap(new BitmapData(baseRect.width, baseRect.height, false, 0x0)));
         }
 
         public function getBitmapContainerFromIndex(index:int):BitmapContainer {
