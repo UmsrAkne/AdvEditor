@@ -7,6 +7,8 @@ package {
     import flash.events.Event;
     import flash.filesystem.File;
     import classes.sceneContents.Resource;
+    import flash.display.Bitmap;
+    import flash.display.BitmapData;
 
     /**
      * ...
@@ -20,6 +22,8 @@ package {
         public function Main() {
             stage.align = StageAlign.TOP_LEFT;
             stage.scaleMode = StageScaleMode.NO_SCALE;
+
+            addChild(new Bitmap(new BitmapData(stage.stageWidth, stage.stageHeight, false, 0x0)));
 
             loadingScene = new LoadingScene(new File(File.applicationDirectory.nativePath).resolvePath("../scenarios/sampleScenario"));
             loadingScene.load();
