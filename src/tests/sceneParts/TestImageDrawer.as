@@ -21,6 +21,10 @@ package tests.sceneParts {
             var imageDrawer:ImageDrawer = new ImageDrawer(bitmapContainer);
 
             var resource:Resource = new Resource();
+            resource.BitmapDatasByName["white01"] = new BitmapData(10, 10, true, 0xFFFFFFFF);
+            resource.BitmapDatasByName["white02"] = new BitmapData(10, 10, true, 0xFFFFFFFF);
+            resource.BitmapDatasByName["black01"] = new BitmapData(10, 10, true, 0xFF000000);
+
             resource.BitmapDatas.push(new BitmapData(10, 10, true, 0xFFFFFFFF));
             resource.BitmapDatas.push(new BitmapData(10, 10, true, 0xFFFFFFFF));
             resource.BitmapDatas.push(new BitmapData(10, 10, true, 0xFF000000));
@@ -31,6 +35,7 @@ package tests.sceneParts {
             var imageOrder1:ImageOrder = new ImageOrder();
             imageOrder1.targetLayerIndex = 0;
             imageOrder1.indexes.push(1, 0, 0);
+            imageOrder1.names.push("white01", "", "");
             scenario1.ImagerOrders.push(imageOrder1);
 
             imageDrawer.setScenario(scenario1);
@@ -43,6 +48,7 @@ package tests.sceneParts {
             drawingOrder.targetLayerIndex = 0;
             drawingOrder.drawingDepth = 0.1;
             drawingOrder.indexes.push(2, 0, 0);
+            drawingOrder.names.push("black01", "", "")
             scenario2.DrawingOrder.push(drawingOrder);
 
             imageDrawer.setScenario(scenario2);
@@ -69,6 +75,10 @@ package tests.sceneParts {
             resource.BitmapDatas.push(new BitmapData(10, 10, true, 0xFFFFFFFF));
             resource.BitmapDatas.push(new BitmapData(10, 10, true, 0xFFFFFFFF));
             resource.BitmapDatas.push(new BitmapData(10, 10, true, 0xFF000000));
+
+            resource.BitmapDatasByName["white1"] = new BitmapData(10, 10, true, 0xFFFFFFFF);
+            resource.BitmapDatasByName["white2"] = new BitmapData(10, 10, true, 0xFFFFFFFF);
+            resource.BitmapDatasByName["black1"] = new BitmapData(10, 10, true, 0xFF000000);
             imageDrawer.setResource(resource);
 
             var scenarios:Vector.<Scenario> = new Vector.<Scenario>();
@@ -77,6 +87,7 @@ package tests.sceneParts {
             var imageOrder1:ImageOrder = new ImageOrder();
             imageOrder1.targetLayerIndex = 0;
             imageOrder1.indexes.push(1, 0, 0);
+            imageOrder1.names.push("white1");
             imageOrder1.x = 100;
             scenarios[0].ImagerOrders.push(imageOrder1);
 
@@ -84,11 +95,13 @@ package tests.sceneParts {
             drawImageOrder.targetLayerIndex = 0;
             drawImageOrder.drawingDepth = 0.1;
             drawImageOrder.indexes.push(2, 0, 0);
+            drawImageOrder.names.push("black1");
             scenarios[1].DrawingOrder.push(drawImageOrder);
 
             var nextImageOrder:ImageOrder = new ImageOrder();
             nextImageOrder.targetLayerIndex = 0;
             nextImageOrder.indexes.push(1, 0, 0);
+            nextImageOrder.names.push("white2");
             nextImageOrder.statusInherit = true;
             scenarios[2].ImagerOrders.push(nextImageOrder);
 
