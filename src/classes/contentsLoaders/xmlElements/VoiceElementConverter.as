@@ -45,6 +45,11 @@ package classes.contentsLoaders.xmlElements {
                     throw new Error(" voice のインデックスの変換に失敗しました [" + voiceTag[NUMBER_ATTRIBUTE] + "] is NaN.");
                 }
 
+                if (index == 0) {
+                    // index 0 番はサウンド無指定と同等
+                    return;
+                }
+
                 soundFile = new SoundFile(voiceFileList[index]);
                 soundFile.Index = voiceTag[NUMBER_ATTRIBUTE];
                 scenario.Voice = soundFile;
