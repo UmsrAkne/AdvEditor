@@ -35,8 +35,8 @@ package {
 
             stage.stageWidth = res.ScreenSize.width;
             stage.stageHeight = res.ScreenSize.height;
-            stage.nativeWindow.width = res.ScreenSize.width // + 16;
-            stage.nativeWindow.height = res.ScreenSize.height // + 39;
+            stage.nativeWindow.width = res.ScreenSize.width + 16;
+            stage.nativeWindow.height = res.ScreenSize.height + 39;
 
             scenarioScene = new ScenarioScene();
             scenarioScene.setResource(res);
