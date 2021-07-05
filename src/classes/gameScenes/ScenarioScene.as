@@ -9,6 +9,7 @@ package classes.gameScenes {
     import classes.sceneContents.Resource;
     import classes.sceneContents.Scenario;
     import classes.sceneParts.BGVPlayer;
+    import classes.sceneParts.BGMPlayer;
 
     public class ScenarioScene extends Sprite {
 
@@ -17,6 +18,7 @@ package classes.gameScenes {
         private var animators:Vector.<Animator> = new Vector.<Animator>();
         private var resource:Resource;
         private var textWriter:TextWriter;
+        private var bgmPlayer:BGMPlayer;
         private var lastExecuteScenario:Scenario;
 
         public function ScenarioScene() {
@@ -27,7 +29,8 @@ package classes.gameScenes {
             textWriter = new TextWriter();
             sceneParts.push(textWriter);
 
-            sceneParts.push(new BGMPlayer());
+            bgmPlayer = new BGMPlayer();
+            sceneParts.push(bgmPlayer);
             sceneParts.push(new SEPlayer());
             sceneParts.push(new VoicePlayer(0));
             sceneParts.push(new VoicePlayer(1));
@@ -73,6 +76,8 @@ package classes.gameScenes {
                 for each (var parts:IScenarioSceneParts in sceneParts) {
                     parts.setResource(r);
                 }
+
+                bgmPlayer.execute();
             }
         }
 

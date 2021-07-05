@@ -44,6 +44,8 @@ package classes.contentsLoaders {
             for each (f in bgmFiles) {
                 snd = new SoundFile(f);
                 resource.BGMs.push(new SoundFile(f));
+                resource.BGMsByName[f.name] = snd;
+                resource.BGMsByName[f.name.split(".")[0]] = snd;
                 snd.Index = resource.BGMs.length - 1;
             }
 

@@ -58,6 +58,9 @@ package classes.sceneParts {
 
         public function setResource(res:Resource):void {
             defaultVolume = res.bgmVolume;
+            if (res.InitialBGMName != "") {
+                currentSoundFile = res.BGMsByName[res.InitialBGMName];
+            }
         }
     }
 }
