@@ -14,7 +14,8 @@ package tests.contentsLoaders {
             var settingLoader:SettingLoader = new SettingLoader(new File(File.applicationDirectory.nativePath));
             var xmlString:String = "<root><setting ";
             xmlString += "width=\"10\" height=\"20\" x=\"30\" y=\"-40\" ";
-            xmlString += "voiceVolume=\"0.5\" backVoiceVolume=\"0.6\" bgmVolume=\"0.7\" seVolume=\"0.8\" "
+            xmlString += "bgm=\"sampleBGM\" ";
+            xmlString += "voiceVolume=\"0.5\" backVoiceVolume=\"0.6\" bgmVolume=\"0.7\" seVolume=\"0.8\" ";
             xmlString += "/></root>"
             settingLoader.SettingXML = new XMLList(xmlString);
             var res:Resource = new Resource();
@@ -24,6 +25,8 @@ package tests.contentsLoaders {
             Assert.areEqual(res.ScreenSize.height, 20);
             Assert.areEqual(res.ScreenSize.x, 30);
             Assert.areEqual(res.ScreenSize.y, -40);
+
+            Assert.areEqual(res.InitialBGMName, "sampleBGM");
 
             Assert.areEqual(res.voiceVolume, 0.5);
             Assert.areEqual(res.backVoiceVolume, 0.6);

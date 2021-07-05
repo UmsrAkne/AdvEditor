@@ -32,6 +32,7 @@ package classes.sceneContents {
 
         private var bgms:Vector.<SoundFile> = new Vector.<SoundFile>();
         private var bgmsByName:Dictionary = new Dictionary();
+        private var initialBGMName:String;
 
         private var ses:Vector.<SoundFile> = new Vector.<SoundFile>();
 
@@ -77,6 +78,14 @@ package classes.sceneContents {
 
         public function get BGMsByName():Dictionary {
             return bgmsByName;
+        }
+
+        public function get InitialBGMName():String {
+            return initialBGMName;
+        }
+
+        public function set InitialBGMName(value:String):void {
+            initialBGMName = value;
         }
 
         public function get SEs():Vector.<SoundFile> {
