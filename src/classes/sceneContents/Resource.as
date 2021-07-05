@@ -31,6 +31,8 @@ package classes.sceneContents {
         private var bgvsByName:Dictionary = new Dictionary();
 
         private var bgms:Vector.<SoundFile> = new Vector.<SoundFile>();
+        private var bgmsByName:Dictionary = new Dictionary();
+
         private var ses:Vector.<SoundFile> = new Vector.<SoundFile>();
 
         public function get ScreenSize():Rectangle {
@@ -71,6 +73,10 @@ package classes.sceneContents {
 
         public function get BGMs():Vector.<SoundFile> {
             return bgms;
+        }
+
+        public function get BGMsByName():Dictionary {
+            return bgmsByName;
         }
 
         public function get SEs():Vector.<SoundFile> {
