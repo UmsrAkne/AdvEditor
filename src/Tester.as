@@ -14,6 +14,7 @@ package {
     import tests.sceneContents.TestLipOrder;
     import tests.contentsLoaders.xmlElements.TestBackVoiceElementConverter;
     import tests.contentsLoaders.xmlElements.TestStopElementConverter;
+    import tests.contentsLoaders.TestThumbnailLoader;
 
     public class Tester extends Sprite {
         public function Tester() {
@@ -50,6 +51,7 @@ package {
             new TestLipOrder();
             new TestFaceDrawingOrderLoader();
             new TestBGVPlayer();
+            new TestThumbnailLoader();
 
             trace("[Tester]" + " " + Assert.TestCounter + " 回のテストを完了しました");
             NativeApplication.nativeApplication.exit();
