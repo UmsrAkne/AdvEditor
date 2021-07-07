@@ -6,6 +6,7 @@ package classes.contentsLoaders {
     import flash.filesystem.File;
     import flash.net.URLRequest;
     import flash.net.URLLoader;
+    import flash.display.LoaderInfo;
 
     public class ThumbnailLoader {
 
@@ -33,25 +34,23 @@ package classes.contentsLoaders {
         }
 
         private function xmlLoadComplete(e:Event):void {
-            var setting:XMLList = XMLList(e.target);
-            var thumbnailFileName:String;
-            if (setting.hasOwnProperty(THUMBNAIL_ATTRIBUTE)) {
-                thumbnailFileName = setting[THUMBNAIL_ATTRIBUTE];
-            }
+            var setting:XMLList = new XMLList(URLLoader(e.target).data);
+            var thumbnailFileName:String = setting["setting"][THUMBNAIL_ATTRIBUTE];
 
             var loader:Loader = new Loader();
             var thumbnailImageFile:File;
             if (thumbnailFileName != "") {
-                thumbnailImageFile = ContentsLoadUtil.getFileList(sceneDirectory.resolvePath("images").nativePath)[0];
-            } else {
                 thumbnailImageFile = sceneDirectory.resolvePath("images/" + thumbnailFileName);
+            } else {
+                thumbnailImageFile = ContentsLoadUtil.getFileList(sceneDirectory.resolvePath("images").nativePath)[0];
             }
 
             loader.contentLoaderInfo.addEventListener(Event.COMPLETE, function(e:Event):void {
-                CompleteEventDispatcher.dispatchEvent(new Event(Event.COMPLETE));
-                var l:Loader = Loader(e.target);
+                var l:Loader = LoaderInfo(e.target).loader;
                 thumbnail = new BitmapData(l.width, l.height, false, 0x0);
                 thumbnail.draw(l);
+
+                CompleteEventDispatcher.dispatchEvent(new Event(Event.COMPLETE));
             });
 
             loader.load(new URLRequest(thumbnailImageFile.nativePath));
