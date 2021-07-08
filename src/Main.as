@@ -9,6 +9,7 @@ package {
     import classes.sceneContents.Resource;
     import flash.display.Bitmap;
     import flash.display.BitmapData;
+    import classes.gameScenes.SelectionScene;
 
     /**
      * ...
@@ -17,6 +18,7 @@ package {
     public class Main extends Sprite {
 
         private var loadingScene:LoadingScene;
+        private var selectionScene:SelectionScene;
         private var scenarioScene:ScenarioScene;
 
         public function Main() {
@@ -25,9 +27,7 @@ package {
 
             addChild(new Bitmap(new BitmapData(stage.stageWidth, stage.stageHeight, false, 0x0)));
 
-            loadingScene = new LoadingScene(new File(File.applicationDirectory.nativePath).resolvePath("../scenarios/sampleScenario"));
-            loadingScene.load();
-            loadingScene.addEventListener(Event.COMPLETE, loadCompleteEventHandler);
+            selectionScene = SelectionScene(addChild(new SelectionScene()));
         }
 
         private function loadCompleteEventHandler(event:Event):void {
