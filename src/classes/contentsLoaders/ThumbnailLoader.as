@@ -12,10 +12,13 @@ package classes.contentsLoaders {
 
     public class ThumbnailLoader {
 
+        public static const DEFAULT_THUMBNAIL_WIDTH:int = 320;
+        public static const DEFAULT_THUMBNAIL_HEIGHT:int = 160;
+
         private var completeEventDispathcer:EventDispatcher = new EventDispatcher();
         private var sceneDirectory:File;
         private var thumbnail:BitmapData;
-        private var thumbnailRect:Rectangle = new Rectangle(0, 0, 320, 160);
+        private var thumbnailRect:Rectangle = new Rectangle(0, 0, DEFAULT_THUMBNAIL_WIDTH, DEFAULT_THUMBNAIL_HEIGHT);
         private const THUMBNAIL_ATTRIBUTE:String = "@thumbnail";
 
         public function ThumbnailLoader(sceneDirectory:File) {
