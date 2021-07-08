@@ -2,9 +2,11 @@ package classes.gameScenes {
 
     import flash.display.Sprite;
     import flash.display.BitmapData;
+    import flash.display.Bitmap;
     import flash.events.Event;
     import flash.events.KeyboardEvent;
     import flash.filesystem.File;
+    import flash.geom.Matrix;
     import classes.contentsLoaders.ContentsLoadUtil;
     import classes.contentsLoaders.ThumbnailLoader;
 
@@ -12,15 +14,18 @@ package classes.gameScenes {
 
         private var thumbnails:Vector.<BitmapData> = new Vector.<BitmapData>();
         private var thumbnailLoaders:Vector.<ThumbnailLoader> = new Vector.<ThumbnailLoader>();
+        private var canvas:Bitmap = new Bitmap(new BitmapData(ThumbnailLoader.DEFAULT_THUMBNAIL_WIDTH, ThumbnailLoader.DEFAULT_THUMBNAIL_HEIGHT * 5));
         private var contentsCounter:int;
+        private var selectionIndex:int;
 
         public function SelectionScene() {
-            var directories:Vector.<File> = ContentsLoadUtil.getFileList(File.applicationDirectory.resolvePath("../scenarios").nativePath);
+            var directories:Vector.<File> = ContentsLoadUtil.getFileList(new File(File.applicationDirectory.nativePath).resolvePath("../scenarios").nativePath);
             contentsCounter = directories.length;
             for each (var d:File in directories) {
                 var thumbnailLoader:ThumbnailLoader = new ThumbnailLoader(d);
                 thumbnailLoaders.push(thumbnailLoader);
                 thumbnailLoader.CompleteEventDispatcher.addEventListener(Event.COMPLETE, thumbnailLoadComplete);
+                thumbnailLoader.load();
             }
         }
 
@@ -31,11 +36,33 @@ package classes.gameScenes {
                     thumbnails.push(tl.Thumbnail);
                 }
 
+                addChild(canvas);
                 addEventListener(KeyboardEvent.KEY_DOWN, keyboardEventHandler);
+                drawThumbnails();
             }
         }
 
         private function keyboardEventHandler(e:Event):void {
+        }
+
+        private function drawThumbnails():void {
+            var drawingImages:Vector.<BitmapData> = new Vector.<BitmapData>();
+            for (var i:int = 0; i < 5; i++) {
+                var index:int = selectionIndex + i;
+                if (index < 0 || index >= thumbnailLoaders.length) {
+                    drawingImages.push(new BitmapData(ThumbnailLoader.DEFAULT_THUMBNAIL_WIDTH, ThumbnailLoader.DEFAULT_THUMBNAIL_HEIGHT, false, 0x0));
+                } else {
+                    drawingImages.push(thumbnailLoaders[index].Thumbnail);
+                }
+            }
+
+            var posY:int = 0;
+            for each (var b:BitmapData in drawingImages) {
+                var m:Matrix = new Matrix();
+                m.ty = posY * ThumbnailLoader.DEFAULT_THUMBNAIL_HEIGHT;
+                canvas.bitmapData.draw(b, m);
+                posY++;
+            }
         }
     }
 }
