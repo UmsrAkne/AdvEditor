@@ -1,15 +1,14 @@
 package {
-    import flash.display.Sprite;
-    import classes.gameScenes.ScenarioScene;
-    import flash.display.StageScaleMode;
-    import flash.display.StageAlign;
     import classes.gameScenes.LoadingScene;
-    import flash.events.Event;
-    import flash.filesystem.File;
+    import classes.gameScenes.ScenarioScene;
+    import classes.gameScenes.SelectionScene;
     import classes.sceneContents.Resource;
     import flash.display.Bitmap;
     import flash.display.BitmapData;
-    import classes.gameScenes.SelectionScene;
+    import flash.display.Sprite;
+    import flash.display.StageAlign;
+    import flash.display.StageScaleMode;
+    import flash.events.Event;
 
     /**
      * ...
