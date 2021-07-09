@@ -28,6 +28,7 @@ package {
             addChild(new Bitmap(new BitmapData(stage.stageWidth, stage.stageHeight, false, 0x0)));
 
             selectionScene = SelectionScene(addChild(new SelectionScene()));
+            stage.focus = selectionScene;
         }
 
         private function loadCompleteEventHandler(event:Event):void {

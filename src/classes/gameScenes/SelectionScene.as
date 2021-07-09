@@ -7,6 +7,7 @@ package classes.gameScenes {
     import flash.events.KeyboardEvent;
     import flash.filesystem.File;
     import flash.geom.Matrix;
+    import flash.ui.Keyboard;
     import classes.contentsLoaders.ContentsLoadUtil;
     import classes.contentsLoaders.ThumbnailLoader;
 
@@ -42,7 +43,44 @@ package classes.gameScenes {
             }
         }
 
-        private function keyboardEventHandler(e:Event):void {
+        private function keyboardEventHandler(e:KeyboardEvent):void {
+            if (e.keyCode == Keyboard.DOWN) {
+                if (selectionIndex >= thumbnailLoaders.length - 1) {
+                    return;
+                }
+
+                selectionIndex++;
+                drawThumbnails();
+            }
+
+            if (e.keyCode == Keyboard.UP) {
+                if (selectionIndex <= 0) {
+                    return;
+                }
+
+                selectionIndex--;
+                drawThumbnails();
+            }
+
+            // 1ページ進む
+            if (e.keyCode == Keyboard.RIGHT) {
+                if (selectionIndex == thumbnailLoaders.length - 1) {
+                    return;
+                }
+
+                selectionIndex = Math.min(selectionIndex + 5, thumbnailLoaders.length - 1);
+                drawThumbnails();
+            }
+
+            // 1ページ戻る
+            if (e.keyCode == Keyboard.LEFT) {
+                if (selectionIndex <= 0) {
+                    return;
+                }
+
+                selectionIndex = Math.max(selectionIndex - 5, 0);
+                drawThumbnails();
+            }
         }
 
         private function drawThumbnails():void {
