@@ -25,6 +25,9 @@ package {
             stage.align = StageAlign.TOP_LEFT;
             stage.scaleMode = StageScaleMode.NO_SCALE;
 
+            stage.nativeWindow.width = 1280;
+            stage.nativeWindow.height = 720;
+
             addChild(new Bitmap(new BitmapData(stage.stageWidth, stage.stageHeight, false, 0x0)));
 
             selectionScene = SelectionScene(addChild(new SelectionScene()));
