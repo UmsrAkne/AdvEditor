@@ -39,6 +39,10 @@ package classes.contentsLoaders {
             return thumbnail;
         }
 
+        public function get SceneDirectory():File {
+            return sceneDirectory;
+        }
+
         private function xmlLoadComplete(e:Event):void {
             var setting:XMLList = new XMLList(URLLoader(e.target).data);
             var thumbnailFileName:String = setting["setting"][THUMBNAIL_ATTRIBUTE];

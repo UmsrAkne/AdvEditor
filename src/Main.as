@@ -28,7 +28,17 @@ package {
             addChild(new Bitmap(new BitmapData(stage.stageWidth, stage.stageHeight, false, 0x0)));
 
             selectionScene = SelectionScene(addChild(new SelectionScene()));
+            selectionScene.addEventListener(Event.COMPLETE, sceneSelectedEventHandler);
+
             stage.focus = selectionScene;
+        }
+
+        private function sceneSelectedEventHandler(e:Event):void {
+            selectionScene.removeEventListener(Event.COMPLETE, sceneSelectedEventHandler);
+            removeChild(selectionScene);
+            loadingScene = new LoadingScene(selectionScene.SelectedSceneDirectory);
+            loadingScene.addEventListener(Event.COMPLETE, loadCompleteEventHandler);
+            loadingScene.load();
         }
 
         private function loadCompleteEventHandler(event:Event):void {

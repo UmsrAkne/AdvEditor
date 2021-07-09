@@ -32,6 +32,10 @@ package classes.gameScenes {
             }
         }
 
+        public function get SelectedSceneDirectory():File {
+            return thumbnailLoaders[selectionIndex].SceneDirectory;
+        }
+
         private function thumbnailLoadComplete(e:Event):void {
             contentsCounter--;
             if (contentsCounter <= 0) {
@@ -46,6 +50,14 @@ package classes.gameScenes {
         }
 
         private function keyboardEventHandler(e:KeyboardEvent):void {
+
+            // enter でシーンを終了する。
+            if (e.keyCode == Keyboard.ENTER) {
+                dispatchEvent(new Event(Event.COMPLETE));
+                removeEventListener(KeyboardEvent.KEY_DOWN, keyboardEventHandler);
+                canvas.bitmapData.dispose();
+            }
+
             if (e.keyCode == Keyboard.DOWN) {
                 if (selectionIndex >= thumbnailLoaders.length - 1) {
                     return;
