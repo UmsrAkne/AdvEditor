@@ -7,6 +7,8 @@ package classes.gameScenes {
     import flash.events.KeyboardEvent;
     import flash.filesystem.File;
     import flash.geom.Matrix;
+    import flash.geom.Rectangle;
+    import flash.geom.ColorTransform;
     import flash.ui.Keyboard;
     import classes.contentsLoaders.ContentsLoadUtil;
     import classes.contentsLoaders.ThumbnailLoader;
@@ -90,7 +92,12 @@ package classes.gameScenes {
                 if (index < 0 || index >= thumbnailLoaders.length) {
                     drawingImages.push(new BitmapData(ThumbnailLoader.DEFAULT_THUMBNAIL_WIDTH, ThumbnailLoader.DEFAULT_THUMBNAIL_HEIGHT, false, 0x0));
                 } else {
-                    drawingImages.push(thumbnailLoaders[index].Thumbnail);
+                    drawingImages.push(thumbnailLoaders[index].Thumbnail.clone());
+                }
+
+                if (i != 0) {
+                    var darkFilter:ColorTransform = new ColorTransform(0.4, 0.4, 0.4);
+                    drawingImages[i].colorTransform(new Rectangle(0, 0, drawingImages[i].width, drawingImages[i].height), darkFilter);
                 }
             }
 
