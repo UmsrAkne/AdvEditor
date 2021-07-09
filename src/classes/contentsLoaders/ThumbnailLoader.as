@@ -7,12 +7,18 @@ package classes.contentsLoaders {
     import flash.net.URLRequest;
     import flash.net.URLLoader;
     import flash.display.LoaderInfo;
+    import flash.geom.Rectangle;
+    import flash.geom.Matrix;
 
     public class ThumbnailLoader {
+
+        public static const DEFAULT_THUMBNAIL_WIDTH:int = 320;
+        public static const DEFAULT_THUMBNAIL_HEIGHT:int = 160;
 
         private var completeEventDispathcer:EventDispatcher = new EventDispatcher();
         private var sceneDirectory:File;
         private var thumbnail:BitmapData;
+        private var thumbnailRect:Rectangle = new Rectangle(0, 0, DEFAULT_THUMBNAIL_WIDTH, DEFAULT_THUMBNAIL_HEIGHT);
         private const THUMBNAIL_ATTRIBUTE:String = "@thumbnail";
 
         public function ThumbnailLoader(sceneDirectory:File) {
@@ -33,6 +39,10 @@ package classes.contentsLoaders {
             return thumbnail;
         }
 
+        public function get SceneDirectory():File {
+            return sceneDirectory;
+        }
+
         private function xmlLoadComplete(e:Event):void {
             var setting:XMLList = new XMLList(URLLoader(e.target).data);
             var thumbnailFileName:String = setting["setting"][THUMBNAIL_ATTRIBUTE];
@@ -46,14 +56,26 @@ package classes.contentsLoaders {
             }
 
             loader.contentLoaderInfo.addEventListener(Event.COMPLETE, function(e:Event):void {
-                var l:Loader = LoaderInfo(e.target).loader;
-                thumbnail = new BitmapData(l.width, l.height, false, 0x0);
-                thumbnail.draw(l);
-
+                createThumbnailImage(LoaderInfo(e.target).loader);
                 CompleteEventDispatcher.dispatchEvent(new Event(Event.COMPLETE));
             });
 
             loader.load(new URLRequest(thumbnailImageFile.nativePath));
+        }
+
+        /**
+         * thumbnailRect のサイズになるよう BitmapData を加工、生成して thumbnail に入力します。
+         * @param loader
+         */
+        private function createThumbnailImage(loader:Loader):void {
+            thumbnail = new BitmapData(thumbnailRect.width, thumbnailRect.height, false, 0x0);
+            var m:Matrix = new Matrix();
+
+            var scale:Number = thumbnailRect.width / loader.width;
+            m.scale(scale, scale);
+            m.ty -= (loader.height * scale / 2) - (thumbnailRect.height / 2);
+
+            thumbnail.draw(loader, m, null, null);
         }
     }
 }

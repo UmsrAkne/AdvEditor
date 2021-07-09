@@ -1,14 +1,14 @@
 package {
-    import flash.display.Sprite;
-    import classes.gameScenes.ScenarioScene;
-    import flash.display.StageScaleMode;
-    import flash.display.StageAlign;
     import classes.gameScenes.LoadingScene;
-    import flash.events.Event;
-    import flash.filesystem.File;
+    import classes.gameScenes.ScenarioScene;
+    import classes.gameScenes.SelectionScene;
     import classes.sceneContents.Resource;
     import flash.display.Bitmap;
     import flash.display.BitmapData;
+    import flash.display.Sprite;
+    import flash.display.StageAlign;
+    import flash.display.StageScaleMode;
+    import flash.events.Event;
 
     /**
      * ...
@@ -17,17 +17,30 @@ package {
     public class Main extends Sprite {
 
         private var loadingScene:LoadingScene;
+        private var selectionScene:SelectionScene;
         private var scenarioScene:ScenarioScene;
 
         public function Main() {
             stage.align = StageAlign.TOP_LEFT;
             stage.scaleMode = StageScaleMode.NO_SCALE;
 
+            stage.nativeWindow.width = 1280;
+            stage.nativeWindow.height = 720;
+
             addChild(new Bitmap(new BitmapData(stage.stageWidth, stage.stageHeight, false, 0x0)));
 
-            loadingScene = new LoadingScene(new File(File.applicationDirectory.nativePath).resolvePath("../scenarios/sampleScenario"));
-            loadingScene.load();
+            selectionScene = SelectionScene(addChild(new SelectionScene()));
+            selectionScene.addEventListener(Event.COMPLETE, sceneSelectedEventHandler);
+
+            stage.focus = selectionScene;
+        }
+
+        private function sceneSelectedEventHandler(e:Event):void {
+            selectionScene.removeEventListener(Event.COMPLETE, sceneSelectedEventHandler);
+            removeChild(selectionScene);
+            loadingScene = new LoadingScene(selectionScene.SelectedSceneDirectory);
             loadingScene.addEventListener(Event.COMPLETE, loadCompleteEventHandler);
+            loadingScene.load();
         }
 
         private function loadCompleteEventHandler(event:Event):void {
