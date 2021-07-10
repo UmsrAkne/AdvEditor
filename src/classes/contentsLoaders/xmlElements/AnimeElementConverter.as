@@ -58,6 +58,9 @@ package classes.contentsLoaders.xmlElements {
                 case "slide":
                     anime = new Slide();
                     break;
+                case "flashing":
+                    anime = new Flashing();
+                    break;
             }
 
             if (anime == null) {
