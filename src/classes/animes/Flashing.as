@@ -8,13 +8,14 @@ package classes.animes {
 
     public class Flashing implements IAnimation {
 
+        public var cycle:int = 4;
+        public var duration:int = 24;
+        public var delay:int;
+
         private var valid:Boolean = true;
         private var frameCount:int;
-        private var duration:int = 24;
         private var target:DisplayObject;
-        private var cycle:int = 4;
         private var effectBitmap:Bitmap = new Bitmap();
-        private var delay:int;
         private var targetLayerIndex:int = 0;
         private var stageRect:Rectangle = new Rectangle();
 
@@ -77,22 +78,6 @@ package classes.animes {
                 var childIndex:int = effectBitmap.parent.getChildIndex(effectBitmap);
                 effectBitmap.parent.removeChildAt(childIndex);
             }
-        }
-
-        public function set Cycle(value:int):void {
-            cycle = value;
-        }
-
-        public function set Duration(value:int):void {
-            duration = value;
-        }
-
-        public function get Delay():int {
-            return delay;
-        }
-
-        public function set Delay(value:int):void {
-            delay = value;
         }
 
         public function get TargetLayerIndex():int {
