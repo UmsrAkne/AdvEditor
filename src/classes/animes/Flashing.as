@@ -16,7 +16,7 @@ package classes.animes {
         private var frameCount:int;
         private var target:DisplayObject;
         private var effectBitmap:Bitmap = new Bitmap();
-        private var targetLayerIndex:int = 0;
+        private var targetLayerIndex:int = 1;
         private var stageRect:Rectangle = new Rectangle();
 
         public function Flashing() {
@@ -44,10 +44,9 @@ package classes.animes {
                 }
 
                 var bitmapContainerParent:DisplayObjectContainer = target.parent;
-                effectBitmap.bitmapData = new BitmapData(1024, 768, false, 0xFFFFFF);
+                effectBitmap.bitmapData = new BitmapData(stageRect.width, stageRect.height, false, 0xffffff);
                 var targetParent:DisplayObjectContainer = target.parent;
-                targetParent.addChildAt(effectBitmap, targetParent.getChildIndex(target));
-                targetParent.addChild(effectBitmap);
+                targetParent.addChildAt(effectBitmap, targetParent.getChildIndex(target) + 1);
                 effectBitmap.alpha = 0;
             }
 
@@ -62,7 +61,7 @@ package classes.animes {
             var deg:Number = (180 / cycle * 2 * count) + 270; // + 270　で　Math.sinのグラフを横にずらす
             var rad:Number = deg * Math.PI / 180;
 
-            return (Math.sin(rad) + 1) / 3;
+            return (Math.sin(rad) + 1) / 2;
         }
 
         public function stop():void {
@@ -72,8 +71,6 @@ package classes.animes {
             effectBitmap.visible = false;
             effectBitmap.bitmapData.dispose();
 
-            //	effectBitmapはステージ上にaddされているので、removeする
-            //	Util.getStage()を使用しないのは、ここに至っても、target がステージに登録されているとは限らないため。
             if (effectBitmap.parent) {
                 var childIndex:int = effectBitmap.parent.getChildIndex(effectBitmap);
                 effectBitmap.parent.removeChildAt(childIndex);
@@ -102,7 +99,7 @@ package classes.animes {
 
         private function getTopParent(displayObject:DisplayObject):DisplayObject {
             while (displayObject.parent) {
-                displayObject = target.parent;
+                displayObject = displayObject.parent;
             }
 
             return displayObject;
