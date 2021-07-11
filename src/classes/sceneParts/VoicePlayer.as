@@ -44,7 +44,11 @@ package classes.sceneParts {
         }
 
         public function setScenario(scenario:Scenario):void {
-            voiceFile = scenario.Voice;
+            if (scenario.Voice && scenario.Voice.CharacterChannel == characterChannel) {
+                voiceFile = scenario.Voice;
+            } else {
+                voiceFile = null;
+            }
 
             for each (var order:StopOrder in scenario.StopOrders) {
                 if (order.Target == "voice" && order.Index == characterChannel) {
