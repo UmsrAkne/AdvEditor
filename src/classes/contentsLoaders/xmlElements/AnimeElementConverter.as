@@ -61,6 +61,9 @@ package classes.contentsLoaders.xmlElements {
                 case "flashing":
                     anime = new Flashing();
                     break;
+                case "scaleChanger":
+                    anime = new ScaleChanger();
+                    break;
             }
 
             if (anime == null) {
