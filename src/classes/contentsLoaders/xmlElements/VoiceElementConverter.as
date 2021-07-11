@@ -8,6 +8,7 @@ package classes.contentsLoaders.xmlElements {
 
         private static const NUMBER_ATTRIBUTE:String = "@number";
         private static const FILE_NAME_ATTRIBUTE:String = "@fileName";
+        private static const CHANNEL_ATTRIBUTE:String = "@channel"
 
         private var voiceDirectory:File;
         private var voiceFileList:Array;
@@ -33,7 +34,6 @@ package classes.contentsLoaders.xmlElements {
                 var voiceFilePath:String = voiceDirectory.nativePath + "/" + (voiceTag[FILE_NAME_ATTRIBUTE]);
                 soundFile = new SoundFile(new File(voiceFilePath));
                 scenario.Voice = soundFile;
-                return;
             }
 
             if (voiceTag.hasOwnProperty(NUMBER_ATTRIBUTE)) {
@@ -53,10 +53,11 @@ package classes.contentsLoaders.xmlElements {
                 soundFile = new SoundFile(voiceFileList[index]);
                 soundFile.Index = voiceTag[NUMBER_ATTRIBUTE];
                 scenario.Voice = soundFile;
-                return;
             }
 
-            throw new ArgumentError("voice 要素には number か fileName 属性が必須です");
+            if (voiceTag.hasOwnProperty(CHANNEL_ATTRIBUTE)) {
+                soundFile.CharacterChannel = parseInt(voiceTag[CHANNEL_ATTRIBUTE])
+            }
         }
     }
 }
