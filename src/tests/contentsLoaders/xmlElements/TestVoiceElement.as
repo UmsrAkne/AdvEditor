@@ -13,7 +13,7 @@ package tests.contentsLoaders.xmlElements {
 
         private function testConvert():void {
             var xmlList:XMLList = new XMLList("<scenario>" + "<voice fileName=\"testFile\" />" + "</scenario>");
-            var xmlList2:XMLList = new XMLList("<scenario>" + "<voice number=\"001\" />" + "</scenario>");
+            var xmlList2:XMLList = new XMLList("<scenario>" + "<voice number=\"001\" channel=\"2\" />" + "</scenario>");
             var xml:XML = xmlList.voice[0];
 
             var f:File = new File(File.applicationDirectory.nativePath);
@@ -26,6 +26,7 @@ package tests.contentsLoaders.xmlElements {
             var fromIndex:Scenario = new Scenario();
             vc.convert(xmlList2[0], fromIndex);
             Assert.areEqual(fromIndex.Voice.FileName, "002.mp3");
+            Assert.areEqual(fromIndex.Voice.CharacterChannel, 2);
         }
     }
 }
