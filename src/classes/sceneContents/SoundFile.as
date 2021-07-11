@@ -11,6 +11,7 @@ package classes.sceneContents {
         private var sound:ISound;
         private var index:int = -1;
         private var volume:Number = 1.0;
+        private var characterChannel:int;
         private var volumeIsDefault:Boolean = true;
 
         public function SoundFile(file:File = null, sound:ISound = null) {
@@ -49,6 +50,14 @@ package classes.sceneContents {
             }
 
             return sound;
+        }
+
+        public function get CharacterChannel():int {
+            return characterChannel;
+        }
+
+        public function set CharacterChannel(value:int):void {
+            characterChannel = value;
         }
 
         /**
