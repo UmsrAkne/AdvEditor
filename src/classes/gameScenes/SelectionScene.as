@@ -1,14 +1,15 @@
 package classes.gameScenes {
 
-    import flash.display.Sprite;
-    import flash.display.BitmapData;
+    import flash.desktop.NativeApplication;
     import flash.display.Bitmap;
+    import flash.display.BitmapData;
+    import flash.display.Sprite;
     import flash.events.Event;
     import flash.events.KeyboardEvent;
     import flash.filesystem.File;
+    import flash.geom.ColorTransform;
     import flash.geom.Matrix;
     import flash.geom.Rectangle;
-    import flash.geom.ColorTransform;
     import flash.ui.Keyboard;
     import classes.contentsLoaders.ContentsLoadUtil;
     import classes.contentsLoaders.ThumbnailLoader;
@@ -56,6 +57,10 @@ package classes.gameScenes {
                 dispatchEvent(new Event(Event.COMPLETE));
                 removeEventListener(KeyboardEvent.KEY_DOWN, keyboardEventHandler);
                 canvas.bitmapData.dispose();
+            }
+
+            if (e.keyCode == Keyboard.Q) {
+                NativeApplication.nativeApplication.exit();
             }
 
             if (e.keyCode == Keyboard.DOWN) {
