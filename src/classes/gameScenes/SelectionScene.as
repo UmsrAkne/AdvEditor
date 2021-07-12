@@ -10,11 +10,11 @@ package classes.gameScenes {
     import flash.geom.ColorTransform;
     import flash.geom.Matrix;
     import flash.geom.Rectangle;
+    import flash.text.TextField;
+    import flash.text.TextFormat;
     import flash.ui.Keyboard;
     import classes.contentsLoaders.ContentsLoadUtil;
     import classes.contentsLoaders.ThumbnailLoader;
-    import flash.text.TextField;
-    import flash.text.TextFormat;
 
     public class SelectionScene extends Sprite {
 
