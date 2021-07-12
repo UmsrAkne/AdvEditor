@@ -59,9 +59,8 @@ package classes.gameScenes {
 
             // enter でシーンを終了する。
             if (e.keyCode == Keyboard.ENTER) {
-                dispatchEvent(new Event(Event.COMPLETE));
+                addEventListener(Event.ENTER_FRAME, exitScene);
                 removeEventListener(KeyboardEvent.KEY_DOWN, keyboardEventHandler);
-                canvas.bitmapData.dispose();
             }
 
             if (e.keyCode == Keyboard.Q) {
@@ -142,6 +141,15 @@ package classes.gameScenes {
             pathDisplayTextField.width = 1000;
             pathDisplayTextField.height = 30;
             pathDisplayTextField.y = stage.stageHeight - pathDisplayTextField.height;
+        }
+
+        private function exitScene(e:Event):void {
+            canvas.alpha -= 0.2;
+            if (canvas.alpha <= 0) {
+                canvas.bitmapData.dispose();
+                removeEventListener(Event.ENTER_FRAME, exitScene);
+                dispatchEvent(new Event(Event.COMPLETE));
+            }
         }
     }
 }
