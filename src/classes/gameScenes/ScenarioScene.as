@@ -1,15 +1,14 @@
 package classes.gameScenes {
 
+    import flash.desktop.NativeApplication;
     import flash.display.Sprite;
-    import flash.events.KeyboardEvent;
     import flash.events.Event;
+    import flash.events.KeyboardEvent;
     import flash.ui.Keyboard;
-    import classes.uis.UIContainer;
-    import classes.sceneParts.*;
     import classes.sceneContents.Resource;
     import classes.sceneContents.Scenario;
-    import classes.sceneParts.BGVPlayer;
-    import classes.sceneParts.BGMPlayer;
+    import classes.sceneParts.*;
+    import classes.uis.UIContainer;
 
     public class ScenarioScene extends Sprite {
 
@@ -105,6 +104,10 @@ package classes.gameScenes {
                 }
 
                 lastExecuteScenario = scenario;
+            }
+
+            if (event.keyCode == Keyboard.Q) {
+                NativeApplication.nativeApplication.exit();
             }
         }
 
