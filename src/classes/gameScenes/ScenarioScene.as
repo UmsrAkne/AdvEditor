@@ -9,6 +9,7 @@ package classes.gameScenes {
     import classes.sceneContents.Scenario;
     import classes.sceneParts.*;
     import classes.uis.UIContainer;
+    import classes.uis.OptionUI;
 
     public class ScenarioScene extends Sprite {
 
@@ -19,6 +20,7 @@ package classes.gameScenes {
         private var textWriter:TextWriter;
         private var bgmPlayer:BGMPlayer;
         private var lastExecuteScenario:Scenario;
+        private var optionUI:OptionUI;
 
         public function ScenarioScene() {
             addChild(ui);
@@ -77,6 +79,7 @@ package classes.gameScenes {
                 }
 
                 bgmPlayer.execute();
+                optionUI = new OptionUI(resource);
             }
         }
 
@@ -104,6 +107,12 @@ package classes.gameScenes {
                 }
 
                 lastExecuteScenario = scenario;
+            }
+
+            if (event.keyCode == Keyboard.O) {
+                optionUI.show();
+                stage.focus = optionUI;
+                addChild(optionUI);
             }
 
             if (event.keyCode == Keyboard.Q) {
