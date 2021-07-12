@@ -13,12 +13,15 @@ package classes.gameScenes {
     import flash.ui.Keyboard;
     import classes.contentsLoaders.ContentsLoadUtil;
     import classes.contentsLoaders.ThumbnailLoader;
+    import flash.text.TextField;
+    import flash.text.TextFormat;
 
     public class SelectionScene extends Sprite {
 
         private var thumbnails:Vector.<BitmapData> = new Vector.<BitmapData>();
         private var thumbnailLoaders:Vector.<ThumbnailLoader> = new Vector.<ThumbnailLoader>();
         private var canvas:Bitmap = new Bitmap(new BitmapData(ThumbnailLoader.DEFAULT_THUMBNAIL_WIDTH, ThumbnailLoader.DEFAULT_THUMBNAIL_HEIGHT * 5));
+        private var pathDisplayTextField:TextField = new TextField();
         private var contentsCounter:int;
         private var selectionIndex:int;
 
@@ -31,6 +34,8 @@ package classes.gameScenes {
                 thumbnailLoader.CompleteEventDispatcher.addEventListener(Event.COMPLETE, thumbnailLoadComplete);
                 thumbnailLoader.load();
             }
+
+            addEventListener(Event.ADDED, showTextField);
         }
 
         public function get SelectedSceneDirectory():File {
@@ -100,6 +105,10 @@ package classes.gameScenes {
                 selectionIndex = Math.max(selectionIndex - 5, 0);
                 drawThumbnails();
             }
+
+            if (selectionIndex > 0 && selectionIndex <= thumbnailLoaders.length - 1) {
+                pathDisplayTextField.text = thumbnailLoaders[selectionIndex].SceneDirectory.nativePath;
+            }
         }
 
         private function drawThumbnails():void {
@@ -125,6 +134,14 @@ package classes.gameScenes {
                 canvas.bitmapData.draw(b, m);
                 posY++;
             }
+        }
+
+        private function showTextField(e:Event):void {
+            addChild(pathDisplayTextField);
+            pathDisplayTextField.defaultTextFormat = new TextFormat(null, 22, 0xffffff);
+            pathDisplayTextField.width = 1000;
+            pathDisplayTextField.height = 30;
+            pathDisplayTextField.y = stage.stageHeight - pathDisplayTextField.height;
         }
     }
 }
