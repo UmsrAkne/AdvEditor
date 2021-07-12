@@ -4,6 +4,8 @@ package classes.uis {
     import flash.display.Sprite;
     import flash.events.Event;
     import flash.text.TextField;
+    import flash.events.KeyboardEvent;
+    import flash.ui.Keyboard;
 
     public class OptionUI extends Sprite {
 
@@ -35,6 +37,45 @@ package classes.uis {
             textField.alpha -= 0.2;
             if (textField.alpha <= 0) {
                 removeEventListener(Event.ENTER_FRAME, fadeOut);
+            }
+        }
+
+        private function keyboardEventHandler(e:KeyboardEvent):void {
+            if (e.keyCode == Keyboard.E) {
+                removeEventListener(KeyboardEvent.KEY_DOWN, keyboardEventHandler);
+                hide();
+            }
+
+            if (e.keyCode == Keyboard.V) {
+                if (e.shiftKey) {
+                    res.voiceVolume -= 0.05;
+                } else {
+                    res.voiceVolume += 0.05;
+                }
+            }
+
+            if (e.keyCode == Keyboard.B) {
+                if (e.shiftKey) {
+                    res.backVoiceVolume -= 0.05;
+                } else {
+                    res.backVoiceVolume += 0.05;
+                }
+            }
+
+            if (e.keyCode == Keyboard.S) {
+                if (e.shiftKey) {
+                    res.seVolume -= 0.05;
+                } else {
+                    res.seVolume += 0.05;
+                }
+            }
+
+            if (e.keyCode == Keyboard.M) {
+                if (e.shiftKey) {
+                    res.bgmVolume -= 0.05;
+                } else {
+                    res.bgmVolume += 0.05;
+                }
             }
         }
     }
