@@ -145,6 +145,7 @@ package classes.gameScenes {
 
         private function exitScene(e:Event):void {
             canvas.alpha -= 0.2;
+            pathDisplayTextField.alpha -= 0.2;
             if (canvas.alpha <= 0) {
                 canvas.bitmapData.dispose();
                 removeEventListener(Event.ENTER_FRAME, exitScene);
