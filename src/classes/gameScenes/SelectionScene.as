@@ -140,7 +140,10 @@ package classes.gameScenes {
             pathDisplayTextField.defaultTextFormat = new TextFormat(null, 22, 0xffffff);
             pathDisplayTextField.width = 1000;
             pathDisplayTextField.height = 30;
-            pathDisplayTextField.y = stage.stageHeight - pathDisplayTextField.height;
+
+            if (stage != null) {
+                pathDisplayTextField.y = stage.stageHeight - pathDisplayTextField.height;
+            }
         }
 
         private function exitScene(e:Event):void {
