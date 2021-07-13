@@ -34,15 +34,28 @@ package classes.uis {
         }
 
         private function updateStatus():void {
+            function zeroPadding(str:String):String {
+                while (str.length < 3) {
+                    str = "0" + str;
+                }
+
+                return str;
+            }
+
+            var vv:String = zeroPadding(Math.round(res.voiceVolume * 100).toString());
+            var bv:String = zeroPadding(Math.round(res.backVoiceVolume * 100).toString());
+            var mv:String = zeroPadding(Math.round(res.bgmVolume * 100).toString());
+            var sv:String = zeroPadding(Math.round(res.seVolume * 100).toString());
+
             textField.text = "";
-            textField.text += "voice 	<V " + res.voiceVolume + " v>" + "\n";
-            textField.text += "BGVoice	<B " + res.backVoiceVolume + " b>" + "\n";
-            textField.text += "BGMV 	<M " + res.bgmVolume + " m>" + "\n";
-            textField.text += "se		<S " + res.seVolume + " s>" + "\n";
+            textField.text += "voice 	<V   " + vv + "    v>" + "\n";
+            textField.text += "BGVoice	<B   " + bv + "    b>" + "\n";
+            textField.text += "BGMV 	<M   " + mv + "    m>" + "\n";
+            textField.text += "se		<S   " + sv + "    s>" + "\n";
+            textField.text += "end 'e' key";
         }
 
         private function fadeIn(e:Event):void {
-            trace(textField.alpha);
             textField.alpha += 0.2;
             if (textField.alpha > 1.0) {
                 removeEventListener(Event.ENTER_FRAME, fadeIn);
