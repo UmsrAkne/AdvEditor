@@ -1,20 +1,27 @@
 package classes.uis {
 
     import classes.sceneContents.Resource;
+    import flash.display.Bitmap;
+    import flash.display.BitmapData;
     import flash.display.Sprite;
     import flash.events.Event;
-    import flash.text.TextField;
     import flash.events.KeyboardEvent;
-    import flash.ui.Keyboard;
+    import flash.text.TextField;
     import flash.text.TextFormat;
+    import flash.ui.Keyboard;
 
     public class OptionUI extends Sprite {
 
         private var textField:TextField = new TextField();
+        private var bg:Bitmap;
         private var res:Resource;
 
         public function OptionUI(r:Resource) {
             res = r;
+            bg = new Bitmap(new BitmapData(res.ScreenSize.width, res.ScreenSize.height, false, 0x0));
+            addChild(bg);
+            bg.alpha = 0;
+
             addChild(textField);
             textField.alpha = 0;
             textField.width = 800;
@@ -25,6 +32,8 @@ package classes.uis {
         public function show():void {
             textField.alpha = 0;
             textField.visible = true;
+            bg.alpha = 0;
+            bg.visible = true;
             updateStatus();
             addEventListener(Event.ENTER_FRAME, fadeIn);
         }
@@ -57,7 +66,9 @@ package classes.uis {
 
         private function fadeIn(e:Event):void {
             textField.alpha += 0.2;
+            bg.alpha += 0.15;
             if (textField.alpha > 1.0) {
+                bg.alpha = 0.75;
                 removeEventListener(Event.ENTER_FRAME, fadeIn);
                 addEventListener(KeyboardEvent.KEY_DOWN, keyboardEventHandler);
             }
@@ -65,8 +76,11 @@ package classes.uis {
 
         private function fadeOut(e:Event):void {
             textField.alpha -= 0.2;
+            bg.alpha -= 0.15;
             if (textField.alpha <= 0) {
                 textField.visible = false;
+                bg.alpha = 0;
+                bg.visible = false;
                 removeEventListener(Event.ENTER_FRAME, fadeOut);
             }
         }
