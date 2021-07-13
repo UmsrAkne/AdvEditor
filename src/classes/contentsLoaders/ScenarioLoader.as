@@ -25,6 +25,18 @@ package classes.contentsLoaders {
 
         public function writeContentsTo(resource:Resource):void {
             resource.scenarios = scenarios;
+
+            for (var i:int = 0; i < scenarios.length; i++) {
+                var s:Scenario = scenarios[i];
+                if (s.ChapterName != "") {
+                    if (!resource.ScenariosByChapterName.hasOwnProperty(s.ChapterName)) {
+                        resource.ScenariosByChapterName[s.ChapterName] = new Vector.<Scenario>();
+                        resource.ChapterHeaderIndexByChapterName[s.ChapterName] = i;
+                    }
+
+                    Vector.<Scenario>(resource.ScenariosByChapterName[s.ChapterName]).push(s);
+                }
+            }
         }
 
         public function load():void {
