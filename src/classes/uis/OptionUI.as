@@ -66,6 +66,7 @@ package classes.uis {
         private function fadeOut(e:Event):void {
             textField.alpha -= 0.2;
             if (textField.alpha <= 0) {
+                textField.visible = false;
                 removeEventListener(Event.ENTER_FRAME, fadeOut);
             }
         }
