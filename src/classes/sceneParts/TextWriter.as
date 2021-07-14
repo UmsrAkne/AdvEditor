@@ -63,6 +63,11 @@ package classes.sceneParts {
             return scenarioCounter;
         }
 
+        public function set ScenarioCounter(value:int):void {
+            scenarioCounter = value;
+            saveText = false;
+        }
+
         public function dispatchEvent(e:Event):void {
             enterFrameEventDispatcher.dispatchEvent(e);
         }
