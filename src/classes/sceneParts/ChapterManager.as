@@ -11,10 +11,12 @@ package classes.sceneParts {
         private var currentChapterName:String;
 
         public function execute():void {
-            throw new Error("Method not implemented.");
         }
 
         public function setScenario(scenario:Scenario):void {
+            if (scenario.ChapterName != "") {
+                lastPassedChapterName = scenario.ChapterName;
+            }
         }
 
         public function setUI(ui:UIContainer):void {
@@ -24,6 +26,31 @@ package classes.sceneParts {
             if (resource == null) {
                 resource = res;
             }
+        }
+
+        /**
+         * @return 次のチャプターの先頭部のインデックス。次のチャプターが存在しない場合は -1 を返します。
+         */
+        public function getNextChapterIndex():int {
+            var lastPassedChapterIndex:int = 0;
+
+            if (lastPassedChapterName != "") {
+                lastPassedChapterIndex = resource.ChapterHeaderIndexByChapterName[lastPassedChapterName];
+            }
+
+            var index:int = -1;
+
+            for (var key:String in resource.ChapterHeaderIndexByChapterName) {
+                if (int(resource.ChapterHeaderIndexByChapterName[key]) > lastPassedChapterIndex) {
+                    if (index == -1) {
+                        index = resource.ChapterHeaderIndexByChapterName[key];
+                    }
+
+                    index = Math.min(index, resource.ChapterHeaderIndexByChapterName[key]);
+                }
+            }
+
+            return index;
         }
     }
 }
