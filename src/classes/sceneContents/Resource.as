@@ -9,6 +9,8 @@ package classes.sceneContents {
     public class Resource {
 
         public var scenarios:Vector.<Scenario> = new Vector.<Scenario>();
+        private var scenariosByChapterName:Dictionary = new Dictionary();
+        private var chapterHeaderIndexByChapterName:Dictionary = new Dictionary();
 
         public var voiceVolume:Number = 1.0;
         public var backVoiceVolume:Number = 1.0;
@@ -35,6 +37,14 @@ package classes.sceneContents {
         private var initialBGMName:String;
 
         private var ses:Vector.<SoundFile> = new Vector.<SoundFile>();
+
+        public function get ScenariosByChapterName():Dictionary {
+            return scenariosByChapterName;
+        }
+
+        public function get ChapterHeaderIndexByChapterName():Dictionary {
+            return chapterHeaderIndexByChapterName;
+        }
 
         public function get ScreenSize():Rectangle {
             return screenSize;

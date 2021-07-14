@@ -10,6 +10,7 @@ package classes.gameScenes {
     import classes.sceneParts.*;
     import classes.uis.UIContainer;
     import classes.uis.OptionUI;
+    import classes.sceneParts.ChapterManager;
 
     public class ScenarioScene extends Sprite {
 
@@ -19,6 +20,7 @@ package classes.gameScenes {
         private var resource:Resource;
         private var textWriter:TextWriter;
         private var bgmPlayer:BGMPlayer;
+        private var chapterManager:ChapterManager = new ChapterManager();
         private var lastExecuteScenario:Scenario;
         private var optionUI:OptionUI;
 
@@ -29,6 +31,8 @@ package classes.gameScenes {
 
             textWriter = new TextWriter();
             sceneParts.push(textWriter);
+
+            sceneParts.push(chapterManager);
 
             bgmPlayer = new BGMPlayer();
             sceneParts.push(bgmPlayer);
@@ -85,28 +89,7 @@ package classes.gameScenes {
 
         private function keyboardEventHandler(event:KeyboardEvent):void {
             if (event.keyCode == Keyboard.ENTER) {
-                if (textWriter.ScenarioCounter >= resource.scenarios.length) {
-                    return;
-                }
-
-                var scenario:Scenario = resource.scenarios[textWriter.ScenarioCounter];
-
-                if (scenario == lastExecuteScenario) {
-                    textWriter.setScenario(scenario);
-                    textWriter.execute();
-                    lastExecuteScenario = scenario;
-                    return;
-                }
-
-                for each (var parts:IScenarioSceneParts in sceneParts) {
-                    parts.setScenario(scenario);
-                }
-
-                for each (parts in sceneParts) {
-                    parts.execute();
-                }
-
-                lastExecuteScenario = scenario;
+                playScenario();
             }
 
             if (event.keyCode == Keyboard.O) {
@@ -115,9 +98,42 @@ package classes.gameScenes {
                 addChild(optionUI);
             }
 
+            if (event.keyCode == Keyboard.N) {
+                var index:int = chapterManager.getNextChapterIndex();
+                if (index > 0) {
+                    textWriter.ScenarioCounter = index;
+                    playScenario();
+                }
+            }
+
             if (event.keyCode == Keyboard.Q) {
                 NativeApplication.nativeApplication.exit();
             }
+        }
+
+        private function playScenario():void {
+            if (textWriter.ScenarioCounter >= resource.scenarios.length) {
+                return;
+            }
+
+            var scenario:Scenario = resource.scenarios[textWriter.ScenarioCounter];
+
+            if (scenario == lastExecuteScenario) {
+                textWriter.setScenario(scenario);
+                textWriter.execute();
+                lastExecuteScenario = scenario;
+                return;
+            }
+
+            for each (var parts:IScenarioSceneParts in sceneParts) {
+                parts.setScenario(scenario);
+            }
+
+            for each (parts in sceneParts) {
+                parts.execute();
+            }
+
+            lastExecuteScenario = scenario;
         }
 
         private function enterFrameEventHandler(event:Event):void {

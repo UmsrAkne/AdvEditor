@@ -54,6 +54,7 @@ package {
             new TestBGVPlayer();
             new TestThumbnailLoader();
             new TestSelectionScene();
+            new TestChapterManager();
 
             trace("[Tester]" + " " + Assert.TestCounter + " 回のテストを完了しました");
             NativeApplication.nativeApplication.exit();
