@@ -13,6 +13,9 @@ package classes.animes {
         public var delay:int;
         public var loopCount:int;
 
+        private var intervalCount:int;
+        private var originalIntervalCount:int;
+
         private var valid:Boolean = true;
         private var frameCount:int;
         private var target:DisplayObject;
@@ -33,6 +36,11 @@ package classes.animes {
 
             if (delay > 0) {
                 delay--;
+                return;
+            }
+
+            if (intervalCount > 0) {
+                intervalCount--;
                 return;
             }
 
@@ -60,6 +68,7 @@ package classes.animes {
                     frameCount = 0;
                     effectBitmap.alpha = 0;
                     loopCount--;
+                    intervalCount = originalIntervalCount;
                 }
             }
         }
@@ -102,6 +111,10 @@ package classes.animes {
 
         public function set TopParentRect(value:Rectangle):void {
             stageRect = value;
+        }
+
+        public function set interval(value:int):void {
+            originalIntervalCount = value;
         }
 
         private function getTopParent(displayObject:DisplayObject):DisplayObject {
