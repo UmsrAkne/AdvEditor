@@ -8,6 +8,9 @@ package classes.animes {
         public var duration:int = 24;
         public var loopConut:int;
 
+        private var intervalCount:int;
+        private var originalIntervalCount:int;
+
         private var frameCount:int;
         private var valid:Boolean = true;
         private var target:DisplayObject;
@@ -26,6 +29,11 @@ package classes.animes {
 
         public function execute():void {
             if (!valid || !target) {
+                return;
+            }
+
+            if (intervalCount > 0) {
+                intervalCount--;
                 return;
             }
 
@@ -53,6 +61,7 @@ package classes.animes {
                     target.y -= totalMovePosition.y;
                     totalMovePosition = new Point(0, 0);
                     loopConut--;
+                    intervalCount = originalIntervalCount;
                 }
             }
         }
@@ -89,6 +98,10 @@ package classes.animes {
 
         public function set TargetLayerIndex(value:int):void {
             targetLayerIndex = value;
+        }
+
+        public function set interval(value:int):void {
+            originalIntervalCount = value;
         }
     }
 }
