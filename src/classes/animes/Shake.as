@@ -6,6 +6,10 @@ package classes.animes {
 
         public var strength:int = 5;
         public var duration:int = 24;
+        public var loopCount:int;
+
+        private var intervalCount:int;
+        private var originalIntervalCount:int;
 
         private var frameCount:int;
         private var valid:Boolean = true;
@@ -28,6 +32,11 @@ package classes.animes {
                 return;
             }
 
+            if (intervalCount > 0) {
+                intervalCount--;
+                return;
+            }
+
             var plusOrMinus:int = Math.cos((frameCount * 180) * Math.PI / 180); // 1 or -1 の値がフレーム毎に切り替わって入ります。
             var value:Number = strength * Resistor * plusOrMinus;
 
@@ -44,7 +53,16 @@ package classes.animes {
             frameCount++;
 
             if (frameCount >= duration) {
-                stop();
+                if (loopCount <= 0) {
+                    stop();
+                } else {
+                    frameCount = 0;
+                    target.x -= totalMovePosition.x;
+                    target.y -= totalMovePosition.y;
+                    totalMovePosition = new Point(0, 0);
+                    loopCount--;
+                    intervalCount = originalIntervalCount;
+                }
             }
         }
 
@@ -80,6 +98,10 @@ package classes.animes {
 
         public function set TargetLayerIndex(value:int):void {
             targetLayerIndex = value;
+        }
+
+        public function set interval(value:int):void {
+            originalIntervalCount = value;
         }
     }
 }

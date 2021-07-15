@@ -11,11 +11,15 @@ package classes.animes {
         public var cycle:int = 4;
         public var duration:int = 24;
         public var delay:int;
+        public var loopCount:int;
+
+        private var intervalCount:int;
+        private var originalIntervalCount:int;
 
         private var valid:Boolean = true;
         private var frameCount:int;
         private var target:DisplayObject;
-        private var effectBitmap:Bitmap = new Bitmap();
+        private var effectBitmap:Bitmap;
         private var targetLayerIndex:int = 1;
         private var stageRect:Rectangle = new Rectangle();
 
@@ -35,16 +39,21 @@ package classes.animes {
                 return;
             }
 
+            if (intervalCount > 0) {
+                intervalCount--;
+                return;
+            }
+
             frameCount++;
 
-            if (frameCount == 1) {
+            if (frameCount == 1 && !effectBitmap) {
                 if (stageRect.equals(new Rectangle())) {
                     var d:Stage = Stage(getTopParent(target));
                     stageRect = new Rectangle(0, 0, d.stageWidth, d.stageHeight);
                 }
 
                 var bitmapContainerParent:DisplayObjectContainer = target.parent;
-                effectBitmap.bitmapData = new BitmapData(stageRect.width, stageRect.height, false, 0xffffff);
+                effectBitmap = new Bitmap(new BitmapData(stageRect.width, stageRect.height, false, 0xffffff));
                 var targetParent:DisplayObjectContainer = target.parent;
                 targetParent.addChildAt(effectBitmap, targetParent.getChildIndex(target) + 1);
                 effectBitmap.alpha = 0;
@@ -53,7 +62,14 @@ package classes.animes {
             effectBitmap.alpha = getAlpha(frameCount);
 
             if (frameCount > duration) {
-                stop();
+                if (loopCount <= 0) {
+                    stop();
+                } else {
+                    frameCount = 0;
+                    effectBitmap.alpha = 0;
+                    loopCount--;
+                    intervalCount = originalIntervalCount;
+                }
             }
         }
 
@@ -95,6 +111,10 @@ package classes.animes {
 
         public function set TopParentRect(value:Rectangle):void {
             stageRect = value;
+        }
+
+        public function set interval(value:int):void {
+            originalIntervalCount = value;
         }
 
         private function getTopParent(displayObject:DisplayObject):DisplayObject {
