@@ -36,7 +36,7 @@ package tests.animes {
             shake.Target = sprite;
             shake.strength = 10;
             shake.duration = 12;
-            shake.loopConut = 3;
+            shake.loopCount = 3;
 
             shake.execute();
             Assert.areNotEqual(sprite.x, 0);

@@ -6,7 +6,7 @@ package classes.animes {
 
         public var strength:int = 5;
         public var duration:int = 24;
-        public var loopConut:int;
+        public var loopCount:int;
 
         private var intervalCount:int;
         private var originalIntervalCount:int;
@@ -53,14 +53,14 @@ package classes.animes {
             frameCount++;
 
             if (frameCount >= duration) {
-                if (loopConut <= 0) {
+                if (loopCount <= 0) {
                     stop();
                 } else {
                     frameCount = 0;
                     target.x -= totalMovePosition.x;
                     target.y -= totalMovePosition.y;
                     totalMovePosition = new Point(0, 0);
-                    loopConut--;
+                    loopCount--;
                     intervalCount = originalIntervalCount;
                 }
             }
