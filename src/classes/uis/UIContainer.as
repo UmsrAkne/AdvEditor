@@ -15,6 +15,8 @@ package classes.uis {
         private var textWindowImage:Bitmap = new Bitmap();
         private var bitmapContainers:Vector.<BitmapContainer> = new Vector.<BitmapContainer>();
 
+        private var frame:Bitmap = new Bitmap();
+
         private var bgmChannelWrapper:SoundChannelWrapper = new SoundChannelWrapper();
         private var seChannelWrapper:SoundChannelWrapper = new SoundChannelWrapper();
         private var voiceChannelWrappers:Vector.<SoundChannelWrapper> = new Vector.<SoundChannelWrapper>();
@@ -45,6 +47,7 @@ package classes.uis {
 
             addChild(textWindowImage);
             addChild(textWindow);
+            addChild(frame);
 
             textWindow.defaultTextFormat = new TextFormat(null, 24, 0xffffff);
             textWindow.wordWrap = true;
@@ -70,6 +73,11 @@ package classes.uis {
 
             var bgBmpContainer:BitmapContainer = getBitmapContainerFromIndex(0);
             bgBmpContainer.add(new Bitmap(new BitmapData(baseRect.width, baseRect.height, false, 0x0)));
+
+            frame.bitmapData = new BitmapData(baseRect.width, baseRect.height, true, 0xFF000000);
+            var frameWidth:int = 20;
+            var frameHeight:int = 15
+            frame.bitmapData.fillRect(new Rectangle(frameWidth, frameHeight, baseRect.width - frameWidth * 2, baseRect.height - frameHeight * 2), 0x00000000);
         }
 
         public function getBitmapContainerFromIndex(index:int):BitmapContainer {
