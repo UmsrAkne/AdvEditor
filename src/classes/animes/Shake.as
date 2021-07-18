@@ -17,10 +17,9 @@ package classes.animes {
         private var targetLayerIndex:int = 1;
         private var totalMovePosition:Point = new Point(0, 0);
 
-        private function get Resistor():Number {
-            // このプロパティの返却値は、最大 1.0 からフレームカウントが大きくなる程 0 に近づきます。
+        private function getResistance(counter:int):Number {
             var deg:Number = 90 / duration;
-            return Math.cos(frameCount * deg) * Math.PI / 180;
+            return Math.cos(counter * deg * Math.PI / 180);
         }
 
         public function Shake() {
@@ -38,7 +37,7 @@ package classes.animes {
             }
 
             var plusOrMinus:int = Math.cos((frameCount * 180) * Math.PI / 180); // 1 or -1 の値がフレーム毎に切り替わって入ります。
-            var value:Number = strength * Resistor * plusOrMinus;
+            var value:Number = strength * getResistance(frameCount) * plusOrMinus;
 
             if (frameCount % 2 != 0) {
                 value *= 2;
