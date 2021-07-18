@@ -6,9 +6,9 @@ package classes.animes {
     public class Bound implements IAnimation {
 
         public var degree:int;
-        public var duration:int = 8;
         public var strength:int = 1;
 
+        private var _duration:int = 8;
         private var targetLayerIndex:int = 1;
         private var target:DisplayObject;
         private var valid:Boolean = true;
@@ -23,7 +23,7 @@ package classes.animes {
             var radian:Number = (degree - 90) * (Math.PI / 180);
             var d:Point = new Point(Math.cos(radian) * strength, Math.sin(radian) * strength);
 
-            if (frameCount >= duration / 2) {
+            if (frameCount >= _duration / 2) {
                 d.x *= -1;
                 d.y *= -1;
             }
@@ -35,7 +35,7 @@ package classes.animes {
 
             frameCount++;
 
-            if (frameCount > duration) {
+            if (frameCount > _duration) {
                 stop();
             }
         }
@@ -70,6 +70,11 @@ package classes.animes {
 
         public function get TargetLayerIndex():int {
             return targetLayerIndex;
+        }
+
+        public function set duration(value:int):void {
+            // duration が奇数だと、処理が煩雑であるため偶数にして入力する。
+            value = (value % 2 == 1) ? Math.abs(value - 1) : Math.abs(value);
         }
     }
 }
