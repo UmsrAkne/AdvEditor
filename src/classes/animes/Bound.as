@@ -6,9 +6,12 @@ package classes.animes {
     public class Bound implements IAnimation {
 
         public var degree:int;
-        public var duration:int = 8;
         public var strength:int = 1;
+        public var loopCount:int;
 
+        private var intervalCounter:int;
+        private var originalInterval:int;
+        private var _duration:int = 8;
         private var targetLayerIndex:int = 1;
         private var target:DisplayObject;
         private var valid:Boolean = true;
@@ -20,10 +23,17 @@ package classes.animes {
                 return;
             }
 
+            if (intervalCounter > 0) {
+                intervalCounter--;
+                return;
+            }
+
+            frameCount++;
+
             var radian:Number = (degree - 90) * (Math.PI / 180);
             var d:Point = new Point(Math.cos(radian) * strength, Math.sin(radian) * strength);
 
-            if (frameCount >= duration / 2) {
+            if (frameCount > _duration / 2) {
                 d.x *= -1;
                 d.y *= -1;
             }
@@ -33,10 +43,21 @@ package classes.animes {
             totalMoveDistance.x += d.x;
             totalMoveDistance.y += d.y;
 
-            frameCount++;
+            if (frameCount >= _duration) {
+                if (loopCount <= 0) {
+                    stop();
+                } else {
+                    loopCount--;
+                    intervalCounter = originalInterval;
+                    frameCount = 0;
 
-            if (frameCount > duration) {
-                stop();
+                    target.x -= totalMoveDistance.x;
+                    target.x = Math.round(target.x);
+                    target.y -= totalMoveDistance.y;
+                    target.y = Math.round(target.y);
+
+                    totalMoveDistance = new Point(0, 0);
+                }
             }
         }
 
@@ -70,6 +91,15 @@ package classes.animes {
 
         public function get TargetLayerIndex():int {
             return targetLayerIndex;
+        }
+
+        public function set duration(value:int):void {
+            // duration が奇数だと、処理が煩雑であるため偶数にして入力する。
+            _duration = (value % 2 == 1) ? Math.abs(value - 1) : Math.abs(value);
+        }
+
+        public function set interval(value:int):void {
+            originalInterval = value;
         }
     }
 }
