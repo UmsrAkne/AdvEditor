@@ -2,6 +2,7 @@ package classes.contentsLoaders.xmlElements {
 
     import classes.sceneContents.Scenario;
     import classes.animes.*;
+    import classes.animes.Bound;
 
     public class AnimeElementConverter implements IXMLElementConverter {
 
@@ -63,6 +64,9 @@ package classes.contentsLoaders.xmlElements {
                     break;
                 case "scaleChanger":
                     anime = new ScaleChanger();
+                    break;
+                case "bound":
+                    anime = new Bound();
                     break;
             }
 
