@@ -55,6 +55,7 @@ package {
             new TestThumbnailLoader();
             new TestSelectionScene();
             new TestChapterManager();
+            new TestBound();
 
             trace("[Tester]" + " " + Assert.TestCounter + " 回のテストを完了しました");
             NativeApplication.nativeApplication.exit();
