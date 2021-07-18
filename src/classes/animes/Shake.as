@@ -10,12 +10,15 @@ package classes.animes {
 
         private var intervalCount:int;
         private var originalIntervalCount:int;
+        private var degree:int = 0;
+        private var distance:Point = new Point(0, 0);
 
         private var frameCount:int;
         private var valid:Boolean = true;
         private var target:DisplayObject;
         private var targetLayerIndex:int = 1;
         private var totalMovePosition:Point = new Point(0, 0);
+        private var originalTargetPosition:Point = new Point(0, 0);
 
         private function getResistance(counter:int):Number {
             var deg:Number = 90 / duration;
@@ -36,19 +39,22 @@ package classes.animes {
                 return;
             }
 
-            var plusOrMinus:int = Math.cos((frameCount * 180) * Math.PI / 180); // 1 or -1 の値がフレーム毎に切り替わって入ります。
-            var value:Number = strength * getResistance(frameCount) * plusOrMinus;
+            degree = getRandomDegree(degree);
+            var adjust:Number = Math.random() + 0.1;
+            var rad:Number = degree * Math.PI / 180;
+            distance = new Point(Math.sin(rad) * strength * adjust, Math.cos(rad) * strength * adjust);
 
-            if (frameCount % 2 != 0) {
-                value *= 2;
+            if (frameCount != 0) {
+                distance.x *= 2;
+                distance.y *= 2;
             }
 
-            value = Math.floor(value * 100);
-            var movePoint:Point = new Point(value, value);
+            distance.x = Math.floor(distance.x * 100) / 100;
+            distance.y = Math.floor(distance.y * 100) / 100;
 
-            target.x += movePoint.x;
-            target.y += movePoint.y;
-            totalMovePosition = totalMovePosition.add(movePoint);
+            target.x += distance.x;
+            target.y += distance.y;
+            totalMovePosition = totalMovePosition.add(distance);
             frameCount++;
 
             if (frameCount >= duration) {
@@ -58,6 +64,8 @@ package classes.animes {
                     frameCount = 0;
                     target.x -= totalMovePosition.x;
                     target.y -= totalMovePosition.y;
+                    target.x = Math.round(target.x);
+                    target.y = Math.round(target.y);
                     totalMovePosition = new Point(0, 0);
                     loopCount--;
                     intervalCount = originalIntervalCount;
@@ -70,6 +78,8 @@ package classes.animes {
             frameCount = 0;
             target.x -= totalMovePosition.x;
             target.y -= totalMovePosition.y;
+            target.x = Math.round(target.x);
+            target.y = Math.round(target.y);
             totalMovePosition = new Point(0, 0);
         }
 
@@ -101,6 +111,16 @@ package classes.animes {
 
         public function set interval(value:int):void {
             originalIntervalCount = value;
+        }
+
+        /**
+         * 最後に使用した角度の値から、ランダムな角度の値を取得します。
+         * @param lastDegree 最後に使用した角度の値を入力します。
+         * @return
+         */
+        private function getRandomDegree(lastDegree:int):int {
+            // ほぼ反対側の角度が返却されるようにする。
+            return lastDegree + Math.floor(Math.random() * (230 - 130)) + 130;
         }
     }
 }
