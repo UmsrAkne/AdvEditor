@@ -8,6 +8,7 @@
         backVoiceVolume="1.0"
         bgmVolume="1.0"
         seVolume="1.0"
+        defaultScale="2.0"
         thumbnail="A001.png"
     />
 </root>

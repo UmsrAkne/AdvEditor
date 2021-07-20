@@ -17,6 +17,8 @@ package classes.sceneContents {
         public var seVolume:Number = 1.0;
         public var bgmVolume:Number = 1.0;
 
+        public var defaultScale:Number = 1.0;
+
         private var screenSize:Rectangle = new Rectangle(0, 0, 1024, 768);
 
         private var bitmapDatas:Vector.<BitmapData> = new Vector.<BitmapData>();
