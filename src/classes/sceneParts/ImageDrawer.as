@@ -44,7 +44,7 @@ package classes.sceneParts {
             }
 
             if (needBitmapAddition) {
-                var bitmap:Bitmap = new Bitmap(new BitmapData(resource.ScreenSize.width, resource.ScreenSize.height, true, 0x0));
+                var bitmap:Bitmap = new Bitmap(new BitmapData(resource.ScreenSize.width, resource.ScreenSize.height, true, currentOrder.backgroundColor));
                 for each (var index:int in currentOrder.indexes) {
                     if (index > 0) {
                         bitmap.bitmapData.draw(resource.BitmapDatas[index]);
