@@ -23,6 +23,7 @@ package classes.sceneParts {
         private var drawingOrder:ImageOrder;
         private var totalDrawingDepth:Number = 0;
         private var lastSettingRotation:int = 0;
+        private var defaultScale:Number = 1.0;
 
         private var enterFrameEventDispatcher:EventDispatcher = new Sprite();
 
@@ -67,8 +68,14 @@ package classes.sceneParts {
                         bitmap.transform.matrix = matrix;
                     }
                 } else {
-                    bitmap.scaleX = currentOrder.scale;
-                    bitmap.scaleY = currentOrder.scale;
+                    if (!currentOrder.ScaleIsDefault) {
+                        bitmap.scaleX = currentOrder.Scale;
+                        bitmap.scaleY = currentOrder.Scale;
+                    } else {
+                        bitmap.scaleX = defaultScale;
+                        bitmap.scaleY = defaultScale;
+                    }
+
                     bitmap.x = currentOrder.x;
                     bitmap.y = currentOrder.y;
 
@@ -127,6 +134,7 @@ package classes.sceneParts {
 
         public function setResource(res:Resource):void {
             this.resource = res;
+            defaultScale = res.defaultScale;
         }
 
         private function drawToFront(e:Event):void {

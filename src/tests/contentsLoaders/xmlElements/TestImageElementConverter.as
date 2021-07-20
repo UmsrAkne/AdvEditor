@@ -29,7 +29,7 @@ package tests.contentsLoaders.xmlElements {
 
             Assert.areEqual(scenario1.ImagerOrders[0].x, -100);
             Assert.areEqual(scenario1.ImagerOrders[0].y, 0);
-            Assert.areEqual(scenario1.ImagerOrders[0].scale, 2.0);
+            Assert.areEqual(scenario1.ImagerOrders[0].Scale, 2.0);
             Assert.areEqual(scenario1.ImagerOrders[0].rotation, 20);
             Assert.areEqual(scenario1.ImagerOrders[0].backgroundColor, 10);
             Assert.isTrue(scenario1.ImagerOrders[0].statusInherit);

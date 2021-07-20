@@ -70,7 +70,7 @@ package classes.contentsLoaders.xmlElements {
 
                 if (imageTag.hasOwnProperty(SCALE_ATTRIBUTE)) {
                     if (!isNaN(parseFloat(imageTag[SCALE_ATTRIBUTE]))) {
-                        order.scale = parseFloat(imageTag[SCALE_ATTRIBUTE]);
+                        order.Scale = parseFloat(imageTag[SCALE_ATTRIBUTE]);
                     }
                 }
 

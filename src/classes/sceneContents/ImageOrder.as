@@ -11,13 +11,14 @@ package classes.sceneContents {
 
         public var x:int = 0;
         public var y:int = 0;
-        public var scale:Number = 1.0;
         public var rotation:int = 0;
 
         public var backgroundColor:uint = 0x00000000;
         public var drawingDepth:Number = 1.0;
         public var statusInherit:Boolean;
 
+        private var scale:Number = 1.0;
+        private var scaleIsDefault:Boolean = true;
         private var target:String = "main";
 
         public function ImageOrder() {
@@ -26,6 +27,19 @@ package classes.sceneContents {
         public function set Target(value:String):void {
             target = value;
             targetLayerIndex = TargetAttributeConverter.getLayerIndexFromTargetName(target);
+        }
+
+        public function set Scale(value:Number):void {
+            scale = value;
+            scaleIsDefault = false;
+        }
+
+        public function get Scale():Number {
+            return scale;
+        }
+
+        public function get ScaleIsDefault():Boolean {
+            return scaleIsDefault;
         }
     }
 }
