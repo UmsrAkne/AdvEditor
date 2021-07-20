@@ -35,6 +35,7 @@ package tests.sceneParts {
             var imageOrder1:ImageOrder = new ImageOrder();
             imageOrder1.targetLayerIndex = 0;
             imageOrder1.indexes.push(1, 0, 0);
+            imageOrder1.Scale = 2.0;
             imageOrder1.names.push("white01", "", "");
             scenario1.ImagerOrders.push(imageOrder1);
 
@@ -42,6 +43,8 @@ package tests.sceneParts {
             imageDrawer.execute();
 
             Assert.isTrue(bitmapContainer.Front != null);
+            Assert.areEqual(bitmapContainer.Front.scaleX, 2.0);
+            Assert.areEqual(bitmapContainer.Front.scaleY, 2.0);
 
             var scenario2:Scenario = new Scenario();
             var drawingOrder:ImageOrder = new ImageOrder();

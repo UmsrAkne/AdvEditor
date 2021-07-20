@@ -19,6 +19,8 @@ package classes.contentsLoaders {
         public static const X_ATTRIBUTE:String = "@x";
         public static const Y_ATTRIBUTE:String = "@y";
 
+        public static const DEFAULT_SCALE_ATTRIBUTE:String = "@defaultScale";
+
         public static const BGM_ATTRIBUTE:String = "@bgm";
 
         public static const VOICE_VOLUME_ATTRIBUTE:String = "@voiceVolume";
@@ -51,6 +53,10 @@ package classes.contentsLoaders {
 
             if (xml.hasOwnProperty(Y_ATTRIBUTE)) {
                 resource.ScreenSize.y = parseInt(xml[Y_ATTRIBUTE]);
+            }
+
+            if (xml.hasOwnProperty(DEFAULT_SCALE_ATTRIBUTE)) {
+                resource.defaultScale = parseInt(xml[DEFAULT_SCALE_ATTRIBUTE]);
             }
 
             if (xml.hasOwnProperty(BGM_ATTRIBUTE)) {
