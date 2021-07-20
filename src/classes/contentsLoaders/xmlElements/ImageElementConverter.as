@@ -18,6 +18,7 @@ package classes.contentsLoaders.xmlElements {
         public static const Y_ATTRIBUTE:String = "@y";
         public static const SCALE_ATTRIBUTE:String = "@scale";
         public static const ROTATION_ATTRIBUTE:String = "@rotation";
+        public static const BACKGROUND_COLOR_ATTRIBUTE:String = "@backgroundColor";
 
         public static const STATUS_INHERIT_ATTRIBUTE:String = "@statusInherit";
 
@@ -76,6 +77,12 @@ package classes.contentsLoaders.xmlElements {
                 if (imageTag.hasOwnProperty(ROTATION_ATTRIBUTE)) {
                     if (!isNaN(parseInt(imageTag[ROTATION_ATTRIBUTE]))) {
                         order.rotation = parseInt(imageTag[ROTATION_ATTRIBUTE]);
+                    }
+                }
+
+                if (imageTag.hasOwnProperty(BACKGROUND_COLOR_ATTRIBUTE)) {
+                    if (!isNaN(parseInt(imageTag[BACKGROUND_COLOR_ATTRIBUTE]))) {
+                        order.backgroundColor = parseInt(imageTag[BACKGROUND_COLOR_ATTRIBUTE]);
                     }
                 }
 
