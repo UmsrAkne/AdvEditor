@@ -15,6 +15,9 @@ package tests.animes {
             slide.speed = 2;
             slide.distance = 300;
 
+            // デフォルトは 1 が前提
+            Assert.areEqual(slide.TargetLayerIndex, 1);
+
             var sp:Sprite = new Sprite();
             slide.Target = sp;
 

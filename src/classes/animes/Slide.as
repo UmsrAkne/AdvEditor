@@ -10,7 +10,7 @@ package classes.animes {
         public var distance:int;
 
         private var spd:Point;
-        private var targetLayerIndex:int;
+        private var targetLayerIndex:int = 1;
         private var target:DisplayObject;
         private var valid:Boolean = true;
         private var totalMovingDistance:Number = 0;
