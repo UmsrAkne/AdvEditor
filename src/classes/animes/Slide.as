@@ -26,17 +26,15 @@ package classes.animes {
                 return;
             }
 
-            frameCount++;
-
-            if (spd == null) {
+            if (frameCount == 0) {
 
                 // 270度を加算しているのは、計算の起点を３時地点から１２時地点に修正するため
                 var radian:Number = (degree + 270) * Math.PI / 180;
 
-                var x:int = Math.cos(radian) * speed * 100;
-                var y:int = Math.sin(radian) * speed * 100;
+                var dx:int = Math.cos(radian) * speed;
+                var dy:int = Math.sin(radian) * speed;
 
-                spd = new Point(x / 100, y / 100);
+                spd = new Point(dx, dy);
 
                 if (spd.equals(new Point(0, 0))) {
                     stop();
@@ -82,6 +80,8 @@ package classes.animes {
             totalMovingDistance *= 100;
             totalMovingDistance = Math.floor(totalMovingDistance);
             totalMovingDistance /= 100;
+
+            frameCount++;
 
             if (totalMovingDistance > distance) {
                 stop();
