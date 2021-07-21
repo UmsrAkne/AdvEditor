@@ -26,24 +26,22 @@ package classes.animes {
                 return;
             }
 
-            frameCount++;
-
-            if (spd == null) {
+            if (frameCount == 0) {
 
                 // 270度を加算しているのは、計算の起点を３時地点から１２時地点に修正するため
                 var radian:Number = (degree + 270) * Math.PI / 180;
 
-                var x:int = Math.cos(radian) * speed * 100;
-                var y:int = Math.sin(radian) * speed * 100;
+                var dx:int = Math.cos(radian) * speed;
+                var dy:int = Math.sin(radian) * speed;
 
-                spd = new Point(x / 100, y / 100);
+                spd = new Point(dx, dy);
 
                 if (spd.equals(new Point(0, 0))) {
                     stop();
                 }
 
-                beginningEndPoint = Math.min(40, distance * 0.1);
-                endingStartPoint = Math.max(distance * 0.9, distance - 40);
+                beginningEndPoint = Math.min(50, distance * 0.1);
+                endingStartPoint = Math.max(distance * 0.85, distance - 60);
             }
 
             var actualSpeedX:Number = spd.x;
@@ -59,16 +57,17 @@ package classes.animes {
                 actualSpeedY *= resistance;
             }
 
+
             // アニメーションの終了付近では速度を徐々に遅くする。
             if (totalMovingDistance > endingStartPoint) {
                 endingFrameCount++;
 
-                // cos 60度 = 約 0.5 
+                // cos 75度 = 約 0.25
                 // 速度が半分になるまで cos の値を使って減速。
-                // 60度を超えたら( 値が 0.5 より小さくなる地点まで来たら ) 60度を維持する。
+                // 75度を超えたら( 値が 0.5 より小さくなる地点まで来たら ) 75度を維持する。
 
-                deg = 60 / (distance - endingStartPoint);
-                deg = Math.min(60, deg * endingFrameCount);
+                deg = 75 / (distance - endingStartPoint) * speed;
+                deg = Math.min(75, deg * endingFrameCount);
                 resistance = Math.cos(deg * Math.PI / 180);
                 actualSpeedX = resistance * actualSpeedX;
                 actualSpeedY = resistance * actualSpeedY;
@@ -82,6 +81,8 @@ package classes.animes {
             totalMovingDistance *= 100;
             totalMovingDistance = Math.floor(totalMovingDistance);
             totalMovingDistance /= 100;
+
+            frameCount++;
 
             if (totalMovingDistance > distance) {
                 stop();
