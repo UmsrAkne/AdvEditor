@@ -34,7 +34,7 @@ package classes.sceneContents {
         }
 
         public function get AllowedTargetAnimationNames():Vector.<String> {
-            return new <String>["alphaChanger", "slide", "shake"];
+            return new <String>["alphaChanger", "slide", "shake", "flashing", "scaleChanger", "maskSlide", "bound"];
         }
     }
 }
