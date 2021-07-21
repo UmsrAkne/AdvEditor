@@ -1,6 +1,5 @@
 package {
 
-
     import flash.display.Sprite;
     import flash.desktop.NativeApplication;
     import tests.Assert;
@@ -56,6 +55,7 @@ package {
             new TestSelectionScene();
             new TestChapterManager();
             new TestBound();
+            new TestMaskSlide();
 
             trace("[Tester]" + " " + Assert.TestCounter + " 回のテストを完了しました");
             NativeApplication.nativeApplication.exit();
