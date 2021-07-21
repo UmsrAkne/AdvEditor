@@ -2,7 +2,6 @@ package classes.contentsLoaders.xmlElements {
 
     import classes.sceneContents.Scenario;
     import classes.animes.*;
-    import classes.animes.Bound;
 
     public class AnimeElementConverter implements IXMLElementConverter {
 
@@ -58,6 +57,9 @@ package classes.contentsLoaders.xmlElements {
                     break;
                 case "slide":
                     anime = new Slide();
+                    break;
+                case "maskSlide":
+                    anime = new MaskSlide();
                     break;
                 case "flashing":
                     anime = new Flashing();
