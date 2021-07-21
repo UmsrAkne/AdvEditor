@@ -15,6 +15,9 @@ package classes.gameScenes {
     import flash.ui.Keyboard;
     import classes.contentsLoaders.ContentsLoadUtil;
     import classes.contentsLoaders.ThumbnailLoader;
+    import flash.display.NativeWindow;
+    import flash.display.StageDisplayState;
+    import flash.display.Screen;
 
     public class SelectionScene extends Sprite {
 
@@ -65,6 +68,11 @@ package classes.gameScenes {
 
             if (e.keyCode == Keyboard.Q) {
                 NativeApplication.nativeApplication.exit();
+            }
+
+            if (e.keyCode == Keyboard.F) {
+                stage.fullScreenSourceRect = Screen.mainScreen.bounds;
+                stage.displayState = StageDisplayState.FULL_SCREEN_INTERACTIVE;
             }
 
             if (e.keyCode == Keyboard.DOWN) {
