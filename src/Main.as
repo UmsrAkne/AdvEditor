@@ -24,6 +24,7 @@ package {
             stage.align = StageAlign.TOP_LEFT;
             stage.scaleMode = StageScaleMode.NO_SCALE;
             stage.color = 0x0;
+            stage.stageFocusRect = false;
 
             stage.nativeWindow.width = 1280;
             stage.nativeWindow.height = 720;
