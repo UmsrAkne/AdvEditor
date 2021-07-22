@@ -15,7 +15,6 @@ package classes.gameScenes {
     import flash.ui.Keyboard;
     import classes.contentsLoaders.ContentsLoadUtil;
     import classes.contentsLoaders.ThumbnailLoader;
-    import flash.display.NativeWindow;
     import flash.display.StageDisplayState;
     import flash.display.Screen;
 
