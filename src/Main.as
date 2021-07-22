@@ -3,8 +3,6 @@ package {
     import classes.gameScenes.ScenarioScene;
     import classes.gameScenes.SelectionScene;
     import classes.sceneContents.Resource;
-    import flash.display.Bitmap;
-    import flash.display.BitmapData;
     import flash.display.Sprite;
     import flash.display.StageAlign;
     import flash.display.StageScaleMode;
@@ -28,8 +26,6 @@ package {
 
             stage.nativeWindow.width = 1280;
             stage.nativeWindow.height = 720;
-
-            addChild(new Bitmap(new BitmapData(stage.stageWidth, stage.stageHeight, false, 0x0)));
 
             selectionScene = SelectionScene(addChild(new SelectionScene()));
             selectionScene.addEventListener(Event.COMPLETE, sceneSelectedEventHandler);
