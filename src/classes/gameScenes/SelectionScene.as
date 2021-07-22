@@ -23,10 +23,11 @@ package classes.gameScenes {
 
         private var thumbnails:Vector.<BitmapData> = new Vector.<BitmapData>();
         private var thumbnailLoaders:Vector.<ThumbnailLoader> = new Vector.<ThumbnailLoader>();
-        private var canvas:Bitmap = new Bitmap(new BitmapData(ThumbnailLoader.DEFAULT_THUMBNAIL_WIDTH, ThumbnailLoader.DEFAULT_THUMBNAIL_HEIGHT * 5));
+        private var canvas:Bitmap = new Bitmap();
         private var pathDisplayTextField:TextField = new TextField();
         private var contentsCounter:int;
         private var selectionIndex:int;
+        private var drawingImageCapacity:int = 5;
 
         public function SelectionScene() {
             var directories:Vector.<File> = ContentsLoadUtil.getFileList(new File(File.applicationDirectory.nativePath).resolvePath("../scenarios").nativePath);
@@ -38,6 +39,7 @@ package classes.gameScenes {
                 thumbnailLoader.load();
             }
 
+            canvas.bitmapData = new BitmapData(ThumbnailLoader.DEFAULT_THUMBNAIL_WIDTH, ThumbnailLoader.DEFAULT_THUMBNAIL_HEIGHT * drawingImageCapacity);
             addEventListener(Event.ADDED, showTextField);
         }
 
@@ -54,7 +56,7 @@ package classes.gameScenes {
 
                 addChild(canvas);
                 addEventListener(KeyboardEvent.KEY_DOWN, keyboardEventHandler);
-                drawThumbnails();
+                drawThumbnails(drawingImageCapacity);
             }
         }
 
@@ -73,6 +75,10 @@ package classes.gameScenes {
             if (e.keyCode == Keyboard.F) {
                 stage.fullScreenSourceRect = Screen.mainScreen.bounds;
                 stage.displayState = StageDisplayState.FULL_SCREEN_INTERACTIVE;
+                drawingImageCapacity = Math.ceil(Screen.mainScreen.bounds.height / ThumbnailLoader.DEFAULT_THUMBNAIL_HEIGHT);
+                canvas.bitmapData = new BitmapData(ThumbnailLoader.DEFAULT_THUMBNAIL_WIDTH, ThumbnailLoader.DEFAULT_THUMBNAIL_HEIGHT * drawingImageCapacity);
+                drawThumbnails(drawingImageCapacity);
+                pathDisplayTextField.y = stage.stageHeight - pathDisplayTextField.height;
             }
 
             if (e.keyCode == Keyboard.DOWN) {
@@ -81,7 +87,7 @@ package classes.gameScenes {
                 }
 
                 selectionIndex++;
-                drawThumbnails();
+                drawThumbnails(drawingImageCapacity);
             }
 
             if (e.keyCode == Keyboard.UP) {
@@ -90,7 +96,7 @@ package classes.gameScenes {
                 }
 
                 selectionIndex--;
-                drawThumbnails();
+                drawThumbnails(drawingImageCapacity);
             }
 
             // 1ページ進む
@@ -100,7 +106,7 @@ package classes.gameScenes {
                 }
 
                 selectionIndex = Math.min(selectionIndex + 5, thumbnailLoaders.length - 1);
-                drawThumbnails();
+                drawThumbnails(drawingImageCapacity);
             }
 
             // 1ページ戻る
@@ -110,7 +116,7 @@ package classes.gameScenes {
                 }
 
                 selectionIndex = Math.max(selectionIndex - 5, 0);
-                drawThumbnails();
+                drawThumbnails(drawingImageCapacity);
             }
 
             if (selectionIndex > 0 && selectionIndex <= thumbnailLoaders.length - 1) {
@@ -118,9 +124,9 @@ package classes.gameScenes {
             }
         }
 
-        private function drawThumbnails():void {
+        private function drawThumbnails(drawCount:int):void {
             var drawingImages:Vector.<BitmapData> = new Vector.<BitmapData>();
-            for (var i:int = 0; i < 5; i++) {
+            for (var i:int = 0; i < drawCount; i++) {
                 var index:int = selectionIndex + i;
                 if (index < 0 || index >= thumbnailLoaders.length) {
                     drawingImages.push(new BitmapData(ThumbnailLoader.DEFAULT_THUMBNAIL_WIDTH, ThumbnailLoader.DEFAULT_THUMBNAIL_HEIGHT, false, 0x0));
