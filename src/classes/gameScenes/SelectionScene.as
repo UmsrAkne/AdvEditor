@@ -1,9 +1,13 @@
 package classes.gameScenes {
 
+    import classes.contentsLoaders.ContentsLoadUtil;
+    import classes.contentsLoaders.ThumbnailLoader;
     import flash.desktop.NativeApplication;
     import flash.display.Bitmap;
     import flash.display.BitmapData;
+    import flash.display.Screen;
     import flash.display.Sprite;
+    import flash.display.StageDisplayState;
     import flash.events.Event;
     import flash.events.KeyboardEvent;
     import flash.filesystem.File;
@@ -13,10 +17,6 @@ package classes.gameScenes {
     import flash.text.TextField;
     import flash.text.TextFormat;
     import flash.ui.Keyboard;
-    import classes.contentsLoaders.ContentsLoadUtil;
-    import classes.contentsLoaders.ThumbnailLoader;
-    import flash.display.StageDisplayState;
-    import flash.display.Screen;
 
     public class SelectionScene extends Sprite {
 
