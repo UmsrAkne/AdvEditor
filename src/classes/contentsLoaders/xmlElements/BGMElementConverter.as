@@ -45,7 +45,7 @@ package classes.contentsLoaders.xmlElements {
             }
 
             var fileVec:Vector.<File> = new Vector.<File>();
-            var files:Array = commonResourceDirectory.resolvePath("/bgms").getDirectoryListing();
+            var files:Array = commonResourceDirectory.resolvePath("bgms").getDirectoryListing();
             for (var i:int = 0; i < files.length; i++) {
                 fileVec.push(files[i]);
             }
