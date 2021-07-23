@@ -76,7 +76,7 @@ package classes.contentsLoaders {
             var elementConverters:Vector.<IXMLElementConverter> = new Vector.<IXMLElementConverter>();
             elementConverters.push(new ScenarioElementConverter());
             elementConverters.push(new AnimeElementConverter());
-            elementConverters.push(new BGMElementConverter(sceneDirectory));
+            elementConverters.push(new BGMElementConverter(commonResourceDirectory));
             elementConverters.push(new ImageElementConverter(sceneDirectory));
             elementConverters.push(new SEElementConverter(commonResourceDirectory));
             elementConverters.push(new TextElementConverter());
