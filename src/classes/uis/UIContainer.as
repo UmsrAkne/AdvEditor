@@ -63,7 +63,7 @@ package classes.uis {
         public function AlignUI(baseObjectRect:Rectangle):void {
             baseRect = baseObjectRect;
 
-            textWindow.width = baseRect.width * 0.7;
+            textWindow.width = Math.min(baseRect.width * 0.7, 600);
             textWindow.height = 150;
             textWindow.x = (baseRect.width / 2) - (textWindow.width / 2);
             textWindow.y = baseRect.height * 0.75;
