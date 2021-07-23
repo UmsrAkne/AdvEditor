@@ -16,6 +16,7 @@ package classes.contentsLoaders.xmlElements {
         public function VoiceElementConverter(sceneDirectory:File) {
             voiceDirectory = new File(sceneDirectory.nativePath + "/voices");
             voiceFileList = voiceDirectory.getDirectoryListing();
+            voiceFileList.unshift(null);
         }
 
         public function get ElementName():String {
