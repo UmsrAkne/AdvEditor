@@ -56,6 +56,7 @@ package classes.gameScenes {
                 addChild(canvas);
                 addEventListener(KeyboardEvent.KEY_DOWN, keyboardEventHandler);
                 drawThumbnails(drawingImageCapacity);
+                pathDisplayTextField.text = thumbnailLoaders[selectionIndex].SceneDirectory.nativePath;
             }
         }
 
@@ -65,6 +66,7 @@ package classes.gameScenes {
             if (e.keyCode == Keyboard.ENTER) {
                 addEventListener(Event.ENTER_FRAME, exitScene);
                 removeEventListener(KeyboardEvent.KEY_DOWN, keyboardEventHandler);
+                return;
             }
 
             if (e.keyCode == Keyboard.Q) {
@@ -76,7 +78,6 @@ package classes.gameScenes {
                 stage.displayState = StageDisplayState.FULL_SCREEN_INTERACTIVE;
                 drawingImageCapacity = Math.ceil(Screen.mainScreen.bounds.height / ThumbnailLoader.DEFAULT_THUMBNAIL_HEIGHT);
                 canvas.bitmapData = new BitmapData(ThumbnailLoader.DEFAULT_THUMBNAIL_WIDTH, ThumbnailLoader.DEFAULT_THUMBNAIL_HEIGHT * drawingImageCapacity);
-                drawThumbnails(drawingImageCapacity);
                 pathDisplayTextField.y = stage.stageHeight - pathDisplayTextField.height;
             }
 
@@ -86,7 +87,6 @@ package classes.gameScenes {
                 }
 
                 selectionIndex++;
-                drawThumbnails(drawingImageCapacity);
             }
 
             if (e.keyCode == Keyboard.UP) {
@@ -95,7 +95,6 @@ package classes.gameScenes {
                 }
 
                 selectionIndex--;
-                drawThumbnails(drawingImageCapacity);
             }
 
             // 1ページ進む
@@ -105,7 +104,6 @@ package classes.gameScenes {
                 }
 
                 selectionIndex = Math.min(selectionIndex + 5, thumbnailLoaders.length - 1);
-                drawThumbnails(drawingImageCapacity);
             }
 
             // 1ページ戻る
@@ -115,11 +113,11 @@ package classes.gameScenes {
                 }
 
                 selectionIndex = Math.max(selectionIndex - 5, 0);
-                drawThumbnails(drawingImageCapacity);
             }
 
-            if (selectionIndex > 0 && selectionIndex <= thumbnailLoaders.length - 1) {
+            if (selectionIndex >= 0 && selectionIndex <= thumbnailLoaders.length - 1) {
                 pathDisplayTextField.text = thumbnailLoaders[selectionIndex].SceneDirectory.nativePath;
+                drawThumbnails(drawingImageCapacity);
             }
         }
 
