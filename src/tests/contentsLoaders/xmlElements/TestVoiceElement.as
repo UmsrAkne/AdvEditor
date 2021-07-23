@@ -25,7 +25,7 @@ package tests.contentsLoaders.xmlElements {
 
             var fromIndex:Scenario = new Scenario();
             vc.convert(xmlList2[0], fromIndex);
-            Assert.areEqual(fromIndex.Voice.FileName, "002.mp3");
+            Assert.areEqual(fromIndex.Voice.FileName, "001.mp3");
             Assert.areEqual(fromIndex.Voice.CharacterChannel, 2);
         }
     }
