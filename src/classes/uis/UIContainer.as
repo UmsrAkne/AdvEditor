@@ -63,13 +63,14 @@ package classes.uis {
         public function AlignUI(baseObjectRect:Rectangle):void {
             baseRect = baseObjectRect;
 
-            textWindow.width = baseRect.width * 0.7;
+            textWindow.width = Math.min(baseRect.width * 0.7, 600);
             textWindow.height = 150;
             textWindow.x = (baseRect.width / 2) - (textWindow.width / 2);
             textWindow.y = baseRect.height * 0.75;
 
             textWindowImage.x = (baseRect.width / 2) - (textWindowImage.width / 2);
             textWindowImage.y = baseRect.height * 0.7;
+            textWindowImage.alpha = 0.5;
 
             var bgBmpContainer:BitmapContainer = getBitmapContainerFromIndex(0);
             bgBmpContainer.add(new Bitmap(new BitmapData(baseRect.width, baseRect.height, false, 0x0)));
