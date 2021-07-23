@@ -70,6 +70,7 @@ package classes.uis {
 
             textWindowImage.x = (baseRect.width / 2) - (textWindowImage.width / 2);
             textWindowImage.y = baseRect.height * 0.7;
+            textWindowImage.alpha = 0.5;
 
             var bgBmpContainer:BitmapContainer = getBitmapContainerFromIndex(0);
             bgBmpContainer.add(new Bitmap(new BitmapData(baseRect.width, baseRect.height, false, 0x0)));
