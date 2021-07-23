@@ -56,6 +56,7 @@ package classes.gameScenes {
                 addChild(canvas);
                 addEventListener(KeyboardEvent.KEY_DOWN, keyboardEventHandler);
                 drawThumbnails(drawingImageCapacity);
+                pathDisplayTextField.text = thumbnailLoaders[selectionIndex].SceneDirectory.nativePath;
             }
         }
 
@@ -118,7 +119,7 @@ package classes.gameScenes {
                 drawThumbnails(drawingImageCapacity);
             }
 
-            if (selectionIndex > 0 && selectionIndex <= thumbnailLoaders.length - 1) {
+            if (selectionIndex >= 0 && selectionIndex <= thumbnailLoaders.length - 1) {
                 pathDisplayTextField.text = thumbnailLoaders[selectionIndex].SceneDirectory.nativePath;
             }
         }
