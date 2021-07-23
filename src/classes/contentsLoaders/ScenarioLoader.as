@@ -71,12 +71,14 @@ package classes.contentsLoaders {
         private function makeScenarios(xmlList:XMLList):Vector.<Scenario> {
             var vec:Vector.<Scenario> = new Vector.<Scenario>();
 
+            var commonResourceDirectory:File = new File(File.applicationDirectory.nativePath).resolvePath("../commonResource");
+
             var elementConverters:Vector.<IXMLElementConverter> = new Vector.<IXMLElementConverter>();
             elementConverters.push(new ScenarioElementConverter());
             elementConverters.push(new AnimeElementConverter());
             elementConverters.push(new BGMElementConverter(sceneDirectory));
             elementConverters.push(new ImageElementConverter(sceneDirectory));
-            elementConverters.push(new SEElementConverter(sceneDirectory));
+            elementConverters.push(new SEElementConverter(commonResourceDirectory));
             elementConverters.push(new TextElementConverter());
             elementConverters.push(new VoiceElementConverter(sceneDirectory));
             elementConverters.push(new DrawElementConverter());

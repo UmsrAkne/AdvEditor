@@ -83,7 +83,7 @@ package classes.contentsLoaders.xmlElements {
             }
 
             var fileVec:Vector.<File> = new Vector.<File>();
-            var files:Array = commonResourceDirectory.resolvePath("/ses").getDirectoryListing();
+            var files:Array = commonResourceDirectory.resolvePath("ses").getDirectoryListing();
             for (var i:int = 0; i < files.length; i++) {
                 fileVec.push(files[i]);
             }
