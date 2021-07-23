@@ -26,6 +26,7 @@ package tests.sceneParts {
             var scenario1:Scenario = new Scenario();
             scenario1.Animations.push(new Shake());
             animator.setScenario(scenario1);
+            animator.execute();
 
             animator.executeAnimations();
             Assert.areEqual(animator.AnimationCount, 1);
@@ -36,6 +37,7 @@ package tests.sceneParts {
             scenario2.Animations.push(shake);
 
             animator.setScenario(scenario2);
+            animator.execute();
 
             // 同種のアニメーションを入れた場合は上書きされるので数は増えない。
             Assert.areEqual(animator.AnimationCount, 1);
@@ -78,6 +80,7 @@ package tests.sceneParts {
             var scenario1:Scenario = new Scenario();
             scenario1.Animations.push(new Shake());
             animator.setScenario(scenario1);
+            animator.execute();
 
             animator.executeAnimations();
             animator.executeAnimations();
@@ -93,6 +96,7 @@ package tests.sceneParts {
             scenario2.StopOrders.push(stopOrder);
 
             animator.setScenario(scenario2);
+            animator.execute();
             animator.executeAnimations();
 
             // Shake の停止命令を setScenario によってセット。

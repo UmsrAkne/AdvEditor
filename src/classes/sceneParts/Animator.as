@@ -13,6 +13,7 @@ package classes.sceneParts {
         private var animations:Vector.<IAnimation> = new Vector.<IAnimation>();
         private var bitmapContainer:BitmapContainer;
         private var stopAnimationNames:Vector.<String> = new Vector.<String>();
+        private var currentScenario:Scenario;
 
         public function Animator(targetBitmapContainer:BitmapContainer) {
             bitmapContainer = targetBitmapContainer;
@@ -62,7 +63,13 @@ package classes.sceneParts {
         }
 
         public function execute():void {
-            // 実装なし
+            for each (var anime:IAnimation in currentScenario.Animations) {
+                if (anime.TargetLayerIndex == bitmapContainer.LayerIndex) {
+                    addAnimation(anime);
+                }
+            }
+
+            currentScenario = null;
         }
 
         public function setScenario(scenario:Scenario):void {
@@ -80,11 +87,7 @@ package classes.sceneParts {
                 }
             }
 
-            for each (var anime:IAnimation in scenario.Animations) {
-                if (anime.TargetLayerIndex == bitmapContainer.LayerIndex) {
-                    addAnimation(anime);
-                }
-            }
+            currentScenario = scenario;
         }
 
         public function setUI(ui:UIContainer):void {
