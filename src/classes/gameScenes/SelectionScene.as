@@ -17,6 +17,7 @@ package classes.gameScenes {
     import flash.text.TextField;
     import flash.text.TextFormat;
     import flash.ui.Keyboard;
+    import flash.geom.Point;
 
     public class SelectionScene extends Sprite {
 
@@ -27,6 +28,8 @@ package classes.gameScenes {
         private var contentsCounter:int;
         private var selectionIndex:int;
         private var drawingImageCapacity:int = 5;
+        private var frameCount:int;
+        private var scrollDirection:Point = new Point(0, 0);
 
         public function SelectionScene() {
             var directories:Vector.<File> = ContentsLoadUtil.getFileList(new File(File.applicationDirectory.nativePath).resolvePath("../scenarios").nativePath);
@@ -61,6 +64,9 @@ package classes.gameScenes {
         }
 
         private function keyboardEventHandler(e:KeyboardEvent):void {
+            if (hasEventListener(Event.ENTER_FRAME)) {
+                return;
+            }
 
             // enter でシーンを終了する。
             if (e.keyCode == Keyboard.ENTER) {
@@ -87,6 +93,7 @@ package classes.gameScenes {
                 }
 
                 selectionIndex++;
+                scrollDirection.y++;
             }
 
             if (e.keyCode == Keyboard.UP) {
@@ -95,6 +102,7 @@ package classes.gameScenes {
                 }
 
                 selectionIndex--;
+                scrollDirection.y--;
             }
 
             // 1ページ進む
@@ -104,6 +112,7 @@ package classes.gameScenes {
                 }
 
                 selectionIndex = Math.min(selectionIndex + 5, thumbnailLoaders.length - 1);
+                scrollDirection.x++;
             }
 
             // 1ページ戻る
@@ -113,11 +122,12 @@ package classes.gameScenes {
                 }
 
                 selectionIndex = Math.max(selectionIndex - 5, 0);
+                scrollDirection.x--;
             }
 
             if (selectionIndex >= 0 && selectionIndex <= thumbnailLoaders.length - 1) {
                 pathDisplayTextField.text = thumbnailLoaders[selectionIndex].SceneDirectory.nativePath;
-                drawThumbnails(drawingImageCapacity);
+                addEventListener(Event.ENTER_FRAME, scrollAnimation);
             }
         }
 
@@ -149,6 +159,25 @@ package classes.gameScenes {
                 canvas.bitmapData.draw(b, m);
                 posY++;
             }
+        }
+
+        private function scrollAnimation(e:Event):void {
+            if (frameCount > 1) {
+                drawThumbnails(drawingImageCapacity);
+                removeEventListener(Event.ENTER_FRAME, scrollAnimation);
+                frameCount = 0;
+                scrollDirection = new Point(0, 0);
+                canvas.x = 0;
+                canvas.y = 0;
+                canvas.alpha = 1.0;
+                return;
+            }
+
+            canvas.x += scrollDirection.x * 80 * -1;
+            canvas.y += scrollDirection.y * 50 * -1;
+            canvas.alpha -= 0.3;
+
+            frameCount++;
         }
 
         private function showTextField(e:Event):void {
