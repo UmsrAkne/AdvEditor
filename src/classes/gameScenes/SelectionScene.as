@@ -123,7 +123,11 @@ package classes.gameScenes {
 
         private function drawThumbnails(drawCount:int):void {
             var drawingImages:Vector.<BitmapData> = new Vector.<BitmapData>();
-            for (var i:int = 0; i < drawCount; i++) {
+
+            // 真ん中の位置だけ明度を下げずにカーソルの位置を示すため、描画可能な画像の枚数から中心の画像の座標を算出
+            var centerPos:int = Math.floor(drawCount / 2);
+
+            for (var i:int = centerPos * -1; i < drawCount - centerPos; i++) {
                 var index:int = selectionIndex + i;
                 if (index < 0 || index >= thumbnailLoaders.length) {
                     drawingImages.push(new BitmapData(ThumbnailLoader.DEFAULT_THUMBNAIL_WIDTH, ThumbnailLoader.DEFAULT_THUMBNAIL_HEIGHT, false, 0x0));
@@ -133,7 +137,8 @@ package classes.gameScenes {
 
                 if (i != 0) {
                     var darkFilter:ColorTransform = new ColorTransform(0.4, 0.4, 0.4);
-                    drawingImages[i].colorTransform(new Rectangle(0, 0, drawingImages[i].width, drawingImages[i].height), darkFilter);
+                    var img:BitmapData = drawingImages[drawingImages.length - 1];
+                    img.colorTransform(new Rectangle(0, 0, img.width, img.height), darkFilter);
                 }
             }
 
