@@ -12,7 +12,7 @@ package classes.contentsLoaders {
 
     public class ThumbnailLoader {
 
-        public static const DEFAULT_THUMBNAIL_WIDTH:int = 320;
+        public static const DEFAULT_THUMBNAIL_WIDTH:int = 380;
         public static const DEFAULT_THUMBNAIL_HEIGHT:int = 160;
 
         private var completeEventDispathcer:EventDispatcher = new EventDispatcher();

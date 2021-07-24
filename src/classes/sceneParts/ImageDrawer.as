@@ -45,11 +45,22 @@ package classes.sceneParts {
             }
 
             if (needBitmapAddition) {
-                var bitmap:Bitmap = new Bitmap(new BitmapData(resource.ScreenSize.width, resource.ScreenSize.height, true, currentOrder.backgroundColor));
+                var bmds:Vector.<BitmapData> = new Vector.<BitmapData>();
+                var w:int = resource.ScreenSize.width;
+                var h:int = resource.ScreenSize.height;
                 for each (var index:int in currentOrder.indexes) {
                     if (index > 0) {
-                        bitmap.bitmapData.draw(resource.BitmapDatas[index]);
+                        var b:BitmapData = resource.BitmapDatas[index];
+                        bmds.push(b);
+                        w = Math.max(w, b.width);
+                        h = Math.max(h, b.height);
                     }
+                }
+
+                var bitmap:Bitmap = new Bitmap(new BitmapData(w, h, true, currentOrder.backgroundColor));
+
+                for each (var bmd:BitmapData in bmds) {
+                    bitmap.bitmapData.draw(bmd);
                 }
 
                 var matrix:Matrix;

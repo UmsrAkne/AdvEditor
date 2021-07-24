@@ -7,6 +7,7 @@ package {
     import flash.display.StageAlign;
     import flash.display.StageScaleMode;
     import flash.events.Event;
+    import flash.display.StageDisplayState;
 
     /**
      * ...
@@ -44,10 +45,12 @@ package {
         private function loadCompleteEventHandler(event:Event):void {
             var res:Resource = LoadingScene(event.target).getResource();
 
-            stage.stageWidth = res.ScreenSize.width;
-            stage.stageHeight = res.ScreenSize.height;
-            stage.nativeWindow.width = res.ScreenSize.width + 16;
-            stage.nativeWindow.height = res.ScreenSize.height + 39;
+            if (stage.displayState != StageDisplayState.FULL_SCREEN_INTERACTIVE) {
+                stage.stageWidth = res.ScreenSize.width;
+                stage.stageHeight = res.ScreenSize.height;
+                stage.nativeWindow.width = res.ScreenSize.width + 16;
+                stage.nativeWindow.height = res.ScreenSize.height + 39;
+            }
 
             scenarioScene = new ScenarioScene();
             scenarioScene.setResource(res);
