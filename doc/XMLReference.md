@@ -41,6 +41,8 @@
 	a-c までの属性内にはファイル名を入力する
 	ImageElementConverter:"@a"
 	ImageElementConverter:"@backgroundColor"
+		8 桁の 16 進数(ARGB)で指定する。 ex : <image backgroundColor="0xffffffff" />
+
 	ImageElementConverter:"@b"
 	ImageElementConverter:"@c"
 	ImageElementConverter:"@rotation"
