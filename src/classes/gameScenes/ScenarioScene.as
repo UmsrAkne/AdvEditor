@@ -11,6 +11,7 @@ package classes.gameScenes {
     import classes.uis.UIContainer;
     import classes.uis.OptionUI;
     import classes.sceneParts.ChapterManager;
+    import flash.events.MouseEvent;
 
     public class ScenarioScene extends Sprite {
 
@@ -70,6 +71,8 @@ package classes.gameScenes {
             for each (var parts:IScenarioSceneParts in sceneParts) {
                 parts.setUI(ui);
             }
+
+            addEventListener(Event.ADDED_TO_STAGE, setMouseEventHandler);
         }
 
         public function setResource(r:Resource):void {
@@ -140,6 +143,15 @@ package classes.gameScenes {
             for each (var animator:Animator in animators) {
                 animator.executeAnimations();
             }
+        }
+
+        private function setMouseEventHandler(event:Event):void {
+            removeEventListener(Event.ADDED_TO_STAGE, setMouseEventHandler);
+            stage.addEventListener(MouseEvent.CLICK, resetFocus);
+        }
+
+        private function resetFocus(event:MouseEvent):void {
+            stage.focus = this;
         }
     }
 }
