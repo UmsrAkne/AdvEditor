@@ -10,14 +10,15 @@ package classes.gameScenes {
     import flash.display.StageDisplayState;
     import flash.events.Event;
     import flash.events.KeyboardEvent;
+    import flash.events.MouseEvent;
     import flash.filesystem.File;
     import flash.geom.ColorTransform;
     import flash.geom.Matrix;
+    import flash.geom.Point;
     import flash.geom.Rectangle;
     import flash.text.TextField;
     import flash.text.TextFormat;
     import flash.ui.Keyboard;
-    import flash.geom.Point;
 
     public class SelectionScene extends Sprite {
 
@@ -43,6 +44,7 @@ package classes.gameScenes {
 
             canvas.bitmapData = new BitmapData(ThumbnailLoader.DEFAULT_THUMBNAIL_WIDTH, ThumbnailLoader.DEFAULT_THUMBNAIL_HEIGHT * drawingImageCapacity);
             addEventListener(Event.ADDED, showTextField);
+            addEventListener(Event.ADDED_TO_STAGE, setMouseEventHandler);
         }
 
         public function get SelectedSceneDirectory():File {
@@ -72,6 +74,7 @@ package classes.gameScenes {
             if (e.keyCode == Keyboard.ENTER) {
                 addEventListener(Event.ENTER_FRAME, exitScene);
                 removeEventListener(KeyboardEvent.KEY_DOWN, keyboardEventHandler);
+                stage.removeEventListener(MouseEvent.CLICK, resetFocus);
                 return;
             }
 
@@ -199,6 +202,15 @@ package classes.gameScenes {
                 removeEventListener(Event.ENTER_FRAME, exitScene);
                 dispatchEvent(new Event(Event.COMPLETE));
             }
+        }
+
+        private function setMouseEventHandler(event:Event):void {
+            stage.addEventListener(MouseEvent.CLICK, resetFocus);
+            removeEventListener(Event.ADDED_TO_STAGE, setMouseEventHandler);
+        }
+
+        private function resetFocus(e:MouseEvent):void {
+            stage.focus = this;
         }
     }
 }
