@@ -9,6 +9,7 @@ package classes.contentsLoaders {
     import flash.display.LoaderInfo;
     import flash.geom.Rectangle;
     import flash.geom.Matrix;
+    import flash.desktop.NativeApplication;
 
     public class ThumbnailLoader {
 
@@ -44,7 +45,15 @@ package classes.contentsLoaders {
         }
 
         private function xmlLoadComplete(e:Event):void {
-            var setting:XMLList = new XMLList(URLLoader(e.target).data);
+            try {
+                var setting:XMLList = new XMLList(URLLoader(e.target).data);
+            } catch (error:Error) {
+                trace("setting.xml parse failed. : " + sceneDirectory.nativePath);
+                trace(error.message);
+                NativeApplication.nativeApplication.exit();
+                return;
+            }
+
             var thumbnailFileName:String = setting["setting"][THUMBNAIL_ATTRIBUTE];
 
             var loader:Loader = new Loader();

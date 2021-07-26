@@ -6,6 +6,7 @@ package classes.contentsLoaders {
     import flash.net.URLLoader;
     import flash.events.Event;
     import flash.net.URLRequest;
+    import flash.desktop.NativeApplication;
 
     public class SettingLoader implements ILoader {
 
@@ -83,7 +84,14 @@ package classes.contentsLoaders {
         public function load():void {
             var urlLoader:URLLoader = new URLLoader();
             urlLoader.addEventListener(Event.COMPLETE, function(e:Event):void {
-                settingXMLList = new XMLList(URLLoader(e.target).data);
+                try {
+                    settingXMLList = new XMLList(URLLoader(e.target).data);
+                } catch (error:TypeError) {
+                    trace(error.message);
+                    NativeApplication.nativeApplication.exit();
+                    return;
+                }
+
                 completeEventDispatcher.dispatchEvent(new Event(Event.COMPLETE));
             });
 
