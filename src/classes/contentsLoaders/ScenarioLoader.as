@@ -11,6 +11,7 @@ package classes.contentsLoaders {
     import classes.contentsLoaders.xmlElements.ScenarioElementConverter;
     import classes.sceneContents.Resource;
     import classes.contentsLoaders.xmlElements.DrawElementConverter;
+    import flash.desktop.NativeApplication;
 
     public class ScenarioLoader implements ILoader {
 
@@ -47,10 +48,18 @@ package classes.contentsLoaders {
 
                 var urlLoader:URLLoader = new URLLoader();
                 urlLoader.addEventListener(Event.COMPLETE, function(e:Event):void {
-                    scenarioXML = new XMLList(URLLoader(e.target).data);
+                    try {
+                        scenarioXML = new XMLList(URLLoader(e.target).data);
+                    } catch (error:TypeError) {
+                        trace(error.message);
+                        NativeApplication.nativeApplication.exit();
+                        return;
+                    }
+
                     scenarios = makeScenarios(scenarioXML);
                     CompleteEventDispatcher.dispatchEvent(new Event(Event.COMPLETE));
                 });
+
 
                 urlLoader.load(new URLRequest(sceneDirectory.resolvePath("texts/scenario.xml").nativePath));
                 return;
