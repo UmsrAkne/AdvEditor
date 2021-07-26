@@ -25,6 +25,7 @@ package classes.gameScenes {
         private var thumbnails:Vector.<BitmapData> = new Vector.<BitmapData>();
         private var thumbnailLoaders:Vector.<ThumbnailLoader> = new Vector.<ThumbnailLoader>();
         private var canvas:Bitmap = new Bitmap();
+        private var largeThumbnailCanvas:Bitmap = new Bitmap();
         private var pathDisplayTextField:TextField = new TextField();
         private var contentsCounter:int;
         private var selectionIndex:int;
@@ -43,6 +44,8 @@ package classes.gameScenes {
             }
 
             canvas.bitmapData = new BitmapData(ThumbnailLoader.DEFAULT_THUMBNAIL_WIDTH, ThumbnailLoader.DEFAULT_THUMBNAIL_HEIGHT * drawingImageCapacity);
+            largeThumbnailCanvas.x = canvas.bitmapData.width;
+            largeThumbnailCanvas.y = (canvas.height / 4);
             addEventListener(Event.ADDED, showTextField);
             addEventListener(Event.ADDED_TO_STAGE, setMouseEventHandler);
         }
@@ -59,8 +62,10 @@ package classes.gameScenes {
                 }
 
                 addChild(canvas);
+                addChild(largeThumbnailCanvas);
                 addEventListener(KeyboardEvent.KEY_DOWN, keyboardEventHandler);
                 drawThumbnails(drawingImageCapacity);
+                largeThumbnailCanvas.bitmapData = thumbnailLoaders[selectionIndex].LargeThumbnail
                 pathDisplayTextField.text = thumbnailLoaders[selectionIndex].SceneDirectory.nativePath;
             }
         }
@@ -87,6 +92,7 @@ package classes.gameScenes {
                 stage.displayState = StageDisplayState.FULL_SCREEN_INTERACTIVE;
                 drawingImageCapacity = Math.ceil(Screen.mainScreen.bounds.height / ThumbnailLoader.DEFAULT_THUMBNAIL_HEIGHT);
                 canvas.bitmapData = new BitmapData(ThumbnailLoader.DEFAULT_THUMBNAIL_WIDTH, ThumbnailLoader.DEFAULT_THUMBNAIL_HEIGHT * drawingImageCapacity);
+                largeThumbnailCanvas.y = (canvas.height / 4);
                 pathDisplayTextField.y = stage.stageHeight - pathDisplayTextField.height;
             }
 
@@ -167,6 +173,8 @@ package classes.gameScenes {
         private function scrollAnimation(e:Event):void {
             if (frameCount > 1) {
                 drawThumbnails(drawingImageCapacity);
+                largeThumbnailCanvas.bitmapData = thumbnailLoaders[selectionIndex].LargeThumbnail
+                largeThumbnailCanvas.alpha = 1;
                 removeEventListener(Event.ENTER_FRAME, scrollAnimation);
                 frameCount = 0;
                 scrollDirection = new Point(0, 0);
@@ -179,6 +187,7 @@ package classes.gameScenes {
             canvas.x += scrollDirection.x * 80 * -1;
             canvas.y += scrollDirection.y * 50 * -1;
             canvas.alpha -= 0.3;
+            largeThumbnailCanvas.alpha -= 0.2;
 
             frameCount++;
         }
