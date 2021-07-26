@@ -19,6 +19,7 @@ package classes.contentsLoaders {
         private var completeEventDispathcer:EventDispatcher = new EventDispatcher();
         private var sceneDirectory:File;
         private var thumbnail:BitmapData;
+        private var largeThumbnail:BitmapData;
         private var thumbnailRect:Rectangle = new Rectangle(0, 0, DEFAULT_THUMBNAIL_WIDTH, DEFAULT_THUMBNAIL_HEIGHT);
         private const THUMBNAIL_ATTRIBUTE:String = "@thumbnail";
 
@@ -38,6 +39,10 @@ package classes.contentsLoaders {
 
         public function get Thumbnail():BitmapData {
             return thumbnail;
+        }
+
+        public function get LargeThumbnail():BitmapData {
+            return largeThumbnail;
         }
 
         public function get SceneDirectory():File {
@@ -65,7 +70,9 @@ package classes.contentsLoaders {
             }
 
             loader.contentLoaderInfo.addEventListener(Event.COMPLETE, function(e:Event):void {
-                createThumbnailImage(LoaderInfo(e.target).loader);
+                thumbnail = createThumbnailImage(LoaderInfo(e.target).loader, thumbnailRect);
+                var largeSizeThumbnailRect:Rectangle = new Rectangle(0, 0, thumbnailRect.width * 2.5, thumbnailRect.height * 2.5);
+                largeThumbnail = createThumbnailImage(LoaderInfo(e.target).loader, largeSizeThumbnailRect);
                 CompleteEventDispatcher.dispatchEvent(new Event(Event.COMPLETE));
             });
 
@@ -76,15 +83,16 @@ package classes.contentsLoaders {
          * thumbnailRect のサイズになるよう BitmapData を加工、生成して thumbnail に入力します。
          * @param loader
          */
-        private function createThumbnailImage(loader:Loader):void {
-            thumbnail = new BitmapData(thumbnailRect.width, thumbnailRect.height, false, 0x0);
+        private function createThumbnailImage(loader:Loader, sizeRect:Rectangle):BitmapData {
+            var thumb:BitmapData = new BitmapData(sizeRect.width, sizeRect.height, false, 0x0);
             var m:Matrix = new Matrix();
 
-            var scale:Number = thumbnailRect.width / loader.width;
+            var scale:Number = sizeRect.width / loader.width;
             m.scale(scale, scale);
-            m.ty -= (loader.height * scale / 2) - (thumbnailRect.height / 2);
+            m.ty -= (loader.height * scale / 2) - (sizeRect.height / 2);
+            thumb.draw(loader, m);
 
-            thumbnail.draw(loader, m, null, null);
+            return thumb;
         }
     }
 }
