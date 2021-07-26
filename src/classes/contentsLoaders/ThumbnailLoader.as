@@ -71,7 +71,7 @@ package classes.contentsLoaders {
 
             loader.contentLoaderInfo.addEventListener(Event.COMPLETE, function(e:Event):void {
                 thumbnail = createThumbnailImage(LoaderInfo(e.target).loader, thumbnailRect);
-                var largeSizeThumbnailRect:Rectangle = new Rectangle(0, 0, thumbnailRect.width * 2.5, thumbnailRect.height * 2.5);
+                var largeSizeThumbnailRect:Rectangle = new Rectangle(0, 0, thumbnailRect.width * 2.0, thumbnailRect.height * 2.5);
                 largeThumbnail = createThumbnailImage(LoaderInfo(e.target).loader, largeSizeThumbnailRect);
                 CompleteEventDispatcher.dispatchEvent(new Event(Event.COMPLETE));
             });

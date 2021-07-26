@@ -45,6 +45,7 @@ package classes.gameScenes {
 
             canvas.bitmapData = new BitmapData(ThumbnailLoader.DEFAULT_THUMBNAIL_WIDTH, ThumbnailLoader.DEFAULT_THUMBNAIL_HEIGHT * drawingImageCapacity);
             largeThumbnailCanvas.x = canvas.bitmapData.width;
+            largeThumbnailCanvas.y = (canvas.height / 4);
             addEventListener(Event.ADDED, showTextField);
             addEventListener(Event.ADDED_TO_STAGE, setMouseEventHandler);
         }
@@ -91,6 +92,7 @@ package classes.gameScenes {
                 stage.displayState = StageDisplayState.FULL_SCREEN_INTERACTIVE;
                 drawingImageCapacity = Math.ceil(Screen.mainScreen.bounds.height / ThumbnailLoader.DEFAULT_THUMBNAIL_HEIGHT);
                 canvas.bitmapData = new BitmapData(ThumbnailLoader.DEFAULT_THUMBNAIL_WIDTH, ThumbnailLoader.DEFAULT_THUMBNAIL_HEIGHT * drawingImageCapacity);
+                largeThumbnailCanvas.y = (canvas.height / 4);
                 pathDisplayTextField.y = stage.stageHeight - pathDisplayTextField.height;
             }
 
@@ -185,7 +187,7 @@ package classes.gameScenes {
             canvas.x += scrollDirection.x * 80 * -1;
             canvas.y += scrollDirection.y * 50 * -1;
             canvas.alpha -= 0.3;
-            largeThumbnailCanvas.alpha -= 0.4;
+            largeThumbnailCanvas.alpha -= 0.2;
 
             frameCount++;
         }
