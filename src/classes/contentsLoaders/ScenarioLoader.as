@@ -91,6 +91,7 @@ package classes.contentsLoaders {
             elementConverters.push(new TextElementConverter());
             elementConverters.push(new VoiceElementConverter(sceneDirectory));
             elementConverters.push(new DrawElementConverter());
+            elementConverters.push(new MaskElementConverter());
 
             for each (var scenarioTag:XML in xmlList["scenario"]) {
                 var scenario:Scenario = new Scenario();
