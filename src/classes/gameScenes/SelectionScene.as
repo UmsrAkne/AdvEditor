@@ -96,7 +96,7 @@ package classes.gameScenes {
                 pathDisplayTextField.y = stage.stageHeight - pathDisplayTextField.height;
             }
 
-            if (e.keyCode == Keyboard.DOWN) {
+            if (e.keyCode == Keyboard.DOWN || e.keyCode == Keyboard.J) {
                 if (selectionIndex >= thumbnailLoaders.length - 1) {
                     return;
                 }
@@ -105,7 +105,7 @@ package classes.gameScenes {
                 scrollDirection.y++;
             }
 
-            if (e.keyCode == Keyboard.UP) {
+            if (e.keyCode == Keyboard.UP || e.keyCode == Keyboard.K) {
                 if (selectionIndex <= 0) {
                     return;
                 }
@@ -115,7 +115,7 @@ package classes.gameScenes {
             }
 
             // 1ページ進む
-            if (e.keyCode == Keyboard.RIGHT) {
+            if (e.keyCode == Keyboard.RIGHT || e.keyCode == Keyboard.L) {
                 if (selectionIndex == thumbnailLoaders.length - 1) {
                     return;
                 }
@@ -125,7 +125,7 @@ package classes.gameScenes {
             }
 
             // 1ページ戻る
-            if (e.keyCode == Keyboard.LEFT) {
+            if (e.keyCode == Keyboard.LEFT || e.keyCode == Keyboard.H) {
                 if (selectionIndex <= 0) {
                     return;
                 }
