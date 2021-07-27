@@ -68,6 +68,10 @@ package classes.contentsLoaders.xmlElements {
                 var maskOrder:MaskOrder = new MaskOrder();
                 maskOrder.shape = maskShape;
                 scenario.Masks.push(maskOrder);
+
+                if (tag.hasOwnProperty(TARGET_ATTRIBUTE)) {
+                    maskOrder.TargetLayerIndex = TargetAttributeConverter.getLayerIndexFromTargetName(String(tag[TARGET_ATTRIBUTE]));
+                }
             }
         }
     }

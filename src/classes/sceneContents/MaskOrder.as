@@ -12,12 +12,12 @@ package classes.sceneContents {
         public function MaskOrder() {
         }
 
-        public function set Target(value:String):void {
-            targetLayerIndex = TargetAttributeConverter.getLayerIndexFromTargetName(value);
-        }
-
         public function get TargetLayerIndex():int {
             return targetLayerIndex;
+        }
+
+        public function set TargetLayerIndex(value:int):void {
+            targetLayerIndex = value;
         }
     }
 }
