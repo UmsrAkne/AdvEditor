@@ -33,6 +33,7 @@ package classes.gameScenes {
         private var drawingImageCapacity:int = 5;
         private var frameCount:int;
         private var scrollDirection:Point = new Point(0, 0);
+        private var config:Configuration = new Configuration();
 
         public function SelectionScene() {
             var directories:Vector.<File> = ContentsLoadUtil.getFileList(new File(File.applicationDirectory.nativePath).resolvePath("../scenarios").nativePath);
@@ -44,7 +45,6 @@ package classes.gameScenes {
                 thumbnailLoader.load();
             }
 
-            var config:Configuration = new Configuration();
             config.CompleteEventDispatcher.addEventListener(Event.COMPLETE, function(e:Event):void {
                 selectionIndex = config.SelectionIndex;
             });
@@ -85,6 +85,11 @@ package classes.gameScenes {
 
             // enter でシーンを終了する。
             if (e.keyCode == Keyboard.ENTER) {
+                config.SelectionIndex = selectionIndex;
+                if (stage.displayContextInfo == StageDisplayState.FULL_SCREEN_INTERACTIVE) {
+                    config.FullScreenMode = true;
+                }
+
                 addEventListener(Event.ENTER_FRAME, exitScene);
                 removeEventListener(KeyboardEvent.KEY_DOWN, keyboardEventHandler);
                 stage.removeEventListener(MouseEvent.CLICK, resetFocus);

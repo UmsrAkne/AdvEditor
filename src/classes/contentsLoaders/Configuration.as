@@ -18,6 +18,7 @@ package classes.contentsLoaders {
 
         private var completeEventDispatcher:EventDispatcher = new EventDispatcher();
         private var xml:XML;
+        private var file:File;
 
         public function Configuration() {
 
@@ -49,17 +50,9 @@ package classes.contentsLoaders {
         }
 
         public function load(xmlFilePath:String):void {
-            var xmlFile:File = new File(xmlFilePath);
-            if (!xmlFile.exists) {
-                var stream:FileStream = new FileStream();
-                stream.open(xmlFile, FileMode.WRITE);
-                var defaultXMLString:String = "<root><" + ElementName + " ";
-                defaultXMLString += SELECTION_INDEX_ATTRIBUTE.substr(1) + "=\"0\" ";
-                defaultXMLString += FULL_SCREEN_MODE_ATTRIBUTE.substr(1) + "=\"false\"";
-                defaultXMLString += "/></root>"
-
-                stream.writeUTFBytes(defaultXMLString);
-                stream.close();
+            file = new File(xmlFilePath);
+            if (!file.exists) {
+                exportXML(file);
             }
 
             var urlLoader:URLLoader = new URLLoader();
@@ -68,7 +61,19 @@ package classes.contentsLoaders {
                 convert();
             });
 
-            urlLoader.load(new URLRequest(xmlFile.nativePath));
+            urlLoader.load(new URLRequest(file.nativePath));
+        }
+
+        private function exportXML(xmlFile:File):void {
+            var stream:FileStream = new FileStream();
+            stream.open(xmlFile, FileMode.WRITE);
+            var defaultXMLString:String = "<root><" + ElementName + " ";
+            defaultXMLString += SELECTION_INDEX_ATTRIBUTE.substr(1) + "=\"" + selectionIndex + "\" ";
+            defaultXMLString += FULL_SCREEN_MODE_ATTRIBUTE.substr(1) + "=\"" + fullScreenMode + "\"";
+            defaultXMLString += "/></root>"
+
+            stream.writeUTFBytes(defaultXMLString);
+            stream.close();
         }
 
         public function get ElementName():String {
@@ -77,6 +82,20 @@ package classes.contentsLoaders {
 
         public function get SelectionIndex():int {
             return selectionIndex
+        }
+
+        public function set SelectionIndex(value:int):void {
+            selectionIndex = value;
+            if (file != null) {
+                exportXML(file);
+            }
+        }
+
+        public function set FullScreenMode(value:Boolean):void {
+            fullScreenMode = value;
+            if (file != null) {
+                exportXML(file);
+            }
         }
 
         public function get FullScreenMode():Boolean {
