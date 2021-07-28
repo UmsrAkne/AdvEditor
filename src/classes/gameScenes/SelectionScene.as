@@ -1,5 +1,6 @@
 package classes.gameScenes {
 
+    import classes.contentsLoaders.Configuration;
     import classes.contentsLoaders.ContentsLoadUtil;
     import classes.contentsLoaders.ThumbnailLoader;
     import flash.desktop.NativeApplication;
@@ -32,6 +33,7 @@ package classes.gameScenes {
         private var drawingImageCapacity:int = 5;
         private var frameCount:int;
         private var scrollDirection:Point = new Point(0, 0);
+        private var config:Configuration = new Configuration();
 
         public function SelectionScene() {
             var directories:Vector.<File> = ContentsLoadUtil.getFileList(new File(File.applicationDirectory.nativePath).resolvePath("../scenarios").nativePath);
@@ -42,6 +44,15 @@ package classes.gameScenes {
                 thumbnailLoader.CompleteEventDispatcher.addEventListener(Event.COMPLETE, thumbnailLoadComplete);
                 thumbnailLoader.load();
             }
+
+            config.CompleteEventDispatcher.addEventListener(Event.COMPLETE, function(e:Event):void {
+                selectionIndex = config.SelectionIndex;
+                if (config.FullScreenMode) {
+                    toggleWindowMode();
+                }
+            });
+
+            config.load(new File(File.applicationDirectory.nativePath).resolvePath("../commonResource/texts/configuration.xml").nativePath);
 
             canvas.bitmapData = new BitmapData(ThumbnailLoader.DEFAULT_THUMBNAIL_WIDTH, ThumbnailLoader.DEFAULT_THUMBNAIL_HEIGHT * drawingImageCapacity);
             largeThumbnailCanvas.x = canvas.bitmapData.width;
@@ -77,6 +88,9 @@ package classes.gameScenes {
 
             // enter でシーンを終了する。
             if (e.keyCode == Keyboard.ENTER) {
+                config.SelectionIndex = selectionIndex;
+                config.FullScreenMode = (stage.displayState == StageDisplayState.FULL_SCREEN_INTERACTIVE);
+
                 addEventListener(Event.ENTER_FRAME, exitScene);
                 removeEventListener(KeyboardEvent.KEY_DOWN, keyboardEventHandler);
                 stage.removeEventListener(MouseEvent.CLICK, resetFocus);
@@ -88,12 +102,7 @@ package classes.gameScenes {
             }
 
             if (e.keyCode == Keyboard.F) {
-                stage.fullScreenSourceRect = Screen.mainScreen.bounds;
-                stage.displayState = StageDisplayState.FULL_SCREEN_INTERACTIVE;
-                drawingImageCapacity = Math.ceil(Screen.mainScreen.bounds.height / ThumbnailLoader.DEFAULT_THUMBNAIL_HEIGHT);
-                canvas.bitmapData = new BitmapData(ThumbnailLoader.DEFAULT_THUMBNAIL_WIDTH, ThumbnailLoader.DEFAULT_THUMBNAIL_HEIGHT * drawingImageCapacity);
-                largeThumbnailCanvas.y = (canvas.height / 4);
-                pathDisplayTextField.y = stage.stageHeight - pathDisplayTextField.height;
+                toggleWindowMode();
             }
 
             if (e.keyCode == Keyboard.DOWN || e.keyCode == Keyboard.J) {
@@ -199,6 +208,28 @@ package classes.gameScenes {
             pathDisplayTextField.height = 30;
 
             if (stage != null) {
+                pathDisplayTextField.y = stage.stageHeight - pathDisplayTextField.height;
+            }
+        }
+
+        private function toggleWindowMode():void {
+            if (!stage) {
+                return;
+            }
+
+            if (!(stage.displayState == StageDisplayState.FULL_SCREEN_INTERACTIVE)) {
+                stage.fullScreenSourceRect = Screen.mainScreen.bounds;
+                stage.displayState = StageDisplayState.FULL_SCREEN_INTERACTIVE;
+                drawingImageCapacity = Math.ceil(Screen.mainScreen.bounds.height / ThumbnailLoader.DEFAULT_THUMBNAIL_HEIGHT);
+                canvas.bitmapData = new BitmapData(ThumbnailLoader.DEFAULT_THUMBNAIL_WIDTH, ThumbnailLoader.DEFAULT_THUMBNAIL_HEIGHT * drawingImageCapacity);
+                largeThumbnailCanvas.y = (canvas.height / 4);
+                pathDisplayTextField.y = stage.stageHeight - pathDisplayTextField.height;
+            } else {
+                stage.fullScreenSourceRect = Screen.mainScreen.bounds;
+                stage.displayState = StageDisplayState.NORMAL;
+                drawingImageCapacity = 5;
+                canvas.bitmapData = new BitmapData(ThumbnailLoader.DEFAULT_THUMBNAIL_WIDTH, ThumbnailLoader.DEFAULT_THUMBNAIL_HEIGHT * drawingImageCapacity);
+                largeThumbnailCanvas.y = (canvas.height / 4);
                 pathDisplayTextField.y = stage.stageHeight - pathDisplayTextField.height;
             }
         }
