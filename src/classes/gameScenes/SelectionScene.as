@@ -1,5 +1,6 @@
 package classes.gameScenes {
 
+    import classes.contentsLoaders.Configuration;
     import classes.contentsLoaders.ContentsLoadUtil;
     import classes.contentsLoaders.ThumbnailLoader;
     import flash.desktop.NativeApplication;
@@ -19,7 +20,6 @@ package classes.gameScenes {
     import flash.text.TextField;
     import flash.text.TextFormat;
     import flash.ui.Keyboard;
-    import classes.contentsLoaders.Configuration;
 
     public class SelectionScene extends Sprite {
 
