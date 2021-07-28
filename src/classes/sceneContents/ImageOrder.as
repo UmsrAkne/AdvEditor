@@ -14,7 +14,7 @@ package classes.sceneContents {
         public var rotation:int = 0;
 
         public var backgroundColor:uint = 0x00000000;
-        public var drawingDepth:Number = 1.0;
+        public var drawingDepth:Number = 0.1;
         public var statusInherit:Boolean;
 
         private var scale:Number = 1.0;
