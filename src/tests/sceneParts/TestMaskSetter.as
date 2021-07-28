@@ -31,7 +31,7 @@ package tests.sceneParts {
             g.beginFill(0x000000, 1);
             g.drawCircle(0, 0, 50);
             maskOrder.shape = shape;
-            maskOrder.Target = "background";
+            maskOrder.TargetLayerIndex = 0;
             scenario.Masks.push(maskOrder);
 
             maskSetter.setScenario(scenario);
