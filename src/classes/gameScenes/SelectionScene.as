@@ -19,6 +19,7 @@ package classes.gameScenes {
     import flash.text.TextField;
     import flash.text.TextFormat;
     import flash.ui.Keyboard;
+    import classes.contentsLoaders.Configuration;
 
     public class SelectionScene extends Sprite {
 
@@ -42,6 +43,13 @@ package classes.gameScenes {
                 thumbnailLoader.CompleteEventDispatcher.addEventListener(Event.COMPLETE, thumbnailLoadComplete);
                 thumbnailLoader.load();
             }
+
+            var config:Configuration = new Configuration();
+            config.CompleteEventDispatcher.addEventListener(Event.COMPLETE, function(e:Event):void {
+                selectionIndex = config.SelectionIndex;
+            });
+
+            config.load(new File(File.applicationDirectory.nativePath).resolvePath("../commonResource/texts/configuration.xml").nativePath);
 
             canvas.bitmapData = new BitmapData(ThumbnailLoader.DEFAULT_THUMBNAIL_WIDTH, ThumbnailLoader.DEFAULT_THUMBNAIL_HEIGHT * drawingImageCapacity);
             largeThumbnailCanvas.x = canvas.bitmapData.width;
