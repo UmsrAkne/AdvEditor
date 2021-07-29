@@ -31,8 +31,8 @@ package classes.animes {
                 // 270度を加算しているのは、計算の起点を３時地点から１２時地点に修正するため
                 var radian:Number = (degree + 270) * Math.PI / 180;
 
-                var dx:int = Math.cos(radian) * speed;
-                var dy:int = Math.sin(radian) * speed;
+                var dx:Number = Math.cos(radian) * speed;
+                var dy:Number = Math.sin(radian) * speed;
 
                 spd = new Point(dx, dy);
 
