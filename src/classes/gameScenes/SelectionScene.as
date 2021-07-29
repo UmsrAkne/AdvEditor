@@ -86,6 +86,8 @@ package classes.gameScenes {
                 return;
             }
 
+            var animationPlay:Boolean;
+
             // enter でシーンを終了する。
             if (e.keyCode == Keyboard.ENTER) {
                 config.SelectionIndex = selectionIndex;
@@ -103,6 +105,7 @@ package classes.gameScenes {
 
             if (e.keyCode == Keyboard.F) {
                 toggleWindowMode();
+                animationPlay = true;
             }
 
             if (e.keyCode == Keyboard.DOWN || e.keyCode == Keyboard.J) {
@@ -112,6 +115,7 @@ package classes.gameScenes {
 
                 selectionIndex++;
                 scrollDirection.y++;
+                animationPlay = true;
             }
 
             if (e.keyCode == Keyboard.UP || e.keyCode == Keyboard.K) {
@@ -121,6 +125,7 @@ package classes.gameScenes {
 
                 selectionIndex--;
                 scrollDirection.y--;
+                animationPlay = true;
             }
 
             // 1ページ進む
@@ -131,6 +136,7 @@ package classes.gameScenes {
 
                 selectionIndex = Math.min(selectionIndex + 5, thumbnailLoaders.length - 1);
                 scrollDirection.x++;
+                animationPlay = true;
             }
 
             // 1ページ戻る
@@ -141,9 +147,10 @@ package classes.gameScenes {
 
                 selectionIndex = Math.max(selectionIndex - 5, 0);
                 scrollDirection.x--;
+                animationPlay = true;
             }
 
-            if (selectionIndex >= 0 && selectionIndex <= thumbnailLoaders.length - 1) {
+            if (selectionIndex >= 0 && selectionIndex <= thumbnailLoaders.length - 1 && animationPlay) {
                 pathDisplayTextField.text = thumbnailLoaders[selectionIndex].SceneDirectory.nativePath;
                 addEventListener(Event.ENTER_FRAME, scrollAnimation);
             }
