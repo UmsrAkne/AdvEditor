@@ -16,7 +16,7 @@ package tests.animes {
             loopSlide.degree = 315;
             var bitmap:Bitmap = new Bitmap(new BitmapData(200, 200, false, 0x0));
             loopSlide.Target = bitmap;
-            var dummyStageRect:Rectangle = new Rectangle(0, 0, 50, 50);
+            var dummyStageRect:Rectangle = new Rectangle(-1, -2, 50, 50);
             loopSlide.StageRect = dummyStageRect;
             loopSlide.speed = 10;
 

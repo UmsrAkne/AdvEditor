@@ -49,14 +49,29 @@ package classes.animes {
 
         private function measureMovableDistance():int {
             var targetRect:Rectangle = new Rectangle(target.x, target.y, target.width, target.height);
-            if (!targetRect.containsRect(stageRect)) {
-                // target に stage が収まっていない。つまり画像がはみ出しているので動かせない。
-                return 0;
-            }
 
             var radian:Number = (deg + 270) * Math.PI / 180;
             var dx:Number = Math.cos(radian);
             var dy:Number = Math.sin(radian);
+
+            if (!targetRect.containsRect(stageRect)) {
+                // target に stage が収まっていない。つまり画像がはみ出しているので動かせない。
+
+                // 一度目のチェックで target に stage が収まっていない場合に関しては、
+                // Shake 等のアニメーションで数px だけはみ出している（が正常な位置)という状況があり得る。
+                // そこで、動かす予定の方向に少しだけ target をずらして再度チェックする。
+                // それで収まっている場合は、その方向に動かせることが確定するため値を戻して処理を続行する。
+
+                targetRect.x += dx * 15;
+                targetRect.y += dy * 15;
+
+                if (!targetRect.containsRect(stageRect)) {
+                    return 0;
+                } else {
+                    targetRect.x = target.x;
+                    targetRect.y = target.y;
+                }
+            }
 
             // オブジェクトが動くことができる値の中での最大値を算出する。
             // (ターゲットの対角線長) - (ステージの対角線長)
