@@ -104,6 +104,14 @@
 
 	ThumbnailLoader:"@thumbnail"
 
+## configuration.xml の仕様
+
+	/commonResource/texts/configuration.xml に記述。
+	プログラムから自動生成されるため編集の必要はないので仕様の確認用。
+
+	Configuration:"@selectionIndex"
+	Configuration:"@fullScreenMode"
+
 全てのファイルは ActionScript3.0 で使用する場合は
 
 	<root> ... </root>
