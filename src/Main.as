@@ -20,6 +20,7 @@ package {
         private var scenarioScene:ScenarioScene;
 
         public function Main() {
+            stage.frameRate = 32;
             stage.align = StageAlign.TOP_LEFT;
             stage.scaleMode = StageScaleMode.NO_SCALE;
             stage.color = 0x0;
