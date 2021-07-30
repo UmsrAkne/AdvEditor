@@ -3,6 +3,7 @@ package classes.animes {
     import flash.display.DisplayObject;
     import flash.geom.Rectangle;
     import flash.geom.Point;
+    import flash.display.Stage;
 
     public class LoopSlide implements IAnimation {
 
@@ -115,6 +116,21 @@ package classes.animes {
         }
 
         public function set Target(targetObject:DisplayObject):void {
+            // ターゲットがステージの子かどうかを調べて、可能ならばステージのサイズを取得する。
+            var d:DisplayObject = targetObject;
+
+            while (true) {
+                if (d.parent) {
+                    d = d.parent;
+                    if (d is Stage) {
+                        stageRect = new Rectangle(0, 0, Stage(d).stageWidth, Stage(d).stageHeight);
+                        break;
+                    }
+                } else {
+                    break;
+                }
+            }
+
             target = targetObject;
         }
 
