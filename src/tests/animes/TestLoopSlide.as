@@ -39,7 +39,7 @@ package tests.animes {
             var 元の位置に戻った:Boolean;
 
             for (i = 0; i < 50; i++) {
-                if (Math.abs(bitmap.x) < 1 && Math.abs(bitmap.y) < 1) {
+                if (Math.abs(bitmap.x) < 2 && Math.abs(bitmap.y) < 2) {
                     // 描画領域がおよそ 0,0 に到達した時に通るブロック
                     元の位置に戻った = true;
                 }
