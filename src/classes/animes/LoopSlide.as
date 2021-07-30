@@ -3,6 +3,7 @@ package classes.animes {
     import flash.display.DisplayObject;
     import flash.geom.Rectangle;
     import flash.geom.Point;
+    import flash.display.Stage;
 
     public class LoopSlide implements IAnimation {
 
@@ -16,11 +17,16 @@ package classes.animes {
         private var spd:Number = 1.0;
         private var slide:Slide;
         private var stageRect:Rectangle;
+        private var couldNotMoveCounter:int;
 
         public function LoopSlide() {
         }
 
         public function execute():void {
+            if (!valid) {
+                return;
+            }
+
             if (intervalCounter > 0) {
                 intervalCounter--;
                 return;
@@ -32,6 +38,17 @@ package classes.animes {
                 slide.degree = deg;
                 slide.speed = spd;
                 slide.distance = measureMovableDistance();
+                if (slide.distance == 0) {
+                    couldNotMoveCounter++;
+                    slide.speed = 0;
+                } else {
+                    couldNotMoveCounter = 0;
+                }
+
+                if (couldNotMoveCounter >= 5) {
+                    stop();
+                    return;
+                }
             }
 
             slide.execute();
@@ -52,7 +69,10 @@ package classes.animes {
 
             var radian:Number = (deg + 270) * Math.PI / 180;
             var dx:Number = Math.cos(radian);
+            dx = Math.round(100 * dx) / 100;
+
             var dy:Number = Math.sin(radian);
+            dy = Math.round(100 * dy) / 100;
 
             if (!targetRect.containsRect(stageRect)) {
                 // target に stage が収まっていない。つまり画像がはみ出しているので動かせない。
@@ -115,6 +135,21 @@ package classes.animes {
         }
 
         public function set Target(targetObject:DisplayObject):void {
+            // ターゲットがステージの子かどうかを調べて、可能ならばステージのサイズを取得する。
+            var d:DisplayObject = targetObject;
+
+            while (true) {
+                if (d.parent) {
+                    d = d.parent;
+                    if (d is Stage) {
+                        stageRect = new Rectangle(0, 0, Stage(d).stageWidth, Stage(d).stageHeight);
+                        break;
+                    }
+                } else {
+                    break;
+                }
+            }
+
             target = targetObject;
         }
 
