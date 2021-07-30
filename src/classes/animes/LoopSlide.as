@@ -17,11 +17,16 @@ package classes.animes {
         private var spd:Number = 1.0;
         private var slide:Slide;
         private var stageRect:Rectangle;
+        private var couldNotMoveCounter:int;
 
         public function LoopSlide() {
         }
 
         public function execute():void {
+            if (!valid) {
+                return;
+            }
+
             if (intervalCounter > 0) {
                 intervalCounter--;
                 return;
@@ -33,6 +38,17 @@ package classes.animes {
                 slide.degree = deg;
                 slide.speed = spd;
                 slide.distance = measureMovableDistance();
+                if (slide.distance == 0) {
+                    couldNotMoveCounter++;
+                    slide.speed = 0;
+                } else {
+                    couldNotMoveCounter = 0;
+                }
+
+                if (couldNotMoveCounter >= 5) {
+                    stop();
+                    return;
+                }
             }
 
             slide.execute();
