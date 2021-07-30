@@ -53,7 +53,10 @@ package classes.animes {
 
             var radian:Number = (deg + 270) * Math.PI / 180;
             var dx:Number = Math.cos(radian);
+            dx = Math.round(100 * dx) / 100;
+
             var dy:Number = Math.sin(radian);
+            dy = Math.round(100 * dy) / 100;
 
             if (!targetRect.containsRect(stageRect)) {
                 // target に stage が収まっていない。つまり画像がはみ出しているので動かせない。
