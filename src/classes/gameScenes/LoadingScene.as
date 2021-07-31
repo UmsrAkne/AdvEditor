@@ -51,6 +51,7 @@ package classes.gameScenes {
                     l.writeContentsTo(resouce);
                 }
 
+                resouce.sceneDirectory = sceneDirectory
                 dispatchEvent(new Event(Event.COMPLETE));
             }
         }

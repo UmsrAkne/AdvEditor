@@ -5,9 +5,11 @@ package classes.sceneContents {
     import flash.geom.Rectangle;
     import flash.display.BitmapData;
     import classes.uis.UIImages;
+    import flash.filesystem.File;
 
     public class Resource {
 
+        public var sceneDirectory:File;
         public var scenarios:Vector.<Scenario> = new Vector.<Scenario>();
         private var scenariosByChapterName:Dictionary = new Dictionary();
         private var chapterHeaderIndexByChapterName:Dictionary = new Dictionary();
