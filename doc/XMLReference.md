@@ -17,7 +17,27 @@
 	
 	<anime>
 	AnimeElementConverter:"@name"
+		
+		Allowed animation name list.
+			
+		"alphaChanger"
+		"multiAlphaChanger"
+		"shake"
+		"slide"
+		"loopSlide"
+		"maskSlide"
+		"flashing"
+		"scaleChanger"
+		"bound"
+	
 	AnimeElementConverter:"@target"
+	
+		Allowed target name list.
+
+		"background"	: (Layer index 0)
+		"main"			: (Layer index 1)
+		"middle"		: (Layer index 2)
+		"front"			: (Layer index 3)
 
 	<bgm>
 	BGMElementConverter:"@fileName"
@@ -48,7 +68,10 @@
 	ImageElementConverter:"@rotation"
 	ImageElementConverter:"@scale"
 	ImageElementConverter:"@statusInherit"
+
 	ImageElementConverter:"@target"
+		入力する値は anime.target と同様
+
 	ImageElementConverter:"@x"
 	ImageElementConverter:"@y"
 
@@ -62,7 +85,9 @@
 	MaskElementConverter:"@d"
 	MaskElementConverter:"@e"
 	MaskElementConverter:"@f"
+
 	MaskElementConverter:"@target"
+		入力する値は anime.target と同様。
 	
 	<se>
 	SEElementConverter:"@fileName"
