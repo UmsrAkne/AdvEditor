@@ -1,11 +1,10 @@
 package classes.sceneContents {
 
-    import flash.display.Loader;
-    import flash.utils.Dictionary;
-    import flash.geom.Rectangle;
-    import flash.display.BitmapData;
     import classes.uis.UIImages;
+    import flash.display.BitmapData;
     import flash.filesystem.File;
+    import flash.geom.Rectangle;
+    import flash.utils.Dictionary;
 
     public class Resource {
 
