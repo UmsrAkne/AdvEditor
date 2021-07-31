@@ -44,6 +44,8 @@ package {
         }
 
         private function loadCompleteEventHandler(event:Event):void {
+            loadingScene.removeEventListener(Event.COMPLETE, loadCompleteEventHandler);
+
             var res:Resource = LoadingScene(event.target).getResource();
 
             if (stage.displayState != StageDisplayState.FULL_SCREEN_INTERACTIVE) {
@@ -55,9 +57,21 @@ package {
 
             scenarioScene = new ScenarioScene();
             scenarioScene.setResource(res);
+            scenarioScene.addEventListener(ScenarioScene.SCENE_EXIT, reloadScene);
             addChild(scenarioScene);
             stage.focus = scenarioScene;
         }
-    }
 
+        private function reloadScene(e:Event):void {
+            removeChild(scenarioScene);
+            scenarioScene.removeEventListener(ScenarioScene.SCENE_EXIT, reloadScene);
+
+            // 現在読み込まれているシーンの情報が欲しいので、上書き前にリソースを取り出す。
+            var res:Resource = loadingScene.getResource();
+
+            loadingScene = new LoadingScene(res.sceneDirectory);
+            loadingScene.addEventListener(Event.COMPLETE, loadCompleteEventHandler);
+            loadingScene.load();
+        }
+    }
 }
