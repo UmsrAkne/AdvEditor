@@ -14,6 +14,8 @@ package classes.gameScenes {
 
     public class ScenarioScene extends Sprite {
 
+        public static var SCENE_EXIT:String = "sceneExit";
+
         private var ui:UIContainer = new UIContainer();
         private var sceneParts:Vector.<IScenarioSceneParts> = new Vector.<IScenarioSceneParts>();
         private var animators:Vector.<Animator> = new Vector.<Animator>();
@@ -106,6 +108,10 @@ package classes.gameScenes {
                     textWriter.ScenarioCounter = index;
                     playScenario();
                 }
+            }
+
+            if (event.keyCode == Keyboard.R && event.ctrlKey) {
+                dispatchEvent(new Event(SCENE_EXIT));
             }
 
             if (event.keyCode == Keyboard.Q) {
