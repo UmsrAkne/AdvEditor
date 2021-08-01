@@ -8,9 +8,7 @@ package classes.contentsLoaders {
     import flash.net.URLRequest;
     import flash.filesystem.File;
     import classes.contentsLoaders.xmlElements.*;
-    import classes.contentsLoaders.xmlElements.ScenarioElementConverter;
     import classes.sceneContents.Resource;
-    import classes.contentsLoaders.xmlElements.DrawElementConverter;
     import flash.desktop.NativeApplication;
 
     public class ScenarioLoader implements ILoader {
@@ -92,6 +90,8 @@ package classes.contentsLoaders {
             elementConverters.push(new VoiceElementConverter(sceneDirectory));
             elementConverters.push(new DrawElementConverter());
             elementConverters.push(new MaskElementConverter());
+            elementConverters.push(new BackVoiceElementConverter(sceneDirectory));
+            elementConverters.push(new StopElementConverter());
 
             for each (var scenarioTag:XML in xmlList["scenario"]) {
                 var scenario:Scenario = new Scenario();
