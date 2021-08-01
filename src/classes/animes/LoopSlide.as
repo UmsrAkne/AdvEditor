@@ -8,6 +8,7 @@ package classes.animes {
     public class LoopSlide implements IAnimation {
 
         public var interval:int;
+        public var distance:int;
 
         private var intervalCounter:int;
         private var target:DisplayObject;
@@ -37,7 +38,7 @@ package classes.animes {
                 slide.Target = target;
                 slide.degree = deg;
                 slide.speed = spd;
-                slide.distance = measureMovableDistance();
+                slide.distance = (distance == 0) ? measureMovableDistance() : distance;
                 if (slide.distance == 0) {
                     couldNotMoveCounter++;
                     slide.speed = 0;
