@@ -12,6 +12,7 @@ package classes.contentsLoaders {
     import classes.sceneContents.Resource;
     import classes.contentsLoaders.xmlElements.DrawElementConverter;
     import flash.desktop.NativeApplication;
+    import classes.contentsLoaders.xmlElements.BackVoiceElementConverter;
 
     public class ScenarioLoader implements ILoader {
 
@@ -92,6 +93,7 @@ package classes.contentsLoaders {
             elementConverters.push(new VoiceElementConverter(sceneDirectory));
             elementConverters.push(new DrawElementConverter());
             elementConverters.push(new MaskElementConverter());
+            elementConverters.push(new BackVoiceElementConverter(sceneDirectory));
 
             for each (var scenarioTag:XML in xmlList["scenario"]) {
                 var scenario:Scenario = new Scenario();
