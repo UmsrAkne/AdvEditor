@@ -110,6 +110,10 @@ package classes.gameScenes {
             }
 
             if (event.keyCode == Keyboard.R && event.ctrlKey) {
+                for each (var sp:IScenarioSceneParts in sceneParts) {
+                    sp.dispose();
+                }
+
                 dispatchEvent(new Event(SCENE_EXIT));
             }
 

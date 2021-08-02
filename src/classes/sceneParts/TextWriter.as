@@ -71,5 +71,8 @@ package classes.sceneParts {
         public function dispatchEvent(e:Event):void {
             enterFrameEventDispatcher.dispatchEvent(e);
         }
+
+        public function dispose():void {
+        }
     }
 }

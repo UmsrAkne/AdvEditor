@@ -135,5 +135,8 @@ package classes.sceneParts {
 
             addAnimation(new AlphaChanger());
         }
+
+        public function dispose():void {
+        }
     }
 }

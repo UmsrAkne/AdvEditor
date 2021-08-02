@@ -104,5 +104,9 @@ package classes.sceneParts {
         private function stopBGV(e:Event):void {
             bgvChannelWrapper.stop();
         }
+
+        public function dispose():void {
+            bgvChannelWrapper.stop();
+        }
     }
 }

@@ -181,5 +181,8 @@ package classes.sceneParts {
         public function get EnterFrameEventDispatcher():EventDispatcher {
             return enterFrameEventDispatcher;
         }
+
+        public function dispose():void {
+        }
     }
 }

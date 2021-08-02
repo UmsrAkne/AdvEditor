@@ -62,5 +62,9 @@ package classes.sceneParts {
                 currentSoundFile = res.BGMsByName[res.InitialBGMName];
             }
         }
+
+        public function dispose():void {
+            soundChannelWrapper.stop();
+        }
     }
 }

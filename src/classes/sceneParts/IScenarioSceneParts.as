@@ -9,5 +9,6 @@ package classes.sceneParts {
         function setScenario(scenario:Scenario):void;
         function setUI(ui:UIContainer):void;
         function setResource(res:Resource):void;
+        function dispose():void;
     }
 }

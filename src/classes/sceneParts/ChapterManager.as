@@ -52,5 +52,8 @@ package classes.sceneParts {
 
             return index;
         }
+
+        public function dispose():void {
+        }
     }
 }
