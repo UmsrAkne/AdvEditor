@@ -65,6 +65,7 @@ package classes.sceneParts {
         }
 
         public function dispose():void {
+            soundChannelWrapper.stop();
         }
     }
 }

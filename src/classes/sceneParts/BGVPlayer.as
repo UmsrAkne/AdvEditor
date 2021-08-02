@@ -106,6 +106,7 @@ package classes.sceneParts {
         }
 
         public function dispose():void {
+            bgvChannelWrapper.stop();
         }
     }
 }
