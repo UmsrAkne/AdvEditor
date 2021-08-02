@@ -16,118 +16,118 @@
 	フォーマットは属性の定義クラス : 属性名
 	
 	<anime>
-	AnimeElementConverter:"@name"
-		
-		Allowed animation name list.
+		AnimeElementConverter:"@name"
 			
-		"alphaChanger"
-		"multiAlphaChanger"
-		"shake"
-		"slide"
-		"loopSlide"
-		"maskSlide"
-		"flashing"
-		"scaleChanger"
-		"bound"
+			Allowed animation name list.
+				
+			"alphaChanger"
+			"multiAlphaChanger"
+			"shake"
+			"slide"
+			"loopSlide"
+			"maskSlide"
+			"flashing"
+			"scaleChanger"
+			"bound"
 	
-	AnimeElementConverter:"@target"
+		AnimeElementConverter:"@target"
 	
-		Allowed target name list.
+			Allowed target name list.
 
-		"background"	: (Layer index 0)
-		"main"			: (Layer index 1)
-		"middle"		: (Layer index 2)
-		"front"			: (Layer index 3)
+			"background"	: (Layer index 0)
+			"main"			: (Layer index 1)
+			"middle"		: (Layer index 2)
+			"front"			: (Layer index 3)
 
 	<bgm>
-	BGMElementConverter:"@fileName"
-	BGMElementConverter:"@number"
-	BGMElementConverter:"@volume"
+		BGMElementConverter:"@fileName"
+		BGMElementConverter:"@number"
+		BGMElementConverter:"@volume"
 
 	<backVoice>
-	BackVoiceElementConverter:"@characterChannel"
-	BackVoiceElementConverter:"@names"
-	BackVoiceElementConverter:"@volume"
+		BackVoiceElementConverter:"@characterChannel"
+		BackVoiceElementConverter:"@names"
+		BackVoiceElementConverter:"@volume"
 
 	<draw>
-	a-c までの属性内にはファイル名を入力する
-	DrawElementConverter:"@a"
-	DrawElementConverter:"@b"
-	DrawElementConverter:"@c"
-	DrawElementConverter:"@depth"
-	DrawElementConverter:"@target"
+		a-c までの属性内にはファイル名を入力する
+		DrawElementConverter:"@a"
+		DrawElementConverter:"@b"
+		DrawElementConverter:"@c"
+		DrawElementConverter:"@depth"
+		DrawElementConverter:"@target"
 
 	<image>
-	a-c までの属性内にはファイル名を入力する
-	ImageElementConverter:"@a"
-	ImageElementConverter:"@backgroundColor"
-		8 桁の 16 進数(ARGB)で指定する。 ex : <image backgroundColor="0xffffffff" />
+		a-c までの属性内にはファイル名を入力する
+		ImageElementConverter:"@a"
+		ImageElementConverter:"@backgroundColor"
+			8 桁の 16 進数(ARGB)で指定する。 ex : <image backgroundColor="0xffffffff" />
 
-	ImageElementConverter:"@b"
-	ImageElementConverter:"@c"
-	ImageElementConverter:"@rotation"
-	ImageElementConverter:"@scale"
-	ImageElementConverter:"@statusInherit"
+		ImageElementConverter:"@b"
+		ImageElementConverter:"@c"
+		ImageElementConverter:"@rotation"
+		ImageElementConverter:"@scale"
+		ImageElementConverter:"@statusInherit"
 
-	ImageElementConverter:"@target"
-		入力する値は anime.target と同様
+		ImageElementConverter:"@target"
+			入力する値は anime.target と同様
 
-	ImageElementConverter:"@x"
-	ImageElementConverter:"@y"
+		ImageElementConverter:"@x"
+		ImageElementConverter:"@y"
 
 	<mask>
 
-	a-f までの属性値には座標を入力する
-	ex <mask a="0,0" b="0,100" c="100,100" d="0,100" />
-	MaskElementConverter:"@a"
-	MaskElementConverter:"@b"
-	MaskElementConverter:"@c"
-	MaskElementConverter:"@d"
-	MaskElementConverter:"@e"
-	MaskElementConverter:"@f"
+		a-f までの属性値には座標を入力する
+		ex <mask a="0,0" b="0,100" c="100,100" d="0,100" />
+		MaskElementConverter:"@a"
+		MaskElementConverter:"@b"
+		MaskElementConverter:"@c"
+		MaskElementConverter:"@d"
+		MaskElementConverter:"@e"
+		MaskElementConverter:"@f"
 
-	MaskElementConverter:"@target"
-		入力する値は anime.target と同様。
+		MaskElementConverter:"@target"
+			入力する値は anime.target と同様。
 	
 	<se>
-	SEElementConverter:"@fileName"
-	SEElementConverter:"@number"
-	SEElementConverter:"@repeatCount"
-	SEElementConverter:"@volume"
+		SEElementConverter:"@fileName"
+		SEElementConverter:"@number"
+		SEElementConverter:"@repeatCount"
+		SEElementConverter:"@volume"
 
 	<scenario>
-	ScenarioElementConverter:"@chapterName"
-	ScenarioElementConverter:"@entryPoint"
-	ScenarioElementConverter:"@ignore"
+		ScenarioElementConverter:"@chapterName"
+		ScenarioElementConverter:"@entryPoint"
+		ScenarioElementConverter:"@ignore"
 
 	<stop>
-	StopElementConverter:"@index"
-	StopElementConverter:"@target"
+		StopElementConverter:"@index"
+		StopElementConverter:"@target"
 
 	<text>
-	TextElementConverter:"@string"
-	TextElementConverter:"@textAddition"
+		TextElementConverter:"@string"
+		TextElementConverter:"@textAddition"
 
 	<voice>
-	VoiceElementConverter:"@channel"
-	VoiceElementConverter:"@fileName"
-	VoiceElementConverter:"@number"
+		VoiceElementConverter:"@channel"
+		VoiceElementConverter:"@fileName"
+		VoiceElementConverter:"@number"
 
 ## setting.xmlの仕様
 
 	<setting>
-	SettingLoader:"@width"
-	SettingLoader:"@height"
-	SettingLoader:"@x"
-	SettingLoader:"@y"
-	SettingLoader:"@defaultScale"
-	SettingLoader:"@bgm"
-	SettingLoader:"@voiceVolume"
-	SettingLoader:"@backVoiceVolume"
-	SettingLoader:"@bgmVolume"
-	SettingLoader:"@seVolume"
+		SettingLoader:"@width"
+		SettingLoader:"@height"
+		SettingLoader:"@x"
+		SettingLoader:"@y"
+		SettingLoader:"@defaultScale"
+		SettingLoader:"@bgm"
+		SettingLoader:"@voiceVolume"
+		SettingLoader:"@backVoiceVolume"
+		SettingLoader:"@bgmVolume"
+		SettingLoader:"@seVolume"
 
-	ThumbnailLoader:"@thumbnail"
+		ThumbnailLoader:"@thumbnail"
 
 ## configuration.xml の仕様
 
