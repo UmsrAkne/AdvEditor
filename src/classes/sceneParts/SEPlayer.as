@@ -63,5 +63,8 @@ package classes.sceneParts {
         public function setResource(res:Resource):void {
             defaultVolume = res.seVolume;
         }
+
+        public function dispose():void {
+        }
     }
 }

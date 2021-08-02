@@ -42,5 +42,8 @@ package classes.sceneParts {
 
         public function setResource(res:Resource):void {
         }
+
+        public function dispose():void {
+        }
     }
 }

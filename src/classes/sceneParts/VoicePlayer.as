@@ -64,5 +64,8 @@ package classes.sceneParts {
         public function setResource(res:Resource):void {
             defaultVolume = res.voiceVolume;
         }
+
+        public function dispose():void {
+        }
     }
 }

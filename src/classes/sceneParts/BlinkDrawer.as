@@ -94,5 +94,8 @@ package classes.sceneParts {
                 interval = Math.random() * 120;
             }
         }
+
+        public function dispose():void {
+        }
     }
 }
