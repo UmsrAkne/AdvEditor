@@ -6,6 +6,7 @@ package classes.sceneContents {
         private var names:Vector.<String> = new Vector.<String>;
         private var volume:Number = 1.0;
         private var characterChannel:int;
+        private var volumeIsDefault:Boolean = true;
 
         public function get Indexes():Vector.<int> {
             return indexes;
@@ -29,6 +30,11 @@ package classes.sceneContents {
 
         public function set Volume(value:Number):void {
             volume = value;
+            volumeIsDefault = false;
+        }
+
+        public function get VolumeIsDefault():Boolean {
+            return volumeIsDefault;
         }
     }
 }

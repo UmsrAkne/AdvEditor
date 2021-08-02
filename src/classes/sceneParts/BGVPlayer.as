@@ -1,15 +1,16 @@
 package classes.sceneParts {
 
-    import classes.sceneContents.Scenario;
-    import classes.sceneContents.Resource;
-    import classes.uis.UIContainer;
-    import classes.uis.SoundChannelWrapper;
-    import classes.uis.BitmapContainer;
-    import classes.sceneContents.SoundFile;
-    import flash.utils.Dictionary;
-    import flash.events.Event;
     import classes.sceneContents.BGVOrder;
+    import classes.sceneContents.Resource;
+    import classes.sceneContents.Scenario;
+    import classes.sceneContents.SoundFile;
     import classes.sceneContents.StopOrder;
+    import classes.uis.BitmapContainer;
+    import classes.uis.SoundChannelWrapper;
+    import classes.uis.UIContainer;
+    import flash.events.Event;
+    import flash.media.SoundTransform;
+    import flash.utils.Dictionary;
 
     public class BGVPlayer implements IScenarioSceneParts {
 
@@ -21,6 +22,7 @@ package classes.sceneParts {
         private var bgvs:Vector.<SoundFile>;
         private var bgvsByName:Dictionary;
         private var stopRequest:Boolean;
+        private var defaultVolume:Number = 1.0;
 
         private var playList:Vector.<String> = new Vector.<String>();
 
@@ -74,6 +76,7 @@ package classes.sceneParts {
         public function setResource(res:Resource):void {
             bgvs = res.BGVs;
             bgvsByName = res.BGVsByName;
+            defaultVolume = res.backVoiceVolume;
         }
 
         private function randomPlay(e:Event):void {
@@ -92,8 +95,10 @@ package classes.sceneParts {
                 });
             }
 
+            var vol:Number = (currentOrder.VolumeIsDefault) ? defaultVolume : currentOrder.Volume;
+
             var soundFile:SoundFile = bgvsByName[playList.shift()];
-            bgvChannelWrapper.setSoundChannel(soundFile.getSound().play());
+            bgvChannelWrapper.setSoundChannel(soundFile.getSound().play(0, 0, new SoundTransform(vol)));
         }
 
         private function startBGV(e:Event):void {
