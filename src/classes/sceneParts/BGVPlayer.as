@@ -97,7 +97,6 @@ package classes.sceneParts {
         }
 
         private function startBGV(e:Event):void {
-            channelWrapper.removeEventListener(Event.SOUND_COMPLETE, startBGV);
             bgvChannelWrapper.addEventListener(Event.SOUND_COMPLETE, randomPlay);
             bgvChannelWrapper.dispatchEvent(new Event(Event.SOUND_COMPLETE));
         }
