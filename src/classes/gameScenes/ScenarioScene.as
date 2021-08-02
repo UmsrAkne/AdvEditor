@@ -9,7 +9,6 @@ package classes.gameScenes {
     import flash.display.Sprite;
     import flash.events.Event;
     import flash.events.KeyboardEvent;
-    import flash.events.MouseEvent;
     import flash.ui.Keyboard;
 
     public class ScenarioScene extends Sprite {
@@ -73,7 +72,7 @@ package classes.gameScenes {
                 parts.setUI(ui);
             }
 
-            addEventListener(Event.ADDED_TO_STAGE, setMouseEventHandler);
+            addEventListener(Event.ADDED_TO_STAGE, setActivateEventHandler);
         }
 
         public function setResource(r:Resource):void {
@@ -150,13 +149,15 @@ package classes.gameScenes {
             }
         }
 
-        private function setMouseEventHandler(event:Event):void {
-            removeEventListener(Event.ADDED_TO_STAGE, setMouseEventHandler);
-            stage.addEventListener(MouseEvent.CLICK, resetFocus);
+        private function setActivateEventHandler(event:Event):void {
+            removeEventListener(Event.ADDED_TO_STAGE, setActivateEventHandler);
+            stage.addEventListener(Event.ACTIVATE, resetFocus);
         }
 
-        private function resetFocus(event:MouseEvent):void {
-            stage.focus = this;
+        private function resetFocus(e:Event):void {
+            if (stage) {
+                stage.focus = this;
+            }
         }
     }
 }
