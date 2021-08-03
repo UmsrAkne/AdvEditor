@@ -14,6 +14,7 @@ package tests.animes {
         private function test():void {
             var loopSlide:LoopSlide = new LoopSlide();
             loopSlide.degree = 315;
+            loopSlide.reflectCount = 1;
             var bitmap:Bitmap = new Bitmap(new BitmapData(200, 200, false, 0x0));
             loopSlide.Target = bitmap;
             var dummyStageRect:Rectangle = new Rectangle(-1, -2, 50, 50);
@@ -51,6 +52,9 @@ package tests.animes {
 
             // 端に達した, 元の位置に戻った の両方が true になっていれば、
             // 端まで描画領域が移動後、往復して元の位置に戻ったことになる。
+
+            // loopSlide.reflectCount = 1 なので、一度壁にぶつかって、もう一度壁にぶつかったら動かなくなる。
+            Assert.isFalse(loopSlide.Valid);
         }
     }
 }
