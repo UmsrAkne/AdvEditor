@@ -46,8 +46,8 @@ package classes.sceneParts {
 
             if (needBitmapAddition) {
                 var bmds:Vector.<BitmapData> = new Vector.<BitmapData>();
-                var w:int = resource.ScreenSize.width;
-                var h:int = resource.ScreenSize.height;
+                var w:int;
+                var h:int;
                 for each (var index:int in currentOrder.indexes) {
                     if (index > 0) {
                         var b:BitmapData = resource.BitmapDatas[index];
