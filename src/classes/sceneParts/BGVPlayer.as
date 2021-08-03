@@ -33,6 +33,7 @@ package classes.sceneParts {
         public function execute():void {
             if (stopRequest) {
                 bgvChannelWrapper.stop();
+                currentOrder = null;
                 stopRequest = false;
             }
         }
@@ -83,6 +84,7 @@ package classes.sceneParts {
             if (currentOrder == null || currentOrder.Names.length == 0) {
                 bgvChannelWrapper.removeEventListener(Event.SOUND_COMPLETE, randomPlay);
                 bgvChannelWrapper.stop();
+                return;
             }
 
             if (playList.length == 0) {
