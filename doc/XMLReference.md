@@ -23,7 +23,7 @@
 			"alphaChanger"
 			"multiAlphaChanger"
 			"shake"
-			"slide"
+			"slide" ("LoopSlide" と同じ動作)
 			"loopSlide"
 			"maskSlide"
 			"flashing"

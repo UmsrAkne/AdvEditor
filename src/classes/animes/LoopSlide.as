@@ -9,6 +9,7 @@ package classes.animes {
 
         public var interval:int;
         public var distance:int;
+        public var reflectCount:int;
 
         private var intervalCounter:int;
         private var target:DisplayObject;
@@ -44,9 +45,13 @@ package classes.animes {
                     slide.speed = 0;
                 } else {
                     couldNotMoveCounter = 0;
+                    reflectCount--;
                 }
 
-                if (couldNotMoveCounter >= 5) {
+                // reflectCount = 0 で始まった場合は、最初の slide 生成時に -1 されるため、
+                // reflectCount < 0 とした場合は、最初の段階で stop() に到達するため、全く動作せず止まってしまう。
+                // このため、 < 0 ではなく < -1 としている。
+                if (couldNotMoveCounter >= 5 || reflectCount < -1) {
                     stop();
                     return;
                 }

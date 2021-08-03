@@ -57,7 +57,7 @@ package classes.contentsLoaders.xmlElements {
                     anime = new Shake();
                     break;
                 case "slide":
-                    anime = new Slide();
+                    anime = new LoopSlide();
                     break;
                 case "loopSlide":
                     anime = new LoopSlide();
