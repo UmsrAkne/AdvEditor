@@ -48,7 +48,8 @@ package tests.animes {
             }
 
             Assert.areEqual(sp.x, 0);
-            Assert.areEqual(sp.y, 200);
+            Assert.areEqual(sp.y, -200);
+            Assert.isFalse(slide.Valid);
         }
     }
 }

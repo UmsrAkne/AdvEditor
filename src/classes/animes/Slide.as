@@ -89,7 +89,7 @@ package classes.animes {
 
             frameCount++;
 
-            if (totalMovingDistance > distance) {
+            if (totalMovingDistance >= distance) {
                 stop();
             }
         }
