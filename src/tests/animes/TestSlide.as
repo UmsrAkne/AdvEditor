@@ -7,6 +7,7 @@ package tests.animes {
     public class TestSlide {
         public function TestSlide() {
             testExecute();
+            testConstantVelocitySlide();
         }
 
         private function testExecute():void {
@@ -30,6 +31,24 @@ package tests.animes {
             // 修正したいが少し辛いかも？
             Assert.isTrue(sp.x > 295);
             Assert.isTrue(sp.y == 0);
+        }
+
+        private function testConstantVelocitySlide():void {
+            var slide:Slide = new Slide();
+            slide.speed = 2;
+            slide.distance = 200;
+            slide.isConstantVelocity = true;
+
+            var sp:Sprite = new Sprite();
+            slide.Target = sp;
+
+            slide.execute();
+            for (var i:int = 0; i < 100; i++) {
+                slide.execute();
+            }
+
+            Assert.areEqual(sp.x, 0);
+            Assert.areEqual(sp.y, 200);
         }
     }
 }
