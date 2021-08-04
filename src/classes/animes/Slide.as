@@ -9,6 +9,11 @@ package classes.animes {
         public var speed:Number = 0;
         public var distance:int;
 
+        /** アニメーション開始から終了までスピードが一定であるかどうかを設定、取得します。
+         *  true に設定した場合、開始直後に低速から加速。終了前に減速するようになります。
+         */
+        public var isConstantVelocity:Boolean = false;
+
         private var spd:Point;
         private var targetLayerIndex:int = 1;
         private var target:DisplayObject;
@@ -50,7 +55,7 @@ package classes.animes {
             var resistance:Number = 1.0;
 
             // アニメーション開始付近では速度を徐々に早くする。
-            if (totalMovingDistance < beginningEndPoint) {
+            if (totalMovingDistance < beginningEndPoint && !isConstantVelocity) {
                 deg = 90 / beginningEndPoint;
                 resistance = Math.sin(frameCount * deg * Math.PI / 180);
                 actualSpeedX *= resistance;
@@ -59,7 +64,7 @@ package classes.animes {
 
 
             // アニメーションの終了付近では速度を徐々に遅くする。
-            if (totalMovingDistance > endingStartPoint) {
+            if (totalMovingDistance > endingStartPoint && !isConstantVelocity) {
                 endingFrameCount++;
 
                 // cos 75度 = 約 0.25
@@ -84,7 +89,7 @@ package classes.animes {
 
             frameCount++;
 
-            if (totalMovingDistance > distance) {
+            if (totalMovingDistance >= distance) {
                 stop();
             }
         }
