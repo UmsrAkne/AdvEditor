@@ -38,6 +38,55 @@
 			"main"			: (Layer index 1)
 			"middle"		: (Layer index 2)
 			"front"			: (Layer index 3)
+			
+		
+		Anime element's attribute list for each animation name.
+		
+		数値の表記が無いものはデフォルト値が "0" となっている。
+
+			alphaChanger   duration = 12
+			alphaChanger   amount = 0.1
+
+			bound   degree
+			bound   strength = 1
+			bound   loopCount
+			bound   duration
+			bound   interval
+
+			flashing   cycle = 4
+			flashing   duration = 24
+			flashing   delay
+			flashing   loopCount
+			flashing   TopParentRect
+			flashing   interval
+
+			loopSlide(slide)   interval
+			loopSlide(slide)   distance
+			loopSlide(slide)   reflectCount
+			loopSlide(slide)   degree
+			loopSlide(slide)   speed
+			loopSlide(slide)   StageRect
+
+			maskSlide    speed
+			maskSlide    degree
+			maskSlide    distance
+
+			multiAlphaChanger   front = 0.1
+			multiAlphaChanger   backs = -0.1
+			multiAlphaChanger   strength
+
+			scaleChanger   strength = 0.1
+			scaleChanger   delay
+			scaleChanger   total
+
+			shake   strength = 5
+			shake   duration = 24
+			shake   loopCount
+			shake   interval
+
+			slide   degree
+			slide   speed
+			slide   distance
 
 	<bgm>
 		BGMElementConverter:"@fileName"
