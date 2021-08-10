@@ -78,6 +78,9 @@ package classes.animes {
                 actualSpeedY = resistance * actualSpeedY;
             }
 
+            actualSpeedX = (Math.abs(actualSpeedX) < 0.001) ? 0 : actualSpeedX;
+            actualSpeedY = (Math.abs(actualSpeedY) < 0.001) ? 0 : actualSpeedY;
+
             target.x += actualSpeedX;
             target.y += actualSpeedY;
 
