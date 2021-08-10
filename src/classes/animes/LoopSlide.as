@@ -101,12 +101,10 @@ package classes.animes {
                 }
             }
 
-            // オブジェクトが動くことができる値の中での最大値を算出する。
-            // (ターゲットの対角線長) - (ステージの対角線長)
-            var estimationMaxDistance:Number = Math.sqrt(Math.pow(target.width, 2) + Math.pow(target.height, 2)) - Math.sqrt(Math.pow(stageRect.width, 2) + Math.pow(stageRect.height, 2));
+            // オブジェクトが動くことができる値の中での最大値をターゲットの対角線長とする。
+            var estimationMaxDistance:Number = Math.sqrt(Math.pow(target.width, 2) + Math.pow(target.height, 2));
 
-            // 算出した最大値を使用して二分探索を行い、実際にスライド可能な距離を算出する。
-
+            // 上記で設定した最大値を使用して二分探索を行い、実際にスライド可能な距離を算出する。
             var minDistance:Number = 0;
             var maxDistance:Number = estimationMaxDistance;
 
