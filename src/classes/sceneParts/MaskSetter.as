@@ -21,6 +21,7 @@ package classes.sceneParts {
             }
 
             bitmapContainer.mask = maskOrder.shape;
+            UIContainer(bitmapContainer.parent).addChild(maskOrder.shape);
 
             maskOrder = null;
         }
