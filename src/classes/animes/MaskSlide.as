@@ -30,7 +30,7 @@ package classes.animes {
         }
 
         public function set Target(targetObject:DisplayObject):void {
-            slide.Target = targetObject.mask;
+            slide.Target = targetObject.parent.mask;
         }
 
         public function set TargetLayerIndex(index:int):void {
