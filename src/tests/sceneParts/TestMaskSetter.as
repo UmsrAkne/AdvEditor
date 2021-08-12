@@ -11,6 +11,7 @@ package tests.sceneParts {
     import flash.display.Bitmap;
     import flash.display.DisplayObjectContainer;
     import tests.Assert;
+    import classes.uis.UIContainer;
 
     public class TestMaskSetter {
 
@@ -19,7 +20,8 @@ package tests.sceneParts {
         }
 
         private function testExecute():void {
-            var bitmapContainer:BitmapContainer = new BitmapContainer(0);
+            var ui:UIContainer = new UIContainer();
+            var bitmapContainer:BitmapContainer = ui.getBitmapContainerFromIndex(0)
             bitmapContainer.add(new Bitmap(new BitmapData(300, 300, false, 0x000000)));
 
             var maskSetter:MaskSetter = new MaskSetter(bitmapContainer);
