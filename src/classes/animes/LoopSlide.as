@@ -21,6 +21,7 @@ package classes.animes {
         private var stageRect:Rectangle;
         private var couldNotMoveCounter:int;
         private var isConstantVelocitySlide:Boolean;
+        private var directionString:String;
 
         public function LoopSlide() {
         }
@@ -40,6 +41,7 @@ package classes.animes {
                 slide.Target = target;
                 slide.degree = deg;
                 slide.speed = spd;
+                slide.direction = directionString;
                 slide.isConstantVelocity = isConstantVelocitySlide;
                 slide.distance = (distance == 0) ? measureMovableDistance() : distance;
                 if (slide.distance == 0) {
@@ -181,6 +183,10 @@ package classes.animes {
 
         public function set StageRect(value:Rectangle):void {
             stageRect = value;
+        }
+
+        public function set direction(d:String):void {
+            directionString = d;
         }
     }
 }
