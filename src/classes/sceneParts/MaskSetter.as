@@ -5,11 +5,13 @@ package classes.sceneParts {
     import classes.sceneContents.Resource;
     import classes.uis.BitmapContainer;
     import classes.sceneContents.MaskOrder;
+    import flash.display.Shape;
 
     public class MaskSetter implements IScenarioSceneParts {
 
         private var bitmapContainer:BitmapContainer;
         private var maskOrder:MaskOrder;
+        private var lastUseMask:Shape;
 
         public function MaskSetter(targetBitmapContainer:BitmapContainer) {
             this.bitmapContainer = targetBitmapContainer;
@@ -20,8 +22,13 @@ package classes.sceneParts {
                 return;
             }
 
+            if (lastUseMask) {
+                UIContainer(bitmapContainer.parent).removeChild(lastUseMask);
+            }
+
             bitmapContainer.mask = maskOrder.shape;
             UIContainer(bitmapContainer.parent).addChild(maskOrder.shape);
+            lastUseMask = maskOrder.shape;
 
             maskOrder = null;
         }
