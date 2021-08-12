@@ -38,8 +38,9 @@ package classes.contentsLoaders.xmlElements {
                         anime.TargetLayerIndex = TargetAttributeConverter.getLayerIndexFromTargetName(String(attribute));
                     }
 
-                    scenario.Animations.push(anime);
                 }
+
+                scenario.Animations.push(anime);
             }
         }
 
