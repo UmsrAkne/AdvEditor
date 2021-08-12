@@ -29,13 +29,16 @@ package classes.contentsLoaders.xmlElements {
                         continue;
                     }
 
+                    var propertyName:String = attribute.name();
+
                     if (!isNaN(parseFloat(attribute))) {
-                        var propertyName:String = attribute.name();
                         anime[propertyName] = parseFloat(attribute);
                     }
 
                     if (attribute.name() == TARGET_ATTRIBUTE.substr(1)) {
                         anime.TargetLayerIndex = TargetAttributeConverter.getLayerIndexFromTargetName(String(attribute));
+                    } else {
+                        anime[propertyName] = String(attribute);
                     }
 
                 }
