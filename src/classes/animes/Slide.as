@@ -122,5 +122,44 @@ package classes.animes {
         public function get TargetLayerIndex():int {
             return targetLayerIndex;
         }
+
+        public function set direction(d:String):void {
+            switch (d) {
+                case "up":
+                    degree = 0;
+                    break;
+
+                case "rightUp":
+                    degree = 45;
+                    break;
+
+                case "right":
+                    degree = 90;
+                    break;
+
+                case "rightDown":
+                    degree = 135;
+                    break;
+
+                case "down":
+                    degree = 180;
+                    break;
+
+                case "leftDown":
+                    degree = 225;
+                    break;
+
+                case "left":
+                    degree = 270;
+                    break;
+
+                case "leftUP":
+                    degree = 315;
+                    break;
+
+                default:
+                    break;
+            }
+        }
     }
 }
