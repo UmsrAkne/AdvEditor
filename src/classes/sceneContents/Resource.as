@@ -41,6 +41,23 @@ package classes.sceneContents {
 
         private var ses:Vector.<SoundFile> = new Vector.<SoundFile>();
 
+        public function dispose():void {
+            var b:BitmapData;
+            for each (b in bitmapDatas) {
+                b.dispose();
+            }
+
+            for each (b in bitmapDatasByName) {
+                b.dispose();
+            }
+
+            for (var i:int = 0; i < scenarios.length; i++) {
+                scenarios[i] = null;
+            }
+
+            scenarios = null;
+        }
+
         public function get ScenariosByChapterName():Dictionary {
             return scenariosByChapterName;
         }
