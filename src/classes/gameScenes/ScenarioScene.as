@@ -116,6 +116,7 @@ package classes.gameScenes {
 
                 resource.dispose();
                 removeChild(ui);
+                ui.dispose();
 
                 dispatchEvent(new Event(SCENE_EXIT));
             }

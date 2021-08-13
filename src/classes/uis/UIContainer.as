@@ -92,5 +92,24 @@ package classes.uis {
         public function getBGVChannelWrapperFromIndex(index:int):SoundChannelWrapper {
             return bgvChannelWrappers[index];
         }
+
+        public function dispose():void {
+            while (numChildren > 0) {
+                removeChild(getChildAt(numChildren - 1));
+            }
+
+            frame.bitmapData.dispose();
+            frame = null;
+            textWindowImage.bitmapData.dispose();
+            textWindowImage = null;
+
+            for each (var bc:BitmapContainer in bitmapContainers) {
+                while (bc.numChildren > 0) {
+                    var bmp:Bitmap = Bitmap(bc.getChildAt(bc.numChildren - 1));
+                    bmp.bitmapData.dispose();
+                    bc.removeChild(bmp);
+                }
+            }
+        }
     }
 }
