@@ -55,6 +55,8 @@ package {
                 stage.nativeWindow.height = res.ScreenSize.height + 39;
             }
 
+            stage.fullScreenSourceRect = res.ScreenSize;
+
             scenarioScene = new ScenarioScene();
             scenarioScene.setResource(res);
             scenarioScene.addEventListener(ScenarioScene.SCENE_EXIT, reloadScene);
