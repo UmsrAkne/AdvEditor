@@ -39,9 +39,9 @@ package classes.animes {
             if (!slide) {
                 slide = new Slide();
                 slide.Target = target;
-                slide.degree = deg;
-                slide.speed = spd;
                 slide.direction = directionString;
+                slide.degree += deg;
+                slide.speed = spd;
                 slide.isConstantVelocity = isConstantVelocitySlide;
                 slide.distance = (distance == 0) ? measureMovableDistance() : distance;
                 if (slide.distance == 0) {
