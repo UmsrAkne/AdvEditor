@@ -88,6 +88,34 @@
 			slide   speed
 			slide   distance
 
+			slide   direction = "";
+
+				文字列を値に入力すると degree の値が変化する。
+
+				"up":
+					degree = 0;
+
+				"rightUp":
+					degree = 45;
+
+				"right":
+					degree = 90;
+
+				"rightDown":
+					degree = 135;
+
+				"down":
+					degree = 180;
+
+				"leftDown":
+					degree = 225;
+
+				"left":
+					degree = 270;
+
+				"leftUP":
+					degree = 315;
+
 	<bgm>
 		BGMElementConverter:"@fileName"
 		BGMElementConverter:"@number"
