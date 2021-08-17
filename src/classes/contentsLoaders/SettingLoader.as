@@ -57,7 +57,7 @@ package classes.contentsLoaders {
             }
 
             if (xml.hasOwnProperty(DEFAULT_SCALE_ATTRIBUTE)) {
-                resource.defaultScale = parseInt(xml[DEFAULT_SCALE_ATTRIBUTE]);
+                resource.defaultScale = parseFloat(xml[DEFAULT_SCALE_ATTRIBUTE]);
             }
 
             if (xml.hasOwnProperty(BGM_ATTRIBUTE)) {
