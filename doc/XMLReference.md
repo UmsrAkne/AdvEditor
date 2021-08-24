@@ -190,6 +190,22 @@
 		VoiceElementConverter:"@fileName"
 		VoiceElementConverter:"@number"
 
+## faceDrawingOrder.xml の仕様
+
+scenarioDirectory/texts に配置。  
+それぞれ blinkOrders, lipOrders で order タグを囲む。  
+base, close に関してはファイル名のみ。  
+open に関しては `,` で区切って複数のファイル名が入力可。  
+
+	<blinkOrders>
+		<order base="B01" close="B02" open="B03,B04,B05" />
+		<order base="B02" close="B02" open="B03,B04,B05" />
+	</blinkOrders>
+
+	<lipOrders>
+		<order base="B02" close="B02" open="B03,B04,B05" />
+	</lipOrders>
+
 ## setting.xmlの仕様
 
 	<setting>
