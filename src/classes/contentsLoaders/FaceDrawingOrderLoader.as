@@ -16,6 +16,7 @@ package classes.contentsLoaders {
         private var sceneDirectory:File;
         private var orderXMLList:XMLList;
 
+        public static const TARGET_FILE_NAME:String = "faceDrawingOrder.xml";
         public static const BLINK_ORDERS_ELEMENT_NAME:String = "blinkOrders";
         public static const LIP_ORDERS_ELEMENT_NAME:String = "lipOrders";
         public static const ORDER_ELEMENT_NAME:String = "order"
@@ -72,10 +73,10 @@ package classes.contentsLoaders {
                 completeEventDispatcher.dispatchEvent(new Event(Event.COMPLETE));
             });
 
-            var expectFilePath:String = "texts/faceDrawingOrder.xml";
+            var targetFile:File = new File(sceneDirectory.resolvePath("texts/" + TARGET_FILE_NAME).nativePath);
 
-            if (new File(sceneDirectory.nativePath + expectFilePath).exists) {
-                urlloader.load(new URLRequest(sceneDirectory.resolvePath(expectFilePath).nativePath));
+            if (targetFile.exists) {
+                urlloader.load(new URLRequest(targetFile.nativePath));
             } else {
                 CompleteEventDispatcher.dispatchEvent(new Event(Event.COMPLETE));
                 OrderXMLList = new XMLList();
