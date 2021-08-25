@@ -18,6 +18,7 @@ package {
     import tests.contentsLoaders.TestConfiguration;
     import tests.animes.TestLoopSlide;
     import tests.sceneParts.TestLipDrawer;
+    import tests.sceneParts.TestPeakArrager;
 
     public class Tester extends Sprite {
         public function Tester() {
@@ -62,6 +63,7 @@ package {
             new TestConfiguration();
             new TestLoopSlide();
             new TestLipDrawer();
+            new TestPeakArrager();
 
             trace("[Tester]" + " " + Assert.TestCounter + " 回のテストを完了しました");
             NativeApplication.nativeApplication.exit();
