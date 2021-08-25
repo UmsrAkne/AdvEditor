@@ -50,13 +50,13 @@ package classes.sceneParts {
                 var imageName:String = order.names[1];
 
                 while (enterFrameEventDispatcher.hasEventListener(Event.ENTER_FRAME)) {
-                    enterFrameEventDispatcher.removeEventListener(Event.ENTER_FRAME, drawaBlink);
+                    enterFrameEventDispatcher.removeEventListener(Event.ENTER_FRAME, drawBlink);
                 }
 
                 currentBlinkOrder = blinkOrdersByName[imageName.toString()];
 
                 if (currentBlinkOrder != null) {
-                    enterFrameEventDispatcher.addEventListener(Event.ENTER_FRAME, drawaBlink);
+                    enterFrameEventDispatcher.addEventListener(Event.ENTER_FRAME, drawBlink);
                 }
 
                 currentEyeImageName = imageName;
@@ -79,7 +79,7 @@ package classes.sceneParts {
             return currentEyeImageName;
         }
 
-        private function drawaBlink(e:Event):void {
+        private function drawBlink(e:Event):void {
             interval--;
             if (interval > 0) {
                 return;
