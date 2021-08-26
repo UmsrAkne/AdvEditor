@@ -9,6 +9,7 @@ package classes.contentsLoaders.xmlElements {
         private static const NUMBER_ATTRIBUTE:String = "@number";
         private static const FILE_NAME_ATTRIBUTE:String = "@fileName";
         private static const CHANNEL_ATTRIBUTE:String = "@channel"
+        private static const DELAY_ATTRIBUTE:String = "@delay";
 
         private var voiceDirectory:File;
         private var voiceFileList:Array;
@@ -58,6 +59,10 @@ package classes.contentsLoaders.xmlElements {
 
             if (voiceTag.hasOwnProperty(CHANNEL_ATTRIBUTE)) {
                 soundFile.CharacterChannel = parseInt(voiceTag[CHANNEL_ATTRIBUTE])
+            }
+
+            if (voiceTag.hasOwnProperty(DELAY_ATTRIBUTE)) {
+                soundFile.delay = parseInt(voiceTag[DELAY_ATTRIBUTE])
             }
         }
     }
