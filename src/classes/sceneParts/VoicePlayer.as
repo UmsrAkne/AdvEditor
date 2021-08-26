@@ -16,7 +16,7 @@ package classes.sceneParts {
         private var voiceFile:SoundFile;
         private var stopRequest:Boolean;
         private var defaultVolume:Number = 1.0;
-        private var enterFrameEventDispatcher:Sprite;
+        private var enterFrameEventDispatcher:Sprite = new Sprite();
         private var delayCount:int;
 
         /**
@@ -79,7 +79,7 @@ package classes.sceneParts {
         public function delayPlay():void {
             delayCount--;
 
-            if (delayCount <= 0) {
+            if (delayCount < 0) {
                 playVoice();
                 enterFrameEventDispatcher.removeEventListener(Event.ENTER_FRAME, enterFrameEventHandler);
             }
