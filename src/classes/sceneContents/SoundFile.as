@@ -13,6 +13,7 @@ package classes.sceneContents {
         private var volume:Number = 1.0;
         private var characterChannel:int;
         private var volumeIsDefault:Boolean = true;
+        private var _delay:int;
 
         public function SoundFile(file:File = null, sound:ISound = null) {
             this.file = file;
@@ -58,6 +59,14 @@ package classes.sceneContents {
 
         public function set CharacterChannel(value:int):void {
             characterChannel = value;
+        }
+
+        public function get delay():int {
+            return _delay;
+        }
+
+        public function set delay(value:int):void {
+            _delay = value;
         }
 
         /**
