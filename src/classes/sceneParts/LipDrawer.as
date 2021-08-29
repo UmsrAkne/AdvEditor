@@ -10,6 +10,7 @@ package classes.sceneParts {
     import classes.uis.SoundChannelWrapper;
     import flash.events.Event;
     import classes.sceneContents.ImageOrder;
+    import flash.media.SoundChannel;
 
     public class LipDrawer implements IScenarioSceneParts {
 
@@ -23,6 +24,7 @@ package classes.sceneParts {
         private var lipOrdersByName:Dictionary;
         private var enterFrameEventDispatcher:Sprite = new Sprite();
         private var soundChannelWrapper:SoundChannelWrapper;
+        private var peakArranger:PeakArranger = new PeakArranger();
         private var drawCount:int;
 
         public function LipDrawer(targetBitmapContainer:BitmapContainer) {
@@ -89,7 +91,7 @@ package classes.sceneParts {
 
             var drawingImageNames:Vector.<String> = currentLipOrder.buildOrder();
             if (drawCount < drawingImageNames.length) {
-                var imageName:String = drawingImageNames[drawCount];
+                var imageName:String = drawingImageNames[peakArranger.getLevel(soundChannelWrapper.getPeak())];
                 bitmapContainer.Front.bitmapData.draw(bitmapDatasByName[imageName]);
                 lastDrawImageName = imageName; // 単体テスト用の代入
                 drawCount++;
