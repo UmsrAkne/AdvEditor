@@ -6,6 +6,7 @@ package tests.sceneParts {
     public class TestPeakArrager {
         public function TestPeakArrager() {
             test();
+            getLevelTest();
         }
 
         private function test():void {
@@ -23,6 +24,25 @@ package tests.sceneParts {
             Assert.areEqual(arranger.getArrage(1.5), 1.4); //  7 / 5
 
             Assert.areEqual(arranger.getArrage(1.5), 1.5); //  7.5 / 5
+        }
+
+        private function getLevelTest():void {
+            var arranger:PeakArranger = new PeakArranger();
+            Assert.areEqual(arranger.getLevel(0), 0);
+
+            arranger.divisonCount = 2;
+
+            Assert.areEqual(arranger.getLevel(0.2), 1);
+            Assert.areEqual(arranger.getLevel(0.6), 1);
+            Assert.areEqual(arranger.getLevel(1.0), 1);
+
+            arranger.clearCache();
+
+            arranger.divisonCount = 3;
+
+            Assert.areEqual(arranger.getLevel(0), 0);
+            Assert.areEqual(arranger.getLevel(0.6), 2);
+            Assert.areEqual(arranger.getLevel(0.2), 1);
         }
     }
 }
