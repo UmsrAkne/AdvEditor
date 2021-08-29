@@ -4,12 +4,14 @@ package classes.sceneParts {
 
         private var cache:Vector.<Number> = new Vector.<Number>();
         private var _chacheSize:int = 5;
+        private var _max:Number = 0;
 
         public function PeakArranger() {
         }
 
         public function getArrage(value:Number):Number {
             cache.push(value);
+            _max = Math.max(value, _max);
 
             while (cache.length > _chacheSize) {
                 cache.shift();
@@ -25,6 +27,10 @@ package classes.sceneParts {
 
         public function clearCache():void {
             cache = new Vector.<Number>();
+        }
+
+        public function get max():Number {
+            return _max;
         }
     }
 }
