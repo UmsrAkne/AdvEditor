@@ -1,0 +1,79 @@
+{
+	"image": {
+		"prefix": "image",
+		"body": [
+			"<image a=\"$1\" b=\"$2\" c=\"$3\" rotation=\"${4:0}\" x=\"${5:0}\" y=\"${6:0}\" target=\"${7:main}\" statusInherit=\"${8:false}\" />"
+		],
+		"description": "image element"
+	},
+	"draw": {
+		"prefix": "draw",
+		"body": [
+			"<image a=\"$1\" b=\"$2\" c=\"$3\" depth=\"${4:0.1}\" target=\"${5:main}\" />"
+		],
+		"description": "draw element"
+	},
+	"alphaChanger": {
+		"prefix": "alphaChanger",
+		"body": [
+			"<anime name=\"alphaChanger\" amount=\"${2:0.1}\" duration=\"${3:12}\" target=\"${5:main}\" />"
+		],
+		"description": ""
+	},
+	"multiAlphaChanger": {
+		"prefix": "multiAlphaChanger",
+		"body": [
+			"<anime name=\"multiAlphaChanger\" front=\"${2:0.1}]\" backs=\"${3:-0.1}\" target=\"${5:main}\" />"
+		],
+		"description": ""
+	},
+	"shake": {
+		"prefix": "shake",
+		"body": [
+			"<anime name=\"shake\" strength=\"${2:1}\" duration=\"${3:24}\" loopCount=\"${4:0}\" target=\"${5:main}\" />"
+		],
+		"description": ""
+	},
+	"slide": {
+		"prefix": "slide",
+		"body": [
+			"<anime name=\"slide\" speed=\"${2:1}\" degree=\"${3:0}\" distance=\"${4:0}\" target=\"${5:main}\" />"
+		],
+		"description": ""
+	},
+	"loopSlide": {
+		"prefix": "loopSlide",
+		"body": [
+			"<anime name=\"loopSlide\" b=\"$2\" c=\"$3\" target=\"${5:main}\" />"
+		],
+		"description": ""
+	},
+	"maskSlide": {
+		"prefix": "maskSlide",
+		"body": [
+			"<anime name=\"maskSlide\" speed=\"${2:1}\" degree=\"${3:0}\" distance=\"${4:0}\" target=\"${5:main}\" />"
+		],
+		"description": ""
+	},
+	"flashing": {
+		"prefix": "flashing",
+		"body": [
+			"<anime name=\"flashing\" cycle=\"${2:4}\" duration=\"${3:24}\" delay=\"${4:0}\" target=\"${5:main}\" />"
+		],
+		"description": ""
+	},
+	"scaleChanger": {
+		"prefix": "scaleChanger",
+		"body": [
+			"<anime name=\"scaleChanger\" strength=\"${2:0.1}\" total=\"${3:0.5}\" delay=\"${4:0}\" target=\"${5:main}\" />"
+		],
+		"description": ""
+	},
+	"bound": {
+		"prefix": "bound",
+		"body": [
+			"<anime name=\"bound\" strength=\"${2:1}\" degree=\"${3:0}\" duration=\"${4:6}\" target=\"${5:main}\" />"
+		],
+		"description": ""
+	}
+}
