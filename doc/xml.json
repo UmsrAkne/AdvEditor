@@ -9,7 +9,7 @@
 	"draw": {
 		"prefix": "draw",
 		"body": [
-			"<image a=\"$1\" b=\"$2\" c=\"$3\" depth=\"${4:0.1}\" target=\"${5:main}\" />"
+			"<draw a=\"$1\" b=\"$2\" c=\"$3\" depth=\"${4:0.1}\" target=\"${5:main}\" />"
 		],
 		"description": "draw element"
 	},
