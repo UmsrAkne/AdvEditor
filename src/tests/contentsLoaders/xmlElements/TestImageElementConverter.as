@@ -45,6 +45,12 @@ package tests.contentsLoaders.xmlElements {
             Assert.areEqual(scenario1.ImagerOrders[0].indexes[0], 1);
             Assert.areEqual(scenario1.ImagerOrders[0].indexes[1], 0);
             Assert.areEqual(scenario1.ImagerOrders[0].indexes[2], 3);
+
+            var testXML2:XML = new XML("<scenario>  <image a=\"Aimg01\" c=\"Cimg01\" scale=\"\" backgroundColor=\"0xa\" statusInherit=\"true\" target=\"front\"/>  </scenario>");
+            var scenario2:Scenario = new Scenario();
+
+            // scale="" のように空白を入力しても例外が出ないかどうかを確認する。
+            imageElementConverter.convert(testXML2, scenario2);
         }
     }
 }
