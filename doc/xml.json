@@ -2,7 +2,7 @@
 	"image": {
 		"prefix": "image",
 		"body": [
-			"<image a=\"$1\" b=\"$2\" c=\"$3\" rotation=\"${4:0}\" x=\"${5:0}\" y=\"${6:0}\" target=\"${7:main}\" statusInherit=\"${8:false}\" />"
+			"<image a=\"$1\" b=\"$2\" c=\"$3\" scale=\"$4\" rotation=\"${5:0}\" x=\"${6:0}\" y=\"${7:0}\" target=\"${8:main}\" statusInherit=\"${9:false}\" />"
 		],
 		"description": "image element"
 	},
