@@ -75,5 +75,12 @@
 			"<anime name=\"bound\" strength=\"${2:1}\" degree=\"${3:0}\" duration=\"${4:6}\" target=\"${5:main}\" />"
 		],
 		"description": ""
+	},
+	"se": {
+		"prefix": "se",
+		"body": [
+			"<se repeatCount=\"${1:0}\" />"
+		],
+		"description": ""
 	}
 }
