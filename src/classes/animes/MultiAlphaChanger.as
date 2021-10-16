@@ -14,6 +14,8 @@ package classes.animes {
          * 最前面のディスプレイオブジェクト以外に適用する alpha の値です。
          */
         public var backs:Number = -0.1;
+        private var _frontDelay:int;
+        private var _backsDelay:int;
 
         private var valid:Boolean = true;
         private var frontTarget:DisplayObject;
@@ -74,11 +76,13 @@ package classes.animes {
 
             alphaChangers[0].Target = frontTarget;
             alphaChangers[0].amount = front;
+            alphaChangers[0].delay = _frontDelay;
 
             for each (var t:DisplayObject in backTargets) {
                 var a:AlphaChanger = new AlphaChanger();
                 a.amount = backs;
                 a.Target = t;
+                a.delay = _backsDelay;
                 alphaChangers.push(a);
             }
         }
@@ -94,6 +98,23 @@ package classes.animes {
         public function set strength(value:Number):void {
             front = value;
             backs = value * -1;
+        }
+
+        public function set frontDelay(value:int):void {
+            _frontDelay = value;
+
+            if (alphaChangers.length > 0) {
+                alphaChangers[0].delay = _frontDelay;
+            }
+        }
+
+        public function set backsDelay(value:int):void {
+            _backsDelay = value
+            if (alphaChangers.length > 1) {
+                for (var i:int = 1; i < alphaChangers.length; i++) {
+                    alphaChangers[i].delay = _backsDelay;
+                }
+            }
         }
     }
 }
