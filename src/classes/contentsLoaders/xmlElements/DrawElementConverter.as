@@ -10,6 +10,7 @@ package classes.contentsLoaders.xmlElements {
         public static const C_ATTRIBUTE:String = "@c";
 
         public static const DEPTH_ATTRIBUTE:String = "@depth";
+        public static const DELAY_ATTRIBUTE:String = "@delay";
         public static const TARGET_ATTRIBUTE:String = "@target";
 
         public function DrawElementConverter() {
@@ -35,6 +36,10 @@ package classes.contentsLoaders.xmlElements {
 
                 if (drawTag.hasOwnProperty(DEPTH_ATTRIBUTE)) {
                     order.drawingDepth = parseFloat(drawTag[DEPTH_ATTRIBUTE]);
+                }
+
+                if (drawTag.hasOwnProperty(DELAY_ATTRIBUTE)) {
+                    order.delay = parseInt(drawTag[DELAY_ATTRIBUTE]);
                 }
 
                 if (drawTag.hasOwnProperty(TARGET_ATTRIBUTE)) {

@@ -12,6 +12,7 @@ package classes.sceneContents {
         public var x:int = 0;
         public var y:int = 0;
         public var rotation:int = 0;
+        public var delay:int;
 
         public var backgroundColor:uint = 0x00000000;
         public var drawingDepth:Number = 0.1;
