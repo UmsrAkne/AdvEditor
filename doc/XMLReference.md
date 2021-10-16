@@ -189,6 +189,7 @@
 		VoiceElementConverter:"@channel"
 		VoiceElementConverter:"@fileName"
 		VoiceElementConverter:"@number"
+		VoiceElementConverter:"@volume"
 
 ## faceDrawingOrder.xml の仕様
 
