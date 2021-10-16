@@ -89,5 +89,12 @@
 			"<mask a=\"${1:0},${2:0}\" b=\"$3,$4\" c=\"$5,$6\" d=\"$7,$8\" target=\"${9:main}\" />"
 		],
 		"description": ""
+	},
+	"backVoice": {
+		"prefix": "backVoice",
+		"body": [
+			"<backVoice characterChannel=\"${1:0}\" names=\"$3\" />"
+		],
+		"description": ""
 	}
 }
