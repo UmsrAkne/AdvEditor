@@ -9,21 +9,21 @@
 	"draw": {
 		"prefix": "draw",
 		"body": [
-			"<draw a=\"$1\" b=\"$2\" c=\"$3\" depth=\"${4:0.1}\" target=\"${5:main}\" />"
+			"<draw a=\"$1\" b=\"$2\" c=\"$3\" depth=\"${4:0.1}\" delay=\"${5:0}\" target=\"${6:main}\" />"
 		],
 		"description": "draw element"
 	},
 	"alphaChanger": {
 		"prefix": "alphaChanger",
 		"body": [
-			"<anime name=\"alphaChanger\" amount=\"${2:0.1}\" duration=\"${3:12}\" target=\"${5:main}\" />"
+			"<anime name=\"alphaChanger\" amount=\"${2:0.1}\" duration=\"${3:12}\" delay=\"${5:0}\" target=\"${6:main}\" />"
 		],
 		"description": ""
 	},
 	"multiAlphaChanger": {
 		"prefix": "multiAlphaChanger",
 		"body": [
-			"<anime name=\"multiAlphaChanger\" front=\"${2:0.1}]\" backs=\"${3:-0.1}\" target=\"${5:main}\" />"
+			"<anime name=\"multiAlphaChanger\" front=\"${2:0.1}]\" backs=\"${3:-0.1}\" frontDelay=\"${4:0}\" backsDelay=\"${5:0}\" target=\"${6:main}\" />"
 		],
 		"description": ""
 	},
