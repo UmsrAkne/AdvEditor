@@ -135,6 +135,7 @@
 		DrawElementConverter:"@b"
 		DrawElementConverter:"@c"
 		DrawElementConverter:"@depth"
+		DrawElementConverter:"@delay"
 		DrawElementConverter:"@target"
 
 	<image>

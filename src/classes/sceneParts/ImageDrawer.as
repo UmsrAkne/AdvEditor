@@ -21,6 +21,7 @@ package classes.sceneParts {
         private var resource:Resource;
         private var currentOrder:ImageOrder;
         private var drawingOrder:ImageOrder;
+        private var delayCounter:int;
         private var totalDrawingDepth:Number = 0;
         private var lastSettingRotation:int = 0;
         private var defaultScale:Number = 1.0;
@@ -133,6 +134,7 @@ package classes.sceneParts {
                 for each (order in scenario.DrawingOrder) {
                     if (order.targetLayerIndex == bitmapContainer.LayerIndex) {
                         drawingOrder = order;
+                        delayCounter = order.delay;
                         needBitmapDrawing = true;
                     }
                 }
@@ -149,6 +151,11 @@ package classes.sceneParts {
         }
 
         private function drawToFront(e:Event):void {
+            if (delayCounter > 0) {
+                delayCounter--;
+                return;
+            }
+
             var bitmap:Bitmap = bitmapContainer.Front;
 
             for each (var name:String in drawingOrder.names) {
@@ -168,6 +175,7 @@ package classes.sceneParts {
                 enterFrameEventDispatcher.removeEventListener(Event.ENTER_FRAME, drawToFront);
             }
 
+            delayCounter = 0;
             totalDrawingDepth = 0;
 
             var bitmap:Bitmap = bitmapContainer.Front;
