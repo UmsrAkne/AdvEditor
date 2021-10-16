@@ -7,6 +7,7 @@ package tests.animes {
     public class TestAlphaChanger {
         public function TestAlphaChanger() {
             testExecute();
+            testDelayExecute();
         }
 
         private function testExecute():void {
@@ -36,6 +37,35 @@ package tests.animes {
 
             Assert.areEqual(sprite.alpha, 1);
             Assert.isFalse(alphaIncreaser2.Valid);
+        }
+
+        private function testDelayExecute():void {
+            var alphaIncreaser:AlphaChanger = new AlphaChanger();
+            alphaIncreaser.delay = 12;
+            alphaIncreaser.amount = 0.1;
+
+            var sprite:Sprite = new Sprite();
+            sprite.alpha = 0;
+            alphaIncreaser.Target = sprite;
+
+            for (var i:int = 0; i < 12; i++) {
+                alphaIncreaser.execute();
+            }
+
+            // 12フレーム経過時点では alpha == 0 のまま。
+            Assert.areEqual(sprite.alpha, 0);
+            Assert.isTrue(alphaIncreaser.Valid);
+
+            alphaIncreaser.execute();
+
+            // この段階で 0 から値が増加する。
+            Assert.isTrue(sprite.alpha > 0);
+
+            for (i = 0; i < 12; i++) {
+                alphaIncreaser.execute();
+            }
+
+            Assert.areEqual(sprite.alpha, 1);
         }
     }
 }

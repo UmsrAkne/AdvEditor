@@ -6,6 +6,7 @@ package classes.animes {
 
         public var duration:int = 12;
         public var amount:Number = 0.1;
+        public var delay:int;
 
         private var frameCount:int;
         private var target:DisplayObject;
@@ -17,6 +18,11 @@ package classes.animes {
 
         public function execute():void {
             if (!valid || !target) {
+                return;
+            }
+
+            if (delay > 0) {
+                delay--;
                 return;
             }
 
