@@ -74,6 +74,8 @@
 
 			multiAlphaChanger   front = 0.1
 			multiAlphaChanger   backs = -0.1
+			multiAlphaChanger   frontDelay
+			multiAlphaChanger   backsDelay
 			multiAlphaChanger   strength
 
 			scaleChanger   strength = 0.1
