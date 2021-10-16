@@ -46,6 +46,7 @@
 
 			alphaChanger   duration = 12
 			alphaChanger   amount = 0.1
+			alphaChanger   delay
 
 			bound   degree
 			bound   strength = 1
