@@ -8,6 +8,7 @@ package tests.animes {
         public function TestBound() {
             test();
             testLoopExecute();
+            testDelayExecute();
         }
 
         private function test():void {
@@ -79,6 +80,37 @@ package tests.animes {
             Assert.areEqual(sp.x, 0);
             Assert.areEqual(sp.y, 0);
             Assert.isFalse(bound.Valid);
+        }
+
+        private function testDelayExecute():void {
+            var bound:Bound = new Bound();
+            var sp:Sprite = new Sprite();
+            bound.Target = sp;
+            bound.degree = 45;
+            bound.strength = 5;
+            bound.duration = 14;
+            bound.delay = 10;
+
+            for (var i:int = 0; i < 10; i++) {
+                bound.execute();
+            }
+
+            // delay をセットしているので、この段階ではまだオブジェクトは動かない。
+            Assert.areEqual(sp.x, 0);
+            Assert.areEqual(sp.y, 0);
+
+            // この段階で座標が原点から離れる。
+            bound.execute();
+            Assert.areNotEqual(sp.x, 0);
+            Assert.areNotEqual(sp.y, 0);
+
+            for (i = 0; i < 18; i++) {
+                bound.execute();
+            }
+
+            // duration 以上の回数実行した後は元の位置（原点）に戻る
+            Assert.areEqual(sp.x, 0);
+            Assert.areEqual(sp.y, 0);
         }
     }
 }

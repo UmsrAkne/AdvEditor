@@ -8,6 +8,7 @@ package classes.animes {
         public var degree:int;
         public var strength:int = 1;
         public var loopCount:int;
+        public var delay:int;
 
         private var intervalCounter:int;
         private var originalInterval:int;
@@ -20,6 +21,11 @@ package classes.animes {
 
         public function execute():void {
             if (!valid) {
+                return;
+            }
+
+            if (delay > 0) {
+                delay--;
                 return;
             }
 
