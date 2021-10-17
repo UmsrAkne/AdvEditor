@@ -85,6 +85,7 @@
 			shake   strength = 5
 			shake   duration = 24
 			shake   loopCount
+			shake   delay 
 			shake   interval
 
 			slide   degree

@@ -30,7 +30,7 @@
 	"shake": {
 		"prefix": "shake",
 		"body": [
-			"<anime name=\"shake\" strength=\"${2:1}\" duration=\"${3:24}\" loopCount=\"${4:0}\" target=\"${5:main}\" />"
+			"<anime name=\"shake\" strength=\"${2:1}\" duration=\"${3:24}\" loopCount=\"${4:0}\" delay=\"${5:0}\" target=\"${6:main}\" />"
 		],
 		"description": ""
 	},
