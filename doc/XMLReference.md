@@ -52,6 +52,7 @@
 			bound   strength = 1
 			bound   loopCount
 			bound   duration
+			bound   delay
 			bound   interval
 
 			flashing   cycle = 4
