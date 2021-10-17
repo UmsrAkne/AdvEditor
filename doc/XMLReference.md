@@ -52,6 +52,7 @@
 			bound   strength = 1
 			bound   loopCount
 			bound   duration
+			bound   delay
 			bound   interval
 
 			flashing   cycle = 4
@@ -85,6 +86,7 @@
 			shake   strength = 5
 			shake   duration = 24
 			shake   loopCount
+			shake   delay 
 			shake   interval
 
 			slide   degree
