@@ -11,6 +11,7 @@ package classes.uis {
 
         private var soundChannel:SoundChannel;
         private var volume:Number = 1.0;
+        private var playing:Boolean;
 
         public function SoundChannelWrapper() {
         }
@@ -18,8 +19,10 @@ package classes.uis {
         public function setSoundChannel(channel:SoundChannel):void {
             if (soundChannel != null) {
                 soundChannel.removeEventListener(Event.SOUND_COMPLETE, dispatchCompleteEvent);
+                soundChannel.stop();
             }
 
+            playing = true;
             soundChannel = channel;
             soundChannel.addEventListener(Event.SOUND_COMPLETE, dispatchCompleteEvent);
             dispatchEvent(new Event(SOUND_CHANNEL_REPLACED));
@@ -35,6 +38,15 @@ package classes.uis {
         public function stop():void {
             if (soundChannel != null) {
                 soundChannel.stop();
+                playing = false;
+            }
+        }
+
+        public function forceComplete():void {
+            if (soundChannel != null && playing) {
+                dispatchEvent(new Event(Event.SOUND_COMPLETE));
+                soundChannel.stop();
+                playing = false;
             }
         }
 
@@ -50,6 +62,7 @@ package classes.uis {
 
         private function dispatchCompleteEvent(e:Event):void {
             dispatchEvent(e);
+            playing = false;
         }
     }
 }

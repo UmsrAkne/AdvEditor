@@ -51,6 +51,10 @@ package classes.sceneParts {
         }
 
         public function setScenario(scenario:Scenario):void {
+            if (scenario.Voice && scenario.Voice.CharacterChannel != characterChannel) {
+                soundChannelWrapper.forceComplete();
+            }
+
             if (scenario.Voice && scenario.Voice.CharacterChannel == characterChannel) {
                 voiceFile = scenario.Voice;
             } else {
