@@ -11,6 +11,8 @@ package classes.sceneParts {
     import flash.geom.ColorTransform;
     import flash.display.Sprite;
     import flash.geom.Matrix;
+    import flash.geom.Point;
+    import flash.geom.Rectangle;
 
     public class ImageDrawer implements IScenarioSceneParts {
 
@@ -47,12 +49,19 @@ package classes.sceneParts {
 
             if (needBitmapAddition) {
                 var bmds:Vector.<BitmapData> = new Vector.<BitmapData>();
+                var drawingLocations:Vector.<Point> = new Vector.<Point>();
                 var w:int;
                 var h:int;
-                for each (var index:int in currentOrder.indexes) {
-                    if (index > 0) {
-                        var b:BitmapData = resource.BitmapDatas[index];
+                for each (var name:String in currentOrder.names) {
+                    if (name != "") {
+                        var b:BitmapData = resource.BitmapDatasByName[name];
                         bmds.push(b);
+                        if (resource.ImageDrawingPointByName.hasOwnProperty(name)) {
+                            drawingLocations.push(Point(resource.ImageDrawingPointByName[name]).clone());
+                        } else {
+                            drawingLocations.push(new Point());
+                        }
+
                         w = Math.max(w, b.width);
                         h = Math.max(h, b.height);
                     }
@@ -60,8 +69,8 @@ package classes.sceneParts {
 
                 var bitmap:Bitmap = new Bitmap(new BitmapData(w, h, true, currentOrder.backgroundColor));
 
-                for each (var bmd:BitmapData in bmds) {
-                    bitmap.bitmapData.draw(bmd);
+                for (var i:int = 0; i < bmds.length; i++) {
+                    bitmap.bitmapData.draw(bmds[i], new Matrix(1, 0, 0, 1, drawingLocations[i].x, drawingLocations[i].y));
                 }
 
                 var matrix:Matrix;
@@ -160,7 +169,8 @@ package classes.sceneParts {
 
             for each (var name:String in drawingOrder.names) {
                 if (name != "") {
-                    bitmap.bitmapData.draw(resource.BitmapDatasByName[name], null, new ColorTransform(1, 1, 1, drawingOrder.drawingDepth));
+                    var p:Point = getPointFromImageName(name);
+                    bitmap.bitmapData.draw(resource.BitmapDatasByName[name], new Matrix(1, 0, 0, 1, p.x, p.y), new ColorTransform(1, 1, 1, drawingOrder.drawingDepth));
                 }
             }
 
@@ -181,13 +191,23 @@ package classes.sceneParts {
             var bitmap:Bitmap = bitmapContainer.Front;
             for each (var name:String in drawingOrder.names) {
                 if (name != "") {
-                    bitmap.bitmapData.draw(resource.BitmapDatasByName[name]);
+                    var p:Point = getPointFromImageName(name)
+                    var bd:BitmapData = BitmapData(resource.BitmapDatasByName[name]);
+                    bitmap.bitmapData.copyPixels(bd, new Rectangle(0, 0, bd.width, bd.height), new Point(p.x, p.y));
                 }
             }
         }
 
         public function get EnterFrameEventDispatcher():EventDispatcher {
             return enterFrameEventDispatcher;
+        }
+
+        private function getPointFromImageName(targetImageName:String):Point {
+            if (resource.ImageDrawingPointByName[targetImageName] != null) {
+                return Point(resource.ImageDrawingPointByName[targetImageName]).clone();
+            } else {
+                return new Point();
+            }
         }
 
         public function dispose():void {
