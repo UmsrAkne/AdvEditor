@@ -11,6 +11,7 @@ package classes.contentsLoaders.xmlElements {
         public static const A_ATTRIBUTE:String = "@a";
         public static const B_ATTRIBUTE:String = "@b";
         public static const C_ATTRIBUTE:String = "@c";
+        public static const D_ATTRIBUTE:String = "@d";
 
         public static const TARGET_ATTRIBUTE:String = "@target";
 
@@ -45,11 +46,11 @@ package classes.contentsLoaders.xmlElements {
 
             for each (var imageTag:XML in scenarioElement[ElementName]) {
                 var order:ImageOrder = new ImageOrder();
-                if (imageTag.hasOwnProperty(A_ATTRIBUTE) || imageTag.hasOwnProperty(B_ATTRIBUTE) || imageTag.hasOwnProperty(C_ATTRIBUTE)) {
+                if (imageTag.hasOwnProperty(A_ATTRIBUTE) || imageTag.hasOwnProperty(B_ATTRIBUTE) || imageTag.hasOwnProperty(C_ATTRIBUTE) || imageTag.hasOwnProperty(D_ATTRIBUTE)) {
                     order.names = new Vector.<String>();
 
                     var atts:Vector.<String> = new Vector.<String>();
-                    atts.push(A_ATTRIBUTE, B_ATTRIBUTE, C_ATTRIBUTE);
+                    atts.push(A_ATTRIBUTE, B_ATTRIBUTE, C_ATTRIBUTE, D_ATTRIBUTE);
 
                     for each (var att:String in atts) {
                         order.names.push(imageTag[att]);
