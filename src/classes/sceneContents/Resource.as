@@ -25,6 +25,8 @@ package classes.sceneContents {
         private var bitmapDatas:Vector.<BitmapData> = new Vector.<BitmapData>();
         private var bitmapDatasByName:Dictionary = new Dictionary();
 
+        private var imageDrawingPointByName:Dictionary = new Dictionary();
+
         private var uiImages:UIImages = new UIImages();
 
         private var blinkOrdersByName:Dictionary = new Dictionary();
@@ -80,6 +82,10 @@ package classes.sceneContents {
 
         public function get UIImageContainer():UIImages {
             return uiImages;
+        }
+
+        public function get ImageDrawingPointByName():Object {
+            return imageDrawingPointByName;
         }
 
         public function get BlinkOrdersByName():Dictionary {
