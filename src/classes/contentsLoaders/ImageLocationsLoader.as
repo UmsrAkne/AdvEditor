@@ -41,6 +41,11 @@ package classes.contentsLoaders {
         }
 
         public function load():void {
+            var targetPath:String = "texts/imageLocations.xml";
+            if (!sceneDirectory.resolvePath(targetPath).exists) {
+                return;
+            }
+
             var urlLoader:URLLoader = new URLLoader();
             urlLoader.addEventListener(Event.COMPLETE, function(e:Event):void {
                 try {
@@ -54,7 +59,7 @@ package classes.contentsLoaders {
                 completeEventDispatcher.dispatchEvent(new Event(Event.COMPLETE));
             });
 
-            urlLoader.load(new URLRequest(sceneDirectory.resolvePath("texts/imageLocations.xml").nativePath));
+            urlLoader.load(new URLRequest(sceneDirectory.resolvePath(targetPath).nativePath));
         }
 
         public function set LocationXMLList(xmlList:XMLList):void {
