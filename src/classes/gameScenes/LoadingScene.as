@@ -11,6 +11,7 @@ package classes.gameScenes {
     import classes.sceneContents.Resource;
     import classes.contentsLoaders.FaceDrawingOrderLoader;
     import classes.contentsLoaders.UIImageLoader;
+    import classes.contentsLoaders.ImageLocationsLoader;
 
     public class LoadingScene extends Sprite {
 
@@ -30,6 +31,7 @@ package classes.gameScenes {
         public function load():void {
             loaders.push(new ScenarioLoader(sceneDirectory));
             loaders.push(new SettingLoader(sceneDirectory));
+            loaders.push(new ImageLocationsLoader(sceneDirectory));
             loaders.push(new FaceDrawingOrderLoader(sceneDirectory));
             loaders.push(new SoundLoader(sceneDirectory));
             loaders.push(new ImageLoader(sceneDirectory));

@@ -43,6 +43,7 @@ package classes.contentsLoaders {
         public function load():void {
             var targetPath:String = "texts/imageLocations.xml";
             if (!sceneDirectory.resolvePath(targetPath).exists) {
+                completeEventDispatcher.dispatchEvent(new Event(Event.COMPLETE));
                 return;
             }
 
