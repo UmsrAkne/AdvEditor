@@ -84,7 +84,7 @@ package classes.sceneContents {
             return uiImages;
         }
 
-        public function get ImageDrawingPointByName():Object {
+        public function get ImageDrawingPointByName():Dictionary {
             return imageDrawingPointByName;
         }
 

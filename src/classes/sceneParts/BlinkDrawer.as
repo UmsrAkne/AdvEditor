@@ -9,6 +9,9 @@ package classes.sceneParts {
     import flash.display.Sprite;
     import flash.events.Event;
     import classes.sceneContents.BlinkOrder;
+    import flash.geom.Point;
+    import flash.geom.Rectangle;
+    import flash.display.BitmapData;
 
     public class BlinkDrawer implements IScenarioSceneParts {
 
@@ -17,6 +20,7 @@ package classes.sceneParts {
         private var blinkOrdersByName:Dictionary;
         private var currentEyeImageName:String;
         private var currentBlinkOrder:BlinkOrder;
+        private var drawingLocationByName:Dictionary;
         private var enterFrameEventDispatcher:EventDispatcher = new Sprite();
         private var interval:int = 90;
         private var drawCount:int;
@@ -69,6 +73,7 @@ package classes.sceneParts {
         public function setResource(res:Resource):void {
             blinkOrdersByName = res.BlinkOrdersByName;
             bitmapDatasByName = res.BitmapDatasByName;
+            drawingLocationByName = res.ImageDrawingPointByName;
         }
 
         /**
@@ -87,7 +92,11 @@ package classes.sceneParts {
 
             var drawingImageNames:Vector.<String> = currentBlinkOrder.buildOrder();
             if (drawCount < drawingImageNames.length) {
-                bitmapContainer.Front.bitmapData.draw(bitmapDatasByName[drawingImageNames[drawCount]]);
+
+                var imageName:String = drawingImageNames[drawCount];
+                var bd:BitmapData = bitmapDatasByName[imageName];
+                var pos:Point = (drawingLocationByName[imageName] != null) ? drawingLocationByName[imageName] : new Point();
+                bitmapContainer.Front.bitmapData.copyPixels(bd, new Rectangle(0, 0, bd.width, bd.height), pos, null, null, true);
                 drawCount++;
             } else {
                 drawCount = 0;

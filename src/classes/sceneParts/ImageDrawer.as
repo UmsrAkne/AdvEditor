@@ -193,7 +193,7 @@ package classes.sceneParts {
                 if (name != "") {
                     var p:Point = getPointFromImageName(name)
                     var bd:BitmapData = BitmapData(resource.BitmapDatasByName[name]);
-                    bitmap.bitmapData.copyPixels(bd, new Rectangle(0, 0, bd.width, bd.height), new Point(p.x, p.y));
+                    bitmap.bitmapData.copyPixels(bd, new Rectangle(0, 0, bd.width, bd.height), new Point(p.x, p.y), null, null, true);
                 }
             }
         }
