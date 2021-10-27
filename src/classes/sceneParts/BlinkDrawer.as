@@ -96,7 +96,7 @@ package classes.sceneParts {
                 var imageName:String = drawingImageNames[drawCount];
                 var bd:BitmapData = bitmapDatasByName[imageName];
                 var pos:Point = (drawingLocationByName[imageName] != null) ? drawingLocationByName[imageName] : new Point();
-                bitmapContainer.Front.bitmapData.copyPixels(bitmapDatasByName[imageName], new Rectangle(0, 0, bd.width, bd.height), pos)
+                bitmapContainer.Front.bitmapData.copyPixels(bd, new Rectangle(0, 0, bd.width, bd.height), pos, null, null, true);
                 drawCount++;
             } else {
                 drawCount = 0;
