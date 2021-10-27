@@ -35,7 +35,6 @@ package classes.sceneParts {
         }
 
         public function execute():void {
-            throw new Error("Method not implemented.");
         }
 
         public function setScenario(scenario:Scenario):void {
@@ -85,7 +84,6 @@ package classes.sceneParts {
         }
 
         public function dispose():void {
-            throw new Error("Method not implemented.");
         }
 
         public function drawLip():void {

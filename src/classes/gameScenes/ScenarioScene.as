@@ -57,6 +57,10 @@ package classes.gameScenes {
             sceneParts.push(new BlinkDrawer(ui.getBitmapContainerFromIndex(2))); // middle
             sceneParts.push(new BlinkDrawer(ui.getBitmapContainerFromIndex(3))); // front
 
+            sceneParts.push(new LipDrawer(ui.getBitmapContainerFromIndex(1))); // main
+            sceneParts.push(new LipDrawer(ui.getBitmapContainerFromIndex(2))); // middle
+            sceneParts.push(new LipDrawer(ui.getBitmapContainerFromIndex(3))); // front
+
             sceneParts.push(new MaskSetter(ui.getBitmapContainerFromIndex(0))); // background
             sceneParts.push(new MaskSetter(ui.getBitmapContainerFromIndex(1))); // main
             sceneParts.push(new MaskSetter(ui.getBitmapContainerFromIndex(2))); // middle
