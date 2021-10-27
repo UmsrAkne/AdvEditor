@@ -228,6 +228,12 @@ open に関しては `,` で区切って複数のファイル名が入力可。
 		SettingLoader:"@seVolume"
 
 		ThumbnailLoader:"@thumbnail"
+		
+## imageLocations.xml の仕様
+	
+	<location name="imageName" x="000" y="000 />
+	
+シナリオディレクトリの texts に配置する。画像描画時の位置を指定できる。画面左上が原点です。
 
 ## configuration.xml の仕様
 
