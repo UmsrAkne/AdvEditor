@@ -10,7 +10,9 @@ package classes.sceneParts {
     import classes.uis.SoundChannelWrapper;
     import flash.events.Event;
     import classes.sceneContents.ImageOrder;
-    import flash.media.SoundChannel;
+    import flash.display.BitmapData;
+    import flash.geom.Point;
+    import flash.geom.Rectangle;
 
     public class LipDrawer implements IScenarioSceneParts {
 
@@ -26,6 +28,7 @@ package classes.sceneParts {
         private var soundChannelWrapper:SoundChannelWrapper;
         private var peakArranger:PeakArranger = new PeakArranger();
         private var drawCount:int;
+        private var drawingLocationByName:Dictionary;
 
         public function LipDrawer(targetBitmapContainer:BitmapContainer) {
             this.bitmapContainer = targetBitmapContainer;
@@ -77,7 +80,8 @@ package classes.sceneParts {
 
         public function setResource(res:Resource):void {
             bitmapDatasByName = res.BitmapDatasByName;
-            lipOrdersByName = res.LipOrdersByName
+            lipOrdersByName = res.LipOrdersByName;
+            drawingLocationByName = res.ImageDrawingPointByName;
         }
 
         public function dispose():void {
@@ -91,8 +95,12 @@ package classes.sceneParts {
 
             var drawingImageNames:Vector.<String> = currentLipOrder.buildOrder();
             if (drawCount < drawingImageNames.length) {
+                peakArranger.divisonCount = drawingImageNames.length - 1;
                 var imageName:String = drawingImageNames[peakArranger.getLevel(soundChannelWrapper.getPeak())];
-                bitmapContainer.Front.bitmapData.draw(bitmapDatasByName[imageName]);
+                var bd:BitmapData = bitmapDatasByName[imageName];
+                var pos:Point = (drawingLocationByName[imageName] != null) ? drawingLocationByName[imageName] : new Point();
+                bitmapContainer.Front.bitmapData.copyPixels(bd, new Rectangle(0, 0, bd.width, bd.height), pos, null, null, true);
+
                 lastDrawImageName = imageName; // 単体テスト用の代入
                 drawCount++;
             } else {
