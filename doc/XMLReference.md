@@ -132,22 +132,25 @@
 		BackVoiceElementConverter:"@volume"
 
 	<draw>
-		a-c までの属性内にはファイル名を入力する
+		a-d までの属性内にはファイル名を入力する
 		DrawElementConverter:"@a"
 		DrawElementConverter:"@b"
 		DrawElementConverter:"@c"
+		DrawElementConverter:"@d"
 		DrawElementConverter:"@depth"
 		DrawElementConverter:"@delay"
 		DrawElementConverter:"@target"
 
 	<image>
-		a-c までの属性内にはファイル名を入力する
+		a-d までの属性内にはファイル名を入力する
 		ImageElementConverter:"@a"
+		ImageElementConverter:"@b"
+		ImageElementConverter:"@c"
+		ImageElementConverter:"@d"
+
 		ImageElementConverter:"@backgroundColor"
 			8 桁の 16 進数(ARGB)で指定する。 ex : <image backgroundColor="0xffffffff" />
 
-		ImageElementConverter:"@b"
-		ImageElementConverter:"@c"
 		ImageElementConverter:"@rotation"
 		ImageElementConverter:"@scale"
 		ImageElementConverter:"@statusInherit"
