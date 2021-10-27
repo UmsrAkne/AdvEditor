@@ -132,22 +132,25 @@
 		BackVoiceElementConverter:"@volume"
 
 	<draw>
-		a-c までの属性内にはファイル名を入力する
+		a-d までの属性内にはファイル名を入力する
 		DrawElementConverter:"@a"
 		DrawElementConverter:"@b"
 		DrawElementConverter:"@c"
+		DrawElementConverter:"@d"
 		DrawElementConverter:"@depth"
 		DrawElementConverter:"@delay"
 		DrawElementConverter:"@target"
 
 	<image>
-		a-c までの属性内にはファイル名を入力する
+		a-d までの属性内にはファイル名を入力する
 		ImageElementConverter:"@a"
+		ImageElementConverter:"@b"
+		ImageElementConverter:"@c"
+		ImageElementConverter:"@d"
+
 		ImageElementConverter:"@backgroundColor"
 			8 桁の 16 進数(ARGB)で指定する。 ex : <image backgroundColor="0xffffffff" />
 
-		ImageElementConverter:"@b"
-		ImageElementConverter:"@c"
 		ImageElementConverter:"@rotation"
 		ImageElementConverter:"@scale"
 		ImageElementConverter:"@statusInherit"
@@ -228,6 +231,12 @@ open に関しては `,` で区切って複数のファイル名が入力可。
 		SettingLoader:"@seVolume"
 
 		ThumbnailLoader:"@thumbnail"
+		
+## imageLocations.xml の仕様
+	
+	<location name="imageName" x="000" y="000 />
+	
+シナリオディレクトリの texts に配置する。画像描画時の位置を指定できる。画面左上が原点です。
 
 ## configuration.xml の仕様
 
