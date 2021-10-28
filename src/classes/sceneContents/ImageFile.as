@@ -12,6 +12,14 @@ package classes.sceneContents {
         private var bitmapData:BitmapData;
         private var file:File;
 
+        public function get FileName():String {
+            return file != null ? file.name : "";
+        }
+
+        public function get FileNameWithoutExtension():String {
+            return file != null ? file.name.split(".")[0] : "";
+        }
+
         public function ImageFile(imageFile:File) {
             file = imageFile;
         }
