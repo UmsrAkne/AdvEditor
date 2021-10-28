@@ -7,6 +7,7 @@ package classes.contentsLoaders {
     import flash.display.Loader;
     import flash.events.Event;
     import flash.net.URLRequest;
+    import classes.sceneContents.ImageFile;
 
     public class ImageLoader implements ILoader {
 
@@ -33,6 +34,14 @@ package classes.contentsLoaders {
                 resource.BitmapDatas.push(bitmapDatas[i]);
                 resource.BitmapDatasByName[imageFiles[i].name] = bitmapDatas[i]; // ファイル名全て
                 resource.BitmapDatasByName[imageFiles[i].name.split(".")[0]] = bitmapDatas[i]; // 拡張子を除いたファイル名
+            }
+
+            resource.ImageFiles.push(new ImageFile(new File("/dummy")));
+            for each (var f:File in imageFiles) {
+                var imageFile:ImageFile = new ImageFile(f);
+                resource.ImageFiles.push(imageFile);
+                resource.ImageFilesByName[imageFile.FileName] = imageFile;
+                resource.ImageFilesByName[imageFile.FileNameWithoutExtension] = imageFile;
             }
         }
 
