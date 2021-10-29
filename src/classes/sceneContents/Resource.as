@@ -25,6 +25,9 @@ package classes.sceneContents {
         private var bitmapDatas:Vector.<BitmapData> = new Vector.<BitmapData>();
         private var bitmapDatasByName:Dictionary = new Dictionary();
 
+        private var imageFiles:Vector.<ImageFile> = new Vector.<ImageFile>();
+        private var imageFilesByName:Dictionary = new Dictionary();
+
         private var imageDrawingPointByName:Dictionary = new Dictionary();
 
         private var uiImages:UIImages = new UIImages();
@@ -72,12 +75,12 @@ package classes.sceneContents {
             return screenSize;
         }
 
-        public function get BitmapDatas():Vector.<BitmapData> {
-            return bitmapDatas;
+        public function get ImageFiles():Vector.<ImageFile> {
+            return imageFiles;
         }
 
-        public function get BitmapDatasByName():Dictionary {
-            return bitmapDatasByName;
+        public function get ImageFilesByName():Dictionary {
+            return imageFilesByName;
         }
 
         public function get UIImageContainer():UIImages {

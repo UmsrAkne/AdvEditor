@@ -13,6 +13,7 @@ package classes.sceneParts {
     import flash.geom.Matrix;
     import flash.geom.Point;
     import flash.geom.Rectangle;
+    import classes.sceneContents.ImageFile;
 
     public class ImageDrawer implements IScenarioSceneParts {
 
@@ -54,7 +55,7 @@ package classes.sceneParts {
                 var h:int;
                 for each (var name:String in currentOrder.names) {
                     if (name != "") {
-                        var b:BitmapData = resource.BitmapDatasByName[name];
+                        var b:BitmapData = ImageFile(resource.ImageFilesByName[name]).getBitmapData();
                         bmds.push(b);
                         if (resource.ImageDrawingPointByName.hasOwnProperty(name)) {
                             drawingLocations.push(Point(resource.ImageDrawingPointByName[name]).clone());
@@ -124,14 +125,14 @@ package classes.sceneParts {
         }
 
         public function setScenario(scenario:Scenario):void {
-            if (scenario.ImagerOrders.length == 0 && scenario.DrawingOrder.length == 0) {
+            if (scenario.ImageOrders.length == 0 && scenario.DrawingOrder.length == 0) {
                 needBitmapDrawing = false;
                 needBitmapAddition = false;
                 return;
             }
 
-            if (scenario.ImagerOrders.length > 0) {
-                for each (var order:ImageOrder in scenario.ImagerOrders) {
+            if (scenario.ImageOrders.length > 0) {
+                for each (var order:ImageOrder in scenario.ImageOrders) {
                     if (order.targetLayerIndex == bitmapContainer.LayerIndex) {
                         currentOrder = order;
                         needBitmapAddition = true;
@@ -170,7 +171,8 @@ package classes.sceneParts {
             for each (var name:String in drawingOrder.names) {
                 if (name != "") {
                     var p:Point = getPointFromImageName(name);
-                    bitmap.bitmapData.draw(resource.BitmapDatasByName[name], new Matrix(1, 0, 0, 1, p.x, p.y), new ColorTransform(1, 1, 1, drawingOrder.drawingDepth));
+                    var bd:BitmapData = ImageFile(resource.ImageFilesByName[name]).getBitmapData();
+                    bitmap.bitmapData.draw(bd, new Matrix(1, 0, 0, 1, p.x, p.y), new ColorTransform(1, 1, 1, drawingOrder.drawingDepth));
                 }
             }
 
@@ -192,7 +194,7 @@ package classes.sceneParts {
             for each (var name:String in drawingOrder.names) {
                 if (name != "") {
                     var p:Point = getPointFromImageName(name)
-                    var bd:BitmapData = BitmapData(resource.BitmapDatasByName[name]);
+                    var bd:BitmapData = ImageFile(resource.ImageFilesByName[name]).getBitmapData();
                     bitmap.bitmapData.copyPixels(bd, new Rectangle(0, 0, bd.width, bd.height), new Point(p.x, p.y), null, null, true);
                 }
             }

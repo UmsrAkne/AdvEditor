@@ -13,6 +13,7 @@ package classes.sceneParts {
     import flash.display.BitmapData;
     import flash.geom.Point;
     import flash.geom.Rectangle;
+    import classes.sceneContents.ImageFile;
 
     public class LipDrawer implements IScenarioSceneParts {
 
@@ -22,7 +23,7 @@ package classes.sceneParts {
         private var bitmapContainer:BitmapContainer;
         private var currentLipOrder:LipOrder;
         private var currentLipImageName:String;
-        private var bitmapDatasByName:Dictionary
+        private var imageFilesByName:Dictionary
         private var lipOrdersByName:Dictionary;
         private var enterFrameEventDispatcher:Sprite = new Sprite();
         private var soundChannelWrapper:SoundChannelWrapper;
@@ -38,14 +39,14 @@ package classes.sceneParts {
         }
 
         public function setScenario(scenario:Scenario):void {
-            if (scenario.ImagerOrders.length == 0) {
+            if (scenario.ImageOrders.length == 0) {
                 // 画像描画の命令が無い場合は、このクラスを動作させる必要はない
                 return;
             }
 
             var order:ImageOrder;
 
-            for each (var o:ImageOrder in scenario.ImagerOrders) {
+            for each (var o:ImageOrder in scenario.ImageOrders) {
                 if (o.targetLayerIndex == bitmapContainer.LayerIndex) {
                     order = o;
                     break;
@@ -78,7 +79,7 @@ package classes.sceneParts {
         }
 
         public function setResource(res:Resource):void {
-            bitmapDatasByName = res.BitmapDatasByName;
+            imageFilesByName = res.ImageFilesByName;
             lipOrdersByName = res.LipOrdersByName;
             drawingLocationByName = res.ImageDrawingPointByName;
         }
@@ -95,7 +96,7 @@ package classes.sceneParts {
             if (drawCount < drawingImageNames.length) {
                 peakArranger.divisonCount = drawingImageNames.length - 1;
                 var imageName:String = drawingImageNames[peakArranger.getLevel(soundChannelWrapper.getPeak())];
-                var bd:BitmapData = bitmapDatasByName[imageName];
+                var bd:BitmapData = ImageFile(imageFilesByName[imageName]).getBitmapData();
                 var pos:Point = (drawingLocationByName[imageName] != null) ? drawingLocationByName[imageName] : new Point();
                 bitmapContainer.Front.bitmapData.copyPixels(bd, new Rectangle(0, 0, bd.width, bd.height), pos, null, null, true);
 

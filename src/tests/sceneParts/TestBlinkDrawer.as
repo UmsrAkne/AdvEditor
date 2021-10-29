@@ -19,9 +19,9 @@ package tests.sceneParts {
             blinkDrawer.setResource(res);
 
             var scenario1:Scenario = new Scenario();
-            scenario1.ImagerOrders.push(new ImageOrder());
-            scenario1.ImagerOrders[0].names.push("AtestImage1.png", "BtestImage1.png");
-            scenario1.ImagerOrders[0].targetLayerIndex = 0;
+            scenario1.ImageOrders.push(new ImageOrder());
+            scenario1.ImageOrders[0].names.push("AtestImage1.png", "BtestImage1.png");
+            scenario1.ImageOrders[0].targetLayerIndex = 0;
 
             blinkDrawer.setScenario(scenario1);
             Assert.areEqual(blinkDrawer.CurrentEyeImageName, "BtestImage1.png");

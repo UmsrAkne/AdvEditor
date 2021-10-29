@@ -7,6 +7,12 @@ package classes.contentsLoaders {
     import flash.display.Loader;
     import flash.events.Event;
     import flash.net.URLRequest;
+    import classes.sceneContents.ImageFile;
+    import flash.utils.Dictionary;
+    import classes.sceneContents.Scenario;
+    import classes.sceneContents.ImageOrder;
+    import classes.sceneContents.BlinkOrder;
+    import classes.sceneContents.LipOrder;
 
     public class ImageLoader implements ILoader {
 
@@ -28,11 +34,12 @@ package classes.contentsLoaders {
          * @param resource
          */
         public function writeContentsTo(resource:Resource):void {
-            resource.BitmapDatas.push(new BitmapData(1, 1, true, 0));
-            for (var i:int = 0; i < bitmapDatas.length; i++) {
-                resource.BitmapDatas.push(bitmapDatas[i]);
-                resource.BitmapDatasByName[imageFiles[i].name] = bitmapDatas[i]; // ファイル名全て
-                resource.BitmapDatasByName[imageFiles[i].name.split(".")[0]] = bitmapDatas[i]; // 拡張子を除いたファイル名
+            resource.ImageFiles.push(new ImageFile(new File("/dummy")));
+            for each (var f:File in imageFiles) {
+                var imageFile:ImageFile = new ImageFile(f);
+                resource.ImageFiles.push(imageFile);
+                resource.ImageFilesByName[imageFile.FileName] = imageFile;
+                resource.ImageFilesByName[imageFile.FileNameWithoutExtension] = imageFile;
             }
         }
 
@@ -56,6 +63,51 @@ package classes.contentsLoaders {
                 loaders.push(l);
                 l.contentLoaderInfo.addEventListener(Event.COMPLETE, drawBitmaps);
                 l.load(new URLRequest(f.nativePath));
+            }
+        }
+
+        public function loadUsingImages(res:Resource):void {
+            var usingImageNameDictionary:Object = new Object();
+
+            // ImageOrder, DrawingOrder からシナリオで使用している画像の名前を抽出
+
+            for each (var scn:Scenario in res.scenarios) {
+                for each (var imageOrder:ImageOrder in scn.ImageOrders) {
+                    for each (var n:String in imageOrder.names) {
+                        usingImageNameDictionary[n] = n;
+                    }
+                }
+
+                for each (imageOrder in scn.DrawingOrder) {
+                    for each (n in imageOrder.names) {
+                        usingImageNameDictionary[n] = n;
+                    }
+                }
+            }
+
+            // 表情制御に使用している画像のファイル名を抽出する。
+
+            for each (var blinkOrder:BlinkOrder in res.BlinkOrdersByName) {
+                usingImageNameDictionary[blinkOrder.BaseImageName] = blinkOrder.BaseImageName;
+                usingImageNameDictionary[blinkOrder.CloseImageName] = blinkOrder.CloseImageName;
+                for each (n in blinkOrder.buildOrder()) {
+                    usingImageNameDictionary[n] = n;
+                }
+            }
+
+            for each (var lipOrder:LipOrder in res.LipOrdersByName) {
+                usingImageNameDictionary[lipOrder.BaseImageName] = lipOrder.BaseImageName;
+                usingImageNameDictionary[lipOrder.CloseImageName] = lipOrder.CloseImageName;
+                for each (n in lipOrder.buildOrder()) {
+                    usingImageNameDictionary[n] = n;
+                }
+            }
+
+            for each (var imageFileName:String in usingImageNameDictionary) {
+                var targetFileName:String = usingImageNameDictionary[imageFileName];
+                if (res.ImageFilesByName[targetFileName] != null) {
+                    ImageFile(res.ImageFilesByName[usingImageNameDictionary[imageFileName]]).load();
+                }
             }
         }
 

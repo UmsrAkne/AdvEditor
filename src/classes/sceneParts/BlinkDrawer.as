@@ -12,11 +12,12 @@ package classes.sceneParts {
     import flash.geom.Point;
     import flash.geom.Rectangle;
     import flash.display.BitmapData;
+    import classes.sceneContents.ImageFile;
 
     public class BlinkDrawer implements IScenarioSceneParts {
 
         private var bitmapContainer:BitmapContainer;
-        private var bitmapDatasByName:Dictionary;
+        private var imageFilesByName:Dictionary;
         private var blinkOrdersByName:Dictionary;
         private var currentEyeImageName:String;
         private var currentBlinkOrder:BlinkOrder;
@@ -33,13 +34,13 @@ package classes.sceneParts {
         }
 
         public function setScenario(scenario:Scenario):void {
-            if (scenario.ImagerOrders.length == 0) {
+            if (scenario.ImageOrders.length == 0) {
                 return;
             }
 
             var order:ImageOrder;
 
-            for each (var o:ImageOrder in scenario.ImagerOrders) {
+            for each (var o:ImageOrder in scenario.ImageOrders) {
                 if (o.targetLayerIndex == bitmapContainer.LayerIndex) {
                     order = o;
                     break;
@@ -72,7 +73,7 @@ package classes.sceneParts {
 
         public function setResource(res:Resource):void {
             blinkOrdersByName = res.BlinkOrdersByName;
-            bitmapDatasByName = res.BitmapDatasByName;
+            imageFilesByName = res.ImageFilesByName;
             drawingLocationByName = res.ImageDrawingPointByName;
         }
 
@@ -94,7 +95,7 @@ package classes.sceneParts {
             if (drawCount < drawingImageNames.length) {
 
                 var imageName:String = drawingImageNames[drawCount];
-                var bd:BitmapData = bitmapDatasByName[imageName];
+                var bd:BitmapData = ImageFile(imageFilesByName[imageName]).getBitmapData();
                 var pos:Point = (drawingLocationByName[imageName] != null) ? drawingLocationByName[imageName] : new Point();
                 bitmapContainer.Front.bitmapData.copyPixels(bd, new Rectangle(0, 0, bd.width, bd.height), pos, null, null, true);
                 drawCount++;
