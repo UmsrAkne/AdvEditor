@@ -22,9 +22,6 @@ package classes.sceneContents {
 
         private var screenSize:Rectangle = new Rectangle(0, 0, 1024, 768);
 
-        private var bitmapDatas:Vector.<BitmapData> = new Vector.<BitmapData>();
-        private var bitmapDatasByName:Dictionary = new Dictionary();
-
         private var imageFiles:Vector.<ImageFile> = new Vector.<ImageFile>();
         private var imageFilesByName:Dictionary = new Dictionary();
 
@@ -47,13 +44,17 @@ package classes.sceneContents {
         private var ses:Vector.<SoundFile> = new Vector.<SoundFile>();
 
         public function dispose():void {
-            var b:BitmapData;
-            for each (b in bitmapDatas) {
-                b.dispose();
+            var imageFile:ImageFile;
+            for each (imageFile in imageFiles) {
+                if (imageFile.getBitmapData() != null) {
+                    imageFile.getBitmapData().dispose();
+                }
             }
 
-            for each (b in bitmapDatasByName) {
-                b.dispose();
+            for each (imageFile in imageFilesByName) {
+                if (imageFile.getBitmapData() != null) {
+                    imageFile.getBitmapData().dispose();
+                }
             }
 
             for (var i:int = 0; i < scenarios.length; i++) {
