@@ -28,7 +28,7 @@ package classes.sceneContents {
             if (bitmapData == null) {
                 var l:Loader = new Loader();
                 l.contentLoaderInfo.addEventListener(Event.COMPLETE, function(e:Event):void {
-                    var loaderInfo:LoaderInfo = e as LoaderInfo;
+                    var loaderInfo:LoaderInfo = e.target as LoaderInfo;
                     bitmapData = new BitmapData(loaderInfo.width, loaderInfo.height, true, 0x0);
                 });
 

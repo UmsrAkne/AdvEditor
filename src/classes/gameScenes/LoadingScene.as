@@ -18,6 +18,7 @@ package classes.gameScenes {
         private var sceneDirectory:File;
         private var loaders:Vector.<ILoader> = new Vector.<ILoader>();
         private var loadingCount:int = 0;
+        private var imageLoader:ImageLoader;
         private var resouce:Resource = new Resource();
 
         public function LoadingScene(sceneDirectory:File) {
@@ -34,8 +35,10 @@ package classes.gameScenes {
             loaders.push(new ImageLocationsLoader(sceneDirectory));
             loaders.push(new FaceDrawingOrderLoader(sceneDirectory));
             loaders.push(new SoundLoader(sceneDirectory));
-            loaders.push(new ImageLoader(sceneDirectory));
             loaders.push(new UIImageLoader(new File(File.applicationDirectory.nativePath).resolvePath("../commonResource")));
+
+            imageLoader = new ImageLoader(sceneDirectory);
+            loaders.push(imageLoader);
 
             loadingCount = loaders.length;
 
@@ -53,6 +56,7 @@ package classes.gameScenes {
                     l.writeContentsTo(resouce);
                 }
 
+                imageLoader.loadUsingImages(resouce);
                 resouce.sceneDirectory = sceneDirectory
                 dispatchEvent(new Event(Event.COMPLETE));
             }
