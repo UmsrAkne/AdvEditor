@@ -30,6 +30,7 @@ package classes.sceneContents {
                 l.contentLoaderInfo.addEventListener(Event.COMPLETE, function(e:Event):void {
                     var loaderInfo:LoaderInfo = e.target as LoaderInfo;
                     bitmapData = new BitmapData(loaderInfo.width, loaderInfo.height, true, 0x0);
+                    bitmapData.draw(loaderInfo.loader);
                 });
 
                 l.load(new URLRequest(file.nativePath));
@@ -44,6 +45,10 @@ package classes.sceneContents {
             if (bitmapData == null) {
                 bitmapData = b;
             }
+        }
+
+        public function getBitmapData():BitmapData {
+            return bitmapData;
         }
     }
 }

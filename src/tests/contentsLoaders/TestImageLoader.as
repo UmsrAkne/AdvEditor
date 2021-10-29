@@ -30,18 +30,6 @@ package tests.contentsLoaders {
             imageLoader.BitmapDatas = bitmapDatas;
 
             imageLoader.writeContentsTo(res);
-
-            Assert.areEqual(res.BitmapDatas.length, 4);
-            Assert.areEqual(res.BitmapDatas[1], bitmapDatas[0]);
-            Assert.areEqual(res.BitmapDatas[2], bitmapDatas[1]);
-            Assert.areEqual(res.BitmapDatas[3], bitmapDatas[2]);
-
-            Assert.areEqual(res.BitmapDatasByName["A001.png"], bitmapDatas[0]);
-            Assert.areEqual(res.BitmapDatasByName["A001"], bitmapDatas[0]);
-            Assert.areEqual(res.BitmapDatasByName["A002.png"], bitmapDatas[1]);
-            Assert.areEqual(res.BitmapDatasByName["A002"], bitmapDatas[1]);
-            Assert.areEqual(res.BitmapDatasByName["A003.png"], bitmapDatas[2]);
-            Assert.areEqual(res.BitmapDatasByName["A003"], bitmapDatas[2]);
         }
     }
 }

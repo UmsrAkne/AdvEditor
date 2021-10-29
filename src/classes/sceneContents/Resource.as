@@ -75,14 +75,6 @@ package classes.sceneContents {
             return screenSize;
         }
 
-        public function get BitmapDatas():Vector.<BitmapData> {
-            return bitmapDatas;
-        }
-
-        public function get BitmapDatasByName():Dictionary {
-            return bitmapDatasByName;
-        }
-
         public function get ImageFiles():Vector.<ImageFile> {
             return imageFiles;
         }

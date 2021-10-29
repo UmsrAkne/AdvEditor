@@ -34,13 +34,6 @@ package classes.contentsLoaders {
          * @param resource
          */
         public function writeContentsTo(resource:Resource):void {
-            resource.BitmapDatas.push(new BitmapData(1, 1, true, 0));
-            for (var i:int = 0; i < bitmapDatas.length; i++) {
-                resource.BitmapDatas.push(bitmapDatas[i]);
-                resource.BitmapDatasByName[imageFiles[i].name] = bitmapDatas[i]; // ファイル名全て
-                resource.BitmapDatasByName[imageFiles[i].name.split(".")[0]] = bitmapDatas[i]; // 拡張子を除いたファイル名
-            }
-
             resource.ImageFiles.push(new ImageFile(new File("/dummy")));
             for each (var f:File in imageFiles) {
                 var imageFile:ImageFile = new ImageFile(f);
