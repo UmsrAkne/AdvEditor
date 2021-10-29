@@ -71,7 +71,7 @@ package classes.sceneContents {
             textAddition = value;
         }
 
-        public function get ImagerOrders():Vector.<ImageOrder> {
+        public function get ImageOrders():Vector.<ImageOrder> {
             return imageOrders;
         }
 

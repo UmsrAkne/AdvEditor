@@ -41,7 +41,7 @@ package tests.sceneParts {
 
             res.LipOrdersByName["c"] = lipOrder;
 
-            scenario.ImagerOrders.push(order);
+            scenario.ImageOrders.push(order);
 
             drawer.setScenario(scenario);
             drawer.drawLip();

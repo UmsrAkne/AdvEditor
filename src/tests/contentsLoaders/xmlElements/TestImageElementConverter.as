@@ -25,28 +25,28 @@ package tests.contentsLoaders.xmlElements {
 
             imageElementConverter.convert(testXML1, scenario1);
 
-            Assert.areEqual(scenario1.ImagerOrders[0].names[0], "Aimg01");
-            Assert.areEqual(scenario1.ImagerOrders[0].names[1], "");
+            Assert.areEqual(scenario1.ImageOrders[0].names[0], "Aimg01");
+            Assert.areEqual(scenario1.ImageOrders[0].names[1], "");
 
-            Assert.areEqual(scenario1.ImagerOrders[0].x, -100);
-            Assert.areEqual(scenario1.ImagerOrders[0].y, 0);
-            Assert.areEqual(scenario1.ImagerOrders[0].Scale, 2.0);
-            Assert.areEqual(scenario1.ImagerOrders[0].rotation, 20);
-            Assert.areEqual(scenario1.ImagerOrders[0].backgroundColor, 10);
-            Assert.isTrue(scenario1.ImagerOrders[0].statusInherit);
-            Assert.areEqual(scenario1.ImagerOrders[0].targetLayerIndex, 3);
+            Assert.areEqual(scenario1.ImageOrders[0].x, -100);
+            Assert.areEqual(scenario1.ImageOrders[0].y, 0);
+            Assert.areEqual(scenario1.ImageOrders[0].Scale, 2.0);
+            Assert.areEqual(scenario1.ImageOrders[0].rotation, 20);
+            Assert.areEqual(scenario1.ImageOrders[0].backgroundColor, 10);
+            Assert.isTrue(scenario1.ImageOrders[0].statusInherit);
+            Assert.areEqual(scenario1.ImageOrders[0].targetLayerIndex, 3);
 
-            Assert.areEqual(scenario1.ImagerOrders.length, 2);
+            Assert.areEqual(scenario1.ImageOrders.length, 2);
 
-            Assert.isFalse(scenario1.ImagerOrders[1].statusInherit);
-            Assert.areEqual(scenario1.ImagerOrders[1].rotation, 0);
+            Assert.isFalse(scenario1.ImageOrders[1].statusInherit);
+            Assert.areEqual(scenario1.ImageOrders[1].rotation, 0);
 
-            Assert.areEqual(scenario1.ImagerOrders[0].indexes.length, 4);
+            Assert.areEqual(scenario1.ImageOrders[0].indexes.length, 4);
 
-            Assert.areEqual(scenario1.ImagerOrders[0].indexes[0], 1);
-            Assert.areEqual(scenario1.ImagerOrders[0].indexes[1], 0);
-            Assert.areEqual(scenario1.ImagerOrders[0].indexes[2], 3);
-            Assert.areEqual(scenario1.ImagerOrders[0].indexes[3], 4);
+            Assert.areEqual(scenario1.ImageOrders[0].indexes[0], 1);
+            Assert.areEqual(scenario1.ImageOrders[0].indexes[1], 0);
+            Assert.areEqual(scenario1.ImageOrders[0].indexes[2], 3);
+            Assert.areEqual(scenario1.ImageOrders[0].indexes[3], 4);
 
             var testXML2:XML = new XML("<scenario>  <image a=\"Aimg01\" c=\"Cimg01\" scale=\"\" backgroundColor=\"0xa\" statusInherit=\"true\" target=\"front\"/>  </scenario>");
             var scenario2:Scenario = new Scenario();

@@ -97,7 +97,7 @@ package classes.contentsLoaders.xmlElements {
                     }
                 }
 
-                scenario.ImagerOrders.push(order);
+                scenario.ImageOrders.push(order);
             }
         }
 

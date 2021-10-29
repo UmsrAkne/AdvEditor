@@ -37,7 +37,7 @@ package tests.sceneParts {
             imageOrder1.indexes.push(1, 0, 0);
             imageOrder1.Scale = 2.0;
             imageOrder1.names.push("white01", "", "");
-            scenario1.ImagerOrders.push(imageOrder1);
+            scenario1.ImageOrders.push(imageOrder1);
 
             imageDrawer.setScenario(scenario1);
             imageDrawer.execute();
@@ -92,7 +92,7 @@ package tests.sceneParts {
             imageOrder1.indexes.push(1, 0, 0);
             imageOrder1.names.push("white1");
             imageOrder1.x = 100;
-            scenarios[0].ImagerOrders.push(imageOrder1);
+            scenarios[0].ImageOrders.push(imageOrder1);
 
             var drawImageOrder:ImageOrder = new ImageOrder();
             drawImageOrder.targetLayerIndex = 0;
@@ -106,7 +106,7 @@ package tests.sceneParts {
             nextImageOrder.indexes.push(1, 0, 0);
             nextImageOrder.names.push("white2");
             nextImageOrder.statusInherit = true;
-            scenarios[2].ImagerOrders.push(nextImageOrder);
+            scenarios[2].ImageOrders.push(nextImageOrder);
 
             imageDrawer.setScenario(scenarios[0]);
             imageDrawer.execute();

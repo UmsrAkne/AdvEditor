@@ -124,14 +124,14 @@ package classes.sceneParts {
         }
 
         public function setScenario(scenario:Scenario):void {
-            if (scenario.ImagerOrders.length == 0 && scenario.DrawingOrder.length == 0) {
+            if (scenario.ImageOrders.length == 0 && scenario.DrawingOrder.length == 0) {
                 needBitmapDrawing = false;
                 needBitmapAddition = false;
                 return;
             }
 
-            if (scenario.ImagerOrders.length > 0) {
-                for each (var order:ImageOrder in scenario.ImagerOrders) {
+            if (scenario.ImageOrders.length > 0) {
+                for each (var order:ImageOrder in scenario.ImageOrders) {
                     if (order.targetLayerIndex == bitmapContainer.LayerIndex) {
                         currentOrder = order;
                         needBitmapAddition = true;
