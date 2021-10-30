@@ -30,6 +30,7 @@ package classes.gameScenes {
             addEventListener(KeyboardEvent.KEY_DOWN, keyboardEventHandler);
             addEventListener(Event.ENTER_FRAME, enterFrameEventHandler);
 
+            ui.TextWindow.text = "loading is completed";
             textWriter = new TextWriter();
             sceneParts.push(textWriter);
 
