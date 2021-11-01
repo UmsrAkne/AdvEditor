@@ -2,6 +2,7 @@ package classes.sceneContents {
 
     import classes.animes.IAnimation;
     import flash.display.Shape;
+    import flash.filesystem.File;
 
     public class Scenario {
 
@@ -21,6 +22,7 @@ package classes.sceneContents {
         private var bgm:SoundFile;
         private var bgvOrders:Vector.<BGVOrder> = new Vector.<BGVOrder>();
         private var stopOrders:Vector.<StopOrder> = new Vector.<StopOrder>();
+        private var movieFiles:Vector.<File> = new Vector.<File>();
 
         public function get Ignore():Boolean {
             return ignore;
@@ -129,6 +131,10 @@ package classes.sceneContents {
 
         public function get StopOrders():Vector.<StopOrder> {
             return stopOrders;
+        }
+
+        public function get MovieFiles():Vector.<File> {
+            return movieFiles;
         }
     }
 }

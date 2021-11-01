@@ -10,6 +10,7 @@ package classes.contentsLoaders {
     import classes.contentsLoaders.xmlElements.*;
     import classes.sceneContents.Resource;
     import flash.desktop.NativeApplication;
+    import classes.contentsLoaders.xmlElements.MovieElementConverter;
 
     public class ScenarioLoader implements ILoader {
 
@@ -92,6 +93,7 @@ package classes.contentsLoaders {
             elementConverters.push(new MaskElementConverter());
             elementConverters.push(new BackVoiceElementConverter(sceneDirectory));
             elementConverters.push(new StopElementConverter());
+            elementConverters.push(new MovieElementConverter(sceneDirectory));
 
             for each (var scenarioTag:XML in xmlList["scenario"]) {
                 var scenario:Scenario = new Scenario();
