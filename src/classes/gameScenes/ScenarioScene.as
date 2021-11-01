@@ -10,6 +10,7 @@ package classes.gameScenes {
     import flash.events.Event;
     import flash.events.KeyboardEvent;
     import flash.ui.Keyboard;
+    import classes.sceneParts.MoviePlayer;
 
     public class ScenarioScene extends Sprite {
 
@@ -66,6 +67,8 @@ package classes.gameScenes {
             sceneParts.push(new MaskSetter(ui.getBitmapContainerFromIndex(1))); // main
             sceneParts.push(new MaskSetter(ui.getBitmapContainerFromIndex(2))); // middle
             sceneParts.push(new MaskSetter(ui.getBitmapContainerFromIndex(3))); // front
+
+            sceneParts.push(new MoviePlayer(ui.getMoviePlayerContainerFromIndex(0)));
 
             for (var i:int = 0; i < 4; i++) {
                 var animator:Animator = new Animator(ui.getBitmapContainerFromIndex(i));
