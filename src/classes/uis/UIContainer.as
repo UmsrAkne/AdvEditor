@@ -7,6 +7,8 @@ package classes.uis {
     import flash.display.Bitmap;
     import flash.display.BitmapData;
     import flash.text.TextFormat;
+    import classes.sceneContents.movieClasses.MoviePlayerContainer;
+    import classes.sceneContents.movieClasses.ExMoviePlayer;
 
     public class UIContainer extends Sprite {
 
@@ -14,6 +16,7 @@ package classes.uis {
         private var textWindow:TextField = new TextField();
         private var textWindowImage:Bitmap = new Bitmap();
         private var bitmapContainers:Vector.<BitmapContainer> = new Vector.<BitmapContainer>();
+        private var moviePlayerContainers:Vector.<MoviePlayerContainer> = new Vector.<MoviePlayerContainer>();
 
         private var frame:Bitmap = new Bitmap();
 
@@ -39,6 +42,10 @@ package classes.uis {
         }
 
         public function UIContainer() {
+            var mpc:MoviePlayerContainer = new MoviePlayerContainer(new ExMoviePlayer(640, 480), new ExMoviePlayer(640, 480));
+            moviePlayerContainers.push(mpc);
+            addChild(mpc);
+
             for (var i:int = 0; i < 4; i++) {
                 var bmpContainer:BitmapContainer = new BitmapContainer(i);
                 bitmapContainers.push(bmpContainer);
@@ -83,6 +90,10 @@ package classes.uis {
 
         public function getBitmapContainerFromIndex(index:int):BitmapContainer {
             return bitmapContainers[index];
+        }
+
+        public function getMoviePlayerContainerFromIndex(index:int):MoviePlayerContainer {
+            return moviePlayerContainers[index];
         }
 
         public function getVoiceChannelWrapperFromIndex(index:int):SoundChannelWrapper {
