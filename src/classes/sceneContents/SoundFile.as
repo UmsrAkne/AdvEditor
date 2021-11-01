@@ -47,7 +47,11 @@ package classes.sceneContents {
 
         public function getSound():ISound {
             if (sound == null) {
-                sound = new ExSound(new Sound(new URLRequest(file.nativePath)));
+                if (file.extension == null) {
+                    sound = new ExSound(new Sound(new URLRequest(file.nativePath + ".mp3")));
+                } else {
+                    sound = new ExSound(new Sound(new URLRequest(file.nativePath)));
+                }
             }
 
             return sound;
