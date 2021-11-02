@@ -42,15 +42,15 @@ package classes.uis {
         }
 
         public function UIContainer() {
-            var mpc:MoviePlayerContainer = new MoviePlayerContainer(new ExMoviePlayer(640, 480), new ExMoviePlayer(640, 480));
-            moviePlayerContainers.push(mpc);
-            addChild(mpc);
-
             for (var i:int = 0; i < 4; i++) {
                 var bmpContainer:BitmapContainer = new BitmapContainer(i);
                 bitmapContainers.push(bmpContainer);
                 addChild(bmpContainer);
             }
+
+            var mpc:MoviePlayerContainer = new MoviePlayerContainer(new ExMoviePlayer(1280, 1080), new ExMoviePlayer(1280, 1080));
+            moviePlayerContainers.push(mpc);
+            addChild(mpc);
 
             addChild(textWindowImage);
             addChild(textWindow);
