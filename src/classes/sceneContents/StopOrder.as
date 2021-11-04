@@ -30,7 +30,7 @@ package classes.sceneContents {
         }
 
         public function get AllowedTargetKeywords():Vector.<String> {
-            return new <String>["bgm", "se", "voice", "backVoice"];
+            return new <String>["bgm", "se", "voice", "backVoice", "movie"];
         }
 
         public function get AllowedTargetAnimationNames():Vector.<String> {

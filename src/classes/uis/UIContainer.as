@@ -7,6 +7,8 @@ package classes.uis {
     import flash.display.Bitmap;
     import flash.display.BitmapData;
     import flash.text.TextFormat;
+    import classes.sceneContents.movieClasses.MoviePlayerContainer;
+    import classes.sceneContents.movieClasses.ExMoviePlayer;
 
     public class UIContainer extends Sprite {
 
@@ -14,6 +16,7 @@ package classes.uis {
         private var textWindow:TextField = new TextField();
         private var textWindowImage:Bitmap = new Bitmap();
         private var bitmapContainers:Vector.<BitmapContainer> = new Vector.<BitmapContainer>();
+        private var moviePlayerContainers:Vector.<MoviePlayerContainer> = new Vector.<MoviePlayerContainer>();
 
         private var frame:Bitmap = new Bitmap();
 
@@ -45,6 +48,10 @@ package classes.uis {
                 addChild(bmpContainer);
             }
 
+            var mpc:MoviePlayerContainer = new MoviePlayerContainer();
+            moviePlayerContainers.push(mpc);
+            addChild(mpc);
+
             addChild(textWindowImage);
             addChild(textWindow);
             addChild(frame);
@@ -72,6 +79,9 @@ package classes.uis {
             textWindowImage.y = baseRect.height * 0.7;
             textWindowImage.alpha = 0.5;
 
+            var mpc:MoviePlayerContainer = getMoviePlayerContainerFromIndex(0);
+            mpc.setPlayers(new ExMoviePlayer(baseRect.width, baseRect.height), new ExMoviePlayer(baseRect.width, baseRect.height));
+
             var bgBmpContainer:BitmapContainer = getBitmapContainerFromIndex(0);
             bgBmpContainer.add(new Bitmap(new BitmapData(baseRect.width, baseRect.height, false, 0x0)));
 
@@ -83,6 +93,10 @@ package classes.uis {
 
         public function getBitmapContainerFromIndex(index:int):BitmapContainer {
             return bitmapContainers[index];
+        }
+
+        public function getMoviePlayerContainerFromIndex(index:int):MoviePlayerContainer {
+            return moviePlayerContainers[index];
         }
 
         public function getVoiceChannelWrapperFromIndex(index:int):SoundChannelWrapper {
