@@ -12,7 +12,10 @@ package classes.sceneContents.movieClasses {
         private var cursorDirection:int = 1;
         private var urlsBuffer:Vector.<String> = new Vector.<String>;
 
-        public function MoviePlayerContainer(playerA:IMoviePlayer, playerB:IMoviePlayer) {
+        public function MoviePlayerContainer() {
+        }
+
+        public function setPlayers(playerA:IMoviePlayer, playerB:IMoviePlayer):void {
             addChild(DisplayObject(playerB));
             addChild(DisplayObject(playerA));
         }

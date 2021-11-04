@@ -48,7 +48,7 @@ package classes.uis {
                 addChild(bmpContainer);
             }
 
-            var mpc:MoviePlayerContainer = new MoviePlayerContainer(new ExMoviePlayer(1280, 1080), new ExMoviePlayer(1280, 1080));
+            var mpc:MoviePlayerContainer = new MoviePlayerContainer();
             moviePlayerContainers.push(mpc);
             addChild(mpc);
 
@@ -78,6 +78,9 @@ package classes.uis {
             textWindowImage.x = (baseRect.width / 2) - (textWindowImage.width / 2);
             textWindowImage.y = baseRect.height * 0.7;
             textWindowImage.alpha = 0.5;
+
+            var mpc:MoviePlayerContainer = getMoviePlayerContainerFromIndex(0);
+            mpc.setPlayers(new ExMoviePlayer(baseRect.width, baseRect.height), new ExMoviePlayer(baseRect.width, baseRect.height));
 
             var bgBmpContainer:BitmapContainer = getBitmapContainerFromIndex(0);
             bgBmpContainer.add(new Bitmap(new BitmapData(baseRect.width, baseRect.height, false, 0x0)));
