@@ -37,6 +37,12 @@ package classes.sceneContents.movieClasses {
             firstMoviewPlayed = true;
         }
 
+        public function stop():void {
+            this.visible = 0;
+            frontPlayer.stop();
+            backPlayer.stop();
+        }
+
         private function get frontPlayer():IMoviePlayer {
             return IMoviePlayer(getChildAt(numChildren - 1));
         }

@@ -44,7 +44,7 @@ package classes.sceneContents.movieClasses {
         }
 
         public function stop():void {
-            throw new Error("Method not implemented.");
+            netStream.close();
         }
 
         public function load():void {
