@@ -33,6 +33,10 @@ package {
                 var xml:XML = new XML(URLLoader(e.target).data);
                 var lastSelectedScenarioIndex:int = int(xml["configuration"]["@selectionIndex"]);
 
+                if (xml["configuration"]["@fullScreenMode"] == "true") {
+                    stage.displayState = StageDisplayState.FULL_SCREEN_INTERACTIVE;
+                }
+
                 var scenarioDirectories:Array = new File(appDirectory.resolvePath("../scenarios").nativePath).getDirectoryListing();
 
                 loadingScene = new LoadingScene(scenarioDirectories[lastSelectedScenarioIndex]);
