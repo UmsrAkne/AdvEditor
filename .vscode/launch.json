@@ -15,6 +15,12 @@
 			"request": "launch",
 			"name": "test",
 			"preLaunchTask": "${defaultBuildTask}"
-		}
+		},
+		{
+			"type": "swf",
+			"request": "launch",
+			"name": "Build and open lastScene",
+			"preLaunchTask": "${defaultBuildTask}"
+		},
 	]
 }
