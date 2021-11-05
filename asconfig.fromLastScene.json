@@ -1,0 +1,11 @@
+{
+	"config": "air",
+	"compilerOptions": {
+		"source-path": [
+			"src"
+		],
+		"output": "bin/FromLastScene.swf"
+	},
+	"mainClass": "FromLastScene",
+	"application": "application.xml"
+}

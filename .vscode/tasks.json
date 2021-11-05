@@ -36,6 +36,24 @@
                 "kind": "build",
                 "isDefault": true
             }
+        },
+        {
+            "type": "actionscript",
+            "asconfig": "asconfig.fromLastScene.json",
+            "label": "build and open lastScene",
+            "debug": true,
+            "presentation": {
+                "echo": false,
+                "reveal": "never",
+                "focus": false,
+                "panel": "shared",
+                "showReuseMessage": false,
+                "clear": false
+            },
+            "group": {
+                "kind": "build",
+                "isDefault": true
+            }
         }
     ]
 }
