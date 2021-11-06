@@ -174,6 +174,11 @@
 
 		MaskElementConverter:"@target"
 			入力する値は anime.target と同様。
+
+	<movie>
+		fileNames には mp4 ファイル名をカンマ区切りで入力する。拡張子は無くても可。
+		ファイルはシナリオディレクトリの "movies/" 配下から読み込まれる。
+		MovieElementConverter:"@fileNames"
 	
 	<se>
 		SEElementConverter:"@fileName"
