@@ -3,9 +3,7 @@ package classes.sceneParts {
     import classes.sceneContents.Scenario;
     import classes.uis.UIContainer;
     import flash.text.TextField;
-    import flash.events.Event;
     import classes.sceneContents.Resource;
-    import flash.display.Sprite;
 
     public class TextWriter implements IScenarioSceneParts, IEnterFrameExecuter {
 
@@ -13,7 +11,6 @@ package classes.sceneParts {
         private var textWindow:TextField;
         private var charaCounter:int;
         private var saveText:Boolean;
-        private var enterFrameEventDispatcher:Sprite = new Sprite();
         private var scenarioCounter:int;
         private var writing:Boolean;
 
@@ -44,9 +41,6 @@ package classes.sceneParts {
             textWindow = ui.TextWindow;
         }
 
-        private function write(event:Event):void {
-        }
-
         public function setResource(res:Resource):void {
             // Resource 使用の必要性が無いため実装無し。
         }
@@ -58,10 +52,6 @@ package classes.sceneParts {
         public function set ScenarioCounter(value:int):void {
             scenarioCounter = value;
             saveText = false;
-        }
-
-        public function dispatchEvent(e:Event):void {
-            enterFrameEventDispatcher.dispatchEvent(e);
         }
 
         public function dispose():void {
