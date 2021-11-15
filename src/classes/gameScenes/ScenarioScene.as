@@ -10,7 +10,6 @@ package classes.gameScenes {
     import flash.events.Event;
     import flash.events.KeyboardEvent;
     import flash.ui.Keyboard;
-    import classes.sceneParts.MoviePlayer;
 
     public class ScenarioScene extends Sprite {
 
@@ -19,6 +18,7 @@ package classes.gameScenes {
         private var ui:UIContainer = new UIContainer();
         private var sceneParts:Vector.<IScenarioSceneParts> = new Vector.<IScenarioSceneParts>();
         private var animators:Vector.<Animator> = new Vector.<Animator>();
+        private var enterFrameExecuters:Vector.<IEnterFrameExecuter> = new Vector.<IEnterFrameExecuter>();
         private var resource:Resource;
         private var textWriter:TextWriter;
         private var bgmPlayer:BGMPlayer;
@@ -78,6 +78,9 @@ package classes.gameScenes {
 
             for each (var parts:IScenarioSceneParts in sceneParts) {
                 parts.setUI(ui);
+                if (parts is IEnterFrameExecuter) {
+                    enterFrameExecuters.push(parts);
+                }
             }
 
             addEventListener(Event.ADDED_TO_STAGE, setActivateEventHandler);
@@ -162,6 +165,10 @@ package classes.gameScenes {
         private function enterFrameEventHandler(event:Event):void {
             for each (var animator:Animator in animators) {
                 animator.executeAnimations();
+            }
+
+            for each (var efExecuter:IEnterFrameExecuter in enterFrameExecuters) {
+                efExecuter.executeOnEnterFrame();
             }
         }
 
