@@ -26,13 +26,13 @@ package tests.sceneParts {
             Assert.areEqual(textWindow.text, "");
 
             writer.execute();
-            writer.dispatchEvent(new Event(Event.ENTER_FRAME));
+            writer.executeOnEnterFrame();
 
             // execute して 1フレーム経過
             Assert.areEqual(textWindow.text, "t");
 
             for (var i:int = 0; i < 10; i++) {
-                writer.dispatchEvent(new Event(Event.ENTER_FRAME));
+                writer.executeOnEnterFrame();
             }
 
             // 10フレーム経過
@@ -45,11 +45,11 @@ package tests.sceneParts {
             writer.setScenario(additionScenario);
             writer.execute();
 
-            writer.dispatchEvent(new Event(Event.ENTER_FRAME));
+            writer.executeOnEnterFrame();
             Assert.areEqual(textWindow.text, "testTextA");
 
             for (i = 0; i < 10; i++) {
-                writer.dispatchEvent(new Event(Event.ENTER_FRAME));
+                writer.executeOnEnterFrame();
             }
 
             // 最終的に２回分のテキストが連結されて入る。
@@ -64,7 +64,7 @@ package tests.sceneParts {
             // セットした段階でテキストはリセット
             Assert.areEqual(textWindow.text, "");
 
-            writer.dispatchEvent(new Event(Event.ENTER_FRAME));
+            writer.executeOnEnterFrame();
             Assert.areEqual(textWindow.text, "n");
 
             writer.execute();

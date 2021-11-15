@@ -7,7 +7,7 @@ package classes.sceneParts {
     import classes.sceneContents.Resource;
     import flash.display.Sprite;
 
-    public class TextWriter implements IScenarioSceneParts {
+    public class TextWriter implements IScenarioSceneParts, IEnterFrameExecuter {
 
         private var currentText:String;
         private var textWindow:TextField;
@@ -15,22 +15,23 @@ package classes.sceneParts {
         private var saveText:Boolean;
         private var enterFrameEventDispatcher:Sprite = new Sprite();
         private var scenarioCounter:int;
+        private var writing:Boolean;
 
         public function TextWriter() {
         }
 
         public function execute():void {
-            if (enterFrameEventDispatcher.hasEventListener(Event.ENTER_FRAME)) {
+            if (writing) {
                 scenarioCounter++;
                 textWindow.text = currentText;
-                enterFrameEventDispatcher.removeEventListener(Event.ENTER_FRAME, write);
+                writing = false;
             } else {
                 if (!saveText) {
                     textWindow.text = "";
                 }
 
                 charaCounter = 0;
-                enterFrameEventDispatcher.addEventListener(Event.ENTER_FRAME, write);
+                writing = true;
             }
         }
 
@@ -44,15 +45,6 @@ package classes.sceneParts {
         }
 
         private function write(event:Event):void {
-            if (currentText.length <= charaCounter) {
-                charaCounter = 0;
-                scenarioCounter++;
-                enterFrameEventDispatcher.removeEventListener(Event.ENTER_FRAME, write);
-                return;
-            }
-
-            textWindow.appendText(currentText.charAt(charaCounter));
-            charaCounter++;
         }
 
         public function setResource(res:Resource):void {
@@ -73,6 +65,20 @@ package classes.sceneParts {
         }
 
         public function dispose():void {
+        }
+
+        public function executeOnEnterFrame():void {
+            if (writing) {
+                if (currentText.length <= charaCounter) {
+                    charaCounter = 0;
+                    scenarioCounter++;
+                    writing = false;
+                    return;
+                }
+
+                textWindow.appendText(currentText.charAt(charaCounter));
+                charaCounter++;
+            }
         }
     }
 }
