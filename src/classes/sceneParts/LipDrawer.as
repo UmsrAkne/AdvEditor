@@ -1,21 +1,20 @@
 package classes.sceneParts {
 
-    import classes.sceneContents.Scenario;
-    import classes.uis.UIContainer;
-    import classes.sceneContents.Resource;
-    import classes.uis.BitmapContainer;
-    import classes.sceneContents.LipOrder;
-    import flash.utils.Dictionary;
-    import flash.display.Sprite;
-    import classes.uis.SoundChannelWrapper;
-    import flash.events.Event;
+    import classes.sceneContents.ImageFile;
     import classes.sceneContents.ImageOrder;
+    import classes.sceneContents.LipOrder;
+    import classes.sceneContents.Resource;
+    import classes.sceneContents.Scenario;
+    import classes.uis.BitmapContainer;
+    import classes.uis.SoundChannelWrapper;
+    import classes.uis.UIContainer;
     import flash.display.BitmapData;
+    import flash.events.Event;
     import flash.geom.Point;
     import flash.geom.Rectangle;
-    import classes.sceneContents.ImageFile;
+    import flash.utils.Dictionary;
 
-    public class LipDrawer implements IScenarioSceneParts {
+    public class LipDrawer implements IScenarioSceneParts, IEnterFrameExecuter {
 
         // テスト用のフィールド
         public var lastDrawImageName:String;
@@ -25,11 +24,11 @@ package classes.sceneParts {
         private var currentLipImageName:String;
         private var imageFilesByName:Dictionary
         private var lipOrdersByName:Dictionary;
-        private var enterFrameEventDispatcher:Sprite = new Sprite();
         private var soundChannelWrapper:SoundChannelWrapper;
         private var peakArranger:PeakArranger = new PeakArranger();
         private var drawCount:int;
         private var drawingLocationByName:Dictionary;
+        private var drawing:Boolean;
 
         public function LipDrawer(targetBitmapContainer:BitmapContainer) {
             this.bitmapContainer = targetBitmapContainer;
@@ -60,14 +59,11 @@ package classes.sceneParts {
             if (order.names.length >= 2 && order.names[2] != "") {
                 var imageName:String = order.names[2];
 
-                while (enterFrameEventDispatcher.hasEventListener(Event.ENTER_FRAME)) {
-                    enterFrameEventDispatcher.removeEventListener(Event.ENTER_FRAME, enterFrameEventHandler);
-                }
-
+                drawing = false;
                 currentLipOrder = lipOrdersByName[imageName.toString()];
 
                 if (currentLipOrder != null) {
-                    enterFrameEventDispatcher.addEventListener(Event.ENTER_FRAME, enterFrameEventHandler);
+                    drawing = true;
                 }
 
                 currentLipImageName = imageName;
@@ -107,8 +103,10 @@ package classes.sceneParts {
             }
         }
 
-        private function enterFrameEventHandler(e:Event):void {
-            drawLip();
+        public function executeOnEnterFrame():void {
+            if (drawing) {
+                drawLip();
+            }
         }
     }
 }
