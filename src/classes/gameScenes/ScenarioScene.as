@@ -96,6 +96,10 @@ package classes.gameScenes {
                     parts.setResource(r);
                 }
 
+                for (var i:int = 0; i < animators.length; i++) {
+                    animators[i].isEnabled = resource.UseAnimators[i];
+                }
+
                 bgmPlayer.execute();
                 optionUI = new OptionUI(resource);
             }
