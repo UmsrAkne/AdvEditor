@@ -11,6 +11,9 @@ package classes.contentsLoaders {
     import classes.sceneContents.Resource;
     import flash.desktop.NativeApplication;
     import classes.contentsLoaders.xmlElements.MovieElementConverter;
+    import flash.text.engine.BreakOpportunity;
+    import classes.animes.IAnimation;
+    import classes.sceneContents.ImageOrder;
 
     public class ScenarioLoader implements ILoader {
 
@@ -36,6 +39,26 @@ package classes.contentsLoaders {
 
                     Vector.<Scenario>(resource.ScenariosByChapterName[s.ChapterName]).push(s);
                 }
+            }
+
+            var flags:Vector.<Boolean> = new <Boolean>[false, false, false, false];
+
+            for each (var scn:Scenario in resource.scenarios) {
+                for each (var a:IAnimation in scn.Animations) {
+                    flags[a.TargetLayerIndex] = true;
+                }
+
+                for each (var io:ImageOrder in scn.ImageOrders) {
+                    flags[io.targetLayerIndex] = true;
+                }
+
+                for each (var d:ImageOrder in scn.DrawingOrder) {
+                    flags[d.targetLayerIndex] = true;
+                }
+            }
+
+            for (i = 0; i < resource.UseAnimators.length; i++) {
+                resource.UseAnimators[i] = flags[i];
             }
         }
 
