@@ -22,6 +22,7 @@ package tests.sceneParts {
             bitmapContainer.add(testBitmap);
 
             var animator:Animator = new Animator(bitmapContainer);
+            animator.isEnabled = true;
 
             var scenario1:Scenario = new Scenario();
             scenario1.Animations.push(new Shake());
@@ -54,6 +55,7 @@ package tests.sceneParts {
             // bitmapContainer に bitmap を追加した際、animator が alphaChanger を正しく扱うかどうかをテストする。
             var bitmapContainer:BitmapContainer = new BitmapContainer(1);
             var animator:Animator = new Animator(bitmapContainer);
+            animator.isEnabled = true;
 
             var testBitmap:Bitmap = new Bitmap(new BitmapData(5, 5, false, 0x0));
             testBitmap.alpha = 0;
@@ -76,6 +78,7 @@ package tests.sceneParts {
             bitmapContainer.add(testBitmap);
 
             var animator:Animator = new Animator(bitmapContainer);
+            animator.isEnabled = true;
 
             var scenario1:Scenario = new Scenario();
             scenario1.Animations.push(new Shake());

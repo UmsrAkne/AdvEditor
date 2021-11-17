@@ -10,6 +10,7 @@ package classes.sceneParts {
 
     public class Animator implements IScenarioSceneParts {
 
+        public var isEnabled:Boolean;
         private var animations:Vector.<IAnimation> = new Vector.<IAnimation>();
         private var bitmapContainer:BitmapContainer;
         private var stopAnimationNames:Vector.<String> = new Vector.<String>();
@@ -25,6 +26,10 @@ package classes.sceneParts {
          * addAnimation() によって入力されたアニメーションを全て実行します。
          */
         public function executeAnimations():void {
+            if (!isEnabled) {
+                return;
+            }
+
             if (stopAnimationNames.length != 0) {
                 for each (var a:IAnimation in animations) {
                     for each (var animationName:String in stopAnimationNames) {

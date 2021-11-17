@@ -10,6 +10,9 @@ package classes.sceneContents {
 
         public var sceneDirectory:File;
         public var scenarios:Vector.<Scenario> = new Vector.<Scenario>();
+
+        private var useAnimators:Vector.<Boolean> = new <Boolean>[false, false, false, false];
+
         private var scenariosByChapterName:Dictionary = new Dictionary();
         private var chapterHeaderIndexByChapterName:Dictionary = new Dictionary();
 
@@ -130,6 +133,10 @@ package classes.sceneContents {
 
         public function get SEs():Vector.<SoundFile> {
             return ses;
+        }
+
+        public function get UseAnimators():Vector.<Boolean> {
+            return useAnimators;
         }
     }
 }
