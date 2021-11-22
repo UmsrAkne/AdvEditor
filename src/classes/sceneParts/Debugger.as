@@ -8,7 +8,7 @@ package classes.sceneParts {
 
     public class Debugger implements IEnterFrameExecuter, IScenarioSceneParts {
 
-        public var isEnabled:Boolean = true;
+        private var isEnabled:Boolean = true;
         private var textWindow:TextField;
         private var drawCount:int;
         private var oldTime:int;
@@ -46,6 +46,15 @@ package classes.sceneParts {
         }
 
         public function dispose():void {
+        }
+
+        public function set IsEnabled(value:Boolean):void {
+            isEnabled = value;
+            textWindow.visible = value;
+        }
+
+        public function get IsEnabled():Boolean {
+            return isEnabled;
         }
     }
 }
