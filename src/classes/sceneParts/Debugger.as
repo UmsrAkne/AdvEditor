@@ -8,7 +8,7 @@ package classes.sceneParts {
 
     public class Debugger implements IEnterFrameExecuter, IScenarioSceneParts {
 
-        private var isEnabled:Boolean = true;
+        private var isEnabled:Boolean = false;
         private var textWindow:TextField;
         private var drawCount:int;
         private var oldTime:int;
@@ -40,6 +40,7 @@ package classes.sceneParts {
 
         public function setUI(ui:UIContainer):void {
             textWindow = ui.DebugTextWindow;
+            textWindow.visible = IsEnabled;
         }
 
         public function setResource(res:Resource):void {
