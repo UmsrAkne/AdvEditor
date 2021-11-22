@@ -15,6 +15,7 @@ package classes.uis {
         private var baseRect:Rectangle;
         private var textWindow:TextField = new TextField();
         private var textWindowImage:Bitmap = new Bitmap();
+        private var debugTextWindow:TextField = new TextField()
         private var bitmapContainers:Vector.<BitmapContainer> = new Vector.<BitmapContainer>();
         private var moviePlayerContainers:Vector.<MoviePlayerContainer> = new Vector.<MoviePlayerContainer>();
 
@@ -27,6 +28,10 @@ package classes.uis {
 
         public function get TextWindow():TextField {
             return textWindow;
+        }
+
+        public function get DebugTextWindow():TextField {
+            return debugTextWindow;
         }
 
         public function get TextWindowImage():Bitmap {
@@ -59,6 +64,12 @@ package classes.uis {
             textWindow.defaultTextFormat = new TextFormat(null, 24, 0xffffff);
             textWindow.wordWrap = true;
 
+            addChild(debugTextWindow);
+
+            debugTextWindow.defaultTextFormat = new TextFormat(null, 18, 0x0);
+            debugTextWindow.backgroundColor = 0xffffff;
+            debugTextWindow.background = true;
+
             voiceChannelWrappers.push(new SoundChannelWrapper(), new SoundChannelWrapper(), new SoundChannelWrapper());
             bgvChannelWrappers.push(new SoundChannelWrapper(), new SoundChannelWrapper(), new SoundChannelWrapper());
         }
@@ -78,6 +89,11 @@ package classes.uis {
             textWindowImage.x = (baseRect.width / 2) - (textWindowImage.width / 2);
             textWindowImage.y = baseRect.height * 0.7;
             textWindowImage.alpha = 0.5;
+
+            debugTextWindow.width = 50;
+            debugTextWindow.height = 20;
+            debugTextWindow.x = (baseRect.width - debugTextWindow.width);
+            debugTextWindow.alpha = 0.8;
 
             var mpc:MoviePlayerContainer = getMoviePlayerContainerFromIndex(0);
             mpc.setPlayers(new ExMoviePlayer(baseRect.width, baseRect.height), new ExMoviePlayer(baseRect.width, baseRect.height));

@@ -10,6 +10,8 @@ package classes.gameScenes {
     import flash.events.Event;
     import flash.events.KeyboardEvent;
     import flash.ui.Keyboard;
+    import classes.sceneParts.Debugger;
+    import classes.sceneParts.IScenarioSceneParts;
 
     public class ScenarioScene extends Sprite {
 
@@ -34,8 +36,9 @@ package classes.gameScenes {
             ui.TextWindow.text = "loading is completed";
             textWriter = new TextWriter();
             sceneParts.push(textWriter);
-
             sceneParts.push(chapterManager);
+
+            sceneParts.push(new Debugger());
 
             bgmPlayer = new BGMPlayer();
             sceneParts.push(bgmPlayer);
@@ -121,6 +124,15 @@ package classes.gameScenes {
                 if (index > 0) {
                     textWriter.ScenarioCounter = index;
                     playScenario();
+                }
+            }
+
+            if (event.keyCode == Keyboard.D) {
+                for each (var s:IScenarioSceneParts in sceneParts) {
+                    var deb:Debugger = s as Debugger;
+                    if (deb != null) {
+                        deb.IsEnabled = !deb.IsEnabled;
+                    }
                 }
             }
 
