@@ -3,8 +3,12 @@ package classes.sceneParts {
     import classes.sceneContents.Scenario;
     import classes.uis.UIContainer;
     import classes.sceneContents.Resource;
+    import flash.text.TextField;
 
     public class Debugger implements IEnterFrameExecuter, IScenarioSceneParts {
+
+        private var textWindow:TextField;
+
         public function Debugger() {
         }
 
@@ -18,6 +22,7 @@ package classes.sceneParts {
         }
 
         public function setUI(ui:UIContainer):void {
+            textWindow = ui.DebugTextWindow;
         }
 
         public function setResource(res:Resource):void {

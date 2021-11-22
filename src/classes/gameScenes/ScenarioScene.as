@@ -10,6 +10,7 @@ package classes.gameScenes {
     import flash.events.Event;
     import flash.events.KeyboardEvent;
     import flash.ui.Keyboard;
+    import classes.sceneParts.Debugger;
 
     public class ScenarioScene extends Sprite {
 
@@ -34,8 +35,9 @@ package classes.gameScenes {
             ui.TextWindow.text = "loading is completed";
             textWriter = new TextWriter();
             sceneParts.push(textWriter);
-
             sceneParts.push(chapterManager);
+
+            sceneParts.push(new Debugger());
 
             bgmPlayer = new BGMPlayer();
             sceneParts.push(bgmPlayer);
