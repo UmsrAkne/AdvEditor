@@ -110,6 +110,11 @@ package classes.animes {
         }
 
         public function set Target(targetObject:DisplayObject):void {
+            if (target != null && target != targetObject) {
+                valid = false;
+                return;
+            }
+
             if (target == null) {
                 target = targetObject;
             }
