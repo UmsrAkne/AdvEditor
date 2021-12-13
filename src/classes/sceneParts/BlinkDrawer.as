@@ -32,13 +32,20 @@ package classes.sceneParts {
         }
 
         public function setScenario(scenario:Scenario):void {
-            if (scenario.ImageOrders.length == 0) {
+            if (scenario.ImageOrders.length == 0 && scenario.DrawingOrder.length == 0) {
                 return;
             }
 
             var order:ImageOrder;
 
             for each (var o:ImageOrder in scenario.ImageOrders) {
+                if (o.targetLayerIndex == bitmapContainer.LayerIndex) {
+                    order = o;
+                    break;
+                }
+            }
+
+            for each (o in scenario.DrawingOrder) {
                 if (o.targetLayerIndex == bitmapContainer.LayerIndex) {
                     order = o;
                     break;

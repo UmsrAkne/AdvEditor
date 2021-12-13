@@ -38,7 +38,7 @@ package classes.sceneParts {
         }
 
         public function setScenario(scenario:Scenario):void {
-            if (scenario.ImageOrders.length == 0) {
+            if (scenario.ImageOrders.length == 0 && scenario.ImageOrders.length == 0) {
                 // 画像描画の命令が無い場合は、このクラスを動作させる必要はない
                 return;
             }
@@ -46,6 +46,16 @@ package classes.sceneParts {
             var order:ImageOrder;
 
             for each (var o:ImageOrder in scenario.ImageOrders) {
+                if (o.targetLayerIndex == bitmapContainer.LayerIndex) {
+                    order = o;
+                    break;
+                }
+            }
+
+            // imageOrder, DrawingOrder の両方にオーダーが入っていた場合、 order は上書きされるが問題ない。
+            // 描画対象の優先順位は Image < Drawing 
+
+            for each (o in scenario.DrawingOrder) {
                 if (o.targetLayerIndex == bitmapContainer.LayerIndex) {
                     order = o;
                     break;
