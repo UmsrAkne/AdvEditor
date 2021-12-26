@@ -145,6 +145,9 @@ package classes.gameScenes {
                 removeChild(ui);
                 ui.dispose();
 
+                removeEventListener(Event.ENTER_FRAME, enterFrameEventHandler);
+                removeEventListener(KeyboardEvent.KEY_DOWN, keyboardEventHandler);
+
                 dispatchEvent(new Event(SCENE_EXIT));
             }
 
