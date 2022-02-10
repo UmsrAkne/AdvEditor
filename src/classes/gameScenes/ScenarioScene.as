@@ -27,6 +27,7 @@ package classes.gameScenes {
         private var chapterManager:ChapterManager = new ChapterManager();
         private var lastExecuteScenario:Scenario;
         private var optionUI:OptionUI;
+        private var keyboardLock:Boolean = true;
 
         public function ScenarioScene() {
             addChild(ui);
@@ -105,10 +106,16 @@ package classes.gameScenes {
 
                 bgmPlayer.execute();
                 optionUI = new OptionUI(resource);
+
+                keyboardLock = false;
             }
         }
 
         private function keyboardEventHandler(event:KeyboardEvent):void {
+            if (keyboardLock) {
+                return;
+            }
+
             if (event.keyCode == Keyboard.ENTER) {
                 playScenario();
             }
