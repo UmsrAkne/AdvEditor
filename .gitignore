@@ -2,3 +2,4 @@ bin/*
 .vscode/settings.json
 scenarios/sampleScenario*
 commonResource/texts/*
+commonResource/*
