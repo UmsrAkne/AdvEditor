@@ -23,7 +23,7 @@ package classes.sceneContents {
 
         public var defaultScale:Number = 1.0;
 
-        private var screenSize:Rectangle = new Rectangle(0, 0, 1024, 768);
+        private var screenSize:Rectangle = new Rectangle(0, 0, 1280, 720);
 
         private var imageFiles:Vector.<ImageFile> = new Vector.<ImageFile>();
         private var imageFilesByName:Dictionary = new Dictionary();
